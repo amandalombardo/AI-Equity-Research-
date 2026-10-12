@@ -1,6 +1,6 @@
 # Diageo plc (LSE: DGE)
 
-**Rating: BUY (model output; PM to confirm or override) | Fair value 2,475p | Share price 1,673p (12 Oct 2026) | Upside +48.0%**
+**Rating: BUY (model output; PM to confirm or override) | Fair value 2,141p | Share price 1,673p (12 Oct 2026) | Upside +28.0%**
 
 ## Thesis
 - **Cash is recovering while the share price sits near its low.** FY26 free cash flow rose to USD 3,211m from USD 2,748m, and leverage eased to 3.14x from 3.35x. The stock is 66.8% below its January 2022 peak and trades at 13.4x FY26 EPS before exceptionals.
@@ -10,16 +10,16 @@
 ## Valuation
 The DCF is in USD and converted to pence at USD 1.3234 per GBP. Base-year net sales are USD 18,505.5m excluding EABL. Organic growth is 0.0%, 1.5%, 2.5%, 3.0% and 3.0% (FY27-31, low end of guidance), with 50% savings flow-through and 2.0% terminal growth.
 
-WACC is 6.21%: risk-free 5.22% (US 10-year), beta 0.48 (peer median), ERP 5.0%, cost of equity 7.60%, pre-tax cost of debt 3.81%, debt weight 29.4%. The model gives an enterprise value of USD 86,751m and an equity value of USD 72,789m, which is USD 32.76 or 2,475p per share. The bear scenario (no growth, 25% flow-through, WACC +1 point) gives 1,732p (HOLD).
+WACC is 6.75%: risk-free 5.22% (US 10-year), beta 0.48 (peer median), ERP 5.0%, cost of equity 7.60%, pre-tax cost of debt 6.22% (risk-free + 1.0%, PM rule), debt weight 29.4%. The model gives an enterprise value of USD 76,931m and an equity value of USD 62,969m, which is USD 28.34 or 2,141p per share. The bear scenario (no growth, 25% flow-through, WACC +1 point) gives 1,527p (HOLD).
 
-Comps are thin: only two peers have usable data. A median P/E of 14.0x (Pernod Ricard 10.7x, Brown-Forman 17.4x) implies 1,753p (range 1,334p to 2,172p). **The DCF is 41.2% above comps, and the terminal value is 82.7% of EV.**
+Comps are thin: only two peers have usable data. A median P/E of 14.0x (Pernod Ricard 10.7x, Brown-Forman 17.4x) implies 1,753p (range 1,334p to 2,172p). **The DCF is 22% above comps, and the terminal value is 80.7% of EV.**
 
 | Value per share (p) | g 1.5% | g 2.0% | g 2.5% |
 |---|---|---|---|
-| WACC 5.71% | 2,525 | 2,873 | 3,330 |
-| WACC 6.21% | 2,206 | 2,475 | 2,818 |
-| WACC 6.71% | 1,948 | 2,162 | 2,427 |
-| WACC 7.21% | 1,735 | 1,909 | 2,119 |
+| WACC 6.25% | 2,185 | 2,449 | 2,785 |
+| WACC 6.75% | 1,931 | 2,141 | 2,402 |
+| WACC 7.25% | 1,721 | 1,892 | 2,099 |
+| WACC 7.75% | 1,545 | 1,686 | 1,854 |
 
 ## Fundamentals
 - **Growth has stalled:** organic net sales growth was 6.5% in FY23, then -0.6%, 1.7% and -2.0% in FY26. North America (USD 7,249m) fell 8.4% organically. Africa grew 13.3% and Latin America & Caribbean 7.7%.
@@ -34,14 +34,14 @@ Comps are thin: only two peers have usable data. A median P/E of 14.0x (Pernod R
 - Leverage is 3.14x adjusted net borrowings / adjusted EBITDA, above the 2.5-3.0x target. The dividend has been cut to a 30-50% payout.
 
 ## Bear case and our response
-1. **Cost of debt (3.81%) is below the risk-free rate (5.22%).** At 6.22%, the value is 2,141p (-334p). *Response: still a BUY; the brief should define the cost of debt as Rf plus a spread. PM to respond.*
-2. **Beta of 0.48 understates the risk.** At beta 1.0, the value is 1,573p (-902p, HOLD). Combined with challenge 1, it is 1,407p (SELL). *Response: PM to respond. This is the decision that sets the rating.*
-3. **Savings are reinvested, not kept.** 25% flow-through gives 2,335p (-140p); 0% gives 2,195p (-280p). *Response: still a BUY even at 0%.*
-4. **Terminal growth vs a shrinking spirits market.** 1.5% gives 2,206p (-270p). *Response: still a BUY; volumes are falling, but pricing has historically offset this. PM to respond.*
-5. **Management missed every 2023-26 incentive target:** organic sales CAGR -0.3% against a 4.0% threshold. Zero growth gives 2,392p (-83p). *Response: the valuation does not depend on growth; it depends on the discount rate.*
+1. **Beta of 0.48 understates the risk.** At beta 1.0, the value is 1,407p (-735p, SELL). *Response: PM to respond. This is the decision that sets the rating.*
+2. **A 1% credit spread may be too tight while leverage is above target.** A 2% spread gives 2,024p (-117p). *Response: still a BUY.*
+3. **Savings are reinvested, not kept.** 25% flow-through gives 2,017p (-124p); 0% gives 1,893p (-248p, HOLD). *Response: PM to respond; this is the most credible single threat to the BUY.*
+4. **Terminal growth vs a shrinking spirits market.** 1.5% gives 1,931p (-211p), a BUY by a hair. *Response: volumes are falling, but pricing has historically offset this. PM to respond.*
+5. **Management missed every 2023-26 incentive target:** organic sales CAGR -0.3% against a 4.0% threshold. Zero growth gives 2,069p (-72p). *Response: the valuation depends more on the discount rate than on growth.*
 6. **Net debt is stale.** The 30c final dividend costs 23p. *Response: immaterial.*
 
-**Strongest reason not to buy:** the upside depends on a 6.21% WACC. At a market cost of capital, the same model gives 1,407p.
+**Strongest reason not to buy:** the upside still needs a 0.48 beta. At beta 1.0, the same model gives 1,407p.
 
 ## Sources
 - Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529): financial statements, p.13, p.21, p.22, p.85, p.110, p.186-189, p.210-211, regional reviews pp.27-31.

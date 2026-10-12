@@ -49,3 +49,18 @@ def test_excel_formulas_match_python(tmp_path):
             assert r[-3] == pytest.approx(r[-1], rel=1e-9), r[0]
             checked += 1
     assert checked == 15
+
+
+def test_credit_spread_rule_sets_cost_of_debt():
+    brief = {"dcf": {"wacc": {"credit_spread": 0.01}}}
+    v = {"risk_free": 0.05, "pre_tax_cost_of_debt": 0.035}
+    sources = {"pre_tax_cost_of_debt": "historic"}
+    valuation_run.apply_brief_rules(brief, v, sources)
+    assert v["pre_tax_cost_of_debt"] == pytest.approx(0.06)
+    assert v["pre_tax_cost_of_debt_historic"] == pytest.approx(0.035)
+
+
+def test_no_credit_spread_keeps_agent_input():
+    v = {"risk_free": 0.05, "pre_tax_cost_of_debt": 0.035}
+    valuation_run.apply_brief_rules({"dcf": {"wacc": {}}}, v, {})
+    assert v["pre_tax_cost_of_debt"] == pytest.approx(0.035)

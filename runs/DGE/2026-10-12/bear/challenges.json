@@ -1,78 +1,78 @@
 {
-  "base_value_pence": 2475.305938659738,
+  "base_value_pence": 2141.3539563943737,
   "share_price_pence": 1673.0,
   "challenges": [
     {
-      "challenge": "1 Valuation/Data: cost of debt = risk-free + 1.0% (6.22%)",
-      "value_pence": 2141.3539563943737,
-      "impact_pence": -333.9519822653642,
-      "wacc": 0.06746525083,
+      "challenge": "0 Reference: historic cost of debt 3.81% (the first run's input, rejected by the PM)",
+      "value_pence": 2475.305938659738,
+      "impact_pence": 333.9519822653642,
+      "wacc": 0.062093614409000006,
       "rating": "BUY",
-      "upside": 0.2799485693
+      "upside": 0.4795612305
     },
     {
       "challenge": "2 Risk: beta 1.0 instead of 0.48",
-      "value_pence": 1573.2714334207913,
-      "impact_pence": -902.0345052389466,
-      "wacc": 0.08062742690900002,
-      "rating": "HOLD",
-      "upside": -0.0596106196
-    },
-    {
-      "challenge": "3 Valuation: savings flow-through 25% (management says savings fund reinvestment)",
-      "value_pence": 2335.229471232028,
-      "impact_pence": -140.07646742770976,
-      "wacc": 0.062093614409000006,
-      "rating": "BUY",
-      "upside": 0.3958335154
-    },
-    {
-      "challenge": "3b Valuation: savings flow-through 0% (savings fully reinvested)",
-      "value_pence": 2195.1530038043184,
-      "impact_pence": -280.1529348554195,
-      "wacc": 0.062093614409000006,
-      "rating": "BUY",
-      "upside": 0.3121058002
-    },
-    {
-      "challenge": "3c Valuation: supply-chain savings phased 25% FY27, 50% FY28, 75% FY29, 100% FY30",
-      "value_pence": 2474.4609223482134,
-      "impact_pence": -0.8450163115244322,
-      "wacc": 0.062093614409000006,
-      "rating": "BUY",
-      "upside": 0.4790561401
-    },
-    {
-      "challenge": "4 Valuation: terminal growth 1.5% (IWSR: spirits volumes falling)",
-      "value_pence": 2205.6765846170765,
-      "impact_pence": -269.62935404266136,
-      "wacc": 0.062093614409000006,
-      "rating": "BUY",
-      "upside": 0.3183960458
-    },
-    {
-      "challenge": "5 Fundamentals: no organic growth FY27-31 (3-year track record averages -0.3%)",
-      "value_pence": 2392.357152980658,
-      "impact_pence": -82.94878567907972,
-      "wacc": 0.062093614409000006,
-      "rating": "BUY",
-      "upside": 0.4299803664
-    },
-    {
-      "challenge": "6 Data: net debt rolled forward for the 30c FY26 final dividend (2,222m x $0.30)",
-      "value_pence": 2452.637055480049,
-      "impact_pence": -22.66888317968869,
-      "wacc": 0.062093614409000006,
-      "rating": "BUY",
-      "upside": 0.46601139
-    },
-    {
-      "challenge": "Combined 1+2 (market cost of capital)",
       "value_pence": 1406.5552123944667,
-      "impact_pence": -1068.7507262652712,
+      "impact_pence": -734.798743999907,
       "wacc": 0.08599906333000001,
       "rating": "SELL",
       "upside": -0.1592616782
+    },
+    {
+      "challenge": "3 Valuation: savings flow-through 25% (management says savings fund reinvestment)",
+      "value_pence": 2017.3463462910186,
+      "impact_pence": -124.00761010335509,
+      "wacc": 0.06746525083,
+      "rating": "BUY",
+      "upside": 0.2058256702
+    },
+    {
+      "challenge": "3b Valuation: savings flow-through 0% (savings fully reinvested)",
+      "value_pence": 1893.3387361876632,
+      "impact_pence": -248.0152202067104,
+      "wacc": 0.06746525083,
+      "rating": "HOLD",
+      "upside": 0.1317027712
+    },
+    {
+      "challenge": "3c Valuation: supply-chain savings phased 25% FY27, 50% FY28, 75% FY29, 100% FY30",
+      "value_pence": 2140.5182756917256,
+      "impact_pence": -0.8356807026480055,
+      "wacc": 0.06746525083,
+      "rating": "BUY",
+      "upside": 0.279449059
+    },
+    {
+      "challenge": "4 Valuation: terminal growth 1.5% (IWSR: spirits volumes falling)",
+      "value_pence": 1930.7083666186347,
+      "impact_pence": -210.64558977573893,
+      "wacc": 0.06746525083,
+      "rating": "BUY",
+      "upside": 0.1540396692
+    },
+    {
+      "challenge": "5 Fundamentals: no organic growth FY27-31 (3-year track record averages -0.3%)",
+      "value_pence": 2069.3995619806938,
+      "impact_pence": -71.95439441367989,
+      "wacc": 0.06746525083,
+      "rating": "BUY",
+      "upside": 0.2369393676
+    },
+    {
+      "challenge": "6 Data: net debt rolled forward for the 30c FY26 final dividend (2,222m x $0.30)",
+      "value_pence": 2118.685073214685,
+      "impact_pence": -22.66888317968869,
+      "wacc": 0.06746525083,
+      "rating": "BUY",
+      "upside": 0.2663987288
+    },
+    {
+      "challenge": "1b Valuation: credit spread 2.0% instead of 1.0% (BBB-type spread if leverage stays above target)",
+      "value_pence": 2024.168670937367,
+      "impact_pence": -117.18528545700656,
+      "wacc": 0.06969045233000001,
+      "rating": "BUY",
+      "upside": 0.209903569
     }
   ]
 }

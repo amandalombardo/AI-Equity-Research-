@@ -9,7 +9,8 @@ from desk import valuation_run
 
 RUN = Path(__file__).resolve().parents[1]
 brief = yaml.safe_load(Path("briefs/DGE.yaml").read_text())
-v, _ = valuation_run.load_inputs(str(RUN / "inputs.yaml"))
+v, _src = valuation_run.load_inputs(str(RUN / "inputs.yaml"))
+valuation_run.apply_brief_rules(brief, v, _src)  # cost of debt = risk-free + credit spread (PM rule)
 base = valuation_run.build(brief, v)["equity"]["per_share_gbp_pence"]
 
 
@@ -29,7 +30,7 @@ def run(name, inputs=None, brief_changes=None, **kw):
 
 
 res = [
-    run("1 Valuation/Data: cost of debt = risk-free + 1.0% (6.22%)", {"pre_tax_cost_of_debt": v["risk_free"] + 0.01}),
+    run("0 Reference: historic cost of debt 3.81% (the first run's input, rejected by the PM)", {"pre_tax_cost_of_debt": v["pre_tax_cost_of_debt_historic"]}),
     run("2 Risk: beta 1.0 instead of 0.48", {"beta": 1.0}),
     run("3 Valuation: savings flow-through 25% (management says savings fund reinvestment)", brief_changes={"dcf.savings.flow_through": 0.25}),
     run("3b Valuation: savings flow-through 0% (savings fully reinvested)", brief_changes={"dcf.savings.flow_through": 0.0}),
@@ -37,7 +38,7 @@ res = [
     run("4 Valuation: terminal growth 1.5% (IWSR: spirits volumes falling)", brief_changes={"dcf.terminal_growth": 0.015}),
     run("5 Fundamentals: no organic growth FY27-31 (3-year track record averages -0.3%)", brief_changes={"dcf.organic_growth": [0.0] * 5}),
     run("6 Data: net debt rolled forward for the 30c FY26 final dividend (2,222m x $0.30)", {"net_debt": v["net_debt"] + 0.30 * v["shares_outstanding_m"]}),
-    run("Combined 1+2 (market cost of capital)", {"pre_tax_cost_of_debt": v["risk_free"] + 0.01, "beta": 1.0}),
+    run("1b Valuation: credit spread 2.0% instead of 1.0% (BBB-type spread if leverage stays above target)", {"pre_tax_cost_of_debt": v["risk_free"] + 0.02}),
 ]
 out = {"base_value_pence": base, "share_price_pence": v["share_price_gbp_pence"], "challenges": res}
 (Path(__file__).parent / "challenges.json").write_text(json.dumps(out, indent=2))
