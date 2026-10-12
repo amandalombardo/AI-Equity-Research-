@@ -1,37 +1,66 @@
-# Valuation agent notes: Diageo (DGE), run 2026-10-12
+# Valuation agent notes: Diageo (DGE), run 2026-10-12 (Phase 3 re-run)
+
+**History of the base value:** 2,475p (first run, BUY) -> 2,141p (cost of debt fixed, BUY) -> 1,448p (bottom-up beta 0.96, SELL) -> **1,524p (Phase 3, HOLD)**.
 
 ## Step 1: inputs check
-`inputs.yaml` has every required value with a source, including beta from the Risk agent. No STOP.
+`inputs.yaml` has every required value with a source, including beta 0.96 from the Risk agent and the two new Phase 3 inputs (`restructuring_cash` USD 850m; `dividends_ex_before_valuation_musd` 0). No STOP. I did not change `briefs/DGE.yaml` or `inputs.yaml`.
 
 ## Step 2: DCF (`valuation.json`, `dcf.xlsx`)
-**Latest re-run (2026-10-12):** cost of debt = risk-free + 1% (PM rule), and beta 0.96 (bottom-up, see `risk/beta_evidence.json`). The first run, at beta 0.48 and historic debt cost, gave 2,475p (BUY). The second run, with debt fixed and beta still 0.48, gave 2,141p (BUY).
+Valued at the 30 June 2026 balance sheet date (no stub), equity rolled forward to 12 Oct 2026 (0.2822 years) at the cost of equity, no dividend deducted (the 30c final goes ex on 15 Oct). Terminal year is a normalised steady state; terminal capex set from RONIC 13.4% = **6.21% of sales** (forecast years stay at 7.11%). Savings flow-through 46%.
 
 | | Base | Bear |
 |---|---|---|
 | WACC | 8.46% | 9.46% |
-| Enterprise value (USD m) | 56,530 | 45,446 |
-| Equity value (USD m) | 42,568 | |
-| Value per share | USD 19.16 / **1,448p** | **1,071p** |
-| Upside vs 1,673p | **-13.5%** | -36.0% |
-| Rating (engine) | **SELL** | SELL |
+| Enterprise value at 30 June 2026 (USD m) | 58,448 | 45,620 |
+| Equity value at 30 June 2026 (USD m) | 43,636 | 30,808 |
+| Equity value rolled to 12 Oct 2026 (USD m) | 44,828 | 31,649 |
+| Value per share | USD 20.17 / **1,524p** | USD 14.24 / **1,076p** |
+| Upside vs 1,673p | **-8.9%** | -35.7% |
+| Rating (engine) | **HOLD** | SELL |
 
-WACC parts: risk-free 5.22%, beta 0.96, ERP 5.0%, cost of equity 10.02%, pre-tax cost of debt 6.22% (4.71% after tax), debt weight 29.4%.
+WACC parts: risk-free 5.22% (US 10-year), beta 0.96, ERP 5.0%, cost of equity 10.02%; pre-tax cost of debt 6.22% (risk-free + 1%, PM rule), 4.71% after tax (tax 24.3%); debt weight 29.4%, equity weight 70.6%.
 
-## Step 3: comps (`comps.json`)
-I could only use P/E, and only for two peers: Pernod Ricard 10.7x and Brown-Forman 17.4x, median 14.0x. Applied to Diageo's FY26 EPS before exceptionals (165.3 cents), that implies **1,753p** (range 1,334p to 2,172p). Diageo trades at 13.4x. Campari, Remy Cointreau and Constellation are missing (see Data notes). **Indicative only.**
+Bridge (USD m, at 30 June 2026): EV 58,448 - net debt 20,482 (incl. leases) - minorities 2,083 - pension 0 - restructuring cash 850 + associates 5,284 + disposal proceeds 3,318 = 43,636; x (1.1002)^0.2822 = 44,828; / 2,222m shares / 1.3234 USD per GBP = 1,524p.
+
+The live Excel workbook (`dcf.xlsx`), recalculated in LibreOffice, gives the same 1,524.4p, so it matches the engine.
+
+## Step 3: comps (`comps.csv`, `comps.json`)
+P/E only (peer EV/EBITDA is still unavailable). All 4 core peers now have a P/E: Pernod Ricard 10.7x, Brown-Forman 17.4x, Campari 19.6x, Remy Cointreau 25.3x. **Median 18.5x**, applied to Diageo's FY26 EPS before exceptionals (165.3 cents) = **2,311p** (range 1,334p to 3,163p). Diageo trades at 13.4x. Only Pernod has a June year end; the others could not be calendarised (next fiscal years or half-years not yet found), so their gaps are 2 to 6 months. Campari and Remy come from press reports, not filings, and Remy's P/E is inflated by depressed cognac earnings. Constellation Brands (beer-heavy, shown separately) is still missing. **Indicative only.**
 
 ## Step 4: sanity checks (`sanity_checks.json`)
-- **Terminal value is 74.9% of EV**, just under the 75% flag.
+- **Terminal value is 74.9% of EV**, just under the 75% flag (no FLAG, but close).
 - **WACC of 8.46% is inside 6-9%.**
-- **The implied exit multiple is 8.6x EBITDA**, below the roughly 9.8x the market pays today (approximate). EV/EBITDA comps are unavailable this run.
-- **DCF vs comps: the DCF (1,448p) is 17% below the comps value (1,753p).**
-- **Market-implied WACC:** on the sensitivity grid, the share price (1,673p) sits between WACC 7.46% (1,800p) and 7.96% (1,609p) at 2% growth. The market is pricing a WACC of roughly 7.8%, below our 8.46%.
+- **Implied exit multiple: 9.2x FY31 EBITDA** (was 8.6x). Peer EV/EBITDA is unavailable, so I cannot test it against a peer range. It is a little below the roughly 9.8x the market pays for Diageo today (FY26 adjusted EBITDA ex associates; approximate, includes EABL), so it does not look aggressive.
+- **Market-implied WACC: about 8.0%.** On the sensitivity grid at 2% growth, 1,673p sits between WACC 7.96% (1,698p) and 8.46% (1,524p); solving with the engine gives 8.03%. The market is pricing a WACC about 0.4 points below ours (was c.7.8% vs 8.46% last run).
+- **DCF vs comps: the DCF (1,524p) is 34% below the comps value (2,311p).** The gap widened from 17% because Campari and Remy (both on high P/Es) entered the median. The comps value is pulled up by Remy's depressed earnings; Pernod, the closest peer by year end and mix, is at 10.7x, below Diageo's 13.4x. I would not give the comps much weight.
+
+## What changed vs 1,448p (computed with `desk.valuation_run.build`, one change at a time, cumulative; `run_bridge.py`, `bridge.json`)
+
+| Step | Value (p) | Change (p) |
+|---|---|---|
+| Previous run | 1,448 | |
+| 1. Terminal-year fix: steady state, working capital grows at 2% (not FY31's 3%) | 1,474 | +27 |
+| 2. Terminal capex from RONIC 13.4% (7.11% -> 6.21% of sales) | 1,540 | +65 |
+| 3. Savings flow-through 46% (was 50%) | 1,527 | -13 |
+| 4. Value at 30 June and roll equity forward at the cost of equity | 1,554 | +27 |
+| 5. Restructuring cash USD 850m deducted | 1,524 | -30 |
+| **Total** | **1,524** | **+77** |
+
+The step-0 run reproduces 1,448p exactly (old terminal formula: FY31 cash flow x 1.02). Measured one at a time from 1,448p instead of in sequence, the steps are +27, +92, -15, +27, -29p; the order only matters much for terminal capex (it is worth more before the flow-through cut and the roll-forward).
 
 ## For the PM (I have not changed any assumption)
-1. **The rating rests on beta.** Beta 0.72 (Diageo's own best regression) gives 1,738p, a HOLD. Beta 0.96 gives a SELL. A BUY needs a beta below about 0.6, which is at or below the lowest precise estimate (0.60); it is a SELL from about 0.9 up.
-2. **Cost of debt: resolved** (risk-free + 1%).
-3. **Terminal capex at 7.1% of sales vs D&A at 3.4%** depresses terminal cash flow. It is worth a deliberate decision.
-4. **Savings on top of a constant margin:** management says the savings fund reinvestment (20-F p.21).
+1. **FLAG: the HOLD is close to SELL.** The value is 8.9% below the price; SELL starts at 10% (1,506p), only 18p lower. Any of these would flip it to SELL: beta above about 0.98 (we use 0.96); flow-through at 40% (1,505p); new investment returning 10.8% (capex 7.1%, 1,460p). BUY (1,924p) would need a beta below about 0.66 or a WACC below about 7.4%.
+2. **Beta is still the biggest lever.** Beta 0.72 (Diageo's own best regression) gives 1,832p (HOLD); 0.85 gives 1,655p; 0.96 gives 1,524p.
+3. **Terminal capex below the 5-year history.** 6.2% of sales vs 7.1% actual over FY22-26, worth +65p. It is consistent with the 13.4% ROIC rule you chose, but it assumes the heavy maturing-stock and capacity spend of recent years is not repeated forever. Reasonable, but it is the largest single upward step.
+4. **Restructuring cash is pre-tax and undiscounted** (USD 850m at 30 June, though paid over FY27-29). Tax relief (up to about USD 207m) and discounting would each add a little (Data agent: up to about 7p for tax). Conservative; I left it as is.
+5. **Comps are weak** (P/E only, two press-sourced peers, no calendarisation except Pernod, no EV/EBITDA). The 34% gap to comps should not drive the decision.
+6. Tests: `python -m pytest` could not run here (pytest is not installed in this environment). I changed no code in `desk/`.
+
+## What's missing
+Peer EV/EBITDA and FCF yield; Constellation Brands EPS; calendarised peer figures (only Pernod is on a June year).
+
+## Confidence
+**Medium** on the DCF mechanics (engine and Excel agree; the 1,448p baseline reproduces exactly). **Medium-low** on the rating, because HOLD vs SELL sits within 18p and rests on beta, flow-through and terminal returns. **Low** on comps.
 
 ## Savings schedule used (from the brief, PM assumption)
-c.USD 1,000m in total: USD 850m from the operating framework (c.40% in FY27, the rest in FY28) and USD 150m from the supply chain (c.25% in FY27). Cumulative run-rate (USD m): 377.5, 962.5, 1,000, 1,000, 1,000. Source: Diageo Capital Markets Day 6-K, 6 Aug 2026.
+c.USD 1,000m in total: USD 850m from the operating framework (c.40% in FY27, the rest in FY28) and USD 150m from the supply chain (c.25% in FY27). Cumulative run-rate (USD m): 377.5, 962.5, 1,000, 1,000, 1,000, of which 46% reaches operating profit. Source: Diageo Capital Markets Day 6-K, 6 Aug 2026.

@@ -1,12 +1,17 @@
 {
-  "tv_share_of_ev": 0.7489469380869342,
+  "tv_share_of_ev": 0.7485438514532287,
   "tv_flag_above_75pct": false,
-  "implied_exit_ev_ebitda": 8.641967350400366,
+  "implied_exit_ev_ebitda": 9.188517750220743,
+  "peer_ev_ebitda_range": null,
+  "peer_ev_ebitda_note": "peer EV/EBITDA unavailable (peers.csv); compared with Diageo's own market multiple instead",
+  "market_ev_to_fy26_adj_ebitda_ex_associates": 9.819473103855719,
+  "market_implied_ev_musd": 63158.85100399998,
+  "market_cap_musd": 49196.15100399999,
   "wacc": 0.08459049358000001,
   "wacc_within_6_to_9pct": true,
-  "dcf_vs_comps": -0.17424530806424832,
-  "market_cap_musd": 49196.15100399999,
-  "market_implied_ev_musd": 63158.85100399998,
-  "market_ev_to_fy26_adj_ebitda_ex_associates": 9.819473103855719,
-  "note": "market EV = market cap + net debt + minorities - associates - disposal proceeds; adj. EBITDA 6,650 less associates 218 (20-F p.186). Approximate: EBITDA still includes EABL."
+  "market_implied_wacc_at_g_2pct": 0.0802693525884529,
+  "dcf_value_pence": 1524.4412868913937,
+  "comps_value_pence": 2310.752606921566,
+  "dcf_vs_comps": -0.3402836451097693,
+  "note": "market EV = market cap + net debt + minorities - associates - disposal proceeds; adj. EBITDA 6,650 less associates 218 (20-F p.186). Approximate: EBITDA still includes EABL. Market-implied WACC solved with desk.valuation_run.build (WACC shift until value = 1,673p)."
 }
