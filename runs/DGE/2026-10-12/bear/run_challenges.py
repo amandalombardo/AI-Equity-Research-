@@ -31,7 +31,8 @@ def run(name, inputs=None, brief_changes=None, **kw):
 
 res = [
     run("0 Reference: historic cost of debt 3.81% (the first run's input, rejected by the PM)", {"pre_tax_cost_of_debt": v["pre_tax_cost_of_debt_historic"]}),
-    run("2 Risk: beta 1.0 instead of 0.48", {"beta": 1.0}),
+    run("2 Risk: beta 0.72 (Diageo's own 5y weekly regression) instead of the bottom-up 0.96", {"beta": 0.72}),
+    run("2b Risk: beta 0.48 (the first run's peer median, rejected as unjustified)", {"beta": 0.4750}),
     run("3 Valuation: savings flow-through 25% (management says savings fund reinvestment)", brief_changes={"dcf.savings.flow_through": 0.25}),
     run("3b Valuation: savings flow-through 0% (savings fully reinvested)", brief_changes={"dcf.savings.flow_through": 0.0}),
     run("3c Valuation: supply-chain savings phased 25% FY27, 50% FY28, 75% FY29, 100% FY30", brief_changes={"dcf.savings.cumulative_musd": [377.5, 925.0, 962.5, 1000.0, 1000.0]}),

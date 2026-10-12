@@ -56,5 +56,5 @@ stub_years:
   value: 0.2822
   source: 103 days of FY27 (from 1 Jul 2026) elapsed at run date 2026-10-12 / 365
 beta:
-  value: 0.475
-  source: 'Risk agent: peer median 5y monthly beta (Pernod, Remy, Campari, Brown-Forman vs home indices). DGE''s own 5y monthly vs FTSE 100 = 0.37, R2=0.04, n=60, rejected as unreliable'
+  value: 0.9601
+  source: 'Risk agent, bottom-up: Damodaran global alcoholic beverages unlevered beta 0.73 (Jan 2026, cash-corrected) relevered at Diageo D/E 0.416, tax 24.3%. See risk/beta_evidence.json'

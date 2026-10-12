@@ -1,0 +1,123 @@
+{
+  "own_regressions": {
+    "FTSE 100, 5y monthly (first run's default)": {
+      "beta": 0.36508232534915025,
+      "std_error": 0.24917516541875007,
+      "ci95": [
+        -0.1233009988715999,
+        0.8534656495699005
+      ],
+      "r_squared": 0.035691128053529135,
+      "observations": 60
+    },
+    "FTSE 100, 5y weekly": {
+      "beta": 0.7192551586341355,
+      "std_error": 0.1083937875097901,
+      "ci95": [
+        0.5068033351149469,
+        0.931706982153324
+      ],
+      "r_squared": 0.14530157645509084,
+      "observations": 261
+    },
+    "FTSE 100, 10y monthly": {
+      "beta": 0.5962052424794859,
+      "std_error": 0.1332714008450675,
+      "ci95": [
+        0.3349932968231536,
+        0.8574171881358182
+      ],
+      "r_squared": 0.1450096377152718,
+      "observations": 120
+    },
+    "FTSE 100, Oct 2016-Dec 2021 monthly (before the de-rating)": {
+      "beta": 0.7661925394545503,
+      "std_error": 0.1290055061466106,
+      "ci95": [
+        0.5133417474071935,
+        1.0190433315019072
+      ],
+      "r_squared": 0.3702399078945263,
+      "observations": 62
+    },
+    "MSCI ACWI (USD), 5y weekly": {
+      "beta": 0.6987314407174329,
+      "std_error": 0.08773991409539862,
+      "ci95": [
+        0.5267612090904515,
+        0.8707016723444142
+      ],
+      "r_squared": 0.19669992883661402,
+      "observations": 261
+    },
+    "MSCI ACWI (USD), 10y monthly": {
+      "beta": 0.6649361725141221,
+      "std_error": 0.11373860596109855,
+      "ci95": [
+        0.4420085048303689,
+        0.8878638401978752
+      ],
+      "r_squared": 0.2245912396668679,
+      "observations": 120
+    }
+  },
+  "peer_regressions_5y_weekly": {
+    "Pernod Ricard": {
+      "beta": 0.8502243659782597,
+      "std_error": 0.07905881398767149,
+      "ci95": [
+        0.6952690905624236,
+        1.0051796413940959
+      ],
+      "r_squared": 0.30869836240774623,
+      "observations": 261
+    },
+    "Remy Cointreau": {
+      "beta": 1.0160160361978492,
+      "std_error": 0.12767213494886612,
+      "ci95": [
+        0.7657786516980716,
+        1.2662534206976268
+      ],
+      "r_squared": 0.19647544192977226,
+      "observations": 261
+    },
+    "Campari": {
+      "beta": 0.5179724914141608,
+      "std_error": 0.08759424708386825,
+      "ci95": [
+        0.34628776712977904,
+        0.6896572156985425
+      ],
+      "r_squared": 0.11894965458236935,
+      "observations": 261
+    },
+    "Brown-Forman": {
+      "beta": 0.6195793160192035,
+      "std_error": 0.1075585332915852,
+      "ci95": [
+        0.40876459076769645,
+        0.8303940412707105
+      ],
+      "r_squared": 0.1135665542212843,
+      "observations": 261
+    }
+  },
+  "peer_median_5y_weekly": 0.7349018409987316,
+  "bottom_up": {
+    "industry_unlevered_beta_cash_corrected": 0.73,
+    "industry_unlevered_beta": 0.69,
+    "diageo_market_debt_to_equity": 0.4163302882232136,
+    "tax_rate": 0.243,
+    "relevered_beta": 0.9600682805750301,
+    "relevered_beta_without_cash_correction": 0.9074617994476312,
+    "source": "Damodaran Online, Betas by Sector (Global), data as of January 2026, Beverage (Alcoholic): https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/BetasGlobal.html"
+  },
+  "range_of_precise_own_estimates": [
+    0.5962052424794859,
+    0.7661925394545503
+  ],
+  "verdict_on_0.48": "Not justifiable. It came from the noisiest estimate available (5y monthly, standard error 0.25) via a median of peer betas that are also unadjusted for leverage. Every precise estimate of Diageo's own beta is 0.60-0.77, and the industry bottom-up beta at Diageo's leverage is 0.96.",
+  "recommended_beta": 0.9600682805750301,
+  "recommendation_reason": "Bottom-up beta: the standard method when a company's own regression is unreliable. It averages 217 firms, so it is far less noisy than any single regression, and it reflects Diageo's own debt, which is about twice the industry average. Diageo's best own regression (5y weekly, 0.72) is the cross-check."
+}

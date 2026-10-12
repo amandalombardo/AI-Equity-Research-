@@ -1,78 +1,86 @@
 {
-  "base_value_pence": 2141.3539563943737,
+  "base_value_pence": 1447.5887198488067,
   "share_price_pence": 1673.0,
   "challenges": [
     {
       "challenge": "0 Reference: historic cost of debt 3.81% (the first run's input, rejected by the PM)",
-      "value_pence": 2475.305938659738,
-      "impact_pence": 333.9519822653642,
-      "wacc": 0.062093614409000006,
-      "rating": "BUY",
-      "upside": 0.4795612305
+      "value_pence": 1621.9957267270054,
+      "impact_pence": 174.40700687819867,
+      "wacc": 0.07921885715900001,
+      "rating": "HOLD",
+      "upside": -0.0304867144
     },
     {
-      "challenge": "2 Risk: beta 1.0 instead of 0.48",
-      "value_pence": 1406.5552123944667,
-      "impact_pence": -734.798743999907,
-      "wacc": 0.08599906333000001,
-      "rating": "SELL",
-      "upside": -0.1592616782
+      "challenge": "2 Risk: beta 0.72 (Diageo's own 5y weekly regression) instead of the bottom-up 0.96",
+      "value_pence": 1738.0243310868532,
+      "impact_pence": 290.4356112380465,
+      "wacc": 0.07611436333,
+      "rating": "HOLD",
+      "upside": 0.0388669044
+    },
+    {
+      "challenge": "2b Risk: beta 0.48 (the first run's peer median, rejected as unjustified)",
+      "value_pence": 2141.3539563943737,
+      "impact_pence": 693.765236545567,
+      "wacc": 0.06746525083,
+      "rating": "BUY",
+      "upside": 0.2799485693
     },
     {
       "challenge": "3 Valuation: savings flow-through 25% (management says savings fund reinvestment)",
-      "value_pence": 2017.3463462910186,
-      "impact_pence": -124.00761010335509,
-      "wacc": 0.06746525083,
-      "rating": "BUY",
-      "upside": 0.2058256702
+      "value_pence": 1356.9605318437,
+      "impact_pence": -90.62818800510672,
+      "wacc": 0.08459049358000001,
+      "rating": "SELL",
+      "upside": -0.1889058387
     },
     {
       "challenge": "3b Valuation: savings flow-through 0% (savings fully reinvested)",
-      "value_pence": 1893.3387361876632,
-      "impact_pence": -248.0152202067104,
-      "wacc": 0.06746525083,
-      "rating": "HOLD",
-      "upside": 0.1317027712
+      "value_pence": 1266.3323438385935,
+      "impact_pence": -181.25637601021322,
+      "wacc": 0.08459049358000001,
+      "rating": "SELL",
+      "upside": -0.2430769015
     },
     {
       "challenge": "3c Valuation: supply-chain savings phased 25% FY27, 50% FY28, 75% FY29, 100% FY30",
-      "value_pence": 2140.5182756917256,
-      "impact_pence": -0.8356807026480055,
-      "wacc": 0.06746525083,
-      "rating": "BUY",
-      "upside": 0.279449059
+      "value_pence": 1446.7817870915717,
+      "impact_pence": -0.8069327572350176,
+      "wacc": 0.08459049358000001,
+      "rating": "SELL",
+      "upside": -0.1352171028
     },
     {
       "challenge": "4 Valuation: terminal growth 1.5% (IWSR: spirits volumes falling)",
-      "value_pence": 1930.7083666186347,
-      "impact_pence": -210.64558977573893,
-      "wacc": 0.06746525083,
-      "rating": "BUY",
-      "upside": 0.1540396692
+      "value_pence": 1337.590976499396,
+      "impact_pence": -109.99774334941071,
+      "wacc": 0.08459049358000001,
+      "rating": "SELL",
+      "upside": -0.2004835765
     },
     {
       "challenge": "5 Fundamentals: no organic growth FY27-31 (3-year track record averages -0.3%)",
-      "value_pence": 2069.3995619806938,
-      "impact_pence": -71.95439441367989,
-      "wacc": 0.06746525083,
-      "rating": "BUY",
-      "upside": 0.2369393676
+      "value_pence": 1398.303681871354,
+      "impact_pence": -49.2850379774527,
+      "wacc": 0.08459049358000001,
+      "rating": "SELL",
+      "upside": -0.1641938542
     },
     {
       "challenge": "6 Data: net debt rolled forward for the 30c FY26 final dividend (2,222m x $0.30)",
-      "value_pence": 2118.685073214685,
-      "impact_pence": -22.66888317968869,
-      "wacc": 0.06746525083,
-      "rating": "BUY",
-      "upside": 0.2663987288
+      "value_pence": 1424.9198366691178,
+      "impact_pence": -22.66888317968892,
+      "wacc": 0.08459049358000001,
+      "rating": "SELL",
+      "upside": -0.1482846165
     },
     {
       "challenge": "1b Valuation: credit spread 2.0% instead of 1.0% (BBB-type spread if leverage stays above target)",
-      "value_pence": 2024.168670937367,
-      "impact_pence": -117.18528545700656,
-      "wacc": 0.06969045233000001,
-      "rating": "BUY",
-      "upside": 0.209903569
+      "value_pence": 1383.5582617926593,
+      "impact_pence": -64.03045805614738,
+      "wacc": 0.08681569508,
+      "rating": "SELL",
+      "upside": -0.173007614
     }
   ]
 }
