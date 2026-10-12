@@ -1,0 +1,24 @@
+{
+  "method": "P/E, last reported fiscal year (LTM). Pernod Ricard: June FY26, no calendarisation needed. Brown-Forman: April FY26; FY27 not yet reported, so it cannot be calendarised to June (2-month gap).",
+  "peers_used": [
+    "Pernod Ricard",
+    "Brown-Forman"
+  ],
+  "multiples": [
+    10.68,
+    17.39
+  ],
+  "median_pe": 14.035,
+  "implied_value_per_share_pence": {
+    "low": 1333.9912346985038,
+    "implied_value": 1753.0493426023877,
+    "high": 2172.107450506272
+  },
+  "diageo_pe_at_current_price": 13.39412099213551,
+  "missing": [
+    "Campari",
+    "Remy Cointreau",
+    "Constellation Brands (shown separately; data missing)"
+  ],
+  "warning": "Only 2 of 4 core peers have usable data. Treat the comps value as indicative only."
+}

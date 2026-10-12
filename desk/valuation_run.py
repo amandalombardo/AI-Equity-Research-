@@ -66,7 +66,8 @@ def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     bear = build(brief, v, growth=bear_cfg["organic_growth"], flow_through=bear_cfg["flow_through"],
                  wacc_shift=bear_cfg["wacc_shift"])
     w0, g0 = base["inputs"].wacc, base["inputs"].terminal_growth
-    waccs = [round(w0 + s, 4) for s in (-0.01, -0.005, 0, 0.005, 0.01)]
+    # not rounded, so the middle cell of the grid equals the base case exactly
+    waccs = [w0 + s for s in (-0.01, -0.005, 0, 0.005, 0.01)]
     growths = [0.015, 0.020, 0.025, 0.030]
     grid_ev = dcf.sensitivity(base["inputs"], waccs, growths)
     b = dcf.Bridge(**base["bridge"])

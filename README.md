@@ -47,4 +47,4 @@ AI models are good at reading filings and writing, but unreliable at arithmetic.
 | `tests/` | Automated checks. Run with `python -m pytest` |
 
 ## Setup (one-off)
-`pip install -r requirements.txt`. Set `SEC_CONTACT_EMAIL` to your email (the SEC asks automated downloads to identify themselves). The data download needs internet access to `data.sec.gov`, `www.sec.gov`, `query1.finance.yahoo.com`, `query2.finance.yahoo.com`, `fc.yahoo.com` and `fred.stlouisfed.org`.
+`pip install -r requirements.txt`. Set `SEC_CONTACT_EMAIL` to your email: the SEC refuses automated downloads (HTTP 403) that do not identify themselves. The data download needs internet access to `data.sec.gov`, `www.sec.gov`, `query1.finance.yahoo.com`, `query2.finance.yahoo.com`, `fc.yahoo.com` and `fred.stlouisfed.org`.

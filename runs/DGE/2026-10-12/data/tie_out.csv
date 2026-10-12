@@ -1,0 +1,6 @@
+item,brief,data_agent,diff_pct,flag
+net_sales_musd,19643.0,19643.0,0.0,False
+operating_profit_bei_musd,5683.0,5683.0,0.0,False
+net_debt_musd,20500.0,20482.0,-0.00088,False
+free_cash_flow_musd,3211.0,3211.0,0.0,False
+eps_bei_cents,165.3,165.3,0.0,False
