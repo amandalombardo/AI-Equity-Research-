@@ -127,3 +127,13 @@ def test_roll_forward_by_hand():
     out = dcf.equity_bridge(1000, b, 100, 1.25, {"cost_of_equity": 0.10, "years": 0.25, "dividends": 5})
     assert out["equity_value_balance_sheet_date"] == pytest.approx(800)
     assert out["per_share_usd"] == pytest.approx((800 * 1.1 ** 0.25 - 5) / 100)
+
+
+def test_sensitivity_rederives_capex_from_ronic():
+    # With a RONIC rule, each cell must equal a fresh valuation at that growth with capex set by the rule
+    inp = growing_inputs()
+    grid = dcf.sensitivity(inp, [0.09], [0.01, 0.02], terminal_ronic=0.12)
+    for g, ev in zip([0.01, 0.02], grid[0]):
+        trial = growing_inputs(terminal_growth=g)
+        trial.terminal_capex_pct_sales = dcf.capex_pct_for_ronic(trial, 0.12)
+        assert ev == pytest.approx(dcf.value(trial)["enterprise_value"])

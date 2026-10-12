@@ -213,8 +213,13 @@ def equity_bridge(enterprise_value: float, b: Bridge, shares_m: float, fx_usd_pe
             "per_share_gbp_pence": per_share_gbp * 100}
 
 
-def sensitivity(inp: DcfInputs, wacc_values: list[float], growth_values: list[float]) -> list[list[float | None]]:
-    """Enterprise value for each (WACC, terminal growth) pair. None where growth >= WACC."""
+def sensitivity(inp: DcfInputs, wacc_values: list[float], growth_values: list[float],
+                terminal_ronic: float | None = None) -> list[list[float | None]]:
+    """Enterprise value for each (WACC, terminal growth) pair. None where growth >= WACC.
+
+    If terminal capex is set by a return on new investment (RONIC), it is re-derived for each cell,
+    because the reinvestment needed for growth g is g / RONIC x NOPAT.
+    """
     grid = []
     for w in wacc_values:
         row = []
@@ -223,6 +228,8 @@ def sensitivity(inp: DcfInputs, wacc_values: list[float], growth_values: list[fl
                 row.append(None)
                 continue
             trial = DcfInputs(**{**inp.__dict__, "wacc": w, "terminal_growth": g})
+            if terminal_ronic is not None:
+                trial.terminal_capex_pct_sales = capex_pct_for_ronic(trial, terminal_ronic)
             row.append(value(trial)["enterprise_value"])
         grid.append(row)
     return grid

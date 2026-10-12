@@ -101,7 +101,7 @@ def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     # not rounded, so the middle cell of the grid equals the base case exactly
     waccs = [w0 + s for s in (-0.01, -0.005, 0, 0.005, 0.01)]
     growths = [0.015, 0.020, 0.025, 0.030]
-    grid_ev = dcf.sensitivity(base["inputs"], waccs, growths)
+    grid_ev = dcf.sensitivity(base["inputs"], waccs, growths, brief["dcf"].get("terminal_ronic"))
     b = dcf.Bridge(**base["bridge"])
     grid_px = [[None if ev is None else dcf.equity_bridge(ev, b, v["shares_outstanding_m"], v["fx_usd_per_gbp"], base["roll"])["per_share_gbp_pence"]
                 for ev in row] for row in grid_ev]
