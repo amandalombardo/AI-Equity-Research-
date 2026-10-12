@@ -60,7 +60,12 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
                         tax_rate=v["tax_rate"], da_pct_sales=v["da_pct_sales"], capex_pct_sales=v["capex_pct_sales"],
                         nwc_pct_sales=v["nwc_pct_sales"], wacc=w["wacc"] + wacc_shift,
                         terminal_growth=d["terminal_growth"], years=d["forecast_years"],
-                        stub_years=v["stub_years"], mid_year=d["mid_year_convention"])
+                        stub_years=v["stub_years"], mid_year=d["mid_year_convention"],
+                        terminal_capex_pct_sales=d.get("terminal_capex_pct_sales"))
+    if d.get("terminal_ronic") is not None:
+        if d.get("terminal_capex_pct_sales") is not None:
+            raise SystemExit("Brief sets both terminal_capex_pct_sales and terminal_ronic: choose one")
+        inp.terminal_capex_pct_sales = dcf.capex_pct_for_ronic(inp, d["terminal_ronic"])
     val = dcf.value(inp)
     bridge = dcf.Bridge(net_debt=v["net_debt"], **{k: v[k] for k in OPTIONAL_BRIDGE})
     eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], v["fx_usd_per_gbp"])
@@ -91,7 +96,8 @@ def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
 
     def summary(s):
         return {"wacc": s["wacc"], "enterprise_value_musd": s["dcf"]["enterprise_value"],
-                "tv_share_of_ev": s["dcf"]["tv_share_of_ev"], "implied_exit_ev_ebitda": s["dcf"]["implied_exit_ev_ebitda"],
+                "tv_share_of_ev": s["dcf"]["tv_share_of_ev"],
+                "terminal_year": s["dcf"]["terminal_year"], "implied_exit_ev_ebitda": s["dcf"]["implied_exit_ev_ebitda"],
                 "equity": s["equity"], "rating": s["rating"],
                 "forecast": [{k: r[k] for k in ("year", "sales", "ebit", "ebit_margin", "ufcf", "pv")} for r in s["dcf"]["rows"]]}
 

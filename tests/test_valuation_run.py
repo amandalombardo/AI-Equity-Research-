@@ -42,13 +42,13 @@ def test_excel_formulas_match_python(tmp_path):
         if r[0]:
             assert r[1] == pytest.approx(r[2], rel=1e-9), r[0]
             checked += 1
-    assert checked == 11
+    assert checked == 12
     # forecast block: final-year Excel formulas vs the Python check column
     for r in rows[1:start]:
         if r[0] and isinstance(r[-1], (int, float)):
             assert r[-3] == pytest.approx(r[-1], rel=1e-9), r[0]
             checked += 1
-    assert checked == 15
+    assert checked == 16
 
 
 def test_credit_spread_rule_sets_cost_of_debt():

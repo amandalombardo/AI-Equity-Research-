@@ -57,6 +57,7 @@ class DcfInputs:
     years: list[int] = field(default_factory=list)
     stub_years: float = 0.0           # fraction of the first forecast year already elapsed at the valuation date
     mid_year: bool = False
+    terminal_capex_pct_sales: float | None = None  # capex in the terminal year; None = same as the forecast years
 
 
 def project(inp: DcfInputs) -> list[dict]:
@@ -107,6 +108,43 @@ def discount_periods(n: int, stub_years: float, mid_year: bool) -> list[float]:
     return periods
 
 
+def terminal_year(inp: DcfInputs, last: dict) -> dict:
+    """The first year after the forecast, built as a steady state growing at the terminal growth rate.
+
+    Normalised terminal year (steady state): NOPAT, D&A and capex grow with sales at g, and the
+    increase in working capital is only what g needs (sales x g x NWC %), not the faster growth
+    of the last forecast year. Capex can be set separately for the steady state.
+    """
+    g = inp.terminal_growth
+    capex_pct = inp.capex_pct_sales if inp.terminal_capex_pct_sales is None else inp.terminal_capex_pct_sales
+    sales = last["sales"] * (1 + g)
+    nopat = last["nopat"] * (1 + g)
+    da = sales * inp.da_pct_sales
+    capex = sales * capex_pct
+    delta_nwc = (sales - last["sales"]) * inp.nwc_pct_sales
+    ufcf = nopat + da - capex - delta_nwc
+    # Reinvestment rate = (net capex + increase in NWC) / NOPAT; return on new invested capital = g / reinvestment rate
+    reinvestment = capex - da + delta_nwc
+    rate = reinvestment / nopat
+    return {"sales": sales, "nopat": nopat, "da": da, "capex": capex, "capex_pct_sales": capex_pct,
+            "delta_nwc": delta_nwc, "ufcf": ufcf, "reinvestment": reinvestment, "reinvestment_rate": rate,
+            "implied_ronic": g / rate if rate > 0 else None}
+
+
+def capex_pct_for_ronic(inp: DcfInputs, ronic: float) -> float:
+    """Terminal capex (% of sales) that makes new investment earn a chosen return (RONIC).
+
+    Value driver formula (McKinsey): reinvestment = g / RONIC x NOPAT. Reinvestment is net capex
+    (capex - D&A) plus the increase in working capital, so capex = reinvestment - increase in NWC + D&A.
+    """
+    if ronic <= 0:
+        raise ValuationError("RONIC must be positive")
+    last = project(inp)[-1]
+    probe = terminal_year(inp, last)
+    reinvestment = inp.terminal_growth / ronic * probe["nopat"]
+    return (reinvestment - probe["delta_nwc"] + probe["da"]) / probe["sales"]
+
+
 def value(inp: DcfInputs) -> dict:
     """Enterprise value = PV of forecast UFCF + PV of terminal value (Gordon growth)."""
     if inp.terminal_growth >= inp.wacc:
@@ -120,12 +158,13 @@ def value(inp: DcfInputs) -> dict:
         r.update({"cash_flow_counted": cf, "period": t, "discount_factor": df, "pv": cf * df})
         pv_total += cf * df
     last = rows[-1]
-    # Gordon growth terminal value at the end of the last forecast year
-    tv = last["ufcf"] * (1 + inp.terminal_growth) / (inp.wacc - inp.terminal_growth)
+    term = terminal_year(inp, last)
+    # Gordon growth terminal value at the end of the last forecast year: next year's normalised FCF / (WACC - g)
+    tv = term["ufcf"] / (inp.wacc - inp.terminal_growth)
     tv_period = len(rows) - inp.stub_years  # end of final year, regardless of mid-year convention
     pv_tv = tv / (1 + inp.wacc) ** tv_period
     ev = pv_total + pv_tv
-    return {"rows": rows, "pv_forecast": pv_total, "terminal_value": tv, "pv_terminal_value": pv_tv,
+    return {"rows": rows, "terminal_year": term, "pv_forecast": pv_total, "terminal_value": tv, "pv_terminal_value": pv_tv,
             "enterprise_value": ev, "tv_share_of_ev": pv_tv / ev,
             "implied_exit_ev_ebitda": tv / last["ebitda"]}
 

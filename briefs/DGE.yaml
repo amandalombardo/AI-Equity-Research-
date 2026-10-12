@@ -35,6 +35,12 @@ dcf:
   capex_pct_sales: null             # Data agent: 5-year average capex / net sales
   nwc_pct_sales: null               # Data agent: net working capital (incl. maturing inventory) / net sales, FY26
   terminal_growth: 0.020
+  # Terminal-year capex. PENDING PM DECISION (Phase 3). Set at most ONE of the two; both null = forecast capex % held forever.
+  #   terminal_capex_pct_sales: a fixed capex % of sales for the steady state after FY31.
+  #   terminal_ronic: the return new investment earns after FY31; the engine then sets capex with the
+  #     value driver formula (reinvestment = g / RONIC x NOPAT). Diageo's published ROIC: 13.4% FY26, 13.7% FY25 (20-F).
+  terminal_capex_pct_sales: null
+  terminal_ronic: null
   mid_year_convention: false
   wacc:
     risk_free: null                 # Data agent: US 10-year Treasury yield on the valuation date
