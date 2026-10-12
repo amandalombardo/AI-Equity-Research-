@@ -1,86 +1,165 @@
 {
-  "base_value_pence": 1447.5887198488067,
+  "base_value_pence": 1524.4412868913937,
+  "base_wacc": 0.08459049358000001,
   "share_price_pence": 1673.0,
+  "sell_threshold_pence": 1505.7,
+  "retired": {
+    "6 (old)": "Deducting the 30c FY26 final dividend: retired. It goes ex on 15 Oct 2026, after the 12 Oct valuation date, so the 1,673p price is cum-dividend (data/notes.md, Phase 3 additions)."
+  },
   "challenges": [
     {
-      "challenge": "0 Reference: historic cost of debt 3.81% (the first run's input, rejected by the PM)",
-      "value_pence": 1621.9957267270054,
-      "impact_pence": 174.40700687819867,
-      "wacc": 0.07921885715900001,
-      "rating": "HOLD",
-      "upside": -0.0304867144
-    },
-    {
-      "challenge": "2 Risk: beta 0.72 (Diageo's own 5y weekly regression) instead of the bottom-up 0.96",
-      "value_pence": 1738.0243310868532,
-      "impact_pence": 290.4356112380465,
+      "id": "1",
+      "challenge": "Risk: beta 0.72 (Diageo's own 5y weekly regression) instead of bottom-up 0.96 [case FOR the stock]",
+      "value_pence": 1831.795398520722,
+      "impact_pence": 307.3541116293284,
       "wacc": 0.07611436333,
+      "terminal_capex_pct_sales": 0.062116881116912624,
       "rating": "HOLD",
-      "upside": 0.0388669044
+      "upside": 0.0949165562,
+      "flips_to_sell": false
     },
     {
-      "challenge": "2b Risk: beta 0.48 (the first run's peer median, rejected as unjustified)",
-      "value_pence": 2141.3539563943737,
-      "impact_pence": 693.765236545567,
-      "wacc": 0.06746525083,
-      "rating": "BUY",
-      "upside": 0.2799485693
-    },
-    {
-      "challenge": "3 Valuation: savings flow-through 25% (management says savings fund reinvestment)",
-      "value_pence": 1356.9605318437,
-      "impact_pence": -90.62818800510672,
-      "wacc": 0.08459049358000001,
+      "id": "1b",
+      "challenge": "Risk: beta 1.00 (volatility 2.5x the index; Risk agent FLAG 1)",
+      "value_pence": 1480.9863539210671,
+      "impact_pence": -43.45493297032658,
+      "wacc": 0.08599906333000001,
+      "terminal_capex_pct_sales": 0.062116881116912624,
       "rating": "SELL",
-      "upside": -0.1889058387
+      "upside": -0.1147720538,
+      "flips_to_sell": true
     },
     {
-      "challenge": "3b Valuation: savings flow-through 0% (savings fully reinvested)",
-      "value_pence": 1266.3323438385935,
-      "impact_pence": -181.25637601021322,
+      "id": "2a",
+      "challenge": "Valuation/PM: savings flow-through 40%",
+      "value_pence": 1504.938725200212,
+      "impact_pence": -19.502561691181654,
       "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.06178498119797188,
       "rating": "SELL",
-      "upside": -0.2430769015
+      "upside": -0.1004550357,
+      "flips_to_sell": true
     },
     {
-      "challenge": "3c Valuation: supply-chain savings phased 25% FY27, 50% FY28, 75% FY29, 100% FY30",
-      "value_pence": 1446.7817870915717,
-      "impact_pence": -0.8069327572350176,
+      "id": "2b",
+      "challenge": "Valuation/PM: savings flow-through 33% (Diageo's 2017 'two thirds reinvested' rule)",
+      "value_pence": 1482.1857365605003,
+      "impact_pence": -42.25555033089336,
       "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.06139776462587435,
       "rating": "SELL",
-      "upside": -0.1352171028
+      "upside": -0.1140551485,
+      "flips_to_sell": true
     },
     {
-      "challenge": "4 Valuation: terminal growth 1.5% (IWSR: spirits volumes falling)",
-      "value_pence": 1337.590976499396,
-      "impact_pence": -109.99774334941071,
+      "id": "2c",
+      "challenge": "Valuation/PM: savings flow-through 25% (FY22-24 track record; brief bear)",
+      "value_pence": 1456.1823209722584,
+      "impact_pence": -68.25896591913533,
       "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.06095523140062004,
       "rating": "SELL",
-      "upside": -0.2004835765
+      "upside": -0.1295981345,
+      "flips_to_sell": true
     },
     {
-      "challenge": "5 Fundamentals: no organic growth FY27-31 (3-year track record averages -0.3%)",
-      "value_pence": 1398.303681871354,
-      "impact_pence": -49.2850379774527,
+      "id": "2d",
+      "challenge": "Valuation/PM: supply-chain savings phased 25/50/75/100% FY27-30 (slower than brief)",
+      "value_pence": 1523.6959081191203,
+      "impact_pence": -0.7453787722733978,
       "wacc": 0.08459049358000001,
-      "rating": "SELL",
-      "upside": -0.1641938542
+      "terminal_capex_pct_sales": 0.062116881116912624,
+      "rating": "HOLD",
+      "upside": -0.0892433305,
+      "flips_to_sell": false
     },
     {
-      "challenge": "6 Data: net debt rolled forward for the 30c FY26 final dividend (2,222m x $0.30)",
-      "value_pence": 1424.9198366691178,
-      "impact_pence": -22.66888317968892,
+      "id": "3a",
+      "challenge": "Valuation/PM: terminal RONIC 10.8% (capex c.7.1% of sales held forever)",
+      "value_pence": 1459.8857727171846,
+      "impact_pence": -64.55551417420907,
       "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.07071487028921222,
       "rating": "SELL",
-      "upside": -0.1482846165
+      "upside": -0.1273844754,
+      "flips_to_sell": true
     },
     {
-      "challenge": "1b Valuation: credit spread 2.0% instead of 1.0% (BBB-type spread if leverage stays above target)",
-      "value_pence": 1383.5582617926593,
-      "impact_pence": -64.03045805614738,
+      "id": "3a'",
+      "challenge": "Check: terminal capex = 5y average 7.106% exactly (terminal_ronic off)",
+      "value_pence": 1457.2944661348874,
+      "impact_pence": -67.14682075650626,
+      "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": null,
+      "rating": "SELL",
+      "upside": -0.1289333735,
+      "flips_to_sell": true
+    },
+    {
+      "id": "3b",
+      "challenge": "Valuation/PM: terminal RONIC = WACC (growth creates no value)",
+      "value_pence": 1367.8120945404896,
+      "impact_pence": -156.62919235090408,
+      "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.08297793562365735,
+      "rating": "SELL",
+      "upside": -0.182419549,
+      "flips_to_sell": true
+    },
+    {
+      "id": "4",
+      "challenge": "Data/Valuation: terminal growth 1.5% (IWSR: spirits volumes falling)",
+      "value_pence": 1469.584555180265,
+      "impact_pence": -54.85673171112876,
+      "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.05500293974234985,
+      "rating": "SELL",
+      "upside": -0.1215872354,
+      "flips_to_sell": true
+    },
+    {
+      "id": "5",
+      "challenge": "Fundamentals: no organic growth FY27-31 (3-year record -0.3% CAGR vs 4.0% target)",
+      "value_pence": 1389.8764981237462,
+      "impact_pence": -134.56478876764754,
+      "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.0623808387175547,
+      "rating": "SELL",
+      "upside": -0.1692310232,
+      "flips_to_sell": true
+    },
+    {
+      "id": "6",
+      "challenge": "Valuation/PM: credit spread 2.0% (leverage 3.1x above the A-band range)",
+      "value_pence": 1455.4529546949234,
+      "impact_pence": -68.98833219647031,
       "wacc": 0.08681569508,
+      "terminal_capex_pct_sales": 0.062116881116912624,
       "rating": "SELL",
-      "upside": -0.173007614
+      "upside": -0.1300340976,
+      "flips_to_sell": true
+    },
+    {
+      "id": "7",
+      "challenge": "Data: restructuring cash after tax relief at 24.3% (850 -> 643) [case FOR the stock]",
+      "value_pence": 1531.6572427579972,
+      "impact_pence": 7.215955866603508,
+      "wacc": 0.08459049358000001,
+      "terminal_capex_pct_sales": 0.062116881116912624,
+      "rating": "HOLD",
+      "upside": -0.0844846128,
+      "flips_to_sell": false
+    },
+    {
+      "id": "B",
+      "challenge": "Engine bear scenario (no growth, 25% flow-through, WACC +1pt): combined, NOT a single change",
+      "value_pence": 1076.2827140496975,
+      "impact_pence": -448.15857284169624,
+      "wacc": 0.09459049358,
+      "terminal_capex_pct_sales": 0.0610986866183603,
+      "rating": "SELL",
+      "upside": -0.3566750065,
+      "flips_to_sell": true
     }
   ]
 }
