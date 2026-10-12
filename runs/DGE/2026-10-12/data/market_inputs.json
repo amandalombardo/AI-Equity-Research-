@@ -1,0 +1,18 @@
+{
+  "risk_free": {
+    "value": 0.052199999999999996,
+    "date": "2026-10-08",
+    "source": "FRED DGS10 (US 10-year Treasury, constant maturity)"
+  },
+  "fx_usd_per_gbp": {
+    "value": 1.3234,
+    "date": "2026-10-02",
+    "source": "FRED DEXUSUK (USD per GBP, noon buying rate New York)"
+  },
+  "share_price_gbp_pence": {
+    "value": 1673.0,
+    "date": "2026-10-12",
+    "source": "Yahoo Finance DGE.L close (pence, GBp)"
+  },
+  "downloaded_on": "2026-10-12"
+}

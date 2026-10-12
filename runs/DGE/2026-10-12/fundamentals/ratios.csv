@@ -1,0 +1,50 @@
+item,year,value,formula,inputs
+gross_margin,2022,0.6138,gross profit / net sales,"12593.0, 20516.0"
+operating_margin_bei,2022,0.3107,operating profit before exceptionals / net sales,"6374.0, 20516.0"
+operating_margin_reported,2022,0.2874,reported operating profit / net sales,"5897.0, 20516.0"
+free_cash_flow_musd,2022,3779.0,operating cash flow - capex + PP&E disposal proceeds (Diageo definition),"5213.0, 1457.0, 23.0"
+cash_conversion,2022,0.8829,free cash flow / net profit to shareholders (reported),"3779.0, 4280.0"
+net_debt_to_ebitda,2022,,adjusted net borrowings / adjusted EBITDA (Diageo definition),"None, None"
+interest_cover,2022,13.5906,operating profit before exceptionals / net interest charge,"6374.0, 469.0"
+reported_net_sales_growth,2023,0.0019,net sales / prior net sales - 1,"20555.0, 20516.0"
+organic_net_sales_growth,2023,0.065,as published by Diageo,20-F KPI table
+organic_operating_profit_growth,2023,0.07,as published by Diageo,20-F KPI table
+gross_margin,2023,0.5967,gross profit / net sales,"12266.0, 20555.0"
+operating_margin_bei,2023,0.3071,operating profit before exceptionals / net sales,"6313.0, 20555.0"
+operating_margin_reported,2023,0.2699,reported operating profit / net sales,"5547.0, 20555.0"
+free_cash_flow_musd,2023,2235.0,operating cash flow - capex + PP&E disposal proceeds (Diageo definition),"3636.0, 1417.0, 16.0"
+cash_conversion,2023,0.5028,free cash flow / net profit to shareholders (reported),"2235.0, 4445.0"
+net_debt_to_ebitda,2023,2.7272,adjusted net borrowings / adjusted EBITDA (Diageo definition),"20053.0, 7353.0"
+interest_cover,2023,8.8541,operating profit before exceptionals / net interest charge,"6313.0, 713.0"
+reported_net_sales_growth,2024,-0.0139,net sales / prior net sales - 1,"20269.0, 20555.0"
+organic_net_sales_growth,2024,-0.006,as published by Diageo,20-F KPI table
+organic_operating_profit_growth,2024,-0.048,as published by Diageo,20-F KPI table
+gross_margin,2024,0.6018,gross profit / net sales,"12198.0, 20269.0"
+operating_margin_bei,2024,0.2933,operating profit before exceptionals / net sales,"5945.0, 20269.0"
+operating_margin_reported,2024,0.2961,reported operating profit / net sales,"6001.0, 20269.0"
+free_cash_flow_musd,2024,2609.0,operating cash flow - capex + PP&E disposal proceeds (Diageo definition),"4105.0, 1510.0, 14.0"
+cash_conversion,2024,0.6742,free cash flow / net profit to shareholders (reported),"2609.0, 3870.0"
+net_debt_to_ebitda,2024,3.0476,adjusted net borrowings / adjusted EBITDA (Diageo definition),"21446.0, 7037.0"
+interest_cover,2024,6.5618,operating profit before exceptionals / net interest charge,"5945.0, 906.0"
+reported_net_sales_growth,2025,-0.0012,net sales / prior net sales - 1,"20245.0, 20269.0"
+organic_net_sales_growth,2025,0.017,as published by Diageo,20-F KPI table
+organic_operating_profit_growth,2025,-0.007,as published by Diageo,20-F KPI table
+gross_margin,2025,0.6013,gross profit / net sales,"12173.0, 20245.0"
+operating_margin_bei,2025,0.2817,operating profit before exceptionals / net sales,"5704.0, 20245.0"
+operating_margin_reported,2025,0.2141,reported operating profit / net sales,"4335.0, 20245.0"
+free_cash_flow_musd,2025,2748.0,operating cash flow - capex + PP&E disposal proceeds (Diageo definition),"4297.0, 1612.0, 63.0"
+cash_conversion,2025,1.1674,free cash flow / net profit to shareholders (reported),"2748.0, 2354.0"
+net_debt_to_ebitda,2025,3.3503,adjusted net borrowings / adjusted EBITDA (Diageo definition),"22263.0, 6645.0"
+interest_cover,2025,7.3886,operating profit before exceptionals / net interest charge,"5704.0, 772.0"
+roic_published,2025,0.137,as published by Diageo (20-F p.211),Diageo calculation
+reported_net_sales_growth,2026,-0.0297,net sales / prior net sales - 1,"19643.0, 20245.0"
+organic_net_sales_growth,2026,-0.02,as published by Diageo,20-F KPI table
+organic_operating_profit_growth,2026,0.02,as published by Diageo,20-F KPI table
+gross_margin,2026,0.5947,gross profit / net sales,"11681.0, 19643.0"
+operating_margin_bei,2026,0.2893,operating profit before exceptionals / net sales,"5683.0, 19643.0"
+operating_margin_reported,2026,0.1607,reported operating profit / net sales,"3156.0, 19643.0"
+free_cash_flow_musd,2026,3211.0,operating cash flow - capex + PP&E disposal proceeds (Diageo definition),"4392.0, 1197.0, 16.0"
+cash_conversion,2026,1.8486,free cash flow / net profit to shareholders (reported),"3211.0, 1737.0"
+net_debt_to_ebitda,2026,3.1382,adjusted net borrowings / adjusted EBITDA (Diageo definition),"20869.0, 6650.0"
+interest_cover,2026,6.9988,operating profit before exceptionals / net interest charge,"5683.0, 812.0"
+roic_published,2026,0.134,as published by Diageo (20-F p.211),Diageo calculation

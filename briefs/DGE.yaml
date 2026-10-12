@@ -1,0 +1,89 @@
+# PM assumptions for Diageo plc. Source of truth: brief-diageo.md v1.0, signed off by Amanda on 2026-10-12.
+# Code must read every assumption from here. Nothing is hard-coded.
+# Fields set to null are filled in by an agent from a cited source, then reviewed by the PM.
+
+company:
+  name: Diageo plc
+  ticker_lse: DGE.L          # London price, quoted in pence (GBp)
+  ticker_adr: DEO            # NYSE ADR, 1 ADR = 4 ordinary shares. Do NOT use DEO prices as ordinary-share prices.
+  adr_ratio: 4
+  sec_cik: "0000835403"
+  reporting_currency: USD
+  fiscal_year_end_month: 6   # FY26 = 1 Jul 2025 to 30 Jun 2026
+  benchmark_index: "^FTSE"   # FTSE 100 (agreed 2026-10-12)
+
+base_year:                   # FY26. Data agent confirms every number against the 20-F / FY26 prelims
+  fiscal_year: 2026
+  net_sales_musd: 19643       # reported net sales, FY26 prelims
+  operating_profit_bei_musd: 5683   # before exceptional items
+  ex_eabl_net_sales_musd: null      # Data agent: FY26 net sales EXCLUDING East African Breweries (EABL)
+  ex_eabl_operating_profit_bei_musd: null
+
+dcf:
+  currency: USD                     # agreed 2026-10-12. Convert to GBp only at the end.
+  forecast_years: [2027, 2028, 2029, 2030, 2031]
+  organic_growth: [0.000, 0.015, 0.025, 0.030, 0.030]   # low end of management guidance (agreed 2026-10-12, brief 5a)
+  savings:
+    # c.$1bn total: $850m operating framework (c.40% in FY27, the rest in FY28) + $150m supply chain (c.25% in FY27).
+    # Source: Diageo Capital Markets Day, 6 Aug 2026. Values are the CUMULATIVE run-rate reached in each year (USD m).
+    # FY27: 340 + 37.5 = 377.5. FY28: 850 + 112.5 (assumed 75% of supply chain) = 962.5. FY29 onwards: full 1,000.
+    # The supply chain phasing after FY27 is our assumption, not guidance. The Bear case agent should challenge it.
+    cumulative_musd: [377.5, 962.5, 1000.0, 1000.0, 1000.0]
+    flow_through: 0.50              # agreed 2026-10-12, brief 5b
+  tax_rate: null                    # Data agent: FY26 tax rate before exceptional items (brief proposes c.23%)
+  da_pct_sales: null                # Data agent: 5-year average depreciation & amortisation / net sales
+  capex_pct_sales: null             # Data agent: 5-year average capex / net sales
+  nwc_pct_sales: null               # Data agent: net working capital (incl. maturing inventory) / net sales, FY26
+  terminal_growth: 0.020
+  mid_year_convention: false
+  wacc:
+    risk_free: null                 # Data agent: US 10-year Treasury yield on the valuation date
+    equity_risk_premium: 0.050
+    beta: null                      # Risk agent. PM rule (agreed 2026-10-12): use the industry BOTTOM-UP beta
+                                    # (Damodaran global alcoholic beverages unlevered beta, relevered at Diageo's market D/E),
+                                    # with Diageo's own regressions (and their confidence intervals) as the cross-check.
+    pre_tax_cost_of_debt: null      # Data agent: interest expense / average debt (historic cost, for reference only)
+    credit_spread: 0.010            # agreed 2026-10-12 after the first run: pre-tax cost of debt = risk-free + 1.0%.
+                                    # Reason: the historic cost (3.81%) was below the US 10-year (5.22%), which new borrowing can't be.
+    target_debt_weight: null        # market value: net debt / (net debt + market cap)
+  bridge:                           # all USD m, Data agent fills from the FY26 20-F
+    net_debt_musd: 20500            # FY26 prelims. Confirm whether this includes lease liabilities.
+    lease_liabilities_musd: null    # only if NOT already inside net debt
+    minority_interests_musd: null   # non-controlling interests (e.g. United Spirits, EABL until sold)
+    pension_deficit_musd: null      # net post-employment deficit (0 if in surplus)
+    associates_musd: null           # value of associates, notably the 34% stake in Moet Hennessy.
+                                    # Diageo's operating profit EXCLUDES associates, so their value must be ADDED.
+    disposal_proceeds_musd: null    # EABL and RCB net proceeds, if not yet in net debt
+  shares_outstanding_m: null        # Data agent: ordinary shares (NOT ADRs), excluding treasury shares
+  fx_usd_per_gbp: null              # Data agent: GBP/USD on the valuation date
+
+scenarios:
+  bear:
+    organic_growth: [0.0, 0.0, 0.0, 0.0, 0.0]
+    flow_through: 0.25
+    wacc_shift: 0.01
+
+comps:
+  peers:
+    - {name: Pernod Ricard, ticker: RI.PA, fy_end_month: 6, source: annual report + yfinance (flag)}
+    - {name: Brown-Forman, ticker: BF-B, fy_end_month: 4, source: SEC EDGAR}
+    - {name: Campari, ticker: CPR.MI, fy_end_month: 12, source: annual report + yfinance (flag)}
+    - {name: Remy Cointreau, ticker: RCO.PA, fy_end_month: 3, source: annual report + yfinance (flag)}
+  optional_peers:
+    - {name: Constellation Brands, ticker: STZ, fy_end_month: 2, note: beer-heavy, show separately}
+  multiples: [ev_ebitda_ntm, ev_ebitda_ltm, pe_ntm, fcf_yield]
+  statistic: median
+
+rating:
+  buy_if_upside_at_least: 0.15     # agreed 2026-10-12
+  sell_if_downside_at_least: 0.10  # agreed 2026-10-12
+
+checks:
+  data_tie_out_tolerance: 0.005    # 0.5% vs published figures
+  excel_match_tolerance: 0.02      # 2% on value per share vs Amanda's Excel model
+  published_fy26:                  # Diageo FY26 preliminary results
+    net_sales_musd: 19643
+    operating_profit_bei_musd: 5683
+    net_debt_musd: 20500
+    free_cash_flow_musd: 3211
+    eps_bei_cents: 165.3
