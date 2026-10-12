@@ -35,6 +35,20 @@ def load_inputs(path: str) -> tuple[dict, dict]:
     return values, sources
 
 
+def apply_brief_rules(brief: dict, v: dict, sources: dict) -> None:
+    """Apply PM rules from the brief that replace an agent input.
+
+    Cost of debt: if the brief sets a credit spread, the pre-tax cost of debt is the marginal
+    cost of new borrowing = risk-free rate + credit spread (not the historic interest cost).
+    """
+    spread = brief["dcf"]["wacc"].get("credit_spread")
+    if spread is not None:
+        sources["pre_tax_cost_of_debt_historic"] = sources.get("pre_tax_cost_of_debt")
+        v["pre_tax_cost_of_debt_historic"] = v["pre_tax_cost_of_debt"]
+        v["pre_tax_cost_of_debt"] = v["risk_free"] + spread
+        sources["pre_tax_cost_of_debt"] = f"risk-free {v['risk_free']:.2%} + credit spread {spread:.2%} (PM rule, briefs)"
+
+
 def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) -> dict:
     d = brief["dcf"]
     w = dcf.wacc(dcf.WaccInputs(risk_free=v["risk_free"], equity_risk_premium=d["wacc"]["equity_risk_premium"],
@@ -58,6 +72,7 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
 def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     brief = yaml.safe_load(Path(brief_path).read_text())
     v, sources = load_inputs(inputs_path)
+    apply_brief_rules(brief, v, sources)
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
 
@@ -66,7 +81,8 @@ def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     bear = build(brief, v, growth=bear_cfg["organic_growth"], flow_through=bear_cfg["flow_through"],
                  wacc_shift=bear_cfg["wacc_shift"])
     w0, g0 = base["inputs"].wacc, base["inputs"].terminal_growth
-    waccs = [round(w0 + s, 4) for s in (-0.01, -0.005, 0, 0.005, 0.01)]
+    # not rounded, so the middle cell of the grid equals the base case exactly
+    waccs = [w0 + s for s in (-0.01, -0.005, 0, 0.005, 0.01)]
     growths = [0.015, 0.020, 0.025, 0.030]
     grid_ev = dcf.sensitivity(base["inputs"], waccs, growths)
     b = dcf.Bridge(**base["bridge"])

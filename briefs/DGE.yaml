@@ -39,8 +39,12 @@ dcf:
   wacc:
     risk_free: null                 # Data agent: US 10-year Treasury yield on the valuation date
     equity_risk_premium: 0.050
-    beta: null                      # Risk agent: 5-year monthly beta vs FTSE 100, cross-checked with peers
-    pre_tax_cost_of_debt: null      # Data agent: yield on Diageo USD bonds, or interest expense / average debt
+    beta: null                      # Risk agent. PM rule (agreed 2026-10-12): use the industry BOTTOM-UP beta
+                                    # (Damodaran global alcoholic beverages unlevered beta, relevered at Diageo's market D/E),
+                                    # with Diageo's own regressions (and their confidence intervals) as the cross-check.
+    pre_tax_cost_of_debt: null      # Data agent: interest expense / average debt (historic cost, for reference only)
+    credit_spread: 0.010            # agreed 2026-10-12 after the first run: pre-tax cost of debt = risk-free + 1.0%.
+                                    # Reason: the historic cost (3.81%) was below the US 10-year (5.22%), which new borrowing can't be.
     target_debt_weight: null        # market value: net debt / (net debt + market cap)
   bridge:                           # all USD m, Data agent fills from the FY26 20-F
     net_debt_musd: 20500            # FY26 prelims. Confirm whether this includes lease liabilities.

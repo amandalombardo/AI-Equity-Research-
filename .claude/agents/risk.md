@@ -10,5 +10,5 @@ Write to `runs/<TICKER>/<RUN_DATE>/risk/`.
 2. Check the price units: DGE.L is in pence. Look for a sudden 100x jump in the series, which would mean a pence/pound mix-up, and report it if found.
 3. Peer beta cross-check: if the peer prices are available, calculate each peer's 5-year monthly beta vs its home index and report the median.
 4. Leverage: net debt / EBITDA vs Diageo's 2.5 to 3.0x target range.
-5. Recommend which beta goes into the WACC (the 5-year monthly beta by default), and add it to `runs/<TICKER>/<RUN_DATE>/inputs.yaml` as `beta: {value: ..., source: "Risk agent, 5y monthly vs FTSE 100, R2=..."}`.
+5. Recommend which beta goes into the WACC: follow the beta rule in the brief (bottom-up industry beta by default; run `beta_evidence`-style checks with standard errors), and add it to `runs/<TICKER>/<RUN_DATE>/inputs.yaml` as `beta: {value: ..., source: "Risk agent, 5y monthly vs FTSE 100, R2=..."}`.
 6. Save `risk.json` and `notes.md`.
