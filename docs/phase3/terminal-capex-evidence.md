@@ -23,5 +23,18 @@ This is the textbook value driver test (McKinsey, *Valuation*): in a steady stat
 4. **Industry:** Damodaran's January 2026 US data puts alcoholic beverages at capex of about 2.2x D&A and net capex of about 3.7% of sales (seen through a search summary; the page itself is blocked here, so treat as medium confidence). Diageo's 7.1% - 3.4% = 3.7% is the same, but US peers are also in a capacity build-out (Brown-Forman, Constellation).
 5. **Cross-check vs guidance:** the model's FY27-29 cash flow after interest (about $9.2bn) is close to management's guided c.$8bn plus c.$850m of exceptional restructuring cash (= $8.85bn), so near-term capex in the forecast is not out of line. This decision is only about the years after FY31.
 
+## Evidence test of each option (added 12 Oct 2026, at the PM's request)
+**Diageo's ROIC over time (its own 20-F definition):** FY23 18.4%, FY24 15.8%, FY25 13.7%, FY26 13.4% (20-F FY24 and FY25 KPI tables, 20-F FY26 p.18). Definition: operating profit before exceptionals after tax (plus associates' after-tax results) / average invested capital. Invested capital includes acquired brands and goodwill at cost, which makes it a conservative guide to returns on new organic investment.
+
+| Option | Passes the evidence test? | Why |
+|---|---|---|
+| 3.4% (= D&A) | **No** | Implies new investment earns 65%. Diageo has never earned more than about 18% on its capital, and capex has been above D&A in every year since FY22. |
+| 6.6% (management plan) | Weak | A real, sourced number, but for FY27-29 only, and it includes one-off Guinness capacity spending. It is not a steady state. |
+| **6.2% (new investment earns ROIC 13.4%)** | **Yes, strongest** | Uses the lowest ROIC of the last four years (not the 15.3% average), so it doesn't flatter. It matches FY26 actual capex (6.1%) and sits below the plan that includes one-offs. Textbook rule (McKinsey value driver formula). |
+| 7.1% (5-year average) | Partly | A sourced history, but it includes the FY24-25 capex peak, which management has since cut. It implies new investment earns 10.8%, which is defensible only if ROIC keeps falling. |
+| 8.3% (returns = WACC) | Bear case only | It assumes growth creates no value at all, which contradicts 13-18% returns. It's a stress test, not a base case. |
+
+**Main risk to the recommendation:** ROIC has fallen about 5 points in three years, partly because of the capex build-out. If it falls to about 10.8%, the 7.1% option becomes the right one, and the rating is a SELL. The rating is sensitive either way: 1,540p is -8.0%, just 2 points inside the HOLD band, and each 0.5% of sales of terminal capex moves the value by about 35p.
+
 ## Recommendation
 Set terminal capex so new investment earns Diageo's current ROIC (13.4%), which gives 6.2% of sales. It is anchored to a published number and a textbook rule, it sits between FY26 actual capex (6.1%) and the plan that includes one-off Guinness spending (6.6%), and it avoids the "capex = D&A" shortcut that would make growth free. It moves the rating from SELL to HOLD, so it matters: the bear version (returns fall to the WACC) is a SELL at 1,383p and stays in the memo as a risk.
