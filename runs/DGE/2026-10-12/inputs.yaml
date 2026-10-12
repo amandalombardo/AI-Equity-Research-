@@ -58,3 +58,9 @@ stub_years:
 beta:
   value: 0.9601
   source: 'Risk agent, bottom-up: Damodaran global alcoholic beverages unlevered beta 0.73 (Jan 2026, cash-corrected) relevered at Diageo D/E 0.416, tax 24.3%. See risk/beta_evidence.json'
+restructuring_cash:
+  value: 850.0
+  source: 'Diageo Capital Markets Day 6-K, 6 Aug 2026 (SEC accession 0001654954-26-007324): c.$800m exceptional cash costs for the operating framework + c.$50m for supply chain in FY27; FY27-29 cumulative free cash flow c.$8bn after c.$850m exceptional cash costs (also 20-F FY26 CEO letter). Pre-tax, undiscounted: any tax relief (up to c.$207m at 24.3%) is not confirmed, so not counted. Not in net debt at 30 June 2026; the forecast is before exceptionals.'
+dividends_ex_before_valuation_musd:
+  value: 0.0
+  source: 'Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529): FY26 final dividend 30c, ex-dividend 15 October 2026 (ordinary shares), AFTER the 12 Oct 2026 valuation date, so the 1,673p price is cum-dividend and nothing is deducted. No other dividend went ex between 30 June and 12 Oct 2026.'

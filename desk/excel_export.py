@@ -31,13 +31,16 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("kd", "Pre-tax cost of debt", v["pre_tax_cost_of_debt"]),
         ("wd", "Debt weight D/(D+E)", v["debt_weight"]),
         ("g", "Terminal growth", d["terminal_growth"]),
-        ("stub", "Fraction of FY27 elapsed at valuation date", v["stub_years"]),
+        ("stub", "Fraction of FY27 elapsed, used in discounting (0 = valued at 30 June)", base["inputs"].stub_years),
+        ("roll_years", "Years from 30 June to valuation date (equity roll-forward)", (base["roll"] or {}).get("years", 0.0)),
+        ("divs", "Dividends gone ex before valuation date (USD m)", (base["roll"] or {}).get("dividends", 0.0)),
         ("net_debt", "Net debt (USD m)", v["net_debt"]),
         ("leases", "Lease liabilities not in net debt (USD m)", v["lease_liabilities"]),
         ("minorities", "Minority interests (USD m)", v["minority_interests"]),
         ("pension", "Pension deficit (USD m)", v["pension_deficit"]),
         ("associates", "Associates incl. Moet Hennessy (USD m)", v["associates"]),
         ("disposals", "Disposal proceeds not in net debt (USD m)", v["disposal_proceeds"]),
+        ("restructuring", "Restructuring cash still to pay (USD m)", v["restructuring_cash"]),
         ("shares", "Ordinary shares (m)", v["shares_outstanding_m"]),
         ("fx", "USD per GBP", v["fx_usd_per_gbp"]),
         ("price", "Share price (pence)", v["share_price_gbp_pence"]),
@@ -51,9 +54,12 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
             "PM assumption (briefs/DGE.yaml)" if d.get("terminal_capex_pct_sales") is not None else
             "same as forecast capex % of sales")
     sources = {**sources, "tcapex_pct": tsrc}
+    if base["roll"]:
+        sources["stub"] = "0: valued at the 30 June balance sheet date, then rolled forward (brief: valuation_basis)"
     source_key = {"da_pct": "da_pct_sales", "capex_pct": "capex_pct_sales", "nwc_pct": "nwc_pct_sales", "rf": "risk_free",
                   "kd": "pre_tax_cost_of_debt", "wd": "debt_weight", "stub": "stub_years", "leases": "lease_liabilities",
-                  "minorities": "minority_interests", "pension": "pension_deficit", "disposals": "disposal_proceeds",
+                  "minorities": "minority_interests", "pension": "pension_deficit", "disposals": "disposal_proceeds", "restructuring": "restructuring_cash",
+                  "roll_years": "stub_years", "divs": "dividends_ex_before_valuation_musd",
                   "shares": "shares_outstanding_m", "fx": "fx_usd_per_gbp", "price": "share_price_gbp_pence"}
     for i, (key, label, val) in enumerate(inputs, start=2):
         src = sources.get(source_key.get(key, key)) or "PM assumption (briefs/DGE.yaml)"
@@ -119,8 +125,11 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("tv", "Terminal value (Gordon growth)", f"={{tfcf}}/(WACC-{ref['g']})", base["dcf"]["terminal_value"]),
         ("pvtv", "PV of terminal value", f"={{tv}}/(1+WACC)^({n}-{ref['stub']})", base["dcf"]["pv_terminal_value"]),
         ("ev", "Enterprise value", "={pv}+{pvtv}", base["dcf"]["enterprise_value"]),
-        ("eq", "Equity value", (f"={{ev}}-{ref['net_debt']}-{ref['leases']}-{ref['minorities']}-{ref['pension']}"
-                                f"+{ref['associates']}+{ref['disposals']}"), eq["equity_value"]),
+        ("eqbs", "Equity value at balance sheet date", (f"={{ev}}-{ref['net_debt']}-{ref['leases']}-{ref['minorities']}"
+                                f"-{ref['pension']}-{ref['restructuring']}+{ref['associates']}+{ref['disposals']}"),
+         eq["equity_value_balance_sheet_date"]),
+        # roll forward to the valuation date at the cost of equity, less dividends gone ex in between
+        ("eq", "Equity value at valuation date", f"={{eqbs}}*(1+{{ke}})^{ref['roll_years']}-{ref['divs']}", eq["equity_value"]),
         ("usd", "Value per share (USD)", f"={{eq}}/{ref['shares']}", eq["per_share_usd"]),
         ("gbp", "Value per share (pence)", f"={{usd}}/{ref['fx']}*100", eq["per_share_gbp_pence"]),
         ("up", "Upside vs share price", f"={{gbp}}/{ref['price']}-1", base["rating"]["upside"]),

@@ -44,3 +44,8 @@ Only two usable P/E figures: Pernod Ricard 10.7x (press, FY26) and Brown-Forman 
 
 ## Confidence
 High: all 20-F figures, tie-outs, share count, net debt, tax rate, price, FX, risk-free. Medium: EABL carve-out, associates, disposal proceeds. Low: cost of debt, peer data.
+
+## Phase 3 additions (12 Oct 2026, after the PM's decisions and the Codex audit)
+- **FLAG 10 resolved (net debt date, Codex BRIDGE-01):** the brief now values the business at the 30 June 2026 balance sheet date and rolls equity forward to 12 Oct at the cost of equity. The FY26 final dividend (30c) goes ex on **15 October 2026** (20-F FY26), *after* the valuation date, so the 1,673p price is cum-dividend and `dividends_ex_before_valuation_musd` = 0. The earlier idea of deducting it (Bear challenge 6, -23p) was wrong for this date.
+- **New input `restructuring_cash` = 850 (USD m):** c.$800m + c.$50m of exceptional restructuring cash in FY27, and c.$850m over FY27-29 (Capital Markets Day 6-K, 6 Aug 2026). The forecast is before exceptionals and net debt is at 30 June, so this cash was missing from the valuation. Pre-tax and undiscounted; tax relief is not confirmed, so it is not counted (it would add up to about 7p).
+- **Peers:** Campari (adjusted EPS EUR 0.32, FY Dec 2025) and Remy Cointreau (EPS excl. non-recurring EUR 1.71, FY Mar 2026) added from press reports of their results (non-filing source; company sites unreachable). Constellation is still missing: diluted EPS is not tagged in its XBRL.

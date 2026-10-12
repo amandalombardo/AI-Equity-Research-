@@ -111,3 +111,19 @@ def test_capex_for_ronic_round_trip():
     assert pct == pytest.approx((0.02 / 0.12 * 26.163 - 0.242 + 6.171) / 123.42)
     inp.terminal_capex_pct_sales = pct
     assert dcf.value(inp)["terminal_year"]["implied_ronic"] == pytest.approx(0.12)
+
+
+def test_restructuring_cash_is_deducted_like_debt():
+    # 1000 - 200 debt - 30 restructuring cash = 770; / 100 shares = $7.70; / 1.25 = 616p
+    out = dcf.equity_bridge(1000, dcf.Bridge(net_debt=200, restructuring_cash=30), 100, 1.25)
+    assert out["per_share_gbp_pence"] == pytest.approx(616)
+
+
+def test_roll_forward_by_hand():
+    # Equity 800 at the balance sheet date, cost of equity 10%, a quarter of a year to the valuation date,
+    # and a dividend of 5 that went ex in between: 800 x 1.1^0.25 - 5 = 814.2108...
+    assert dcf.roll_forward(800, 0.10, 0.25, 5) == pytest.approx(800 * 1.1 ** 0.25 - 5)
+    b = dcf.Bridge(net_debt=200)
+    out = dcf.equity_bridge(1000, b, 100, 1.25, {"cost_of_equity": 0.10, "years": 0.25, "dividends": 5})
+    assert out["equity_value_balance_sheet_date"] == pytest.approx(800)
+    assert out["per_share_usd"] == pytest.approx((800 * 1.1 ** 0.25 - 5) / 100)

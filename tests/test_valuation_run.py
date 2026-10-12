@@ -42,13 +42,13 @@ def test_excel_formulas_match_python(tmp_path):
         if r[0]:
             assert r[1] == pytest.approx(r[2], rel=1e-9), r[0]
             checked += 1
-    assert checked == 12
+    assert checked == 13
     # forecast block: final-year Excel formulas vs the Python check column
     for r in rows[1:start]:
         if r[0] and isinstance(r[-1], (int, float)):
             assert r[-3] == pytest.approx(r[-1], rel=1e-9), r[0]
             checked += 1
-    assert checked == 16
+    assert checked == 17
 
 
 def test_credit_spread_rule_sets_cost_of_debt():
@@ -64,3 +64,17 @@ def test_no_credit_spread_keeps_agent_input():
     v = {"risk_free": 0.05, "pre_tax_cost_of_debt": 0.035}
     valuation_run.apply_brief_rules({"dcf": {"wacc": {}}}, v, {})
     assert v["pre_tax_cost_of_debt"] == pytest.approx(0.035)
+
+
+def test_balance_sheet_basis_values_full_first_year_then_rolls_forward():
+    # Under valuation_basis: balance_sheet_date the DCF uses no stub (all of FY27 counted, discounted from 30 June)
+    # and the equity value is grown at the cost of equity for the elapsed fraction of the year
+    import yaml
+    brief = yaml.safe_load(BRIEF.read_text())
+    brief["dcf"]["valuation_basis"] = "balance_sheet_date"
+    v, _ = valuation_run.load_inputs(str(FIXTURE), valuation_run.ROLL_FORWARD)
+    out = valuation_run.build(brief, v)
+    assert out["inputs"].stub_years == 0
+    eq = out["equity"]
+    ke = out["wacc"]["cost_of_equity"]
+    assert eq["equity_value"] == pytest.approx(eq["equity_value_balance_sheet_date"] * (1 + ke) ** v["stub_years"])

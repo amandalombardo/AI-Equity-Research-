@@ -19,3 +19,5 @@ shares_outstanding_m: {value: 2220, source: test fixture}
 fx_usd_per_gbp: {value: 1.33, source: test fixture}
 share_price_gbp_pence: {value: 1800, source: test fixture}
 stub_years: {value: 0.28, source: test fixture}
+restructuring_cash: {value: 0, source: test fixture}
+dividends_ex_before_valuation_musd: {value: 0, source: test fixture}
