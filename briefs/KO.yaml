@@ -1,0 +1,119 @@
+# PM assumptions for The Coca-Cola Company. Source of truth: phase5/brief-coca-cola.md v1.0, signed off by Amanda on 2026-10-13.
+# Code must read every assumption from here. Nothing is hard-coded.
+# Fields set to null are filled in by an agent from a cited source, then reviewed by the PM.
+
+company:
+  name: The Coca-Cola Company
+  ticker: KO
+  price_ticker: KO           # NYSE listing, quoted in US dollars. No ADR: one share is one share.
+  price_currency: USD        # value per share and share price both in USD; no FX conversion
+  sec_cik: "0000021344"
+  accounting: us_gaap        # read the 10-K's US GAAP XBRL labels (desk/data_sources.py US_GAAP_TAGS)
+  annual_form: 10-K
+  reporting_currency: USD
+  fiscal_year_end_month: 12  # calendar year: FY25 = 1 Jan to 31 Dec 2025
+  benchmark_index: "^GSPC"   # S&P 500 (agreed 2026-10-13)
+
+base_year:                   # FY25, the latest audited year (10-K accession 0001628280-26-010047, filed 20 Feb 2026)
+  fiscal_year: 2025
+  net_sales_musd: 47941      # reported net operating revenues
+  operating_profit_reported_musd: 13762
+  comparable_operating_margin: 0.312   # non-GAAP, Q4 2025 results 8-K (0001628280-26-006642). FY24 30.0%, FY23 29.1%
+  ex_ccba_net_sales_musd: null         # Data agent: FY25 net revenues EXCLUDING the African bottler (CCBA) being sold
+  ex_ccba_comparable_operating_profit_musd: null
+
+dcf:
+  currency: USD
+  forecast_years: [2026, 2027, 2028, 2029, 2030]
+  # Revenue growth in US DOLLARS (the field is called organic_growth for the engine; here it is organic + currency).
+  # PM decision 2026-10-13: FY26 +3.5% (FY26 guidance raised 28 Jul 2026, 8-K 0001628280-26-049922: organic c.5%,
+  # currency c.+1%, acquisitions/disposals -2% to -3%); FY27-30 3.0% = low end of the 4-5% organic range minus the
+  # 1-point currency drag seen outside the Argentina years (2020, 2021, 2025). Evidence: docs/phase5/ko-growth-evidence.md.
+  # FLAG for PM (2026-10-13): the FY26 +3.5% includes the disposal headwind. If the base year excludes CCBA (trap 5),
+  # FY26 should be organic + currency only (c.+6%), or the disposal is counted twice. Awaiting PM decision.
+  organic_growth: [0.035, 0.030, 0.030, 0.030, 0.030]
+  savings:                           # Coca-Cola has no announced savings programme in the model: margin held flat instead
+    cumulative_musd: [0.0, 0.0, 0.0, 0.0, 0.0]
+    flow_through: 0.0
+  # Base margin (PM decision 2026-10-13): FY25 comparable operating margin, held flat (bear case 30.0%, FY24).
+  # The FY23-25 rise of c.1 point a year was partly from selling low-margin bottlers, so it is not extrapolated.
+  base_margin_rule: comparable_operating_margin_held_flat
+  # Tax rate (PM decision 2026-10-13, IRS case assumed LOST): FY26 underlying rate 19.9% (Q2 2026 8-K) + 3.8 points
+  # if the US Tax Court method keeps applying (Q2 2026 10-Q note 12) = 23.7%. Data agent supplies it with both sources.
+  tax_rate: null
+  da_pct_sales: null                # Data agent: 5-year average D&A / net revenues
+  capex_pct_sales: null             # Data agent: 5-year average capex / net revenues (FY26 guidance capex c.$2.2bn)
+  nwc_pct_sales: null               # Data agent: net working capital / net revenues, FY25. Trap: FY24 payables include
+                                    # the c.$6.1bn fairlife milestone liability (paid 2025); exclude it.
+  terminal_growth: 0.020
+  terminal_capex_pct_sales: null
+  terminal_ronic: pending           # PM rule (same as Diageo): new investment earns Coca-Cola's latest ROIC.
+                                    # The Data agent computes it with sources; the PM then sets the number here.
+                                    # The valuation refuses to run while this says "pending".
+  # Cash timing (PM decision 2026-10-13): mid-year. 56% of FY26's guided free cash flow ($6.9bn of $12.4bn) arrived
+  # in the first half (Q2 2026 8-K).
+  mid_year_convention: true
+  # Value the business at the 31 Dec 2025 balance sheet date, then roll the equity value forward to the run date at
+  # the cost of equity, less dividends that went ex in between (same method as Diageo).
+  valuation_basis: balance_sheet_date
+  wacc:
+    risk_free: null                 # Data agent: US 10-year Treasury yield on the valuation date (FRED DGS10)
+    equity_risk_premium: 0.050
+    beta: null                      # Risk agent. PM rule (same as Diageo): industry BOTTOM-UP beta (Damodaran US
+                                    # soft beverage unlevered beta, relevered at Coca-Cola's market D/E), with
+                                    # Coca-Cola's own regressions vs the S&P 500 as the cross-check.
+    pre_tax_cost_of_debt: null      # Data agent: interest expense / average debt (historic cost, for reference only)
+    credit_spread: 0.0069           # agreed 2026-10-13: Coca-Cola is rated A+, so cost of debt = risk-free + the
+                                    # ICE BofA US single-A corporate spread, 0.69% on 8 Oct 2026 (FRED BAMLC0A3CA).
+    target_debt_weight: null        # market value: net debt / (net debt + market cap)
+  bridge:                           # all USD m, at 31 Dec 2025, Data agent fills from the FY25 10-K
+    net_debt_musd: null             # loans and notes + current and long-term debt - cash - short-term investments
+                                    # - marketable securities. State whether finance leases are inside.
+    lease_liabilities_musd: null    # operating leases ($1,722m at 31 Dec 2025), only if not in net debt
+    minority_interests_musd: null   # non-controlling interests at book (small: $2,106m)
+    minorities_method: book
+    pension_deficit_musd: null      # net unfunded pension and post-retirement obligation (0 if in surplus)
+    # Equity stakes (PM decision 2026-10-13): LISTED stakes at market value on the run date (Monster, CCEP, Coca-Cola
+    # FEMSA, Coca-Cola HBC, CCBJH, CCI, Andina; $34,286m vs $13,999m book at 31 Dec 2025, FY25 10-K equity method investments note), UNLISTED at book.
+    # Coca-Cola's operating income EXCLUDES equity income, so their value must be ADDED. Book value failed the evidence
+    # test, the same reasoning as Diageo's minorities.
+    associates_musd: null
+    disposal_proceeds_musd: null    # CCBA sale to Coca-Cola HBC, if not yet received (expected by end 2026)
+    restructuring_cash_musd: null   # announced one-off restructuring cash still to pay (0 if none, with source)
+    # IRS tax case (PM decision 2026-10-13: assume Coca-Cola LOSES). Potential tax and interest for 2010-2025
+    # c.$14,000m at 31 Dec 2025 (10-K, XBRL ko:IncrementalTaxAndInterestLiability) plus c.$900m for H1 2026 (10-Q).
+    # The $6.0bn deposit already paid for 2007-09 is not refunded in the base case. Bull case: a win refunds it.
+    contingent_liabilities_musd: null
+  shares_outstanding_m: null        # Data agent: shares issued less treasury shares (7,040m - 2,738m at 31 Dec 2025)
+
+scenarios:
+  bear:
+    organic_growth: [0.035, 0.010, 0.010, 0.010, 0.010]   # 1% a year: the full 2020-25 average currency drag
+    flow_through: 0.0
+    wacc_shift: 0.01
+    # The bear agent must also test the 30.0% margin (FY24) and a WIN in the IRS case is the bull case, not the bear.
+
+comps:
+  peers:
+    - {name: PepsiCo, ticker: PEP, fy_end_month: 12, source: SEC EDGAR}
+    - {name: Keurig Dr Pepper, ticker: KDP, fy_end_month: 12, source: SEC EDGAR}
+    - {name: Monster Beverage, ticker: MNST, fy_end_month: 12, source: SEC EDGAR}
+  optional_peers:
+    - {name: Coca-Cola Europacific Partners, ticker: CCEP, fy_end_month: 12, note: bottler (lower margin), show separately}
+    - {name: Diageo, ticker: DEO, fy_end_month: 6, note: out-of-sector cross-check, show separately}
+  multiples: [ev_ebitda_ntm, ev_ebitda_ltm, pe_ntm, fcf_yield]
+  statistic: median
+
+rating:
+  buy_if_upside_at_least: 0.15     # same rule as Diageo (agreed 2026-10-13)
+  sell_if_downside_at_least: 0.10
+
+checks:
+  data_tie_out_tolerance: 0.005
+  excel_match_tolerance: 0.02
+  published_fy25:                  # Q4 2025 results 8-K, 10 Feb 2026
+    net_sales_musd: 47941
+    operating_profit_reported_musd: 13762
+    comparable_operating_margin: 0.312
+    free_cash_flow_musd: 5300      # $11.4bn excluding the fairlife payment
+    eps_comparable_usd: 3.00

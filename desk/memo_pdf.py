@@ -10,7 +10,7 @@ Supports: a `# Title` banner, a `**Rating: X | ... | ...**` line (shown as a col
     Bear scenario | 1108 | 1108
     ```
 
-(bars are "label | low | high" in pence; markers are vertical lines). The chart draws only numbers written
+(bars are "label | low | high" in the price currency, pence or USD; markers are vertical lines). The chart draws only numbers written
 in memo.md, so memo_check still traces every one of them. `## Sources` starts a new page (the appendix is
 not counted in the two pages).
 
@@ -111,7 +111,7 @@ def data_table(rows: list[list[str]], st: dict) -> Table:
 
 
 def football(lines: list[str]) -> Drawing:
-    """Horizontal range chart in pence: one bar per 'label | low | high', vertical lines for 'marker: label | value'."""
+    """Horizontal range chart in the price currency: one bar per 'label | low | high', vertical lines for 'marker: label | value'."""
     bars, markers = [], []
     for ln in lines:
         if not ln.strip():
