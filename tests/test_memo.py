@@ -13,3 +13,15 @@ def test_memo_pdf_builds(tmp_path):
     md = tmp_path / "memo.md"
     md.write_text("# Diageo\n**Rating: HOLD**\n\n- point one\n\n| a | b |\n|---|---|\n| 1 | 2 |\n")
     assert memo_pdf.main(str(md)).exists()
+
+
+def test_memo_pdf_draws_rating_strip_chart_and_sources_page(tmp_path):
+    # the Sources appendix starts its own page, so it is not counted in the two-page memo
+    from pypdf import PdfReader
+    md = tmp_path / "memo.md"
+    md.write_text("# Diageo\n**Rating: SELL | Fair value 1,400p | Price 1,673p**\n\n```football\n"
+                  "marker: Share price | 1673\nDCF range | 1300 | 1500\nBear | 1100 | 1100\n```\n\n"
+                  "Short memo.\n\n## Sources\n- 20-F p.22\n")
+    pdf = memo_pdf.main(str(md))
+    pages = PdfReader(str(pdf)).pages
+    assert len(pages) == 2 and "Sources" in pages[1].extract_text() and "Sources" not in pages[0].extract_text()
