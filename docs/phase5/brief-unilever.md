@@ -45,7 +45,7 @@ Base year FY25 (latest audited). Forecast FY26 to FY30. EUR, converted to pence 
 |---|---|---|---|---|
 | A | How to value Foods | **Sum of the parts:** DCF of Unilever without the sale perimeter, plus the deal consideration at today's market value ($15.7bn cash + c.500m McCormick shares at $44.44 = $37.9bn = **€33.8bn, c.1,327p a share, 28% of the price**). Bear: the deal fails and Foods stays in the DCF | Signed deal with fixed terms; McCormick's own share price is the best evidence of what the shares are worth | **Decision 1, sent** |
 | B | Revenue growth (EUR, ex-perimeter) | FY26 **+0.5%** (H1 2026 actual reported change); FY27-30 **1.6%** a year (low end of 4-6% USG less the 9-year 2.4-point currency drag); bear 0.2% | ulvr-growth-evidence.md (FY17-25 results 6-Ks) | **Agreed** 13 Oct 2026 |
-| C | Operating margin | To follow: start at the ex-perimeter FY25 margin (c.18.8% = (10,084 - 2,600) / (50,503 - 10,700)) and test management's ">19%" pro forma claim and stranded central costs | Form 425 pro forma: €39bn turnover, UOM >19% | Pending |
+| C | Operating margin | **17.7% flat**: FY25 underlying 18.8% without the sale perimeter, less 1.1% ongoing restructuring (FY23-25 average); bear 16.2% (2023 level less restructuring, also covers stranded costs) | ulvr-margin-evidence.md | **Agreed** 13 Oct 2026 |
 | D | Minorities | Proportionate (Diageo rule): Hindustan Unilever's share of operating profit x EV; HUL at market as a cross-check | Diageo Phase 3 evidence audit | Pending |
 | E | Listed stakes | TMICC 19.85% at market; after the deal, the 9.9% McCormick stake is inside item A | Same rule as KO | Pending |
 | F | Tax rate | Underlying effective tax rate from the 20-F (FY25 reported 29.4% includes separation effects) | Data agent | Pending |
@@ -67,3 +67,4 @@ Same as Diageo: independent Excel check within 2%, source check of 5 random numb
 |---|---|---|
 | 1 | How to value Foods (sum of the parts at today's deal value, whole-group DCF, or headline deal value) | **Sent** 13 Oct 2026 |
 | 2 | Growth: FY26 +0.5%, FY27-30 1.6% a year in EUR; bear 0.2% | **Agreed** 13 Oct 2026, evidence in ulvr-growth-evidence.md |
+| 3 | Margin 17.7% flat (underlying less recurring restructuring); bear 16.2% | **Agreed** 13 Oct 2026, evidence in ulvr-margin-evidence.md |
