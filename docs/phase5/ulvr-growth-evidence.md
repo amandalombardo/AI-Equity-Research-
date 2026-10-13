@@ -16,7 +16,7 @@
 | FY25 (ex Ice Cream) | 3.5% | -1.2% | -5.9% | -3.8% | 0001654954-26-001155 |
 | H1 2026 | 4.8% | +0.7% | -4.9% (Q2 -2.4%) | +0.5% | 0000217410-26-000057 |
 
-FY18 A&D is implied from the other three columns (the release gives only "the disposal of spreads"). Components compound: (1 + USG) x (1 + A&D) x (1 + currency) - 1 = turnover change. USG excludes "price growth in excess of 26% in hyperinflationary economies" (definition in the FY23 and FY25 releases); that excess sits in the currency column (FY25: exchange rates -6.3 points, extreme hyperinflation pricing +0.5, FY25 6-K business-group table), so the currency column already nets off part of that inflation.
+FY18 A&D is implied from the other three columns (the release gives only "the disposal of spreads"). Components compound: (1 + USG) x (1 + A&D) x (1 + currency) - 1 = turnover change. USG excludes "price growth in excess of 26% in hyperinflationary economies" (definition in the FY23 and FY25 releases); that excess sits in the currency column (for example Q4 2025, Group: exchange rates -7.9 points, extreme hyperinflation pricing +0.5 points, currency total -7.5; FY25 6-K business-group table), so the currency column already nets off part of that inflation.
 
 ## Averages (compound, per year)
 | Period | USG | Currency | USG + currency (euro growth before deals) | Reported |
