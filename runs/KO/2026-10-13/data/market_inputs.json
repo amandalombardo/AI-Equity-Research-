@@ -1,0 +1,13 @@
+{
+  "risk_free": {
+    "value": 0.052199999999999996,
+    "date": "2026-10-08",
+    "source": "FRED DGS10 (US 10-year Treasury, constant maturity)"
+  },
+  "downloaded_on": "2026-10-13",
+  "share_price_usd": {
+    "value": 90.12000274658203,
+    "date": "2026-10-13",
+    "source": "Yahoo Finance KO close (US dollars)"
+  }
+}

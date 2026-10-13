@@ -1,0 +1,57 @@
+{
+  "rule": "bottom-up (briefs/KO.yaml dcf.wacc.beta)",
+  "source_attempts": [
+    {
+      "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+      "result": "failed: ProxyError: HTTPSConnectionPool(host='pages.stern.nyu.edu', port=443): Max retries exceeded with url: /~adamodar/New_Home_Page/datafile/Betas.html (Caused by ProxyError('Un"
+    },
+    {
+      "url": "https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls",
+      "result": "failed: ProxyError: HTTPSConnectionPool(host='pages.stern.nyu.edu', port=443): Max retries exceeded with url: /~adamodar/pc/datasets/betas.xls (Caused by ProxyError('Unable to conn"
+    },
+    {
+      "url": "http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+      "result": "failed: ConnectionError: HTTPConnectionPool(host='pages.stern.nyu.edu', port=80): Max retries exceeded with url: /~adamodar/New_Home_Page/datafile/Betas.html (Caused by NameResolutionEr"
+    },
+    {
+      "url": "https://www.stern.nyu.edu/~adamodar/pc/datasets/betas.xls",
+      "result": "failed: ProxyError: HTTPSConnectionPool(host='www.stern.nyu.edu', port=443): Max retries exceeded with url: /~adamodar/pc/datasets/betas.xls (Caused by ProxyError('Unable to connec"
+    },
+    {
+      "url": "https://web.archive.org/web/2026/https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+      "result": "failed: ProxyError: HTTPSConnectionPool(host='web.archive.org', port=443): Max retries exceeded with url: /web/2026/https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Bet"
+    }
+  ],
+  "industry_unlevered_beta": null,
+  "ko_market_debt_to_equity": 0.0765653259839807,
+  "tax_rate": 0.237,
+  "hamada_relever_factor": 1.0584193437257772,
+  "relevered_beta": null,
+  "inputs_yaml_entry": {
+    "value": null,
+    "status": "MISSING - STOP",
+    "source": "MISSING. PM rule needs Damodaran US 'Beverage (Soft)' unlevered beta (Betas by Sector (US), Jan 2026). pages.stern.nyu.edu, www.stern.nyu.edu and web.archive.org are all refused by the network proxy (HTTP CONNECT 403, organisation policy) on 2026-10-13; not taken from memory. When obtained: beta = unlevered x 1.0584 (Hamada, KO market D/E 0.0766, tax 23.7%). Regressions vs S&P 500 are cross-checks only: see risk/risk.json and risk/beta_evidence.json."
+  },
+  "cross_checks_not_used": {
+    "5y_monthly": {
+      "beta": 0.297623293630649,
+      "std_error": 0.13160003494846725,
+      "r_squared": 0.08103845839088396,
+      "observations": 60
+    },
+    "2y_weekly": {
+      "beta": 0.12513040587566793,
+      "std_error": 0.10843512382284382,
+      "r_squared": 0.012887018109384068,
+      "observations": 104
+    },
+    "5y_weekly": {
+      "beta": 0.345696716688999,
+      "std_error": 0.05957254494234809,
+      "r_squared": 0.11505716190399795,
+      "observations": 261
+    },
+    "peer_median_5y_monthly_levered": 0.3913956108201763,
+    "peer_median_5y_monthly_unlevered": 0.27796516846751584
+  }
+}

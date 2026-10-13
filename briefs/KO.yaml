@@ -41,10 +41,11 @@ dcf:
   # The FY23-25 rise of c.1 point a year was partly from selling low-margin bottlers, so it is not extrapolated.
   base_margin_rule: comparable_operating_margin_held_flat
   # Tax rate (PM decision 2026-10-13, IRS case assumed LOST): FY26 underlying rate 19.9% (Q2 2026 8-K) + 3.8 points
-  # if the US Tax Court method keeps applying (Q2 2026 10-Q note 12) = 23.7%. Data agent supplies it with both sources.
+  # if the US Tax Court method keeps applying (Q2 2026 10-Q note 9) = 23.7%. Data agent supplies it with both sources.
   tax_rate: null
   da_pct_sales: null                # Data agent: 5-year average D&A / net revenues
-  capex_pct_sales: null             # Data agent: 5-year average capex / net revenues (FY26 guidance capex c.$2.2bn)
+  capex_pct_sales: null             # Data agent: FY25 capex / net revenues (PM decision 2026-10-13, evidence audit: the
+                                    # 5-year average included Covid-era 2021; FY26 guidance capex c.$2.2bn)
   nwc_pct_sales: null               # Data agent: net working capital / net revenues, FY25. Trap: FY24 payables include
                                     # the c.$6.1bn fairlife milestone liability (paid 2025); exclude it.
   terminal_growth: 0.020
@@ -85,7 +86,8 @@ dcf:
     disposal_proceeds_musd: null    # CCBA sale to Coca-Cola HBC, if not yet received (expected by end 2026)
     restructuring_cash_musd: null   # announced one-off restructuring cash still to pay (0 if none, with source)
     # IRS tax case (PM decision 2026-10-13: assume Coca-Cola LOSES). Potential tax and interest for 2010-2025
-    # c.$14,000m at 31 Dec 2025 (10-K, XBRL ko:IncrementalTaxAndInterestLiability) plus c.$900m for H1 2026 (10-Q).
+    # c.$14,000m at 31 Dec 2025 (10-K, XBRL ko:IncrementalTaxAndInterestLiability). The H1 2026 accrual (c.$900m, 10-Q) is
+  # NOT added: the 23.7% tax rate already charges 2026 onwards (PM decision 2026-10-13, mistakes log row 17).
     # The $6.0bn deposit already paid for 2007-09 is not refunded in the base case. Bull case: a win refunds it.
     contingent_liabilities_musd: null
   shares_outstanding_m: null        # Data agent: shares issued less treasury shares (7,040m - 2,738m at 31 Dec 2025)
