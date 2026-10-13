@@ -9,7 +9,7 @@
 | Share price | **€15.914** (13 Oct 2026, Yahoo MICC.AS) | |
 | Value at market | €15.914 x 121.6m = **c.€1,935m (EUR)**, c.76p a Unilever share | Desk calculation; the valuation agent recomputes on the run date |
 
-**Cross-check:** the 30 Jun 2026 book value implies €1,852m / 121.6m = €15.23 a share (EUR), close to the market price at that date, so the share count and the stake agree with Unilever's own accounts.
+**Cross-check:** the 30 Jun 2026 book value implies €1,852m / 121.6m = €15.23 a share (EUR). That is a plausible price, between the €13.61 implied at 31 Dec 2025 and €15.91 today, so the share count is consistent with the value in Unilever's own accounts (the Data agent confirms the 30 Jun 2026 MICC.AS close).
 
 **Sell-down risk:** Unilever says the stake "will be sold down in an orderly and considered manner to pay demerger costs" (FY25 results 6-K). We found no sale up to 13 Oct 2026: the H1 2026 report still shows the stake, and searches of news and TMICC's September 2026 6-Ks found no placing. A sale at market would swap shares for cash of the same value, so it would not change the valuation. The Data agent re-checks for any sale on the run date.
 
