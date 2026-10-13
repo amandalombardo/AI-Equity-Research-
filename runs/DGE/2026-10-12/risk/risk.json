@@ -39,7 +39,7 @@
     2.5,
     3.0
   ],
-  "recommended_beta": 0.4750111476080199,
+  "recommended_beta": "see beta_evidence.json: bottom-up industry beta 0.96 (PM rule in briefs/DGE.yaml)",
   "peer_betas_5y_monthly": {
     "Pernod Ricard": {
       "ticker": "RI.PA",
@@ -84,5 +84,5 @@
   },
   "peer_median_beta": 0.4750111476080199,
   "dge_blume_adjusted_beta": 0.5746047560450738,
-  "recommendation_reason": "DGE 5y monthly beta 0.37 has R2 0.04: statistically meaningless. Using the peer median 5y monthly beta 0.48 instead. PM to confirm."
+  "recommendation_reason": "Regression and peer-median betas are cross-checks only (updated 12 Oct 2026 after Codex audit RISK-01)."
 }

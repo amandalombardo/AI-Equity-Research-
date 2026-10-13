@@ -29,13 +29,30 @@ dcf:
     # FY27: 340 + 37.5 = 377.5. FY28: 850 + 112.5 (assumed 75% of supply chain) = 962.5. FY29 onwards: full 1,000.
     # The supply chain phasing after FY27 is our assumption, not guidance. The Bear case agent should challenge it.
     cumulative_musd: [377.5, 962.5, 1000.0, 1000.0, 1000.0]
-    flow_through: 0.50              # agreed 2026-10-12, brief 5b
+    flow_through: 0.46              # PM decision 2026-10-12 (Phase 3), was 0.50: the flow-through at which the model delivers the
+                                    # LOW END of management's FY27-29 guidance of mid-single-digit organic operating profit growth
+                                    # (4.0% CAGR; Capital Markets Day 6-K, 6 Aug 2026), the same low-end rule used for sales growth.
+                                    # Track record (2017: 'two thirds reinvested'; FY23: GBP450m savings, +15bps margin) argues
+                                    # against more. Evidence: docs/phase3/savings-flow-through-evidence.md. Rating flipped to SELL at c.40% with book minorities; c.34% after the proportionate-minorities fix (13 Oct).
   tax_rate: null                    # Data agent: FY26 tax rate before exceptional items (brief proposes c.23%)
   da_pct_sales: null                # Data agent: 5-year average depreciation & amortisation / net sales
   capex_pct_sales: null             # Data agent: 5-year average capex / net sales
   nwc_pct_sales: null               # Data agent: net working capital (incl. maturing inventory) / net sales, FY26
   terminal_growth: 0.020
+  # Terminal-year capex (agreed 2026-10-12, Phase 3). Set at most ONE of the two; both null = forecast capex % held forever.
+  #   terminal_capex_pct_sales: a fixed capex % of sales for the steady state after FY31.
+  #   terminal_ronic: the return new investment earns after FY31; the engine then sets capex with the
+  #     value driver formula (reinvestment = g / RONIC x NOPAT).
+  # PM decision: new investment earns Diageo's latest (and lowest in 4 years) published ROIC, 13.4% FY26
+  # (20-F FY26 KPI table; FY23 18.4%, FY24 15.8%, FY25 13.7%). Gives capex of c.6.2% of sales.
+  # Evidence: docs/phase3/terminal-capex-evidence.md. Main risk: if returns fall to c.10.8%, capex 7.1% -> SELL.
+  terminal_capex_pct_sales: null
+  terminal_ronic: 0.134
   mid_year_convention: false
+  # Valuation date (Phase 3, Codex audit BRIDGE-01): value the business at the 30 June balance sheet date, so the cash
+  # flows and the net debt, minorities and associates are all at the same date, then roll the equity value forward to
+  # the run date at the cost of equity, less any dividend that went ex in between. Alternative: "stub" (old method).
+  valuation_basis: balance_sheet_date
   wacc:
     risk_free: null                 # Data agent: US 10-year Treasury yield on the valuation date
     equity_risk_premium: 0.050
@@ -50,10 +67,18 @@ dcf:
     net_debt_musd: 20500            # FY26 prelims. Confirm whether this includes lease liabilities.
     lease_liabilities_musd: null    # only if NOT already inside net debt
     minority_interests_musd: null   # non-controlling interests (e.g. United Spirits, EABL until sold)
+    # Minorities method (PM decision 2026-10-13, Phase 3 evidence audit): "proportionate" = outside shareholders'
+    # share of operating profit before exceptionals (ex-EABL, which is sold) x enterprise value, so minorities are valued
+    # the same way as the business. Book value failed the evidence test: it is an accounting number (USL's minority is
+    # USD 755m at book vs c.USD 4.45bn at market) and it double counted EABL's 35% minority. Alternative: "book".
+    # Evidence: docs/phase3/evidence-audit.md.
+    minorities_method: proportionate
     pension_deficit_musd: null      # net post-employment deficit (0 if in surplus)
     associates_musd: null           # value of associates, notably the 34% stake in Moet Hennessy.
                                     # Diageo's operating profit EXCLUDES associates, so their value must be ADDED.
     disposal_proceeds_musd: null    # EABL and RCB net proceeds, if not yet in net debt
+    restructuring_cash_musd: null   # Data agent: announced one-off (exceptional) restructuring cash still to be paid after
+                                    # the balance sheet date. Not in the forecast (which is before exceptionals) nor in net debt.
   shares_outstanding_m: null        # Data agent: ordinary shares (NOT ADRs), excluding treasury shares
   fx_usd_per_gbp: null              # Data agent: GBP/USD on the valuation date
 

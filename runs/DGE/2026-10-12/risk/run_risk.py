@@ -28,13 +28,11 @@ out = {"beta_5y_monthly": b5m, "beta_2y_weekly": b2w, "beta_5y_weekly": b5w,
        "volatility_1y_daily": vol1, "volatility_5y_daily": vol5, "ftse_volatility_5y_daily": ftse_vol5,
        "max_drawdown_5y": dd, "price_unit_jumps": unit_jumps,
        "leverage_adj_net_borrowings_to_adj_ebitda": lev, "leverage_target_range": [2.5, 3.0],
-       "recommended_beta": b5m["beta"]}
+       "recommended_beta": None}
 (Path(__file__).parent / "risk.json").write_text(json.dumps(out, indent=2, default=float))
-inp_path = RUN / "inputs.yaml"
-inp = yaml.safe_load(inp_path.read_text())
-inp["beta"] = {"value": float(round(b5m["beta"], 4)),
-               "source": f"Risk agent, 5y monthly vs FTSE 100, R2={b5m['r_squared']:.2f}, n={b5m['observations']}"}
-inp_path.write_text(yaml.safe_dump(inp, sort_keys=False, width=1000))
+# The valuation beta follows the PM's rule in the brief (bottom-up industry beta) and is written to
+# inputs.yaml only by beta_evidence.py. This script reports regressions as cross-checks and never writes beta
+# (Codex audit RISK-01, 12 Oct 2026: it used to overwrite the bottom-up beta with the peer median).
 print(json.dumps(out, indent=1, default=float))
 
 # ---- peer beta cross-check (step 3): 5y monthly beta vs each peer's home index, prices from Yahoo Finance
@@ -49,15 +47,8 @@ for name, (t, ix) in peers.items():
 med = float(pd.Series([p["beta"] for p in peer_betas.values()]).median())
 blume = 0.67 * b5m["beta"] + 0.33  # Blume adjustment: pulls a raw beta towards 1
 out.update({"peer_betas_5y_monthly": peer_betas, "peer_median_beta": med, "dge_blume_adjusted_beta": blume})
-# Recommendation: the DGE regression explains under 5% of its returns (R2 < 0.05), so it is not a reliable
-# estimate. Use the peer median instead and flag it for the PM.
-out["recommended_beta"] = med
-out["recommendation_reason"] = (f"DGE 5y monthly beta {b5m['beta']:.2f} has R2 {b5m['r_squared']:.2f}: statistically meaningless. "
-                                f"Using the peer median 5y monthly beta {med:.2f} instead. PM to confirm.")
+out["recommended_beta"] = "see beta_evidence.json: bottom-up industry beta (PM rule in briefs/DGE.yaml)"
+out["recommendation_reason"] = (f"DGE 5y monthly beta {b5m['beta']:.2f} has R2 {b5m['r_squared']:.2f} and the peer median is {med:.2f}; "
+                                "both are cross-checks only. The valuation beta is set by the brief's bottom-up rule.")
 (Path(__file__).parent / "risk.json").write_text(json.dumps(out, indent=2, default=float))
-inp = yaml.safe_load(inp_path.read_text())
-inp["beta"] = {"value": float(round(med, 4)),
-               "source": (f"Risk agent: peer median 5y monthly beta (Pernod, Remy, Campari, Brown-Forman vs home indices). "
-                          f"DGE's own 5y monthly vs FTSE 100 = {b5m['beta']:.2f}, R2={b5m['r_squared']:.2f}, n={b5m['observations']}, rejected as unreliable")}
-inp_path.write_text(yaml.safe_dump(inp, sort_keys=False, width=1000))
 print({k: round(v["beta"], 3) for k, v in peer_betas.items()}, {k: round(v["r_squared"], 3) for k, v in peer_betas.items()}, "median", med, "blume", blume)

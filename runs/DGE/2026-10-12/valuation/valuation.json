@@ -8,62 +8,76 @@
       "wacc": 0.08459049358000001,
       "wacc_used": 0.08459049358000001
     },
-    "enterprise_value_musd": 56530.41862126057,
-    "tv_share_of_ev": 0.7489469380869342,
-    "implied_exit_ev_ebitda": 8.641967350400366,
+    "enterprise_value_musd": 58448.408647373486,
+    "tv_share_of_ev": 0.7485438514532287,
+    "terminal_year": {
+      "sales": 20833.649460453373,
+      "nopat": 4985.255906110126,
+      "da": 703.5523422795104,
+      "capex": 1294.121326766413,
+      "capex_pct_sales": 0.062116881116912624,
+      "delta_nwc": 153.49906120117595,
+      "ufcf": 4241.1878604220465,
+      "reinvestment": 744.0680456880784,
+      "reinvestment_rate": 0.14925373134328357,
+      "implied_ronic": 0.134
+    },
+    "implied_exit_ev_ebitda": 9.188517750220743,
     "equity": {
-      "enterprise_value": 56530.41862126057,
-      "equity_value": 42567.718621260574,
-      "per_share_usd": 19.157389118479106,
-      "per_share_gbp": 14.475887198488067,
-      "per_share_gbp_pence": 1447.5887198488067
+      "enterprise_value": 58448.408647373486,
+      "minorities_deducted": 1499.7861658916036,
+      "equity_value_balance_sheet_date": 44218.92248148189,
+      "equity_value": 45426.785841211975,
+      "per_share_usd": 20.444098038349225,
+      "per_share_gbp": 15.44816233818137,
+      "per_share_gbp_pence": 1544.816233818137
     },
     "rating": {
-      "rating": "SELL",
-      "upside": -0.1347347759,
-      "fair_value": 1447.5887198488067,
+      "rating": "HOLD",
+      "upside": -0.0766191071,
+      "fair_value": 1544.816233818137,
       "share_price": 1673.0
     },
     "forecast": [
       {
         "year": 2027,
         "sales": 18505.5,
-        "ebit": 5621.59469,
-        "ebit_margin": 0.30377967036826886,
-        "ufcf": 3565.4770853299997,
-        "pv": 2414.38940738541
+        "ebit": 5606.4946899999995,
+        "ebit_margin": 0.30296369673880735,
+        "ufcf": 3554.04638533,
+        "pv": 3276.8555564219055
       },
       {
         "year": 2028,
         "sales": 18783.082499999997,
-        "ebit": 5995.5873603499995,
-        "ebit_margin": 0.31920146016235623,
-        "ufcf": 3733.934085159952,
-        "pv": 3247.7834692721294
+        "ebit": 5957.0873603499995,
+        "ebit_margin": 0.31715174334936774,
+        "ufcf": 3704.7895851599515,
+        "pv": 3149.4299998980796
       },
       {
         "year": 2029,
         "sales": 19252.659562499994,
-        "ebit": 6152.195794358749,
-        "ebit_margin": 0.3195504379219322,
-        "ufcf": 3762.8322642389494,
-        "pv": 3017.6542977675285
+        "ebit": 6112.195794358749,
+        "ebit_margin": 0.31747280288817764,
+        "ufcf": 3732.5522642389496,
+        "pv": 2925.556682489662
       },
       {
         "year": 2030,
         "sales": 19830.239349374995,
-        "ebit": 6321.7616681895115,
-        "ebit_margin": 0.3187940173999342,
-        "ufcf": 3829.072576765116,
-        "pv": 2831.277456079057
+        "ebit": 6281.7616681895115,
+        "ebit_margin": 0.31677689600793946,
+        "ufcf": 3798.7925767651163,
+        "pv": 2745.253200629437
       },
       {
         "year": 2031,
         "sales": 20425.146529856247,
-        "ebit": 6496.414518235197,
-        "ebit_margin": 0.31805962854362535,
-        "ufcf": 3932.5897540680694,
-        "pv": 2681.0300555907243
+        "ebit": 6456.414518235197,
+        "ebit_margin": 0.31610125826013535,
+        "ufcf": 3902.3097540680697,
+        "pv": 2600.116287717255
       }
     ]
   },
@@ -76,20 +90,34 @@
       "wacc": 0.08459049358000001,
       "wacc_used": 0.09459049358
     },
-    "enterprise_value_musd": 45446.26702510967,
-    "tv_share_of_ev": 0.7095219591438613,
-    "implied_exit_ev_ebitda": 7.830137209953625,
+    "enterprise_value_musd": 45620.28789224717,
+    "tv_share_of_ev": 0.69817135874547,
+    "terminal_year": {
+      "sales": 18875.61,
+      "nopat": 4387.9516989366,
+      "da": 637.4293497000001,
+      "capex": 1153.274980120388,
+      "capex_pct_sales": 0.0610986866183603,
+      "delta_nwc": 139.0725336000002,
+      "ufcf": 3733.033534916212,
+      "reinvestment": 654.9181640203881,
+      "reinvestment_rate": 0.14925373134328357,
+      "implied_ronic": 0.134
+    },
+    "implied_exit_ev_ebitda": 7.934182532615166,
     "equity": {
-      "enterprise_value": 45446.26702510967,
-      "equity_value": 31483.56702510967,
-      "per_share_usd": 14.169022063505702,
-      "per_share_gbp": 10.706530197601408,
-      "per_share_gbp_pence": 1070.6530197601408
+      "enterprise_value": 45620.28789224717,
+      "minorities_deducted": 1170.6165873150624,
+      "equity_value_balance_sheet_date": 31719.971304932107,
+      "equity_value": 32586.41917296784,
+      "per_share_usd": 14.665355163351862,
+      "per_share_gbp": 11.081574099555587,
+      "per_share_gbp_pence": 1108.1574099555587
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.360040036,
-      "fair_value": 1070.6530197601408,
+      "upside": -0.3376225882,
+      "fair_value": 1108.1574099555587,
       "share_price": 1673.0
     },
     "forecast": [
@@ -99,7 +127,7 @@
         "ebit": 5527.21969,
         "ebit_margin": 0.29867983518413443,
         "ufcf": 3494.03521033,
-        "pv": 2350.4763241839114
+        "pv": 3192.0935096944845
       },
       {
         "year": 2028,
@@ -107,7 +135,7 @@
         "ebit": 5673.46969,
         "ebit_margin": 0.3065828910323958,
         "ufcf": 3604.7464603299995,
-        "pv": 3086.3715133702285
+        "pv": 3008.6480003871657
       },
       {
         "year": 2029,
@@ -115,7 +143,7 @@
         "ebit": 5682.84469,
         "ebit_margin": 0.30708949717651507,
         "ufcf": 3611.8433353299997,
-        "pv": 2825.209840080586
+        "pv": 2754.0631123667868
       },
       {
         "year": 2030,
@@ -123,7 +151,7 @@
         "ebit": 5682.84469,
         "ebit_margin": 0.30708949717651507,
         "ufcf": 3611.8433353299997,
-        "pv": 2581.0655735190717
+        "pv": 2516.067084923483
       },
       {
         "year": 2031,
@@ -131,7 +159,7 @@
         "ebit": 5682.84469,
         "ebit_margin": 0.30708949717651507,
         "ufcf": 3611.8433353299997,
-        "pv": 2358.0193585249976
+        "pv": 2298.6378007855333
       }
     ]
   },
@@ -141,7 +169,9 @@
     "minority_interests": 2083.0,
     "pension_deficit": 0,
     "associates": 5284.0,
-    "disposal_proceeds": 3318.3
+    "disposal_proceeds": 3318.3,
+    "restructuring_cash": 850.0,
+    "minority_share_of_ev": 0.02566
   },
   "sensitivity_value_per_share_pence": {
     "wacc": [
@@ -159,34 +189,34 @@
     ],
     "grid": [
       [
-        1642.4955783194416,
-        1799.80844861418,
-        1988.8437033697533,
-        2220.272580527471
+        1825.3677730765091,
+        1914.720163777958,
+        2021.2169913537643,
+        2150.6255513072615
       ],
       [
-        1478.2340695367684,
-        1608.916551607903,
-        1763.5377221760784,
-        1949.3384917774315
+        1645.3837730305768,
+        1714.215492651072,
+        1794.88056103511,
+        1890.9582978998237
       ],
       [
-        1337.590976499396,
-        1447.5887198488067,
-        1576.0454046737952,
-        1728.033051833232
+        1491.3671258427155,
+        1544.816233818137,
+        1606.5406376737162,
+        1678.8141662404857
       ],
       [
-        1215.8164083468912,
-        1309.4523425858806,
-        1417.585136819137,
-        1543.8639116840343
+        1358.092810378716,
+        1399.8158643155232,
+        1447.3727300649348,
+        1502.2318830822114
       ],
       [
-        1109.3540632513543,
-        1189.8435054378715,
-        1281.8991024317236,
-        1388.206889166135
+        1241.6488837546083,
+        1274.306148309409,
+        1311.088483636193,
+        1352.9538644793868
       ]
     ]
   },
@@ -203,6 +233,7 @@
     "net_debt": 20482.0,
     "lease_liabilities": 0,
     "minority_interests": 2083.0,
+    "minority_share_of_operating_profit": 0.02566,
     "pension_deficit": 0,
     "associates": 5284.0,
     "disposal_proceeds": 3318.3,
@@ -211,6 +242,8 @@
     "share_price_gbp_pence": 1673.0,
     "stub_years": 0.2822,
     "beta": 0.9601,
+    "restructuring_cash": 850.0,
+    "dividends_ex_before_valuation_musd": 0.0,
     "pre_tax_cost_of_debt_historic": 0.03806
   },
   "sources": {
@@ -226,6 +259,7 @@
     "net_debt": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) note 17 p.187: net borrowings 20,482 (INCLUDES lease liabilities 685; EABL/RCB loans of 272 sit in liabilities held for sale)",
     "lease_liabilities": "0 because the 685 of lease liabilities is already inside net borrowings (20-F note 17 p.187)",
     "minority_interests": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) balance sheet, non-controlling interests at book value (USL 755, other 1,328: p.189)",
+    "minority_share_of_operating_profit": "Proportionate minorities (brief: minorities_method). (Profit before exceptional operating items attributable to non-controlling interests 227, Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529) p.210 ROIC table, less EABL's 35% outside shareholders x EABL EBIT 250.2 (Diageo Kenya owns 65% of EABL, 20-F p.164; EBIT as in base_margin) = 139.4) / (operating profit before exceptionals 5,683 - EABL 250.2 = 5,432.8). Simplification: assumes EABL's minorities share EABL's EBIT pro rata.",
     "pension_deficit": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18): net post-employment SURPLUS 627 (XBRL LiabilityAssetOfDefinedBenefitPlans -627); brief rule: 0 if in surplus. Deficit plans alone: 387 (see FLAG)",
     "associates": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) note 'Investments in associates': Moet Hennessy 34% at 5,107 (carrying value tested at fair value less costs of disposal, 'sensitive' = little headroom) + others 177",
     "disposal_proceeds": "EABL + Kenyan spirits sale to Asahi c.$2.3bn (20-F p.85) + Diageo's 57.21% of USL's RCB sale INR 166.6bn = c.$1.78bn (USL/press, 24 Mar 2026); both gross, before tax and costs, not in net debt at 30 June 2026",
@@ -234,6 +268,8 @@
     "share_price_gbp_pence": "Yahoo Finance DGE.L close (pence, GBp), 2026-10-12",
     "stub_years": "103 days of FY27 (from 1 Jul 2026) elapsed at run date 2026-10-12 / 365",
     "beta": "Risk agent, bottom-up: Damodaran global alcoholic beverages unlevered beta 0.73 (Jan 2026, cash-corrected) relevered at Diageo D/E 0.416, tax 24.3%. See risk/beta_evidence.json",
+    "restructuring_cash": "Diageo Capital Markets Day 6-K, 6 Aug 2026 (SEC accession 0001654954-26-007324): c.$800m exceptional cash costs for the operating framework + c.$50m for supply chain in FY27; FY27-29 cumulative free cash flow c.$8bn after c.$850m exceptional cash costs (also 20-F FY26 CEO letter). Pre-tax, undiscounted: any tax relief (up to c.$207m at 24.3%) is not confirmed, so not counted. Not in net debt at 30 June 2026; the forecast is before exceptionals.",
+    "dividends_ex_before_valuation_musd": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529): FY26 final dividend 30c, ex-dividend 15 October 2026 (ordinary shares), AFTER the 12 Oct 2026 valuation date, so the 1,673p price is cum-dividend and nothing is deducted. No other dividend went ex between 30 June and 12 Oct 2026.",
     "pre_tax_cost_of_debt_historic": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) p.211: FY26 net interest charge 812 / average net borrowings 21,336 (historic cost; see notes.md FLAG)"
   }
 }

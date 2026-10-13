@@ -21,14 +21,19 @@ from desk.rating import rating
 REQUIRED = ["base_sales", "base_margin", "tax_rate", "da_pct_sales", "capex_pct_sales", "nwc_pct_sales",
             "risk_free", "beta", "pre_tax_cost_of_debt", "debt_weight", "net_debt", "shares_outstanding_m",
             "fx_usd_per_gbp", "share_price_gbp_pence", "stub_years"]
-OPTIONAL_BRIDGE = ["lease_liabilities", "minority_interests", "pension_deficit", "associates", "disposal_proceeds"]
+OPTIONAL_BRIDGE = ["lease_liabilities", "minority_interests", "pension_deficit", "associates", "disposal_proceeds",
+                   "restructuring_cash"]
+# needed only when the brief values the company at its balance sheet date and rolls forward
+ROLL_FORWARD = ["dividends_ex_before_valuation_musd"]
+# needed only when the brief values minorities proportionately (bridge.minorities_method: proportionate)
+PROPORTIONATE = ["minority_share_of_operating_profit"]
 
 
-def load_inputs(path: str) -> tuple[dict, dict]:
+def load_inputs(path: str, extra_required: list | None = None) -> tuple[dict, dict]:
     raw = yaml.safe_load(Path(path).read_text()) or {}
     values = {k: (v["value"] if isinstance(v, dict) else v) for k, v in raw.items()}
     sources = {k: (v.get("source") if isinstance(v, dict) else None) for k, v in raw.items()}
-    missing = [k for k in REQUIRED + OPTIONAL_BRIDGE if values.get(k) is None]
+    missing = [k for k in REQUIRED + OPTIONAL_BRIDGE + (extra_required or []) if values.get(k) is None]
     unsourced = [k for k in values if not sources.get(k)]
     if missing or unsourced:
         raise SystemExit(f"Cannot value. Missing inputs: {missing}. Inputs without a source: {unsourced}")
@@ -49,8 +54,26 @@ def apply_brief_rules(brief: dict, v: dict, sources: dict) -> None:
         sources["pre_tax_cost_of_debt"] = f"risk-free {v['risk_free']:.2%} + credit spread {spread:.2%} (PM rule, briefs)"
 
 
+def rolls_forward(brief: dict) -> bool:
+    """True if the brief values at the balance sheet date and rolls equity forward to the valuation date."""
+    return brief["dcf"].get("valuation_basis", "stub") == "balance_sheet_date"
+
+
+def proportionate_minorities(brief: dict) -> bool:
+    """True if the brief values minority interests as their share of operating profit x EV, not at book."""
+    method = brief["dcf"]["bridge"].get("minorities_method", "book")
+    if method not in ("book", "proportionate"):
+        raise SystemExit(f"Unknown minorities_method {method!r}: use book or proportionate")
+    return method == "proportionate"
+
+
+def extra_required(brief: dict) -> list:
+    return (ROLL_FORWARD if rolls_forward(brief) else []) + (PROPORTIONATE if proportionate_minorities(brief) else [])
+
+
 def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) -> dict:
     d = brief["dcf"]
+    roll = rolls_forward(brief)
     w = dcf.wacc(dcf.WaccInputs(risk_free=v["risk_free"], equity_risk_premium=d["wacc"]["equity_risk_premium"],
                                 beta=v["beta"], pre_tax_cost_of_debt=v["pre_tax_cost_of_debt"],
                                 tax_rate=v["tax_rate"], debt_weight=v["debt_weight"]))
@@ -60,18 +83,27 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
                         tax_rate=v["tax_rate"], da_pct_sales=v["da_pct_sales"], capex_pct_sales=v["capex_pct_sales"],
                         nwc_pct_sales=v["nwc_pct_sales"], wacc=w["wacc"] + wacc_shift,
                         terminal_growth=d["terminal_growth"], years=d["forecast_years"],
-                        stub_years=v["stub_years"], mid_year=d["mid_year_convention"])
+                        # balance-sheet basis: value at the 30 June balance sheet date, with all of FY27 ahead
+                        stub_years=0.0 if roll else v["stub_years"], mid_year=d["mid_year_convention"],
+                        terminal_capex_pct_sales=d.get("terminal_capex_pct_sales"))
+    if d.get("terminal_ronic") is not None:
+        if d.get("terminal_capex_pct_sales") is not None:
+            raise SystemExit("Brief sets both terminal_capex_pct_sales and terminal_ronic: choose one")
+        inp.terminal_capex_pct_sales = dcf.capex_pct_for_ronic(inp, d["terminal_ronic"])
     val = dcf.value(inp)
-    bridge = dcf.Bridge(net_debt=v["net_debt"], **{k: v[k] for k in OPTIONAL_BRIDGE})
-    eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], v["fx_usd_per_gbp"])
+    bridge = dcf.Bridge(net_debt=v["net_debt"], **{k: v[k] for k in OPTIONAL_BRIDGE},
+                        minority_share_of_ev=v["minority_share_of_operating_profit"] if proportionate_minorities(brief) else None)
+    roll_args = ({"cost_of_equity": w["cost_of_equity"], "years": v["stub_years"],
+                  "dividends": v["dividends_ex_before_valuation_musd"]} if roll else None)
+    eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], v["fx_usd_per_gbp"], roll_args)
     r = rating(eq["per_share_gbp_pence"], v["share_price_gbp_pence"], **brief["rating"])
-    return {"wacc": {**w, "wacc_used": inp.wacc}, "inputs": inp, "dcf": val, "bridge": bridge.__dict__,
+    return {"wacc": {**w, "wacc_used": inp.wacc}, "inputs": inp, "dcf": val, "bridge": bridge.__dict__, "roll": roll_args,
             "equity": eq, "rating": r}
 
 
 def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     brief = yaml.safe_load(Path(brief_path).read_text())
-    v, sources = load_inputs(inputs_path)
+    v, sources = load_inputs(inputs_path, extra_required(brief))
     apply_brief_rules(brief, v, sources)
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -84,14 +116,15 @@ def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     # not rounded, so the middle cell of the grid equals the base case exactly
     waccs = [w0 + s for s in (-0.01, -0.005, 0, 0.005, 0.01)]
     growths = [0.015, 0.020, 0.025, 0.030]
-    grid_ev = dcf.sensitivity(base["inputs"], waccs, growths)
+    grid_ev = dcf.sensitivity(base["inputs"], waccs, growths, brief["dcf"].get("terminal_ronic"))
     b = dcf.Bridge(**base["bridge"])
-    grid_px = [[None if ev is None else dcf.equity_bridge(ev, b, v["shares_outstanding_m"], v["fx_usd_per_gbp"])["per_share_gbp_pence"]
+    grid_px = [[None if ev is None else dcf.equity_bridge(ev, b, v["shares_outstanding_m"], v["fx_usd_per_gbp"], base["roll"])["per_share_gbp_pence"]
                 for ev in row] for row in grid_ev]
 
     def summary(s):
         return {"wacc": s["wacc"], "enterprise_value_musd": s["dcf"]["enterprise_value"],
-                "tv_share_of_ev": s["dcf"]["tv_share_of_ev"], "implied_exit_ev_ebitda": s["dcf"]["implied_exit_ev_ebitda"],
+                "tv_share_of_ev": s["dcf"]["tv_share_of_ev"],
+                "terminal_year": s["dcf"]["terminal_year"], "implied_exit_ev_ebitda": s["dcf"]["implied_exit_ev_ebitda"],
                 "equity": s["equity"], "rating": s["rating"],
                 "forecast": [{k: r[k] for k in ("year", "sales", "ebit", "ebit_margin", "ufcf", "pv")} for r in s["dcf"]["rows"]]}
 

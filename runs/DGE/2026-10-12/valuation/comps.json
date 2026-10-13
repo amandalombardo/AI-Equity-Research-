@@ -1,24 +1,26 @@
 {
-  "method": "P/E, last reported fiscal year (LTM). Pernod Ricard: June FY26, no calendarisation needed. Brown-Forman: April FY26; FY27 not yet reported, so it cannot be calendarised to June (2-month gap).",
+  "method": "P/E, last reported fiscal year (LTM). Pernod Ricard: June FY26, no calendarisation needed. Brown-Forman: April FY26 (2-month gap), Remy Cointreau: March FY26 (3-month gap), Campari: December 2025 (6-month gap); the next fiscal years are not yet reported (or H1 not found), so they cannot be calendarised to June.",
   "peers_used": [
     "Pernod Ricard",
-    "Brown-Forman"
+    "Brown-Forman",
+    "Campari",
+    "Remy Cointreau"
   ],
   "multiples": [
     10.68,
-    17.39
+    17.39,
+    19.61,
+    25.32
   ],
-  "median_pe": 14.035,
+  "median_pe": 18.5,
   "implied_value_per_share_pence": {
     "low": 1333.9912346985038,
-    "implied_value": 1753.0493426023877,
-    "high": 2172.107450506272
+    "implied_value": 2310.752606921566,
+    "high": 3162.608432824543
   },
   "diageo_pe_at_current_price": 13.39412099213551,
   "missing": [
-    "Campari",
-    "Remy Cointreau",
     "Constellation Brands (shown separately; data missing)"
   ],
-  "warning": "Only 2 of 4 core peers have usable data. Treat the comps value as indicative only."
+  "warning": "4 of 4 core peers now have a P/E (Phase 3), but Campari and Remy come from press reports, not filings, and Remy's earnings are depressed by the cognac downturn (25x). The median is more robust than the range. EV/EBITDA is still unavailable. Treat the comps value as a cross-check, not a valuation."
 }
