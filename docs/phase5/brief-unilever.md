@@ -48,7 +48,7 @@ Base year FY25 (latest audited). Forecast FY26 to FY30. EUR, converted to pence 
 | C | Operating margin | **17.7% flat**: FY25 underlying 18.8% without the sale perimeter, less 1.1% ongoing restructuring (FY23-25 average); bear 16.2% (2023 level less restructuring, also covers stranded costs) | ulvr-margin-evidence.md | **Agreed** 13 Oct 2026 |
 | D | Minorities | **Proportionate** (Diageo rule): minorities' share of profit x DCF value, ratio for the remaining company computed by the Fundamentals agent; HUL at market (38% = c.€15.7bn) shown as a bear line | ulvr-minorities-evidence.md (20-F notes 15B, 27) | **Agreed** 13 Oct 2026 |
 | E | Listed stakes | TMICC 19.85% at market; after the deal, the 9.9% McCormick stake is inside item A | Same rule as KO | Pending |
-| F | Tax rate | Underlying effective tax rate from the 20-F (FY25 reported 29.4% includes separation effects) | Data agent | Pending |
+| F | Tax | Operating tax **25.7%** (FY25 underlying ETR). Tax and separation costs on the Foods cash: MISSING, **not deducted in the base case**; memo states each €1bn = 39p a share; bear case deducts a 25%-of-cash stress (€3.5bn, 137p) | ulvr-tax-evidence.md | **Agreed** 13 Oct 2026 (tax on cash); 25.7% pending sign-off |
 | G | Capex, D&A, working capital, restructuring | 5-year averages ex one-offs, ex-perimeter where disclosed; restructuring as an ongoing cash cost | 20-F | Pending |
 | H | Beta | Bottom-up: Damodaran Europe household/personal products unlevered beta, relevered at Unilever's D/E; regressions vs FTSE 100 as cross-check | Same rule as Diageo and KO | Pending |
 | I | Risk-free, ERP, cost of debt | UK 10-year gilt (as Diageo, since the price is in pence); ERP 5.0%; cost of debt = risk-free + spread for Unilever's credit rating (rating to be sourced by the Data agent) | Same rule as Diageo | Pending |
@@ -67,5 +67,6 @@ Same as Diageo: independent Excel check within 2%, source check of 5 random numb
 |---|---|---|
 | 1 | How to value Foods (sum of the parts at today's deal value, whole-group DCF, or headline deal value) | **Sent** 13 Oct 2026 |
 | 2 | Growth: FY26 +0.5%, FY27-30 1.6% a year in EUR; bear 0.2% | **Agreed** 13 Oct 2026, evidence in ulvr-growth-evidence.md |
+| 5 | Tax on Foods cash: left out of base (MISSING), shown as 39p per €1bn; 25% stress in bear | **Agreed** 13 Oct 2026, evidence in ulvr-tax-evidence.md |
 | 4 | Minorities proportionate (Diageo rule); HUL at market as bear line | **Agreed** 13 Oct 2026, evidence in ulvr-minorities-evidence.md |
 | 3 | Margin 17.7% flat (underlying less recurring restructuring); bear 16.2% | **Agreed** 13 Oct 2026, evidence in ulvr-margin-evidence.md |
