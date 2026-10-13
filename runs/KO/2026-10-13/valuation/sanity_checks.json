@@ -1,0 +1,127 @@
+{
+  "currency": "USD per share; USD m",
+  "base_value_usd_recheck": 47.60447334754803,
+  "checks": {
+    "tv_share_of_ev": {
+      "value": 0.7512648686514287,
+      "threshold": 0.75,
+      "flag": true
+    },
+    "implied_exit_ev_ebitda": {
+      "value": 11.115294680555383,
+      "peer_low": 11.41504983974359,
+      "peer_high": 29.128316482734068,
+      "peer_median": 19.05652530239447,
+      "ko_own_ev_ebitda_ltm": 26.11518718893083,
+      "within_peer_range": false
+    },
+    "wacc": {
+      "value": 0.07998361189599999,
+      "range": [
+        0.06,
+        0.09
+      ],
+      "flag": false
+    },
+    "dcf_vs_comps": {
+      "dcf_usd": 47.60447334754803,
+      "comps_median_usd": 70.07070068682833,
+      "comps_low_usd": 42.011408659483486,
+      "comps_high_usd": 107.05404655358934,
+      "gap": -0.3206222732050321
+    }
+  },
+  "rating_thresholds_usd": {
+    "hold_if_at_least": 81.10800247192383,
+    "buy_if_at_least": 103.63800315856933
+  },
+  "flip_points": {
+    "beta": {
+      "sell_to_hold_at_usd": {
+        "target_value_usd": 81.10800247192383,
+        "parameter": 0.06097085732519625,
+        "value_check_usd": 81.10800029480002,
+        "status": "found"
+      },
+      "hold_to_buy_at_usd": {
+        "target_value_usd": 103.63800315856933,
+        "parameter": -0.10406429753005506,
+        "value_check_usd": 103.63800801456256,
+        "status": "found"
+      }
+    },
+    "wacc": {
+      "sell_to_hold_at_usd": {
+        "target_value_usd": 81.10800247192383,
+        "parameter": -0.02474376678466797,
+        "value_check_usd": 81.10799246429471,
+        "status": "found",
+        "wacc_level": 0.05523984511133202
+      },
+      "hold_to_buy_at_usd": {
+        "target_value_usd": 103.63800315856933,
+        "parameter": -0.03239765167236328,
+        "value_check_usd": 103.63801519026177,
+        "status": "found",
+        "wacc_level": 0.04758596022363671
+      }
+    },
+    "terminal_growth": {
+      "sell_to_hold_at_usd": {
+        "target_value_usd": 81.10800247192383,
+        "parameter": 0.05168317968544092,
+        "value_check_usd": 81.10806383081102,
+        "status": "found"
+      },
+      "hold_to_buy_at_usd": {
+        "target_value_usd": 103.63800315856933,
+        "parameter": 0.05913009022700921,
+        "value_check_usd": 103.63807138880459,
+        "status": "found"
+      }
+    },
+    "base_margin": {
+      "sell_to_hold_at_usd": {
+        "target_value_usd": 81.10800247192383,
+        "parameter": 0.5552646785253287,
+        "value_check_usd": 81.1080015159571,
+        "status": "found"
+      },
+      "hold_to_buy_at_usd": {
+        "target_value_usd": 103.63800315856933,
+        "parameter": 0.7054632474440337,
+        "value_check_usd": 103.63800633988521,
+        "status": "found"
+      }
+    }
+  },
+  "scenarios_not_base": {
+    "beta_damodaran_2022_26_average": {
+      "unlevered": 0.820485,
+      "relever_factor": 1.0584193437257772,
+      "beta": 0.8684171952368444,
+      "value_per_share_usd": 40.00920412170358,
+      "upside": -0.5560452408,
+      "rating": "SELL",
+      "wacc": 0.09202733971158,
+      "cost_of_equity": 0.09562085976184222,
+      "enterprise_value_musd": 166190.13443949356,
+      "tv_share_of_ev": 0.7107414578513399,
+      "implied_exit_ev_ebitda": 9.25670064864154
+    },
+    "irs_case_won": {
+      "contingent_liabilities_musd": 0.0,
+      "associates_musd": 52625.5,
+      "tax_rate": 0.199,
+      "note": "beta left at 0.6091 (relevered at 23.7%); USD 385m interest receivable not added",
+      "value_per_share_usd": 54.89844694361307,
+      "upside": -0.3908295021,
+      "rating": "SELL",
+      "wacc": 0.080143333192,
+      "cost_of_equity": 0.08265499999999999,
+      "enterprise_value_musd": 207940.60782545942,
+      "tv_share_of_ev": 0.7502050562776472,
+      "implied_exit_ev_ebitda": 11.63788546553626
+    }
+  }
+}

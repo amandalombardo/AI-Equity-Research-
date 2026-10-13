@@ -1,0 +1,6 @@
+item,brief,data_agent,diff_pct,flag
+net_sales_musd,47941.0,47941.0,0.0,False
+operating_profit_reported_musd,13762.0,13762.0,0.0,False
+comparable_operating_margin,0.312,0.3124,0.00128,False
+free_cash_flow_musd,5300.0,5296.0,-0.00075,False
+eps_comparable_usd,3.0,3.0,0.0,False

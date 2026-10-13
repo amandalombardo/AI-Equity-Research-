@@ -1,0 +1,148 @@
+{
+  "currency": "USD (KO, peers); index points (^GSPC)",
+  "benchmark_index": "^GSPC",
+  "price_window": [
+    "2021-10-13",
+    "2026-10-13"
+  ],
+  "price_observations": 1255,
+  "price_unit_jumps_over_50pct": [],
+  "ko_price_range_usd_adjusted": [
+    45.530391693115234,
+    91.4443359375
+  ],
+  "own_regressions": {
+    "5y_monthly": {
+      "beta": 0.297623293630649,
+      "r_squared": 0.08103845839088396,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.13160003494846725,
+      "ci95": [
+        0.03968722513165318,
+        0.5555593621296449
+      ]
+    },
+    "2y_weekly": {
+      "beta": 0.12513040587566793,
+      "r_squared": 0.012887018109384068,
+      "observations": 104,
+      "frequency": "W",
+      "start": "2024-10-25",
+      "end": "2026-10-16",
+      "std_error": 0.10843512382284382,
+      "ci95": [
+        -0.08740243681710594,
+        0.33766324856844177
+      ]
+    },
+    "5y_weekly": {
+      "beta": 0.345696716688999,
+      "r_squared": 0.11505716190399795,
+      "observations": 261,
+      "frequency": "W",
+      "start": "2021-10-22",
+      "end": "2026-10-16",
+      "std_error": 0.05957254494234809,
+      "ci95": [
+        0.22893452860199676,
+        0.4624589047760012
+      ]
+    }
+  },
+  "ko_blume_adjusted_5y_monthly": 0.5294076067325348,
+  "volatility_1y_daily": 0.18907805799624247,
+  "volatility_5y_daily": 0.16714500262377016,
+  "sp500_volatility_5y_daily": 0.16981666144561167,
+  "max_drawdown_5y": {
+    "max_drawdown": -0.17274741641011992,
+    "peak_date": "2022-04-21",
+    "trough_date": "2023-10-05",
+    "peak_price": 58.08111953735352,
+    "trough_price": 48.04775619506836
+  },
+  "peer_betas_5y_monthly": {
+    "PEP": {
+      "beta": 0.3297166760723872,
+      "r_squared": 0.09859101663110834,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.13090890335320632,
+      "ci95": [
+        0.07313522550010282,
+        0.5862981266446716
+      ],
+      "net_debt_to_equity": 0.23567066994646216,
+      "unlevered_beta": 0.27796516846751584,
+      "optional_show_separately": false
+    },
+    "KDP": {
+      "beta": 0.3913956108201763,
+      "r_squared": 0.08878590666364816,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.16464181739834355,
+      "ci95": [
+        0.06869764871942297,
+        0.7140935729209297
+      ],
+      "net_debt_to_equity": 0.6390435563538392,
+      "unlevered_beta": 0.2600904175503042,
+      "optional_show_separately": false
+    },
+    "MNST": {
+      "beta": 0.5377460485746443,
+      "r_squared": 0.12660787107784074,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.18545455935426158,
+      "ci95": [
+        0.17425511224029155,
+        0.901236984908997
+      ],
+      "net_debt_to_equity": 0.0,
+      "unlevered_beta": 0.5377460485746443,
+      "optional_show_separately": false
+    },
+    "CCEP": {
+      "beta": 0.5642227086608,
+      "r_squared": 0.1407252274773746,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.18306976152985446,
+      "ci95": [
+        0.20540597606228528,
+        0.9230394412593148
+      ],
+      "optional_show_separately": true
+    }
+  },
+  "peer_median_beta_core": 0.3913956108201763,
+  "peer_median_unlevered_beta_core": 0.27796516846751584,
+  "peer_unlevering_tax_assumption": 0.21,
+  "leverage": {
+    "net_debt_musd": 29686.0,
+    "lease_liabilities_musd": 1722.0,
+    "da_musd": 1050.0,
+    "ebitda_reported_musd": 14812.0,
+    "ebitda_comparable_musd": 16063.0,
+    "net_debt_to_ebitda_reported": 2.0041857953011073,
+    "net_debt_to_ebitda_comparable": 1.8480981136773953,
+    "net_debt_incl_leases_to_ebitda_reported": 2.1204428841479883,
+    "interest_cover_reported": 8.32043530834341,
+    "company_target_range": "MISSING: no KO leverage target in the brief or data folder (not taken from memory)",
+    "credit_rating": "A+ (briefs/KO.yaml dcf.wacc.credit_spread comment, agreed 2026-10-13)",
+    "debt_weight": 0.07112
+  },
+  "recommended_beta": "see beta_evidence.json: bottom-up rule in briefs/KO.yaml (Damodaran US Beverage (Soft))"
+}

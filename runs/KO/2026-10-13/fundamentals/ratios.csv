@@ -1,0 +1,118 @@
+item,year,value,unit,formula,inputs_used,source
+revenue_growth_reported,2021,0.170867,ratio,net_sales_t / net_sales_t-1 - 1,38655 / 33014,"runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources); FY20 33,014 from Q4 2021 8-K 0000021344-22-000004"
+revenue_growth_organic_published,2021,0.16,ratio,as published (not calculated),"company figure, whole %","Q4 2021 results 8-K ex.99.1, accession 0000021344-22-000004, headline"
+gross_margin_reported,2021,0.602716,ratio,gross_profit / net_sales,23298 / 38655,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_reported,2021,0.266667,ratio,operating_profit_reported / net_sales,10308 / 38655,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_comparable,2021,0.287366,ratio,comparable_operating_income / comparable_net_revenues,11109 / 38658,"Q4 2021 results 8-K, accession 0000021344-22-000004, GAAP to non-GAAP reconciliation"
+operating_margin_comparable_minus_published,2021,-3.4e-05,ratio,calculated comparable margin - published comparable margin,0.287366 - 0.2874,Q4 2021 8-K 0000021344-22-000004 'Comparable Operating Margin (Non-GAAP)'
+free_cash_flow_reported,2021,11258.0,USD m,operating_cash_flow - capex,12625 - 1367,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+cash_conversion_reported,2021,1.152185,ratio,FCF / net_profit_to_owners,11258 / 9771,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+free_cash_flow_ex_one_offs,2021,11258.0,USD m,FCF + IRS deposit (FY24) + fairlife payment (FY25),11258 + 0,"Q4 2024 8-K 0000021344-25-000005 (IRS 6,041); Q4 2025 8-K 0001628280-26-006642 (fairlife 6,069)"
+cash_conversion_ex_one_offs,2021,1.152185,ratio,(FCF + one-off cash payment) / net_profit_to_owners,11258 / 9771,as above + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt,2021,30136.0,USD m,ST borrowings + LTD current + LTD non-current - cash - ST investments - marketable securities,3307+1338+38116-9684-1242-1699,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_reported,2021,11760.0,USD m,operating_profit_reported + D&A,10308 + 1452,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_comparable,2021,12561.0,USD m,comparable_operating_income + D&A,11109 + 1452,Q4 8-K 0000021344-22-000004 + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt_to_ebitda_reported,2021,2.562585,x,net_debt / ebitda_reported,30136 / 11760,derived above
+net_debt_to_ebitda_comparable,2021,2.399172,x,net_debt / ebitda_comparable,30136 / 12561,derived above
+net_interest_expense,2021,1321.0,USD m,interest_expense - interest_income,1597 - 276,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_net,2021,7.803179,x,operating_profit_reported / net_interest_expense,10308 / 1321,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_gross,2021,6.454602,x,operating_profit_reported / interest_expense,10308 / 1597,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_comparable_gross,2021,14.315722,x,comparable_operating_income / comparable_interest_expense,11109 / 776,Q4 8-K reconciliations (0000021344-22-000004 and following year)
+revenue_growth_reported,2022,0.112508,ratio,net_sales_t / net_sales_t-1 - 1,43004 / 38655,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+revenue_growth_organic_published,2022,0.16,ratio,as published (not calculated),"company figure, whole %","Q4 2022 results 8-K ex.99.1, accession 0000021344-23-000005, headline"
+gross_margin_reported,2022,0.581434,ratio,gross_profit / net_sales,25004 / 43004,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_reported,2022,0.253674,ratio,operating_profit_reported / net_sales,10909 / 43004,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_comparable,2022,0.286786,ratio,comparable_operating_income / comparable_net_revenues,12345 / 43046,"Q4 2022 results 8-K, accession 0000021344-23-000005, GAAP to non-GAAP reconciliation"
+operating_margin_comparable_minus_published,2022,-1.4e-05,ratio,calculated comparable margin - published comparable margin,0.286786 - 0.2868,Q4 2022 8-K 0000021344-23-000005 'Comparable Operating Margin (Non-GAAP)'
+free_cash_flow_reported,2022,9534.0,USD m,operating_cash_flow - capex,11018 - 1484,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+cash_conversion_reported,2022,0.999162,ratio,FCF / net_profit_to_owners,9534 / 9542,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+free_cash_flow_ex_one_offs,2022,9534.0,USD m,FCF + IRS deposit (FY24) + fairlife payment (FY25),9534 + 0,"Q4 2024 8-K 0000021344-25-000005 (IRS 6,041); Q4 2025 8-K 0001628280-26-006642 (fairlife 6,069)"
+cash_conversion_ex_one_offs,2022,0.999162,ratio,(FCF + one-off cash payment) / net_profit_to_owners,9534 / 9542,as above + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt,2022,27518.0,USD m,ST borrowings + LTD current + LTD non-current - cash - ST investments - marketable securities,2373+399+36377-9519-1043-1069,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_reported,2022,12169.0,USD m,operating_profit_reported + D&A,10909 + 1260,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_comparable,2022,13605.0,USD m,comparable_operating_income + D&A,12345 + 1260,Q4 8-K 0000021344-23-000005 + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt_to_ebitda_reported,2022,2.26132,x,net_debt / ebitda_reported,27518 / 12169,derived above
+net_debt_to_ebitda_comparable,2022,2.022639,x,net_debt / ebitda_comparable,27518 / 13605,derived above
+net_interest_expense,2022,433.0,USD m,interest_expense - interest_income,882 - 449,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_net,2022,25.193995,x,operating_profit_reported / net_interest_expense,10909 / 433,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_gross,2022,12.368481,x,operating_profit_reported / interest_expense,10909 / 882,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_comparable_gross,2022,13.625828,x,comparable_operating_income / comparable_interest_expense,12345 / 906,Q4 8-K reconciliations (0000021344-23-000005 and following year)
+revenue_growth_reported,2023,0.063948,ratio,net_sales_t / net_sales_t-1 - 1,45754 / 43004,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+revenue_growth_organic_published,2023,0.12,ratio,as published (not calculated),"company figure, whole %","Q4 2023 results 8-K ex.99.1, accession 0000021344-24-000004, headline"
+gross_margin_reported,2023,0.595227,ratio,gross_profit / net_sales,27234 / 45754,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_reported,2023,0.247213,ratio,operating_profit_reported / net_sales,11311 / 45754,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_comparable,2023,0.291281,ratio,comparable_operating_income / comparable_net_revenues,13336 / 45784,"Q4 2023 results 8-K, accession 0000021344-24-000004, GAAP to non-GAAP reconciliation"
+operating_margin_comparable_minus_published,2023,-1.9e-05,ratio,calculated comparable margin - published comparable margin,0.291281 - 0.2913,Q4 2023 8-K 0000021344-24-000004 'Comparable Operating Margin (Non-GAAP)'
+free_cash_flow_reported,2023,9747.0,USD m,operating_cash_flow - capex,11599 - 1852,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+cash_conversion_reported,2023,0.909744,ratio,FCF / net_profit_to_owners,9747 / 10714,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+free_cash_flow_ex_one_offs,2023,9747.0,USD m,FCF + IRS deposit (FY24) + fairlife payment (FY25),9747 + 0,"Q4 2024 8-K 0000021344-25-000005 (IRS 6,041); Q4 2025 8-K 0001628280-26-006642 (fairlife 6,069)"
+cash_conversion_ex_one_offs,2023,0.909744,ratio,(FCF + one-off cash payment) / net_profit_to_owners,9747 / 10714,as above + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt,2023,28401.0,USD m,ST borrowings + LTD current + LTD non-current - cash - ST investments - marketable securities,4557+1960+35547-9366-2997-1300,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_reported,2023,12439.0,USD m,operating_profit_reported + D&A,11311 + 1128,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_comparable,2023,14464.0,USD m,comparable_operating_income + D&A,13336 + 1128,Q4 8-K 0000021344-24-000004 + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt_to_ebitda_reported,2023,2.283222,x,net_debt / ebitda_reported,28401 / 12439,derived above
+net_debt_to_ebitda_comparable,2023,1.963565,x,net_debt / ebitda_comparable,28401 / 14464,derived above
+net_interest_expense,2023,620.0,USD m,interest_expense - interest_income,1527 - 907,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_net,2023,18.243548,x,operating_profit_reported / net_interest_expense,11311 / 620,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_gross,2023,7.407335,x,operating_profit_reported / interest_expense,11311 / 1527,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_comparable_gross,2023,8.592784,x,comparable_operating_income / comparable_interest_expense,13336 / 1552,Q4 8-K reconciliations (0000021344-24-000004 and following year)
+revenue_growth_reported,2024,0.028566,ratio,net_sales_t / net_sales_t-1 - 1,47061 / 45754,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+revenue_growth_organic_published,2024,0.12,ratio,as published (not calculated),"company figure, whole %","Q4 2024 results 8-K ex.99.1, accession 0000021344-25-000005, headline"
+gross_margin_reported,2024,0.610633,ratio,gross_profit / net_sales,28737 / 47061,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_reported,2024,0.21232,ratio,operating_profit_reported / net_sales,9992 / 47061,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_comparable,2024,0.300339,ratio,comparable_operating_income / comparable_net_revenues,14085 / 46897,"Q4 2024 results 8-K, accession 0000021344-25-000005, GAAP to non-GAAP reconciliation"
+operating_margin_comparable_minus_published,2024,3.9e-05,ratio,calculated comparable margin - published comparable margin,0.300339 - 0.3003,Q4 2024 8-K 0000021344-25-000005 'Comparable Operating Margin (Non-GAAP)'
+free_cash_flow_reported,2024,4741.0,USD m,operating_cash_flow - capex,6805 - 2064,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+cash_conversion_reported,2024,0.44596,ratio,FCF / net_profit_to_owners,4741 / 10631,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+free_cash_flow_ex_one_offs,2024,10782.0,USD m,FCF + IRS deposit (FY24) + fairlife payment (FY25),4741 + 6041,"Q4 2024 8-K 0000021344-25-000005 (IRS 6,041); Q4 2025 8-K 0001628280-26-006642 (fairlife 6,069)"
+cash_conversion_ex_one_offs,2024,1.014204,ratio,(FCF + one-off cash payment) / net_profit_to_owners,10782 / 10631,as above + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt,2024,29951.0,USD m,ST borrowings + LTD current + LTD non-current - cash - ST investments - marketable securities,1499+648+42375-10828-2020-1723,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_reported,2024,11067.0,USD m,operating_profit_reported + D&A,9992 + 1075,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_comparable,2024,15160.0,USD m,comparable_operating_income + D&A,14085 + 1075,Q4 8-K 0000021344-25-000005 + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt_to_ebitda_reported,2024,2.706334,x,net_debt / ebitda_reported,29951 / 11067,derived above
+net_debt_to_ebitda_comparable,2024,1.97566,x,net_debt / ebitda_comparable,29951 / 15160,derived above
+net_interest_expense,2024,668.0,USD m,interest_expense - interest_income,1656 - 988,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_net,2024,14.958084,x,operating_profit_reported / net_interest_expense,9992 / 668,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_gross,2024,6.033816,x,operating_profit_reported / interest_expense,9992 / 1656,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_comparable_gross,2024,8.378941,x,comparable_operating_income / comparable_interest_expense,14085 / 1681,Q4 8-K reconciliations (0000021344-25-000005 and following year)
+revenue_growth_reported,2025,0.018699,ratio,net_sales_t / net_sales_t-1 - 1,47941 / 47061,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+revenue_growth_organic_published,2025,0.05,ratio,as published (not calculated),"company figure, whole %","Q4 2025 results 8-K ex.99.1, accession 0001628280-26-006642, headline"
+gross_margin_reported,2025,0.616257,ratio,gross_profit / net_sales,29544 / 47941,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_reported,2025,0.287061,ratio,operating_profit_reported / net_sales,13762 / 47941,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+operating_margin_comparable,2025,0.312367,ratio,comparable_operating_income / comparable_net_revenues,15013 / 48062,"Q4 2025 results 8-K, accession 0001628280-26-006642, GAAP to non-GAAP reconciliation"
+operating_margin_comparable_minus_published,2025,-3.3e-05,ratio,calculated comparable margin - published comparable margin,0.312367 - 0.3124,Q4 2025 8-K 0001628280-26-006642 'Comparable Operating Margin (Non-GAAP)'
+free_cash_flow_reported,2025,5296.0,USD m,operating_cash_flow - capex,7408 - 2112,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+cash_conversion_reported,2025,0.404059,ratio,FCF / net_profit_to_owners,5296 / 13107,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+free_cash_flow_ex_one_offs,2025,11365.0,USD m,FCF + IRS deposit (FY24) + fairlife payment (FY25),5296 + 6069,"Q4 2024 8-K 0000021344-25-000005 (IRS 6,041); Q4 2025 8-K 0001628280-26-006642 (fairlife 6,069)"
+cash_conversion_ex_one_offs,2025,0.867094,ratio,(FCF + one-off cash payment) / net_profit_to_owners,11365 / 13107,as above + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt,2025,29686.0,USD m,ST borrowings + LTD current + LTD non-current - cash - ST investments - marketable securities,1551+1822+42119-10270-3602-1934,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_reported,2025,14812.0,USD m,operating_profit_reported + D&A,13762 + 1050,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+ebitda_comparable,2025,16063.0,USD m,comparable_operating_income + D&A,15013 + 1050,Q4 8-K 0001628280-26-006642 + runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+net_debt_to_ebitda_reported,2025,2.004186,x,net_debt / ebitda_reported,29686 / 14812,derived above
+net_debt_to_ebitda_comparable,2025,1.848098,x,net_debt / ebitda_comparable,29686 / 16063,derived above
+net_interest_expense,2025,868.0,USD m,interest_expense - interest_income,1654 - 786,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_net,2025,15.854839,x,operating_profit_reported / net_interest_expense,13762 / 868,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_reported_gross,2025,8.320435,x,operating_profit_reported / interest_expense,13762 / 1654,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+interest_cover_comparable_gross,2025,8.941632,x,comparable_operating_income / comparable_interest_expense,15013 / 1679,Q4 8-K reconciliations (0001628280-26-006642 and following year)
+net_debt_incl_ccba_held_for_sale,2025,30943.0,USD m,net_debt + CCBA debt - CCBA cash (held for sale),29686 + 1435 - 178,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources) (FY25 10-K Note 2)
+net_debt_incl_ccba_to_ebitda_comparable,2025,1.926352,x,net_debt_incl_ccba / ebitda_comparable,30943 / 16063,derived above
+invested_capital,2021,38869.0,USD m,equity_total + ST borrowings + LTD current + LTD non-current + operating leases - cash - ST inv - marketable sec - equity-method investments,financials.csv lines for that year,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+invested_capital,2022,36534.0,USD m,equity_total + ST borrowings + LTD current + LTD non-current + operating leases - cash - ST inv - marketable sec - equity-method investments,financials.csv lines for that year,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+invested_capital,2023,37572.0,USD m,equity_total + ST borrowings + LTD current + LTD non-current + operating leases - cash - ST inv - marketable sec - equity-method investments,financials.csv lines for that year,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+invested_capital,2024,39449.0,USD m,equity_total + ST borrowings + LTD current + LTD non-current + operating leases - cash - ST inv - marketable sec - equity-method investments,financials.csv lines for that year,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+invested_capital,2025,45448.0,USD m,equity_total + ST borrowings + LTD current + LTD non-current + operating leases - cash - ST inv - marketable sec - equity-method investments,financials.csv lines for that year,runs/KO/2026-10-13/data/financials.csv (10-K XBRL; see row sources)
+roic_comparable_dcf_tax,2021,MISSING,ratio,needs FY20 invested capital,FY20 balance sheet not in data folder,MISSING
+roic_comparable_company_tax,2021,MISSING,ratio,needs FY20 invested capital,FY20 balance sheet not in data folder,MISSING
+roic_comparable_dcf_tax_ex_irs_deposit,2021,MISSING,ratio,needs FY20 invested capital,FY20 balance sheet not in data folder,MISSING
+roic_comparable_dcf_tax,2022,0.249837,ratio,"comparable_OI x (1 - 23.7%) / avg(IC open, IC close)","12345, 0.237, 38869, 36534",ko-roic-evidence.md option B; Q4 8-K 0000021344-23-000005
+roic_comparable_company_tax,2022,0.265227,ratio,comparable_OI x (1 - comparable tax rate) / avg IC,"12345, 0.19, 38869, 36534",ko-roic-evidence.md option A; Q4 8-K 0000021344-23-000005
+roic_comparable_dcf_tax_ex_irs_deposit,2022,0.249837,ratio,"as roic_comparable_dcf_tax, IC less $6.0bn IRS deposit from FY24","12345, 0.237, 38869, 36534",ko-roic-evidence.md option C; FY25 10-K tax note
+roic_comparable_dcf_tax,2023,0.274617,ratio,"comparable_OI x (1 - 23.7%) / avg(IC open, IC close)","13336, 0.237, 36534, 37572",ko-roic-evidence.md option B; Q4 8-K 0000021344-24-000004
+roic_comparable_company_tax,2023,0.291533,ratio,comparable_OI x (1 - comparable tax rate) / avg IC,"13336, 0.19, 36534, 37572",ko-roic-evidence.md option A; Q4 8-K 0000021344-24-000004
+roic_comparable_dcf_tax_ex_irs_deposit,2023,0.274617,ratio,"as roic_comparable_dcf_tax, IC less $6.0bn IRS deposit from FY24","13336, 0.237, 36534, 37572",ko-roic-evidence.md option C; FY25 10-K tax note
+roic_comparable_dcf_tax,2024,0.279063,ratio,"comparable_OI x (1 - 23.7%) / avg(IC open, IC close)","14085, 0.237, 37572, 39449",ko-roic-evidence.md option B; Q4 8-K 0000021344-25-000005
+roic_comparable_company_tax,2024,0.297716,ratio,comparable_OI x (1 - comparable tax rate) / avg IC,"14085, 0.186, 37572, 39449",ko-roic-evidence.md option A; Q4 8-K 0000021344-25-000005
+roic_comparable_dcf_tax_ex_irs_deposit,2024,0.302639,ratio,"as roic_comparable_dcf_tax, IC less $6.0bn IRS deposit from FY24","14085, 0.237, 37572, 33449",ko-roic-evidence.md option C; FY25 10-K tax note
+roic_comparable_dcf_tax,2025,0.269855,ratio,"comparable_OI x (1 - 23.7%) / avg(IC open, IC close)","15013, 0.237, 39449, 45448",ko-roic-evidence.md option B; Q4 8-K 0001628280-26-006642
+roic_comparable_company_tax,2025,0.280818,ratio,comparable_OI x (1 - comparable tax rate) / avg IC,"15013, 0.206, 39449, 45448",ko-roic-evidence.md option A; Q4 8-K 0001628280-26-006642
+roic_comparable_dcf_tax_ex_irs_deposit,2025,0.314277,ratio,"as roic_comparable_dcf_tax, IC less $6.0bn IRS deposit from FY24","15013, 0.237, 33449, 39448",ko-roic-evidence.md option C; FY25 10-K tax note

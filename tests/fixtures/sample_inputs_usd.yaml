@@ -1,0 +1,23 @@
+# ILLUSTRATIVE TEST VALUES ONLY. Not Coca-Cola data. A US-listed company priced in US dollars, with a contingent liability.
+base_sales: {value: 45000, source: test fixture}
+base_margin: {value: 0.31, source: test fixture}
+tax_rate: {value: 0.237, source: test fixture}
+da_pct_sales: {value: 0.022, source: test fixture}
+capex_pct_sales: {value: 0.045, source: test fixture}
+nwc_pct_sales: {value: -0.05, source: test fixture}
+risk_free: {value: 0.05, source: test fixture}
+beta: {value: 0.6, source: test fixture}
+pre_tax_cost_of_debt: {value: 0.04, source: test fixture}
+debt_weight: {value: 0.07, source: test fixture}
+net_debt: {value: 28000, source: test fixture}
+lease_liabilities: {value: 1700, source: test fixture}
+minority_interests: {value: 2100, source: test fixture}
+pension_deficit: {value: 0, source: test fixture}
+associates: {value: 40000, source: test fixture}
+disposal_proceeds: {value: 0, source: test fixture}
+restructuring_cash: {value: 0, source: test fixture}
+contingent_liabilities: {value: 14900, source: test fixture}
+shares_outstanding_m: {value: 4300, source: test fixture}
+share_price_usd: {value: 90, source: test fixture}
+stub_years: {value: 0.78, source: test fixture}
+dividends_ex_before_valuation_musd: {value: 6600, source: test fixture}

@@ -1,12 +1,13 @@
 """Download raw data for the Data agent. Every value keeps a record of where it came from.
 
 Sources (all free):
-- SEC EDGAR: the XBRL data filed with each of Diageo's 20-F annual reports. We read each
+- SEC EDGAR: the XBRL data filed with each annual report (20-F for Diageo, 10-K for US companies). We read each
   filing's own XBRL file rather than the SEC "company facts" summary, because (found on the
   first real run, Oct 2026) the summary lagged the FY26 20-F by months and leaves out
   Diageo's own tags such as net sales and operating profit before exceptional items.
-- Yahoo Finance chart data for share prices (DGE.L in pence) and the FTSE 100 (^FTSE)
-- FRED for the US 10-year Treasury yield (DGS10) and GBP/USD (DEXUSUK)
+- Yahoo Finance chart data for share prices (DGE.L in pence, KO in US dollars) and the benchmark index
+  (FTSE 100 ^FTSE or S&P 500 ^GSPC, set in the brief)
+- FRED for the US 10-year Treasury yield (DGS10) and, for London prices only, GBP/USD (DEXUSUK)
 
 Network hosts needed: data.sec.gov, www.sec.gov, query1.finance.yahoo.com,
 query2.finance.yahoo.com, fc.yahoo.com, fred.stlouisfed.org.
@@ -14,7 +15,9 @@ query2.finance.yahoo.com, fc.yahoo.com, fred.stlouisfed.org.
 If a download fails, functions raise. The Data agent must report the failure and never
 replace missing data with estimates.
 
-Usage: python -m desk.data_sources briefs/DGE.yaml runs/DGE/<date>/data
+Which XBRL labels are read is set by the brief: company.accounting = "diageo_ifrs" (default) or "us_gaap".
+
+Usage: python -m desk.data_sources briefs/<TICKER>.yaml runs/<TICKER>/<date>/data
 """
 from __future__ import annotations
 
@@ -30,6 +33,8 @@ from pathlib import Path
 import pandas as pd
 import requests
 import yaml
+
+from desk.units import price_currency
 
 # SEC asks automated requests to identify themselves with a contact.
 # Set SEC_CONTACT_EMAIL in the environment; SEC refuses requests without a real contact (HTTP 403).
@@ -85,6 +90,53 @@ TAGS = {
                              "ifrs-full:NoncurrentAssetsOrDisposalGroupsClassifiedAsHeldForSale"],
     "liabilities_held_for_sale": ["ifrs-full:LiabilitiesIncludedInDisposalGroupsClassifiedAsHeldForSale"],
 }
+# US companies filing a 10-K under US GAAP (written for Coca-Cola, FY25 10-K; checked against its XBRL file).
+# Traps: KO's "net operating revenues" are us-gaap:Revenues. Operating income here is REPORTED; the forecast
+# base uses the comparable (non-GAAP) margin from the earnings release, which has no XBRL tag.
+US_GAAP_TAGS = {
+    "net_sales": ["us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"],
+    "cost_of_sales": ["us-gaap:CostOfGoodsAndServicesSold"],
+    "gross_profit": ["us-gaap:GrossProfit"],
+    "sga": ["us-gaap:SellingGeneralAndAdministrativeExpense"],
+    "operating_profit_reported": ["us-gaap:OperatingIncomeLoss"],
+    "depreciation_amortisation": ["us-gaap:DepreciationDepletionAndAmortization", "us-gaap:DepreciationAndAmortization"],
+    "intangible_impairment": ["us-gaap:ImpairmentOfIntangibleAssetsExcludingGoodwill"],
+    "share_of_associates_profit": ["us-gaap:IncomeLossFromEquityMethodInvestments"],
+    "interest_expense": ["us-gaap:InterestExpenseNonoperating", "us-gaap:InterestExpense"],
+    "interest_income": ["us-gaap:InvestmentIncomeInterest"],
+    "profit_before_tax": ["us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest"],
+    "income_tax": ["us-gaap:IncomeTaxExpenseBenefit"],
+    "net_profit_to_owners": ["us-gaap:NetIncomeLoss"],
+    "operating_cash_flow": ["us-gaap:NetCashProvidedByUsedInOperatingActivities"],
+    "capex": ["us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"],
+    "proceeds_from_ppe_disposals": ["us-gaap:ProceedsFromSaleOfPropertyPlantAndEquipment"],
+    "dividends_paid_to_shareholders": ["us-gaap:PaymentsOfDividends", "us-gaap:PaymentsOfDividendsCommonStock"],
+    "share_buybacks": ["us-gaap:PaymentsForRepurchaseOfCommonStock"],
+    "inventories": ["us-gaap:InventoryNet"],
+    "trade_and_other_receivables": ["us-gaap:AccountsReceivableNetCurrent"],
+    "trade_and_other_payables": ["us-gaap:AccountsPayableAndAccruedLiabilitiesCurrent"],
+    "cash": ["us-gaap:CashAndCashEquivalentsAtCarryingValue"],
+    "short_term_investments": ["us-gaap:OtherShortTermInvestments", "us-gaap:ShortTermInvestments"],
+    "marketable_securities": ["us-gaap:MarketableSecurities", "us-gaap:MarketableSecuritiesCurrent"],
+    "short_term_borrowings": ["us-gaap:NotesAndLoansPayable", "us-gaap:ShortTermBorrowings"],
+    "long_term_debt_current": ["us-gaap:LongTermDebtAndCapitalLeaseObligationsCurrent", "us-gaap:LongTermDebtCurrent"],
+    "long_term_debt_noncurrent": ["us-gaap:LongTermDebtAndCapitalLeaseObligations", "us-gaap:LongTermDebtNoncurrent"],
+    "operating_lease_liabilities": ["us-gaap:OperatingLeaseLiability"],
+    "non_controlling_interests": ["us-gaap:MinorityInterest"],
+    "investments_in_associates": ["us-gaap:EquityMethodInvestments"],
+    "equity_to_owners": ["us-gaap:StockholdersEquity"],
+    "equity_total": ["us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"],
+    "assets_held_for_sale": ["us-gaap:AssetsOfDisposalGroupIncludingDiscontinuedOperation"],
+    "liabilities_held_for_sale": ["us-gaap:LiabilitiesOfDisposalGroupIncludingDiscontinuedOperation"],
+    # Coca-Cola's own tag: potential IRS tax and interest liability if it loses the tax case (10-K note 12)
+    "irs_potential_liability": ["ko:IncrementalTaxAndInterestLiability"],
+}
+US_GAAP_SHARE_TAGS = {
+    "shares_issued_m": ("us-gaap:CommonStockSharesIssued", ""),
+    "treasury_shares_m": ("us-gaap:TreasuryStockCommonShares", ""),
+    "weighted_average_shares_m": ("us-gaap:WeightedAverageNumberOfSharesOutstandingBasic", ""),
+    "weighted_average_diluted_shares_m": ("us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding", ""),
+}
 SHARE_TAGS = {
     "shares_issued_m": ("ifrs-full:NumberOfSharesIssuedAndFullyPaid", ""),
     "treasury_shares_m": ("ifrs-full:NumberOfSharesOutstanding",
@@ -93,6 +145,15 @@ SHARE_TAGS = {
                                 "ifrs-full:TypesOfSharebasedPaymentArrangementsAxis=deo:EmployeeShareTrustsMember"),
     "weighted_average_shares_m": ("ifrs-full:WeightedAverageShares", ""),
 }
+TAG_MAPS = {"diageo_ifrs": (TAGS, SHARE_TAGS), "us_gaap": (US_GAAP_TAGS, US_GAAP_SHARE_TAGS)}
+
+
+def tag_map(company: dict) -> tuple[dict, dict]:
+    """The line-item and share labels to read, chosen by the brief's company.accounting."""
+    key = company.get("accounting", "diageo_ifrs")
+    if key not in TAG_MAPS:
+        raise SystemExit(f"Unknown company.accounting {key!r}: use one of {sorted(TAG_MAPS)}")
+    return TAG_MAPS[key]
 
 
 def _sec_get(url: str) -> requests.Response:
@@ -102,16 +163,16 @@ def _sec_get(url: str) -> requests.Response:
     return r
 
 
-def annual_reports(cik: str, count: int = 5) -> list[dict]:
-    """The latest `count` 20-F filings (newest first) with their XBRL instance file URL."""
+def annual_reports(cik: str, count: int = 5, form_type: str = "20-F") -> list[dict]:
+    """The latest `count` annual reports (20-F or 10-K, newest first) with their XBRL instance file URL."""
     sub = _sec_get(f"https://data.sec.gov/submissions/CIK{cik.zfill(10)}.json").json()["filings"]["recent"]
     out = []
     for form, acc, doc, period, filed in zip(sub["form"], sub["accessionNumber"], sub["primaryDocument"],
                                              sub["reportDate"], sub["filingDate"]):
-        if form != "20-F":
+        if form != form_type:
             continue
         folder = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-', '')}"
-        out.append({"accession": acc, "period_end": period, "filed": filed, "document": f"{folder}/{doc}",
+        out.append({"form": form, "accession": acc, "period_end": period, "filed": filed, "document": f"{folder}/{doc}",
                     "instance": f"{folder}/{doc.rsplit('.', 1)[0]}_htm.xml"})
         if len(out) == count:
             break
@@ -166,10 +227,13 @@ def _pick(facts: pd.DataFrame, tag: str, end: str, dims: str = "", unit: str = "
     return float(vals[0])
 
 
-def financials(cik: str, years: int = 5) -> pd.DataFrame:
-    """Line items for the last `years` fiscal years. Each year is taken from the newest 20-F that
+def financials(cik: str, years: int = 5, form_type: str = "20-F", tags: dict | None = None,
+               share_tags: dict | None = None) -> pd.DataFrame:
+    """Line items for the last `years` fiscal years. Each year is taken from the newest annual report that
     reports it, so restated comparatives win over the originally filed figure."""
-    reports = annual_reports(cik, years)
+    tags = TAGS if tags is None else tags
+    share_tags = SHARE_TAGS if share_tags is None else share_tags
+    reports = annual_reports(cik, years, form_type)
     rows, seen = [], set()
     for rep in reports:  # newest first
         facts = parse_instance(_sec_get(rep["instance"]).content)
@@ -178,28 +242,28 @@ def financials(cik: str, years: int = 5) -> pd.DataFrame:
                       reverse=True)
         for end in ends[:3]:
             fy = int(end[:4])
-            for item, tags in TAGS.items():
+            for item, candidates in tags.items():
                 if (item, fy) in seen:
                     continue
-                for tag in tags:
+                for tag in candidates:
                     v = _pick(facts, tag, end)
                     if v is not None:
                         rows.append({"item": item, "fiscal_year": fy, "value_musd": v / 1e6, "tag": tag,
-                                     "source": f"SEC EDGAR 20-F accession {rep['accession']} filed {rep['filed']} ({rep['document']})"})
+                                     "source": f"SEC EDGAR {rep['form']} accession {rep['accession']} filed {rep['filed']} ({rep['document']})"})
                         seen.add((item, fy))
                         break
-            for item, (tag, dims) in SHARE_TAGS.items():
+            for item, (tag, dims) in share_tags.items():
                 if (item, fy) in seen:
                     continue
                 v = _pick(facts, tag, end, dims, unit="shares")
                 if v is not None:
                     rows.append({"item": item, "fiscal_year": fy, "value_musd": v / 1e6, "tag": f"{tag} [{dims}]".replace(" []", ""),
-                                 "source": f"SEC EDGAR 20-F accession {rep['accession']} filed {rep['filed']} ({rep['document']})"})
+                                 "source": f"SEC EDGAR {rep['form']} accession {rep['accession']} filed {rep['filed']} ({rep['document']})"})
                     seen.add((item, fy))
     out = pd.DataFrame(rows).sort_values(["item", "fiscal_year"]).reset_index(drop=True)
     fys = sorted(out["fiscal_year"].unique())[-years:]
     out = out[out["fiscal_year"].isin(fys)]
-    out.attrs["missing"] = [f"{i} FY{fy % 100}" for i in list(TAGS) + list(SHARE_TAGS) for fy in fys
+    out.attrs["missing"] = [f"{i} FY{fy % 100}" for i in list(tags) + list(share_tags) for fy in fys
                             if (i, fy) not in seen]
     return out
 
@@ -241,31 +305,43 @@ def fred_series(series_id: str) -> pd.Series:
     return df.set_index(pd.to_datetime(df["date"]))[series_id]
 
 
+def price_ticker(company: dict) -> str:
+    """The listing whose price the valuation compares with: company.price_ticker, else the London ticker."""
+    return company.get("price_ticker") or company["ticker_lse"]
+
+
 def main(brief_path: str, out_dir: str) -> None:
     brief = yaml.safe_load(Path(brief_path).read_text())
     co = brief["company"]
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
 
-    fin = financials(co["sec_cik"])
+    tags, share_tags = tag_map(co)
+    fin = financials(co["sec_cik"], form_type=co.get("annual_form", "20-F"), tags=tags, share_tags=share_tags)
     fin.to_csv(out / "financials_raw.csv", index=False)
 
-    px = pd.concat([prices(co["ticker_lse"]), prices(co["benchmark_index"])], axis=1, sort=True)
+    ticker, ccy = price_ticker(co), price_currency(co)
+    px = pd.concat([prices(ticker), prices(co["benchmark_index"])], axis=1, sort=True)
     px.to_csv(out / "prices.csv")
 
-    rf, fx = fred_series("DGS10"), fred_series("DEXUSUK")
-    close = last_close(co["ticker_lse"])
-    if close["currency"] != "GBp":
-        raise RuntimeError(f"{co['ticker_lse']} is quoted in {close['currency']}, expected GBp (pence)")
+    rf = fred_series("DGS10")
+    close = last_close(ticker)
+    if close["currency"] != ccy:
+        raise RuntimeError(f"{ticker} is quoted in {close['currency']}, expected {ccy} (brief company.price_currency)")
     market = {
         "risk_free": {"value": float(rf.iloc[-1]) / 100, "date": str(rf.index[-1].date()),
                       "source": "FRED DGS10 (US 10-year Treasury, constant maturity)"},
-        "fx_usd_per_gbp": {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()),
-                           "source": "FRED DEXUSUK (USD per GBP, noon buying rate New York)"},
-        "share_price_gbp_pence": {"value": close["value"], "date": close["date"],
-                                  "source": f"Yahoo Finance {co['ticker_lse']} close (pence, GBp)"},
         "downloaded_on": str(date.today()),
     }
+    if ccy == "GBp":
+        fx = fred_series("DEXUSUK")
+        market["fx_usd_per_gbp"] = {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()),
+                                    "source": "FRED DEXUSUK (USD per GBP, noon buying rate New York)"}
+        market["share_price_gbp_pence"] = {"value": close["value"], "date": close["date"],
+                                           "source": f"Yahoo Finance {ticker} close (pence, GBp)"}
+    else:
+        market["share_price_usd"] = {"value": close["value"], "date": close["date"],
+                                     "source": f"Yahoo Finance {ticker} close (US dollars)"}
     (out / "market_inputs.json").write_text(json.dumps(market, indent=2))
     print(json.dumps({"rows": len(fin), "missing_items": fin.attrs["missing"], **market}, indent=2))
 

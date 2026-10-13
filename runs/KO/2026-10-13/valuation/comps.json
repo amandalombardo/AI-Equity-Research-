@@ -1,0 +1,235 @@
+{
+  "currency": "USD (per share), USD m (totals)",
+  "price_usd": 90.12000274658203,
+  "price_source": "Yahoo Finance KO close (US dollars), 2026-10-13",
+  "method": "EV/EBITDA LTM (median of PEP, KDP, MNST) x KO FY25 comparable EBITDA ex-CCBA, then the DCF's EV-to-equity bridge without roll-forward. Forward P/E leg MISSING (no KO forward EPS in the data folder). All peers have December year ends like KO, so calendarise() is the identity. EV/EBITDA NTM MISSING (no NTM EBITDA).",
+  "ko_metrics": {
+    "comparable_operating_income_fy25": [
+      15013.0,
+      "KO Q4 2025 results 8-K ex.99.1 (accession 0001628280-26-006642), reconciliation of GAAP to non-GAAP, full year"
+    ],
+    "da_fy25": [
+      1050.0,
+      "SEC EDGAR 10-K accession 0001628280-26-010047 filed 2026-02-20 (https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) | XBRL tag us-gaap:DepreciationDepletionAndAmortization"
+    ],
+    "operating_profit_reported_fy25": [
+      13762.0,
+      "SEC EDGAR 10-K accession 0001628280-26-010047 filed 2026-02-20 (https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) | XBRL tag us-gaap:OperatingIncomeLoss"
+    ],
+    "net_profit_to_owners_fy25": [
+      13107.0,
+      "SEC EDGAR 10-K accession 0001628280-26-010047 filed 2026-02-20 (https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) | XBRL tag us-gaap:NetIncomeLoss"
+    ],
+    "comparable_eps_fy25_usd": [
+      3.0,
+      "KO Q4 2025 results 8-K ex.99.1 (accession 0001628280-26-006642, https://www.sec.gov/Archives/edgar/data/21344/000162828026006642/a2025q4earningsreleaseex-9.htm): 'Comparable EPS (Non-GAAP) Grew 4% to $3.00'"
+    ],
+    "ccba_ebit_removed_musd": [
+      266.1719016,
+      "(comparable operating income 15,013 - CCBA EBIT 266.2) / (comparable revenues 48,062 - CCBA 3632.3); Q4 2025 8-K 0001628280-26-006642 + Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/2026-q1-trading-update/coca-cola-hbc-factsheet-ccba-acquisition-q1-2026.pdf.downloadasset.pdf and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from this environment, PM asked to verify. PM rule: held flat. PM decision 2026-10-13"
+    ],
+    "ebitda_musd": {
+      "comparable_ex_ccba": 15796.8280984,
+      "comparable_incl_ccba": 16063.0,
+      "gaap_incl_ccba": 14812.0
+    }
+  },
+  "peers": [
+    {
+      "peer": "PepsiCo",
+      "ticker": "PEP",
+      "fy_end_month": 12,
+      "calendarised": "not needed (December year end = KO)",
+      "ltm_end": "2026-09-05",
+      "price_usd": 126.79,
+      "shares_m": 1362.7,
+      "market_cap_musd_check": 172776.7,
+      "market_cap_musd_csv": 172775.0,
+      "ev_musd": 213689.7,
+      "ebitda_ltm_musd": 18720.0,
+      "ev_ebitda_ltm": 11.41504983974359,
+      "pe_ltm": 15.856895466226138,
+      "eps_ntm_usd": 8.605,
+      "pe_ntm": 14.73445671121441,
+      "fcf_yield_ltm": 0.06060422499133607,
+      "ev_ebitda_ntm": null,
+      "flag": "non-filing source: price, NTM EPS consensus; ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is GAAP unadjusted; PEP fiscal year ends last Saturday of Dec (52/53 weeks); LTM to 5 Sep 2026 (Q3 10-Q)"
+    },
+    {
+      "peer": "Keurig Dr Pepper",
+      "ticker": "KDP",
+      "fy_end_month": 12,
+      "calendarised": "not needed (December year end = KO)",
+      "ltm_end": "2026-06-30",
+      "price_usd": 32.73,
+      "shares_m": 1360.8,
+      "market_cap_musd_check": 44539.0,
+      "market_cap_musd_csv": 44540.0,
+      "ev_musd": 77198.0,
+      "ebitda_ltm_musd": 4051.0,
+      "ev_ebitda_ltm": 19.05652530239447,
+      "pe_ltm": 31.211621583742115,
+      "eps_ntm_usd": 2.479,
+      "pe_ntm": 13.202904396934246,
+      "fcf_yield_ltm": 0.04423091465220671,
+      "ev_ebitda_ntm": null,
+      "flag": "non-filing source: price, NTM EPS consensus; ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is GAAP unadjusted; KDP LTM mixes pre/post JDE Peet's acquisition (Q2 2026 revenue 7,309 vs 3,976 in Q1; debt and NCI 3.9-4.2bn jump in 2026) so LTM multiples are distorted; GAAP net income depressed by deal costs"
+    },
+    {
+      "peer": "Monster Beverage",
+      "ticker": "MNST",
+      "fy_end_month": 12,
+      "calendarised": "not needed (December year end = KO)",
+      "ltm_end": "2026-06-30",
+      "price_usd": 43.51,
+      "shares_m": 1959.1,
+      "market_cap_musd_check": 85240.4,
+      "market_cap_musd_csv": 85248.0,
+      "ev_musd": 81821.4,
+      "ebitda_ltm_musd": 2809.0,
+      "ev_ebitda_ltm": 29.128316482734068,
+      "pe_ltm": 40.056598214285714,
+      "eps_ntm_usd": 1.273,
+      "pe_ntm": 34.17910447761194,
+      "fcf_yield_ltm": 0.024612730476136324,
+      "ev_ebitda_ntm": null,
+      "flag": "non-filing source: price, NTM EPS consensus; ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is GAAP unadjusted; 2-for-1 split 11 Aug 2026 applied to 10-Q cover share count; no debt"
+    }
+  ],
+  "mnst_split_check": {
+    "shares_m_used": 1959.1,
+    "pre_split_cover_shares_m": 979.525882,
+    "split": 2,
+    "post_split_shares_m": 1959.051764,
+    "price_usd_post_split": 43.51,
+    "ltm_net_income_per_post_split_share_usd": 1.0862130570159767,
+    "eps_ntm_usd": 1.273,
+    "market_cap_matches_csv_within_0.05pct": true
+  },
+  "legs": {
+    "ev_ebitda_ltm_x_comparable_ex_ccba": {
+      "ko_ebitda_musd": 15796.8280984,
+      "median_multiple": 19.05652530239447,
+      "low_multiple": 11.41504983974359,
+      "high_multiple": 29.128316482734068,
+      "implied_ev_musd": {
+        "low": 180321.58005309795,
+        "implied_value": 301032.6543547355,
+        "high": 460135.00827354135
+      },
+      "value_per_share_usd": {
+        "low": 42.011408659483486,
+        "implied_value": 70.07070068682833,
+        "high": 107.05404655358934
+      }
+    },
+    "ev_ebitda_ltm_x_comparable_incl_ccba": {
+      "ko_ebitda_musd": 16063.0,
+      "median_multiple": 19.05652530239447,
+      "low_multiple": 11.41504983974359,
+      "high_multiple": 29.128316482734068,
+      "implied_ev_musd": {
+        "low": 183359.94557580128,
+        "implied_value": 306104.96593236236,
+        "high": 467888.1476621573
+      },
+      "value_per_share_usd": {
+        "low": 42.71767679586269,
+        "implied_value": 71.24975963095359,
+        "high": 108.85626398469486
+      }
+    },
+    "ev_ebitda_ltm_x_gaap_incl_ccba": {
+      "ko_ebitda_musd": 14812.0,
+      "median_multiple": 19.05652530239447,
+      "low_multiple": 11.41504983974359,
+      "high_multiple": 29.128316482734068,
+      "implied_ev_musd": {
+        "low": 169079.71822628204,
+        "implied_value": 282265.25277906685,
+        "high": 431448.623742257
+      },
+      "value_per_share_usd": {
+        "low": 39.39823761652302,
+        "implied_value": 65.70821775431587,
+        "high": 100.38589580247722
+      }
+    },
+    "ev_ebitda_ltm_ex_kdp_x_comparable_ex_ccba": {
+      "ko_ebitda_musd": 15796.8280984,
+      "median_multiple": 20.27168316123883,
+      "low_multiple": 11.41504983974359,
+      "high_multiple": 29.128316482734068,
+      "implied_ev_musd": {
+        "low": 180321.58005309795,
+        "implied_value": 320228.2941633197,
+        "high": 460135.00827354135
+      },
+      "value_per_share_usd": {
+        "low": 42.011408659483486,
+        "implied_value": 74.53272760653643,
+        "high": 107.05404655358934
+      }
+    },
+    "pe_ntm_x_ko_forward_eps": {
+      "status": "MISSING: KO forward (NTM) EPS consensus is not in the data folder (data/financials.csv has only FY25 comparable EPS $3.00). Not estimated.",
+      "median_multiple": 14.73445671121441
+    },
+    "pe_ltm_gaap_x_ko_fy25_gaap_eps_crosscheck": {
+      "ko_eps_usd": 3.0467224546722456,
+      "median_multiple": 31.211621583742115,
+      "value_per_share_usd": {
+        "low": 48.3115594783417,
+        "implied_value": 95.09314832592001,
+        "high": 122.04133723724846
+      }
+    },
+    "pe_ntm_x_ko_fy25_comparable_eps_crosscheck": {
+      "ko_eps_usd": 3.0,
+      "note": "forward multiple on trailing EPS: understates value by about one year of EPS growth",
+      "median_multiple": 14.73445671121441,
+      "value_per_share_usd": {
+        "low": 39.60871319080274,
+        "implied_value": 44.20337013364323,
+        "high": 102.53731343283583
+      }
+    }
+  },
+  "ko_own_multiples": {
+    "market_cap_musd": 387696.2518157959,
+    "ev_musd_peer_definition": 419488.2518157959,
+    "ev_ebitda_ltm_comparable_incl_ccba": 26.11518718893083,
+    "ev_ebitda_ltm_gaap": 28.32083795677801,
+    "pe_ltm_gaap": 29.579327978621798,
+    "pe_on_fy25_comparable_eps": 30.040000915527344
+  },
+  "comps_range_usd_primary": {
+    "low": 42.011408659483486,
+    "implied_value": 70.07070068682833,
+    "high": 107.05404655358934
+  },
+  "dcf_value_usd": 47.60447334754803,
+  "dcf_vs_comps_median": -0.3206222732050321,
+  "comps_median_upside": -0.22247338491691404,
+  "optional_peers_shown_separately": [
+    {
+      "ticker": "CCEP",
+      "note": "bottler (lower margin), show separately",
+      "status": "MISSING: no XBRL companyfacts, site blocked (data/peers.csv)"
+    },
+    {
+      "ticker": "DEO",
+      "note": "out-of-sector cross-check, show separately",
+      "pe_ltm_at_current_price": 13.39412099213551,
+      "source": "runs/DGE/2026-10-12/valuation/comps.json (June FY26 EPS before exceptionals; not calendarised to December; EV/EBITDA not available)"
+    }
+  ],
+  "flags": [
+    "KDP: LTM EV includes JDE Peet's debt and NCI but EBITDA has only about one quarter of JDE Peet's, so 19.1x is inflated; KDP is the median of three. Ex-KDP median shown.",
+    "MNST: 2-for-1 split 11 Aug 2026; shares used 1,959.1m = 979.5m pre-split x 2, consistent with the post-split price and EPS consensus.",
+    "Peer EBITDA is GAAP unadjusted; KO primary is comparable (non-GAAP). GAAP variant shown.",
+    "Timing: KO LTM = FY25 (to 31 Dec 2025); peers' LTM ends Jun/Sep 2026. KO H1 2026 not in the data folder.",
+    "CCBA D&A is not disclosed, so ex-CCBA EBITDA removes CCBA EBIT only (slightly overstated).",
+    "Only 3 core peers, wide range (11.4x to 29.1x): treat comps as a cross-check."
+  ]
+}
