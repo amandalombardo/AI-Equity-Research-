@@ -34,6 +34,9 @@ lease_liabilities:
 minority_interests:
   value: 2083.0
   source: 'Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) balance sheet, non-controlling interests at book value (USL 755, other 1,328: p.189)'
+minority_share_of_operating_profit:
+  value: 0.02566
+  source: 'Proportionate minorities (brief: minorities_method). (Profit before exceptional operating items attributable to non-controlling interests 227, Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529) p.210 ROIC table, less EABL''s 35% outside shareholders x EABL EBIT 250.2 (Diageo Kenya owns 65% of EABL, 20-F p.164; EBIT as in base_margin) = 139.4) / (operating profit before exceptionals 5,683 - EABL 250.2 = 5,432.8). Simplification: assumes EABL''s minorities share EABL''s EBIT pro rata.'
 pension_deficit:
   value: 0
   source: 'Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18): net post-employment SURPLUS 627 (XBRL LiabilityAssetOfDefinedBenefitPlans -627); brief rule: 0 if in surplus. Deficit plans alone: 387 (see FLAG)'

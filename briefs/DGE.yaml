@@ -67,6 +67,12 @@ dcf:
     net_debt_musd: 20500            # FY26 prelims. Confirm whether this includes lease liabilities.
     lease_liabilities_musd: null    # only if NOT already inside net debt
     minority_interests_musd: null   # non-controlling interests (e.g. United Spirits, EABL until sold)
+    # Minorities method (PM decision 2026-10-13, Phase 3 evidence audit): "proportionate" = outside shareholders'
+    # share of operating profit before exceptionals (ex-EABL, which is sold) x enterprise value, so minorities are valued
+    # the same way as the business. Book value failed the evidence test: it is an accounting number (USL's minority is
+    # USD 755m at book vs c.USD 4.45bn at market) and it double counted EABL's 35% minority. Alternative: "book".
+    # Evidence: docs/phase3/evidence-audit.md.
+    minorities_method: proportionate
     pension_deficit_musd: null      # net post-employment deficit (0 if in surplus)
     associates_musd: null           # value of associates, notably the 34% stake in Moet Hennessy.
                                     # Diageo's operating profit EXCLUDES associates, so their value must be ADDED.

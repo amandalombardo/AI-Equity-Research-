@@ -36,7 +36,9 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("divs", "Dividends gone ex before valuation date (USD m)", (base["roll"] or {}).get("dividends", 0.0)),
         ("net_debt", "Net debt (USD m)", v["net_debt"]),
         ("leases", "Lease liabilities not in net debt (USD m)", v["lease_liabilities"]),
-        ("minorities", "Minority interests (USD m)", v["minority_interests"]),
+        ("minorities", "Minority interests at book (USD m)", v["minority_interests"]),
+        ("mi_share", "Minorities' share of operating profit (proportionate method; blank = use book)",
+         base["bridge"].get("minority_share_of_ev")),
         ("pension", "Pension deficit (USD m)", v["pension_deficit"]),
         ("associates", "Associates incl. Moet Hennessy (USD m)", v["associates"]),
         ("disposals", "Disposal proceeds not in net debt (USD m)", v["disposal_proceeds"]),
@@ -59,6 +61,7 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
     source_key = {"da_pct": "da_pct_sales", "capex_pct": "capex_pct_sales", "nwc_pct": "nwc_pct_sales", "rf": "risk_free",
                   "kd": "pre_tax_cost_of_debt", "wd": "debt_weight", "stub": "stub_years", "leases": "lease_liabilities",
                   "minorities": "minority_interests", "pension": "pension_deficit", "disposals": "disposal_proceeds", "restructuring": "restructuring_cash",
+                  "mi_share": "minority_share_of_operating_profit",
                   "roll_years": "stub_years", "divs": "dividends_ex_before_valuation_musd",
                   "shares": "shares_outstanding_m", "fx": "fx_usd_per_gbp", "price": "share_price_gbp_pence"}
     for i, (key, label, val) in enumerate(inputs, start=2):
@@ -125,7 +128,10 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("tv", "Terminal value (Gordon growth)", f"={{tfcf}}/(WACC-{ref['g']})", base["dcf"]["terminal_value"]),
         ("pvtv", "PV of terminal value", f"={{tv}}/(1+WACC)^({n}-{ref['stub']})", base["dcf"]["pv_terminal_value"]),
         ("ev", "Enterprise value", "={pv}+{pvtv}", base["dcf"]["enterprise_value"]),
-        ("eqbs", "Equity value at balance sheet date", (f"={{ev}}-{ref['net_debt']}-{ref['leases']}-{ref['minorities']}"
+        # proportionate minorities: outside shareholders' share of operating profit x EV; else book value
+        ("mi", "Minority interests deducted", f"=IF(ISBLANK({ref['mi_share']}),{ref['minorities']},{ref['mi_share']}*{{ev}})",
+         eq["minorities_deducted"]),
+        ("eqbs", "Equity value at balance sheet date", (f"={{ev}}-{ref['net_debt']}-{ref['leases']}-{{mi}}"
                                 f"-{ref['pension']}-{ref['restructuring']}+{ref['associates']}+{ref['disposals']}"),
          eq["equity_value_balance_sheet_date"]),
         # roll forward to the valuation date at the cost of equity, less dividends gone ex in between

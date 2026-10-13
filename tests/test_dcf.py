@@ -137,3 +137,13 @@ def test_sensitivity_rederives_capex_from_ronic():
         trial = growing_inputs(terminal_growth=g)
         trial.terminal_capex_pct_sales = dcf.capex_pct_for_ronic(trial, 0.12)
         assert ev == pytest.approx(dcf.value(trial)["enterprise_value"])
+
+
+def test_proportionate_minorities_by_hand():
+    # Minorities own 5% of operating profit: 5% x EV 1000 = 50 deducted, replacing the book value of 999
+    # 1000 - 200 debt - 50 = 750; / 100 shares = $7.50; / 1.25 = 600p
+    out = dcf.equity_bridge(1000, dcf.Bridge(net_debt=200, minority_interests=999, minority_share_of_ev=0.05), 100, 1.25)
+    assert out["minorities_deducted"] == pytest.approx(50)
+    assert out["per_share_gbp_pence"] == pytest.approx(600)
+    with pytest.raises(dcf.ValuationError):
+        dcf.equity_bridge(1000, dcf.Bridge(net_debt=200, minority_share_of_ev=1.2), 100, 1.25)

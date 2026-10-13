@@ -12,6 +12,7 @@ debt_weight: {value: 0.30, source: test fixture}
 net_debt: {value: 20000, source: test fixture}
 lease_liabilities: {value: 0, source: test fixture}
 minority_interests: {value: 2000, source: test fixture}
+minority_share_of_operating_profit: {value: 0.03, source: test fixture}
 pension_deficit: {value: 0, source: test fixture}
 associates: {value: 5000, source: test fixture}
 disposal_proceeds: {value: 1000, source: test fixture}

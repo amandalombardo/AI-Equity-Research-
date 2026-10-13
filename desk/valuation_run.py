@@ -25,6 +25,8 @@ OPTIONAL_BRIDGE = ["lease_liabilities", "minority_interests", "pension_deficit",
                    "restructuring_cash"]
 # needed only when the brief values the company at its balance sheet date and rolls forward
 ROLL_FORWARD = ["dividends_ex_before_valuation_musd"]
+# needed only when the brief values minorities proportionately (bridge.minorities_method: proportionate)
+PROPORTIONATE = ["minority_share_of_operating_profit"]
 
 
 def load_inputs(path: str, extra_required: list | None = None) -> tuple[dict, dict]:
@@ -57,6 +59,18 @@ def rolls_forward(brief: dict) -> bool:
     return brief["dcf"].get("valuation_basis", "stub") == "balance_sheet_date"
 
 
+def proportionate_minorities(brief: dict) -> bool:
+    """True if the brief values minority interests as their share of operating profit x EV, not at book."""
+    method = brief["dcf"]["bridge"].get("minorities_method", "book")
+    if method not in ("book", "proportionate"):
+        raise SystemExit(f"Unknown minorities_method {method!r}: use book or proportionate")
+    return method == "proportionate"
+
+
+def extra_required(brief: dict) -> list:
+    return (ROLL_FORWARD if rolls_forward(brief) else []) + (PROPORTIONATE if proportionate_minorities(brief) else [])
+
+
 def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) -> dict:
     d = brief["dcf"]
     roll = rolls_forward(brief)
@@ -77,7 +91,8 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
             raise SystemExit("Brief sets both terminal_capex_pct_sales and terminal_ronic: choose one")
         inp.terminal_capex_pct_sales = dcf.capex_pct_for_ronic(inp, d["terminal_ronic"])
     val = dcf.value(inp)
-    bridge = dcf.Bridge(net_debt=v["net_debt"], **{k: v[k] for k in OPTIONAL_BRIDGE})
+    bridge = dcf.Bridge(net_debt=v["net_debt"], **{k: v[k] for k in OPTIONAL_BRIDGE},
+                        minority_share_of_ev=v["minority_share_of_operating_profit"] if proportionate_minorities(brief) else None)
     roll_args = ({"cost_of_equity": w["cost_of_equity"], "years": v["stub_years"],
                   "dividends": v["dividends_ex_before_valuation_musd"]} if roll else None)
     eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], v["fx_usd_per_gbp"], roll_args)
@@ -88,7 +103,7 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
 
 def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     brief = yaml.safe_load(Path(brief_path).read_text())
-    v, sources = load_inputs(inputs_path, ROLL_FORWARD if rolls_forward(brief) else None)
+    v, sources = load_inputs(inputs_path, extra_required(brief))
     apply_brief_rules(brief, v, sources)
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)

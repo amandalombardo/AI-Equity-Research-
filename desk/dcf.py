@@ -178,6 +178,23 @@ class Bridge:
     associates: float = 0.0             # added: their profits are not in operating profit
     disposal_proceeds: float = 0.0      # added if not yet reflected in net debt
     restructuring_cash: float = 0.0     # announced one-off cash costs not in the forecast or net debt: debt-like
+    # Proportionate minorities: if set, minorities = this share x EV (outside shareholders' share of the operating
+    # profit the DCF values), replacing the book value in minority_interests.
+    minority_share_of_ev: float | None = None
+
+
+def minorities_deducted(enterprise_value: float, b: Bridge) -> float:
+    """Value of minority interests (non-controlling interests) to deduct from EV.
+
+    Proportionate method: the DCF values consolidated cash flows (100% of each subsidiary), so the outside
+    shareholders' slice is valued the same way: their share of operating profit x enterprise value.
+    Otherwise the reported (book) value is used.
+    """
+    if b.minority_share_of_ev is None:
+        return b.minority_interests
+    if not 0 <= b.minority_share_of_ev < 1:
+        raise ValuationError("minority share of EV must be between 0 and 1")
+    return b.minority_share_of_ev * enterprise_value
 
 
 def roll_forward(equity_value: float, cost_of_equity: float, years: float, dividends: float = 0.0) -> float:
@@ -195,20 +212,22 @@ def equity_bridge(enterprise_value: float, b: Bridge, shares_m: float, fx_usd_pe
                   roll: dict | None = None) -> dict:
     """EV -> equity value -> value per share in USD and pence (GBp).
 
-    Equity = EV - net debt - leases - minorities - pension deficit - restructuring cash + associates + disposal proceeds.
+    Equity = EV - net debt - leases - minorities (see minorities_deducted) - pension deficit - restructuring cash + associates + disposal proceeds.
     If `roll` is given ({cost_of_equity, years, dividends}), EV and the bridge are at the balance sheet date
     and the equity value is rolled forward to the valuation date (see roll_forward).
     Per share (GBp) = equity (USD) / shares / (USD per GBP) x 100.
     """
     if shares_m <= 0 or fx_usd_per_gbp <= 0:
         raise ValuationError("shares and FX rate must be positive")
-    equity_bs = (enterprise_value - b.net_debt - b.lease_liabilities - b.minority_interests
+    minorities = minorities_deducted(enterprise_value, b)
+    equity_bs = (enterprise_value - b.net_debt - b.lease_liabilities - minorities
                  - b.pension_deficit - b.restructuring_cash + b.associates + b.disposal_proceeds)
     equity = equity_bs if roll is None else roll_forward(equity_bs, roll["cost_of_equity"], roll["years"],
                                                          roll.get("dividends", 0.0))
     per_share_usd = equity / shares_m
     per_share_gbp = per_share_usd / fx_usd_per_gbp
-    return {"enterprise_value": enterprise_value, "equity_value_balance_sheet_date": equity_bs, "equity_value": equity,
+    return {"enterprise_value": enterprise_value, "minorities_deducted": minorities,
+            "equity_value_balance_sheet_date": equity_bs, "equity_value": equity,
             "per_share_usd": per_share_usd, "per_share_gbp": per_share_gbp,
             "per_share_gbp_pence": per_share_gbp * 100}
 
