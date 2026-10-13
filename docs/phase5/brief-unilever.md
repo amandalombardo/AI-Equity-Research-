@@ -49,12 +49,12 @@ Base year FY25 (latest audited). Forecast FY26 to FY30. EUR, converted to pence 
 | D | Minorities | **Proportionate** (Diageo rule): minorities' share of profit x DCF value, ratio for the remaining company computed by the Fundamentals agent; HUL at market (38% = c.€15.7bn) shown as a bear line | ulvr-minorities-evidence.md (20-F notes 15B, 27) | **Agreed** 13 Oct 2026 |
 | E | Listed stakes | TMICC 19.85% at market; after the deal, the 9.9% McCormick stake is inside item A | Same rule as KO | Pending |
 | F | Tax | Operating tax **25.7%** (FY25 underlying ETR). Tax and separation costs on the Foods cash: MISSING, **not deducted in the base case**; memo states each €1bn = 39p a share; bear case deducts a 25%-of-cash stress (€3.5bn, 137p) | ulvr-tax-evidence.md | **Agreed** 13 Oct 2026 (tax on cash); 25.7% pending sign-off |
-| G | Capex, D&A, working capital, restructuring | 5-year averages ex one-offs, ex-perimeter where disclosed; restructuring as an ongoing cash cost | 20-F | Pending |
-| H | Beta | Bottom-up: Damodaran Europe household/personal products unlevered beta, relevered at Unilever's D/E; regressions vs FTSE 100 as cross-check | Same rule as Diageo and KO | Pending |
-| I | Risk-free, ERP, cost of debt | UK 10-year gilt (as Diageo, since the price is in pence); ERP 5.0%; cost of debt = risk-free + spread for Unilever's credit rating (rating to be sourced by the Data agent) | Same rule as Diageo | Pending |
-| J | Terminal growth / RONIC | 2.0%; RONIC = Unilever's ex-perimeter ROIC at the DCF tax rate | Same rule as Diageo and KO | Pending |
-| K | Mid-year discounting, valuation basis | Yes; 31 Dec 2025 balance sheet rolled forward at cost of equity less dividends | Same as Diageo and KO | Pending |
-| L | Rating rule | Buy >= +15%, Sell <= -10% | Same as the rest of the portfolio | Pending |
+| G | Capex, D&A, working capital | Capex **2.8%** of sales and D&A **2.6%** (FY25: €1,417m and €1,310m on €50,503m, 20-F XBRL). FY25 rather than a 5-year average because capex has risen every year since FY23 (2.3%, 2.6%, 2.8%) and H1 2026 capex rose again; same lesson as KO's audit. Working capital: FY25 ratio from the Data agent | 20-F XBRL; H1 2026 6-K | Proposed for sign-off |
+| H | Beta | Bottom-up: Damodaran **Global** Household Products unlevered beta (cash-corrected), relevered at Unilever's market D/E and 25.7% tax; regressions vs FTSE 100 as cross-check. **Needs the PM to upload Damodaran's betaGlobal.xls** (the site is blocked here, as for KO) | Same rule as Diageo (global industry file) | Proposed for sign-off |
+| I | Risk-free, ERP, cost of debt | UK 10-year gilt (price is in pence, as Diageo); ERP 5.0%; cost of debt = risk-free + ICE BofA single-A spread, because Unilever is rated **A+/A1** (FY25 20-F, capital management) | Same rule as Diageo; spread rule as KO | Proposed for sign-off |
+| J | Terminal growth / RONIC | Growth: see decision 6. RONIC **17.8%** = FY25 ROIC after restructuring ((10,084 - 599) x (1 - 25.7%) / average invested capital 39,502; Unilever's own underlying ROIC is 19.0%, which ignores restructuring). The remaining company's ROIC is not disclosed (Foods may carry much of the goodwill): flagged | FY25 results 6-K, ROIC reconciliation | Proposed for sign-off |
+| K | Mid-year discounting, valuation basis | Mid-year. Unilever's cash is second-half weighted (H1 2025 FCF €1.1bn of €5.9bn for the year, 19%), so cash arrives on average at about 0.65 of a year: closer to mid-year (0.5) than year-end (1.0). 31 Dec 2025 balance sheet rolled forward at cost of equity less dividends | H1 2026 6-K; FY25 6-K | Proposed for sign-off |
+| L | Rating rule | Buy >= +15%, Sell <= -10% | Same as the rest of the portfolio | Proposed for sign-off |
 
 ### Comparables (proposal)
 HPC peers: Procter & Gamble, Colgate-Palmolive, Reckitt, Beiersdorf, L'Oreal, Henkel (consumer), Kimberly-Clark; Hindustan Unilever flagged separately. EV/EBITDA, P/E, FCF yield; medians.
@@ -67,6 +67,7 @@ Same as Diageo: independent Excel check within 2%, source check of 5 random numb
 |---|---|---|
 | 1 | How to value Foods (sum of the parts at today's deal value, whole-group DCF, or headline deal value) | **Sent** 13 Oct 2026 |
 | 2 | Growth: FY26 +0.5%, FY27-30 1.6% a year in EUR; bear 0.2% | **Agreed** 13 Oct 2026, evidence in ulvr-growth-evidence.md |
+| 6 | Terminal growth for Unilever (1.6%, matching the forecast, or the portfolio's 2.0%) | **Sent** 13 Oct 2026 |
 | 5 | Tax on Foods cash: left out of base (MISSING), shown as 39p per €1bn; 25% stress in bear | **Agreed** 13 Oct 2026, evidence in ulvr-tax-evidence.md |
 | 4 | Minorities proportionate (Diageo rule); HUL at market as bear line | **Agreed** 13 Oct 2026, evidence in ulvr-minorities-evidence.md |
 | 3 | Margin 17.7% flat (underlying less recurring restructuring); bear 16.2% | **Agreed** 13 Oct 2026, evidence in ulvr-margin-evidence.md |
