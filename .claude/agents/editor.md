@@ -18,6 +18,7 @@ Memo structure (2 pages excluding the appendix, about 900 words):
 Just under the header line, add a valuation range chart as a fenced `football` block: one line per bar,
 `label | low | high` in the price currency (DCF WACC range, DCF terminal growth range, single bear changes, bear scenario,
 comps range), and `marker: label | value` lines for the share price (first) and the DCF fair value.
+Start the block with a `unit:` line naming the brief's `price_currency` (`unit: GBp` or `unit: USD`) so the chart labels pence or dollars correctly.
 Every number in it must come from an agent output, like the rest of the memo.
 
 Rules

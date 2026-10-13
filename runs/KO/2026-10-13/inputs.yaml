@@ -91,8 +91,5 @@ dividends_ex_before_valuation_musd:
     Sep 2026, payable 1 Oct 2026 (KO Q2 2026 10-Q (accession 0001628280-26-050503, https://www.sec.gov/Archives/edgar/data/21344/000162828026050503/ko-20260703.htm)). Ex-dates 13 Mar, 15 Jun, 15 Sep 2026
     (Yahoo KO dividend events, non-filing cross-check). Q4 dividend not yet ex.'
 beta:
-  value: null
-  status: MISSING - STOP
-  source: 'MISSING. PM rule needs Damodaran US ''Beverage (Soft)'' unlevered beta (Betas by Sector (US), Jan 2026). pages.stern.nyu.edu, www.stern.nyu.edu and web.archive.org are all refused by the network
-    proxy (HTTP CONNECT 403, organisation policy) on 2026-10-13; not taken from memory. When obtained: beta = unlevered x 1.0584 (Hamada, KO market D/E 0.0766, tax 23.7%). Regressions vs S&P 500 are cross-checks
-    only: see risk/risk.json and risk/beta_evidence.json.'
+  value: 0.6091
+  source: 'Risk agent, bottom-up: unlevered beta 0.5755 from Damodaran, Betas by Sector (US), betas.xls ''Industry Averages'' updated 2026-01-05 (https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls; file supplied by the PM 2026-10-13, saved as data/damodaran_betas_us_jan2026.xls), row ''Beverage (Soft)'', 27 firms, unlevered beta corrected for cash; relevered (Hamada) at KO market D/E 0.0766, tax 23.7%. See risk/beta_evidence.json'

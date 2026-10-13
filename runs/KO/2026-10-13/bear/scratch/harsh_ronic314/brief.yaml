@@ -1,0 +1,121 @@
+company:
+  name: The Coca-Cola Company
+  ticker: KO
+  price_ticker: KO
+  price_currency: USD
+  sec_cik: '0000021344'
+  accounting: us_gaap
+  annual_form: 10-K
+  reporting_currency: USD
+  fiscal_year_end_month: 12
+  benchmark_index: ^GSPC
+base_year:
+  fiscal_year: 2025
+  net_sales_musd: 47941
+  operating_profit_reported_musd: 13762
+  comparable_operating_margin: 0.312
+  ex_ccba_net_sales_musd: null
+  ex_ccba_comparable_operating_profit_musd: null
+dcf:
+  currency: USD
+  forecast_years:
+  - 2026
+  - 2027
+  - 2028
+  - 2029
+  - 2030
+  organic_growth:
+  - 0.06
+  - 0.03
+  - 0.03
+  - 0.03
+  - 0.03
+  savings:
+    cumulative_musd:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    flow_through: 0.0
+  base_margin_rule: comparable_operating_margin_held_flat
+  tax_rate: null
+  da_pct_sales: null
+  capex_pct_sales: null
+  nwc_pct_sales: null
+  terminal_growth: 0.02
+  terminal_capex_pct_sales: null
+  terminal_ronic: 0.314
+  mid_year_convention: true
+  valuation_basis: balance_sheet_date
+  wacc:
+    risk_free: null
+    equity_risk_premium: 0.05
+    beta: null
+    pre_tax_cost_of_debt: null
+    credit_spread: 0.0069
+    target_debt_weight: null
+  bridge:
+    net_debt_musd: null
+    lease_liabilities_musd: null
+    minority_interests_musd: null
+    minorities_method: book
+    pension_deficit_musd: null
+    associates_musd: null
+    disposal_proceeds_musd: null
+    restructuring_cash_musd: null
+    contingent_liabilities_musd: null
+  shares_outstanding_m: null
+scenarios:
+  bear:
+    organic_growth:
+    - 0.06
+    - 0.01
+    - 0.01
+    - 0.01
+    - 0.01
+    flow_through: 0.0
+    wacc_shift: 0.01
+comps:
+  peers:
+  - name: PepsiCo
+    ticker: PEP
+    fy_end_month: 12
+    source: SEC EDGAR
+  - name: Keurig Dr Pepper
+    ticker: KDP
+    fy_end_month: 12
+    source: SEC EDGAR
+  - name: Monster Beverage
+    ticker: MNST
+    fy_end_month: 12
+    source: SEC EDGAR
+  optional_peers:
+  - name: Coca-Cola Europacific Partners
+    ticker: CCEP
+    fy_end_month: 12
+    note: bottler (lower margin)
+    show separately: null
+  - name: Diageo
+    ticker: DEO
+    fy_end_month: 6
+    note: out-of-sector cross-check
+    show separately: null
+  multiples:
+  - ev_ebitda_ntm
+  - ev_ebitda_ltm
+  - pe_ntm
+  - fcf_yield
+  statistic: median
+rating:
+  buy_if_upside_at_least: 0.15
+  sell_if_downside_at_least: 0.1
+checks:
+  data_tie_out_tolerance: 0.005
+  excel_match_tolerance: 0.02
+  published_fy25:
+    net_sales_musd: 47941
+    operating_profit_reported_musd: 13762
+    comparable_operating_margin: 0.312
+    free_cash_flow_musd: 5300
+    eps_comparable_usd: 3.0

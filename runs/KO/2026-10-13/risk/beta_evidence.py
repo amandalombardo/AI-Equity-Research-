@@ -23,14 +23,19 @@ SOURCES = [
     "https://www.stern.nyu.edu/~adamodar/pc/datasets/betas.xls",
     "https://web.archive.org/web/2026/https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
 ]
-UNLEVERED_FROM_SOURCE = None   # fill ONLY by reading the downloaded source; cite the URL and table row
+# Read from Damodaran's betas.xls supplied by the PM on 2026-10-13 (saved as data/damodaran_betas_us_jan2026.xls), sheet
+# "Industry Averages", "Date updated: 2026-01-05", row "Beverage (Soft)": 27 firms, column "Unlevered beta corrected for cash".
+UNLEVERED_FROM_SOURCE = 0.575464833041066
+SOURCE_NOTE = ("Damodaran, Betas by Sector (US), betas.xls 'Industry Averages' updated 2026-01-05 "
+               "(https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls; file supplied by the PM 2026-10-13, "
+               "saved as data/damodaran_betas_us_jan2026.xls), row 'Beverage (Soft)', 27 firms, unlevered beta corrected for cash")
 
 attempts = []
 for url in SOURCES:
     try:
         r = requests.get(url, timeout=30)
         attempts.append({"url": url, "result": f"HTTP {r.status_code}, {len(r.content)} bytes"})
-        if r.ok:
+        if r.ok and UNLEVERED_FROM_SOURCE is None:
             raise SystemExit(f"Source reachable at {url}: read the 'Beverage (Soft)' row, set UNLEVERED_FROM_SOURCE, rerun.")
     except requests.RequestException as e:
         attempts.append({"url": url, "result": f"failed: {type(e).__name__}: {str(e)[:160]}"})
@@ -51,8 +56,8 @@ if UNLEVERED_FROM_SOURCE is None:
 else:
     relevered = UNLEVERED_FROM_SOURCE * relever_factor
     beta_entry = {"value": round(relevered, 4),
-                  "source": (f"Risk agent, bottom-up: Damodaran US Beverage (Soft) unlevered beta {UNLEVERED_FROM_SOURCE} "
-                             f"(Jan 2026) relevered at KO D/E {de:.4f}, tax {tax:.1%}. See risk/beta_evidence.json")}
+                  "source": (f"Risk agent, bottom-up: unlevered beta {UNLEVERED_FROM_SOURCE:.4f} from {SOURCE_NOTE}; "
+                             f"relevered (Hamada) at KO market D/E {de:.4f}, tax {tax:.1%}. See risk/beta_evidence.json")}
 
 risk_json = json.loads((Path(__file__).parent / "risk.json").read_text())
 out = {"rule": "bottom-up (briefs/KO.yaml dcf.wacc.beta)", "source_attempts": attempts,

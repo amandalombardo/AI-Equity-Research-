@@ -28,6 +28,7 @@ from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
+from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.platypus import (ListFlowable, ListItem, PageBreak, Paragraph, SimpleDocTemplate,
                                 Spacer, Table, TableStyle)
 
@@ -110,11 +111,30 @@ def data_table(rows: list[list[str]], st: dict) -> Table:
     return t
 
 
+def tick_step(span: float) -> float:
+    """Axis tick spacing: the smallest 'round' step (1, 2.5 or 5 times a power of ten) giving at most 10 ticks."""
+    steps = sorted(m * 10 ** k for k in range(-2, 7) for m in (1, 2.5, 5))
+    return next(st for st in steps if max(span, 0) / st <= 10)
+
+
+def money_format(unit: str, axis: bool = False):
+    """Per-share value label in the price currency: pence as '1,627p', US dollars as '$47.60' ('$50' on the axis)."""
+    if unit == "USD":
+        return (lambda v: f"${v:,.0f}") if axis else (lambda v: f"${v:,.2f}")
+    return lambda v: f"{v:,.0f}p"
+
+
 def football(lines: list[str]) -> Drawing:
-    """Horizontal range chart in the price currency: one bar per 'label | low | high', vertical lines for 'marker: label | value'."""
-    bars, markers = [], []
+    """Horizontal range chart in the price currency: one bar per 'label | low | high', vertical lines for 'marker: label | value'.
+    An optional 'unit: GBp' or 'unit: USD' line sets the currency label (GBp if absent)."""
+    bars, markers, unit = [], [], "GBp"
     for ln in lines:
         if not ln.strip():
+            continue
+        if ln.lower().startswith("unit:"):
+            unit = ln.split(":", 1)[1].strip()
+            if unit not in ("GBp", "USD"):
+                raise ValueError(f"football unit must be GBp or USD, got {unit!r}")
             continue
         if ln.lower().startswith("marker:"):
             label, val = [p.strip() for p in ln.split(":", 1)[1].split("|")]
@@ -123,8 +143,10 @@ def football(lines: list[str]) -> Drawing:
             label, lo, hi = [p.strip() for p in ln.split("|")]
             bars.append((label, float(lo.replace(",", "")), float(hi.replace(",", ""))))
     values = [v for _, a, b in bars for v in (a, b)] + [v for _, v in markers]
-    lo_axis = (min(values) // 250) * 250
-    hi_axis = (max(values) // 250 + 1) * 250
+    step = tick_step(max(values) - min(values))
+    lo_axis = (min(values) // step) * step
+    hi_axis = (max(values) // step + 1) * step
+    fmt = money_format(unit)
     label_w, row_h, top = 46 * mm, 13, 22
     width = PAGE_W
     height = top + row_h * len(bars) + 16
@@ -139,18 +161,23 @@ def football(lines: list[str]) -> Drawing:
         d.add(String(0, y + 3, label, fontName="Helvetica", fontSize=7.6, fillColor=GREY))
         w = max(x(b) - x(a), 2.5)
         d.add(Rect(x(a), y + 1, w, row_h - 4, fillColor=colors.HexColor("#8EA9DB"), strokeColor=NAVY, strokeWidth=0.4))
-        text = f"{a:,.0f}p" if a == b else f"{a:,.0f}p to {b:,.0f}p"
-        d.add(String(x(a) + w + 3, y + 3, text, fontName="Helvetica", fontSize=7, fillColor=GREY))
+        text = fmt(a) if a == b else f"{fmt(a)} to {fmt(b)}"
+        # put the label left of the bar when it would run off the right edge
+        tx = x(a) + w + 3
+        if tx + stringWidth(text, "Helvetica", 7) > width:
+            tx = x(a) - 3 - stringWidth(text, "Helvetica", 7)
+        d.add(String(tx, y + 3, text, fontName="Helvetica", fontSize=7, fillColor=GREY))
     tick = lo_axis
     while tick <= hi_axis:
         d.add(Line(x(tick), 10, x(tick), 13, strokeColor=GREY, strokeWidth=0.4))
-        d.add(String(x(tick) - 9, 1, f"{tick:,.0f}p", fontName="Helvetica", fontSize=6.5, fillColor=GREY))
-        tick += 250
+        d.add(String(x(tick) - 9, 1, money_format(unit, axis=True)(tick), fontName="Helvetica", fontSize=6.5,
+                     fillColor=GREY))
+        tick += step
     d.add(Line(label_w, 13, width - 10, 13, strokeColor=GREY, strokeWidth=0.4))
     for k, (label, v) in enumerate(markers):
         colour = colors.HexColor("#C62828") if k == 0 else NAVY
         d.add(Line(x(v), 13, x(v), height - top + 6, strokeColor=colour, strokeWidth=1, strokeDashArray=[3, 2]))
-        d.add(String(x(v) - 20, height - top + 9 + 8 * (k % 2), f"{label} {v:,.0f}p", fontName="Helvetica-Bold",
+        d.add(String(x(v) - 20, height - top + 9 + 8 * (k % 2), f"{label} {fmt(v)}", fontName="Helvetica-Bold",
                      fontSize=7, fillColor=colour))
     return d
 

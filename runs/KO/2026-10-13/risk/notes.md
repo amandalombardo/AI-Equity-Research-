@@ -80,3 +80,6 @@ The "se" column is the standard error. The 95% range is beta +/- 1.96 x standard
 - **High:** the regressions, volatility and drawdown. They are mechanical, computed with desk functions on sourced prices.
 - **Medium:** leverage, because of the CCBA basis mismatch and the missing target.
 - **The valuation beta: none.** It is MISSING (STOP).
+
+## Update 2026-10-13 18:10 (Claude, after the PM supplied the source file)
+The STOP above is resolved. The PM uploaded Damodaran's betas.xls (saved as data/damodaran_betas_us_jan2026.xls; sheet "Industry Averages", updated 2026-01-05). Row "Beverage (Soft)", 27 firms: unlevered beta corrected for cash 0.5755 (2022-26 average 0.8205). `beta_evidence.py` was re-run with that value: beta = 0.5755 x 1.0584 = **0.6091**, now in inputs.yaml.

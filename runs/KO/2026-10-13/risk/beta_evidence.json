@@ -22,15 +22,14 @@
       "result": "failed: ProxyError: HTTPSConnectionPool(host='web.archive.org', port=443): Max retries exceeded with url: /web/2026/https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Bet"
     }
   ],
-  "industry_unlevered_beta": null,
+  "industry_unlevered_beta": 0.575464833041066,
   "ko_market_debt_to_equity": 0.0765653259839807,
   "tax_rate": 0.237,
   "hamada_relever_factor": 1.0584193437257772,
-  "relevered_beta": null,
+  "relevered_beta": 0.609083110924589,
   "inputs_yaml_entry": {
-    "value": null,
-    "status": "MISSING - STOP",
-    "source": "MISSING. PM rule needs Damodaran US 'Beverage (Soft)' unlevered beta (Betas by Sector (US), Jan 2026). pages.stern.nyu.edu, www.stern.nyu.edu and web.archive.org are all refused by the network proxy (HTTP CONNECT 403, organisation policy) on 2026-10-13; not taken from memory. When obtained: beta = unlevered x 1.0584 (Hamada, KO market D/E 0.0766, tax 23.7%). Regressions vs S&P 500 are cross-checks only: see risk/risk.json and risk/beta_evidence.json."
+    "value": 0.6091,
+    "source": "Risk agent, bottom-up: unlevered beta 0.5755 from Damodaran, Betas by Sector (US), betas.xls 'Industry Averages' updated 2026-01-05 (https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls; file supplied by the PM 2026-10-13, saved as data/damodaran_betas_us_jan2026.xls), row 'Beverage (Soft)', 27 firms, unlevered beta corrected for cash; relevered (Hamada) at KO market D/E 0.0766, tax 23.7%. See risk/beta_evidence.json"
   },
   "cross_checks_not_used": {
     "5y_monthly": {

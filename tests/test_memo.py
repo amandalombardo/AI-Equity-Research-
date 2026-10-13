@@ -25,3 +25,20 @@ def test_memo_pdf_draws_rating_strip_chart_and_sources_page(tmp_path):
     pdf = memo_pdf.main(str(md))
     pages = PdfReader(str(pdf)).pages
     assert len(pages) == 2 and "Sources" in pages[1].extract_text() and "Sources" not in pages[0].extract_text()
+
+
+def test_football_labels_follow_price_currency(tmp_path):
+    # a US-listed company's chart must print dollars ($47.60), not pence (48p)
+    from pypdf import PdfReader
+    md = tmp_path / "memo.md"
+    md.write_text("# Coca-Cola\n**Rating: SELL**\n\n```football\nunit: USD\n"
+                  "marker: Share price | 90.12\nmarker: DCF fair value | 47.60\nDCF range | 43.93 | 51.94\n```\n")
+    text = PdfReader(str(memo_pdf.main(str(md)))).pages[0].extract_text()
+    assert "$47.60" in text and "$43.93 to $51.94" in text and "48p" not in text
+
+
+def test_football_tick_step_scales_with_range():
+    # about ten round-numbered ticks whatever the scale: pence ranges get hundreds, dollar ranges get tens
+    assert memo_pdf.tick_step(1500) == 250
+    assert memo_pdf.tick_step(70) == 10
+    assert memo_pdf.tick_step(12) == 2.5
