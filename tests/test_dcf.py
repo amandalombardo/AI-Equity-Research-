@@ -53,6 +53,12 @@ def test_mid_year_convention_periods():
     assert dcf.discount_periods(2, 0.25, True) == pytest.approx([0.375, 1.25])
 
 
+def test_mid_year_flat_perpetuity_equals_textbook_value():
+    # Mid-year convention: a flat 20 a year forever, each received mid-year, is worth 20 / 0.10 x 1.10^0.5.
+    # The terminal value must move half a year too, or the forecast and the perpetuity use different timing.
+    assert dcf.value(flat_inputs(mid_year=True))["enterprise_value"] == pytest.approx(200.0 * 1.1 ** 0.5)
+
+
 def test_refuses_terminal_growth_at_or_above_wacc():
     with pytest.raises(dcf.ValuationError):
         dcf.value(flat_inputs(terminal_growth=0.10))
