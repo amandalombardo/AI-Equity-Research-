@@ -25,13 +25,15 @@ base_year:                   # FY25, the latest audited year (10-K accession 000
 dcf:
   currency: USD
   forecast_years: [2026, 2027, 2028, 2029, 2030]
-  # Revenue growth in US DOLLARS (the field is called organic_growth for the engine; here it is organic + currency).
-  # PM decision 2026-10-13: FY26 +3.5% (FY26 guidance raised 28 Jul 2026, 8-K 0001628280-26-049922: organic c.5%,
-  # currency c.+1%, acquisitions/disposals -2% to -3%); FY27-30 3.0% = low end of the 4-5% organic range minus the
-  # 1-point currency drag seen outside the Argentina years (2020, 2021, 2025). Evidence: docs/phase5/ko-growth-evidence.md.
-  # FLAG for PM (2026-10-13): the FY26 +3.5% includes the disposal headwind. If the base year excludes CCBA (trap 5),
-  # FY26 should be organic + currency only (c.+6%), or the disposal is counted twice. Awaiting PM decision.
-  organic_growth: [0.035, 0.030, 0.030, 0.030, 0.030]
+  # Revenue growth in US DOLLARS on an ex-CCBA basis (the field is called organic_growth for the engine; here it is
+  # organic + currency, BEFORE disposals, because the base year already excludes CCBA).
+  # PM decisions 2026-10-13: FY26 +6.0% = organic c.5% + currency c.+1% (FY26 guidance raised 28 Jul 2026, 8-K
+  # 0001628280-26-049922). The 2-3% disposal headwind in that guidance is left out because the base year excludes the
+  # African bottler (CCBA) instead: counting both would remove the sale twice (mistakes log row 16; the headwind fell from
+  # c.4% to 2-3% when CCBA's closing moved later, so it is mostly CCBA). Was +3.5%.
+  # FY27-30 3.0% = low end of the 4-5% organic range minus the 1-point currency drag seen outside the Argentina years
+  # (2020, 2021, 2025). Evidence: docs/phase5/ko-growth-evidence.md.
+  organic_growth: [0.060, 0.030, 0.030, 0.030, 0.030]
   savings:                           # Coca-Cola has no announced savings programme in the model: margin held flat instead
     cumulative_musd: [0.0, 0.0, 0.0, 0.0, 0.0]
     flow_through: 0.0
@@ -88,7 +90,7 @@ dcf:
 
 scenarios:
   bear:
-    organic_growth: [0.035, 0.010, 0.010, 0.010, 0.010]   # 1% a year: the full 2020-25 average currency drag
+    organic_growth: [0.060, 0.010, 0.010, 0.010, 0.010]   # FY26 as base (guidance, half the year already reported); then 1% a year: the full 2020-25 average currency drag
     flow_through: 0.0
     wacc_shift: 0.01
     # The bear agent must also test the 30.0% margin (FY24) and a WIN in the IRS case is the bull case, not the bear.

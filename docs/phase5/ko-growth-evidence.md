@@ -35,4 +35,4 @@ What it shows:
 | **B (recommended)** | **3.0%** | Low end of the range (4%) minus the 1-point currency drag seen in non-hyperinflation years | Same "low end of guidance" rule you used for Diageo. Below the 5.1% achieved in 2020-25, which was flattered by inflation |
 | C | 1.0% | 4% minus the full 3.2-point 2020-25 average drag | Too punitive: it removes the Argentina currency fall but not the Argentina price rises that came with it |
 
-FY26: +3.5% per guidance under every option. Terminal growth: 2.0% as for Diageo. Bear case to test: 1.0% (option C).
+FY26: +6.0% (organic 5% + currency 1%) on a base year excluding CCBA, under every option (PM decision 13 Oct 2026; the earlier +3.5% included the disposal headwind and would have counted the CCBA sale twice). Terminal growth: 2.0% as for Diageo. Bear case to test: 1.0% (option C).

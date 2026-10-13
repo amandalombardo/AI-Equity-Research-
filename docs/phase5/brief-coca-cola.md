@@ -1,7 +1,7 @@
-# AI Equity Research Desk: Brief v1.0 (FINAL)
+# AI Equity Research Desk: Brief v1.1 (FINAL)
 **Company:** The Coca-Cola Company (NYSE: KO, S&P 500)
 **Portfolio manager:** Amanda
-**Status:** Signed off by Amanda (PM) on 13 October 2026. Any change needs PM approval and a version bump.
+**Status:** v1.1, signed off by Amanda (PM) on 13 October 2026 (v1.1: FY26 growth corrected to +6.0%, same day). Any change needs PM approval and a version bump.
 
 ---
 
@@ -44,7 +44,7 @@ Base year FY25 (latest audited). Forecast FY26 to FY30. USD throughout.
 
 | # | Assumption | Proposal | Evidence / why | Status |
 |---|---|---|---|---|
-| A | Revenue growth (USD) | FY26 +3.5% (guidance: 5% organic +1% FX -2.5% disposals); FY27-30 **3.0%** a year (low end of 4-5% organic range minus a 1-point currency drag) | Evidence in ko-growth-evidence.md: currency cost 1 point a year outside the Argentina years, 3.2 points on average 2020-25 | **Agreed** 13 Oct 2026 |
+| A | Revenue growth (USD, ex-CCBA) | FY26 **+6.0%** (guidance: 5% organic +1% FX; the 2-3% disposal headwind is left out because the base year excludes CCBA; was +3.5%, corrected 13 Oct, mistakes log row 16); FY27-30 **3.0%** a year (low end of 4-5% organic range minus a 1-point currency drag) | Evidence in ko-growth-evidence.md: currency cost 1 point a year outside the Argentina years, 3.2 points on average 2020-25 | **Agreed** 13 Oct 2026 |
 | B | Operating margin | Comparable margin 31.2% (FY25), held flat; bear 30.0% (FY24) | Margin rose c.1 point a year FY23-25, partly from selling low-margin bottlers. Holding flat avoids paying for gains not yet earned | Agreed 13 Oct 2026 |
 | C | IRS tax dispute | Base case: **KO loses**. Deduct the c.$14.9bn potential liability ($14bn to Dec 2025 + $0.9bn H1 2026, 10-Q Note 12) and use a 23.7% tax rate (19.9% + 3.8 points, 10-Q). Bull: KO wins, $6bn deposit refunded | The only court ruling so far (US Tax Court 2020, 2023) went against KO. Appeal heard 25 Jun 2026, ruling pending. Management's own guidance excludes it, so the market price may not | **Agreed** 13 Oct 2026 |
 | D | Bottler and Monster stakes | Listed stakes at **market value** on the run date (was $34.3bn, 31 Dec 2025); unlisted at book | Same logic you applied to Diageo's minorities: book value failed the evidence test | Agreed 13 Oct 2026 |
@@ -71,6 +71,6 @@ Same as Diageo: independent Excel check within 2%, source check of 5 random numb
 |---|---|---|
 | 1 | Companies for Phase 5: KO, Unilever, RELX, one at a time, KO first | **Agreed** 13 Oct 2026 |
 | 2 | IRS case: base case assumes KO loses (deduct c.$14.9bn, tax rate 23.7%); bull case shows a win | **Agreed** 13 Oct 2026 |
-| 3 | Growth: FY26 +3.5%, FY27-30 3.0% a year in USD; bear 1.0% | **Agreed** 13 Oct 2026, evidence in ko-growth-evidence.md |
+| 3 | Growth: FY26 +6.0% on an ex-CCBA base (corrected from +3.5%, which counted the sale twice), FY27-30 3.0% a year in USD; bear 1.0% | **Agreed** 13 Oct 2026, evidence in ko-growth-evidence.md |
 | 4 | Margin flat 31.2% (bear 30.0%), listed stakes at market, mid-year discounting | **Agreed** 13 Oct 2026 |
 | 5 | Benchmark: S&P 500 | **Agreed** 13 Oct 2026 |
