@@ -1,0 +1,19 @@
+{
+  "_note": "Phase 4 (13 Oct 2026) evidence added by the Data agent role for the mid-year decision and the PM's bear responses. USD m unless stated.",
+  "fcf_first_half_fy25_musd": {"value": 1696, "source": "Diageo FY26 interim results 6-K, 25 Feb 2026 (SEC accession 0001654954-26-001518), summary table: H1 F26 free cash flow $1,532m, change $(164)m => H1 F25 $1,696m; FY25 interim 6-K (0001654954-25-001149): 'Free cash flow increased by $0.1 billion to $1.7 billion'"},
+  "fcf_first_half_fy26_musd": {"value": 1532, "source": "Diageo FY26 interim results 6-K, 25 Feb 2026 (SEC accession 0001654954-26-001518), summary table"},
+  "fcf_full_year_fy25_musd": {"value": 2748, "source": "Diageo Form 20-F FY26, Movements in net borrowings (fundamentals/ratios.csv)"},
+  "fcf_full_year_fy26_musd": {"value": 3211, "source": "Diageo Form 20-F FY26, Movements in net borrowings (fundamentals/ratios.csv)"},
+  "fcf_first_half_share_fy25": {"value": 0.617, "source": "1,696 / 2,748"},
+  "fcf_first_half_share_fy26": {"value": 0.477, "source": "1,532 / 3,211"},
+  "average_cash_arrival_years_fy25": {"value": 0.44, "source": "0.617 x 0.25 + 0.383 x 0.75 (each half counted at its midpoint)"},
+  "average_cash_arrival_years_fy26": {"value": 0.51, "source": "0.477 x 0.25 + 0.523 x 0.75"},
+  "us_10y_breakeven_inflation": {"value": 0.0235, "date": "2026-10-08", "source": "FRED T10YIE (10-Year Breakeven Inflation Rate)"},
+  "terminal_growth_real_approx": {"value": -0.0035, "source": "2.0% nominal terminal growth - 2.35% breakeven inflation (approximation)"},
+  "oas_a_rated": {"value": 0.0069, "date": "2026-10-08", "source": "FRED BAMLC0A3CA, ICE BofA A US Corporate Index option-adjusted spread"},
+  "oas_bbb_rated": {"value": 0.0102, "date": "2026-10-08", "source": "FRED BAMLC0A4CBBB, ICE BofA BBB US Corporate Index option-adjusted spread"},
+  "oas_high_yield": {"value": 0.0315, "date": "2026-10-08", "source": "FRED BAMLH0A0HYM2, ICE BofA US High Yield Index option-adjusted spread"},
+  "leverage_after_disposals_approx_x": {"value": 2.64, "source": "(3.14 x adjusted EBITDA 6,650 = adjusted net debt c.20,881, 20-F p.186) - disposal proceeds 3,318 = 17,563; / 6,650. Before tax on the proceeds and before EABL's EBITDA leaves, so a floor (our arithmetic)"},
+  "fy26_capex_pct_sales": {"value": 0.0609, "source": "capex 1,197 / net sales 19,643, 20-F FY26 cash flow statement"},
+  "fy26_interims_date": {"value": "2026-02-25", "source": "Diageo FY26 interim 6-K filing date; FY27 interims expected around Feb 2027 by the same pattern (inferred)"}
+}

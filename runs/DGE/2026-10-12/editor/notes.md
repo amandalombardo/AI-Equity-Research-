@@ -1,5 +1,13 @@
-# Editor agent notes: Diageo (DGE), run 2026-10-12 (refreshed 2026-10-13 for proportionate minorities)
+# Editor agent notes: Diageo (DGE), run 2026-10-12 (Phase 4 rewrite 2026-10-13)
 
+## Phase 4 rewrite (13 Oct 2026): mid-year discounting, PM responses, new layout
+- Rewrote memo.md after the PM's Phase 4 decisions: mid-year discounting (1,544.8p -> **1,627.3p, HOLD, -2.7%**) and the PM's responses to the six bear challenges (from docs/phase4/bear-responses-draft.md, source-checked in docs/phase4/evidence-phase4.md; numbers updated to the mid-year base). Every "PM to respond" is gone. Added a one-paragraph PM view. Removed internal file names from the body.
+- New layout (desk/memo_pdf.py): rating strip (HOLD, fair value, price, upside, bear case), a valuation range chart (football field: DCF WACC range 1,481-1,798p, terminal growth range 1,572-1,767p, single changes 1,468-1,930p, bear 1,180p, comps 1,334-3,163p, with lines at the price and fair value), Sources on page 3 (not counted).
+- New numbers come only from valuation/valuation.json, sanity_checks.json, notes.md, bear/challenges.json and data/phase4_evidence.json (first-half cash, breakeven inflation, credit spreads, leverage after disposals).
+- memo_check: "All memo numbers trace to agent outputs." PDF: 2 pages + Sources page; body about 1,000 words (was 907; the brief asks for about 900, so I kept the extra words for the PM's responses).
+- FLAG: the bull case now reaches BUY (beta 0.72: 1,930p, 6p above the BUY line). FLAG: rating is the engine's HOLD, no override: the PM should confirm it as her final call.
+
+## Phase 3 notes (superseded values)
 ## What I did
 - Rewrote memo.md after the PM decision of 2026-10-13 to value minority interests proportionately (2.566% share of operating profit ex-EABL x EV = USD 1,500m, replacing book USD 2,083m, which double counted EABL's 35% minority). Numbers taken only from valuation/valuation.json, valuation/notes.md, valuation/sanity_checks.json, valuation/bridge.json and bear/challenges.json, challenges.md, notes.md. Fundamentals and Risks sections are unchanged (their source files did not change), except beta 0.72 now gives 1,844p.
 - Header: **HOLD | Fair value 1,544.8p | Share price 1,673p (12 Oct 2026) | Upside -7.7%.** Engine rating; no PM override.
