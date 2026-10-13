@@ -25,16 +25,17 @@
     "implied_exit_ev_ebitda": 9.188517750220743,
     "equity": {
       "enterprise_value": 58448.408647373486,
-      "equity_value_balance_sheet_date": 43635.70864737349,
-      "equity_value": 44827.6412113814,
-      "per_share_usd": 20.174455990720702,
-      "per_share_gbp": 15.244412868913937,
-      "per_share_gbp_pence": 1524.4412868913937
+      "minorities_deducted": 1499.7861658916036,
+      "equity_value_balance_sheet_date": 44218.92248148189,
+      "equity_value": 45426.785841211975,
+      "per_share_usd": 20.444098038349225,
+      "per_share_gbp": 15.44816233818137,
+      "per_share_gbp_pence": 1544.816233818137
     },
     "rating": {
       "rating": "HOLD",
-      "upside": -0.0887977962,
-      "fair_value": 1524.4412868913937,
+      "upside": -0.0766191071,
+      "fair_value": 1544.816233818137,
       "share_price": 1673.0
     },
     "forecast": [
@@ -106,16 +107,17 @@
     "implied_exit_ev_ebitda": 7.934182532615166,
     "equity": {
       "enterprise_value": 45620.28789224717,
-      "equity_value_balance_sheet_date": 30807.58789224717,
-      "equity_value": 31649.11352264427,
-      "per_share_usd": 14.243525437733695,
-      "per_share_gbp": 10.762827140496974,
-      "per_share_gbp_pence": 1076.2827140496975
+      "minorities_deducted": 1170.6165873150624,
+      "equity_value_balance_sheet_date": 31719.971304932107,
+      "equity_value": 32586.41917296784,
+      "per_share_usd": 14.665355163351862,
+      "per_share_gbp": 11.081574099555587,
+      "per_share_gbp_pence": 1108.1574099555587
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.3566750065,
-      "fair_value": 1076.2827140496975,
+      "upside": -0.3376225882,
+      "fair_value": 1108.1574099555587,
       "share_price": 1673.0
     },
     "forecast": [
@@ -168,7 +170,8 @@
     "pension_deficit": 0,
     "associates": 5284.0,
     "disposal_proceeds": 3318.3,
-    "restructuring_cash": 850.0
+    "restructuring_cash": 850.0,
+    "minority_share_of_ev": 0.02566
   },
   "sensitivity_value_per_share_pence": {
     "wacc": [
@@ -186,34 +189,34 @@
     ],
     "grid": [
       [
-        1812.381368647631,
-        1904.086923896773,
-        2013.3884280696548,
-        2146.2050628721854
+        1825.3677730765091,
+        1914.720163777958,
+        2021.2169913537643,
+        2150.6255513072615
       ],
       [
-        1627.6573502906583,
-        1698.3018066616332,
-        1781.0912522186647,
-        1879.6992708412333
+        1645.3837730305768,
+        1714.215492651072,
+        1794.88056103511,
+        1890.9582978998237
       ],
       [
-        1469.584555180265,
-        1524.4412868913937,
-        1587.7912508214174,
-        1661.9681588481526
+        1491.3671258427155,
+        1544.816233818137,
+        1606.5406376737162,
+        1678.8141662404857
       ],
       [
-        1332.8003571959887,
-        1375.6222201358323,
-        1424.4315328494756,
-        1480.73544423285
+        1358.092810378716,
+        1399.8158643155232,
+        1447.3727300649348,
+        1502.2318830822114
       ],
       [
-        1213.289789402295,
-        1246.807108361591,
-        1284.5581350327568,
-        1327.5260731685144
+        1241.6488837546083,
+        1274.306148309409,
+        1311.088483636193,
+        1352.9538644793868
       ]
     ]
   },
@@ -230,6 +233,7 @@
     "net_debt": 20482.0,
     "lease_liabilities": 0,
     "minority_interests": 2083.0,
+    "minority_share_of_operating_profit": 0.02566,
     "pension_deficit": 0,
     "associates": 5284.0,
     "disposal_proceeds": 3318.3,
@@ -255,6 +259,7 @@
     "net_debt": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) note 17 p.187: net borrowings 20,482 (INCLUDES lease liabilities 685; EABL/RCB loans of 272 sit in liabilities held for sale)",
     "lease_liabilities": "0 because the 685 of lease liabilities is already inside net borrowings (20-F note 17 p.187)",
     "minority_interests": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) balance sheet, non-controlling interests at book value (USL 755, other 1,328: p.189)",
+    "minority_share_of_operating_profit": "Proportionate minorities (brief: minorities_method). (Profit before exceptional operating items attributable to non-controlling interests 227, Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529) p.210 ROIC table, less EABL's 35% outside shareholders x EABL EBIT 250.2 (Diageo Kenya owns 65% of EABL, 20-F p.164; EBIT as in base_margin) = 139.4) / (operating profit before exceptionals 5,683 - EABL 250.2 = 5,432.8). Simplification: assumes EABL's minorities share EABL's EBIT pro rata.",
     "pension_deficit": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18): net post-employment SURPLUS 627 (XBRL LiabilityAssetOfDefinedBenefitPlans -627); brief rule: 0 if in surplus. Deficit plans alone: 387 (see FLAG)",
     "associates": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) note 'Investments in associates': Moet Hennessy 34% at 5,107 (carrying value tested at fair value less costs of disposal, 'sensitive' = little headroom) + others 177",
     "disposal_proceeds": "EABL + Kenyan spirits sale to Asahi c.$2.3bn (20-F p.85) + Diageo's 57.21% of USL's RCB sale INR 166.6bn = c.$1.78bn (USL/press, 24 Mar 2026); both gross, before tax and costs, not in net debt at 30 June 2026",
