@@ -1,8 +1,8 @@
 # The Coca-Cola Company (NYSE: KO)
 
-**Rating: SELL | Desk rating: SELL (PM review pending) | Fair value $47.60 | Share price $90.12 (13 Oct 2026) | Upside -47.2% | Bear case $37.99**
+**Rating: SELL | Desk rating: SELL (PM final, 13 Oct 2026) | Fair value $47.60 | Share price $90.12 (13 Oct 2026) | Upside -47.2% | Bear case $37.99**
 
-Memo of 13 October 2026. Desk rule: BUY at +15% or more, SELL at -10% or worse; the PM has not yet made her final call. **HOLD starts at $81.11, BUY at $103.64.** Per-share values in US dollars (USD); totals in USD m.
+Memo of 13 October 2026. Desk rule: BUY at +15% or more, SELL at -10% or worse; the PM's final rating is SELL. **HOLD starts at $81.11, BUY at $103.64.** Per-share values in US dollars (USD); totals in USD m.
 
 ```football
 unit: USD
@@ -62,11 +62,11 @@ No bear change flips the rating. Values in USD per share.
 
 | Challenge | Test: value (impact) | Response |
 |---|---|---|
-| 1. Peak margin | 30.0%: $42.82 (-$4.79); 31.94% ex-CCBA: $45.73 (-$1.88) | 30.0% includes CCBA, so -$1.88 is fair. Bear margin 31.9%? PM to respond |
+| 1. Peak margin | 30.0%: $42.82 (-$4.79); 31.94% ex-CCBA: $45.73 (-$1.88) | 30.0% includes CCBA but is applied to ex-CCBA sales; PM decision: bear margin 31.9% (-$1.88) |
 | 2. Currency drag | 1% growth FY27-30: $44.31 (-$3.30); FY26 4.5%: $46.89 (-$0.71) | Stress test; the growth evidence calls 1% too punitive |
 | 3. IRS and cash | add the USD 900m accrual: $47.38 (-$0.22) | Loss already in base; model FY26 cash (USD 11,358m) reconciles to guidance (USD 12,400m) |
-| 4. Stakes at market | 31 Dec 2025 values: $46.30 (-$1.30); Monster -30%: $46.29 (-$1.32); 21% tax on gain: $46.28 (-$1.33) | Small. Deduct tax? PM to respond |
-| 5. Beta at a low | 0.868 (2022-26 average): $40.01 (-$7.60); 0.741 (2024): $43.40 (-$4.21) | 9.20% WACC, above the 6-9% range. PM to respond |
+| 4. Stakes at market | 31 Dec 2025 values: $46.30 (-$1.30); Monster -30%: $46.29 (-$1.32); 21% tax on gain: $46.28 (-$1.33) | Small. PM decision: no tax deducted (tax basis not disclosed; impact $0.03) |
+| 5. Beta at a low | 0.868 (2022-26 average): $40.01 (-$7.60); 0.741 (2024): $43.40 (-$4.21) | 9.20% WACC, above the 6-9% range. PM decision: keep 0.6091, the current industry beta (as for Diageo) |
 
 **Is the SELL just a harsh base case?**
 
@@ -78,7 +78,7 @@ No bear change flips the rating. Values in USD per share.
 | RONIC 27.0% | 31.4% | $48.02 | +$0.41 |
 | **All four together** | | **$79.45** | **+$31.85, still SELL** |
 
-**PM view: PM to respond.** The desk rating is SELL, pending the PM's final call. Decisions for her: whether to stand behind the 8.0% WACC (the market implies about 5.5%) and 2% terminal growth for a business guiding 4-5% organic growth; the bear margin (30.0% or 31.9%); and a check of the CCBA source figures.
+**PM view: SELL (final).** No single bear or generous change leaves SELL, and all four generous changes together ($79.45) stay below HOLD ($81.11). The price needs a WACC of about 5.5% against our 8.0%, and the comps median ($70.07) is also well below the price. Open: a check of the CCBA source figures against Coca-Cola HBC's announcement.
 
 ## Sources
 - Coca-Cola FY25 Form 10-K (SEC accession 0001628280-26-010047, filed 20 Feb 2026): balance sheet, Note 2 (held for sale), Note 10 (leases), Note 14 (pensions), Note 19, Note 20 (segments, pp.116-117), equity method investments note, IRS liability (XBRL ko:IncrementalTaxAndInterestLiability); 10-Ks FY22-FY24 (SEC EDGAR XBRL).

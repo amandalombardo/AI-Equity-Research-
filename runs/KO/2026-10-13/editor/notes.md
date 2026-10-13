@@ -20,3 +20,4 @@ KO forward EPS (forward P/E leg), peer NTM EBITDA, CCEP data, KO leverage target
 
 ## Confidence
 High that the memo matches the agent outputs. The rating is robust: no single change tested leaves SELL. Pending the PM's call.
+- **PM final 13 Oct 2026 18:29:** SELL. Bear responses: margin 31.9%, no stake-gain tax, beta 0.6091 kept. Memo updated and PDF regenerated.

@@ -98,6 +98,7 @@ scenarios:
     flow_through: 0.0
     wacc_shift: 0.01
     # The bear agent must also test the 30.0% margin (FY24) and a WIN in the IRS case is the bull case, not the bear.
+    # PM decision 2026-10-13 (bear responses): bear margin 31.9% (FY24 ex-CCBA, like-for-like with the base); no tax on stake gains; beta 0.6091 kept.
 
 comps:
   peers:
