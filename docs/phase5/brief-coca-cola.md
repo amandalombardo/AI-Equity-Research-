@@ -52,7 +52,7 @@ Base year FY25 (latest audited). Forecast FY26 to FY30. USD throughout.
 | F | Capex, D&A, working capital | 5-year averages ex one-offs, from the Data agent; FY26 capex $2.2bn per guidance | 10-Ks | Agreed 13 Oct 2026 |
 | G | Beta | Bottom-up: Damodaran US soft drinks/beverage unlevered beta, relevered at KO's market D/E; regressions vs S&P 500 as cross-check | Same rule as Diageo | Agreed 13 Oct 2026 |
 | H | Risk-free, ERP, cost of debt | US 10-year (5.22%, FRED, 8 Oct 2026); ERP 5.0%; cost of debt = risk-free + spread for KO's A+ rating (ICE BofA A OAS was 0.69% on 8 Oct 2026) | Same rule as Diageo, but KO is rated higher | Agreed 13 Oct 2026 |
-| I | Terminal growth / terminal capex | 2.0%; terminal capex via RONIC = KO's latest ROIC (Data agent) | Same rule as Diageo | Agreed 13 Oct 2026 |
+| I | Terminal growth / terminal capex | 2.0%; terminal capex via RONIC = 27.0%, KO's FY25 ROIC at the DCF tax rate (agreed 13 Oct, evidence ko-roic-evidence.md) | Same rule as Diageo | Agreed 13 Oct 2026 |
 | J | Mid-year discounting | Yes | H1 2026 FCF $6.9bn of $12.4bn guided = 56% in the first half (Q2 2026 release) | Agreed 13 Oct 2026 |
 | K | Valuation basis | 31 Dec 2025 balance sheet, rolled forward to run date at cost of equity less dividends paid | Same as Diageo | Agreed 13 Oct 2026 |
 | L | Rating rule | Buy >= +15%, Sell <= -10% | Same as Diageo, so the portfolio is consistent | Agreed 13 Oct 2026 |

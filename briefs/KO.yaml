@@ -49,9 +49,11 @@ dcf:
                                     # the c.$6.1bn fairlife milestone liability (paid 2025); exclude it.
   terminal_growth: 0.020
   terminal_capex_pct_sales: null
-  terminal_ronic: pending           # PM rule (same as Diageo): new investment earns Coca-Cola's latest ROIC.
-                                    # The Data agent computes it with sources; the PM then sets the number here.
-                                    # The valuation refuses to run while this says "pending".
+  # Terminal-year capex (PM decision 2026-10-13, same rule as Diageo): new investment earns Coca-Cola's latest ROIC.
+  # Coca-Cola publishes no ROIC, so it is calculated: FY25 comparable operating income $15,013m (Q4 2025 8-K) taxed at the
+  # DCF's 23.7%, over average invested capital (equity + debt + leases - cash and investments - equity stakes, 10-K XBRL)
+  # = 27.0% (FY22 25.0%, FY23 27.5%, FY24 27.9%). Evidence: docs/phase5/ko-roic-evidence.md.
+  terminal_ronic: 0.270
   # Cash timing (PM decision 2026-10-13): mid-year. 56% of FY26's guided free cash flow ($6.9bn of $12.4bn) arrived
   # in the first half (Q2 2026 8-K).
   mid_year_convention: true
