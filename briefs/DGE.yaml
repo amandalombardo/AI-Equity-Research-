@@ -33,7 +33,7 @@ dcf:
                                     # LOW END of management's FY27-29 guidance of mid-single-digit organic operating profit growth
                                     # (4.0% CAGR; Capital Markets Day 6-K, 6 Aug 2026), the same low-end rule used for sales growth.
                                     # Track record (2017: 'two thirds reinvested'; FY23: GBP450m savings, +15bps margin) argues
-                                    # against more. Evidence: docs/phase3/savings-flow-through-evidence.md. Rating flips to SELL at c.40%.
+                                    # against more. Evidence: docs/phase3/savings-flow-through-evidence.md. Rating flipped to SELL at c.40% with book minorities; c.34% after the proportionate-minorities fix (13 Oct).
   tax_rate: null                    # Data agent: FY26 tax rate before exceptional items (brief proposes c.23%)
   da_pct_sales: null                # Data agent: 5-year average depreciation & amortisation / net sales
   capex_pct_sales: null             # Data agent: 5-year average capex / net sales
