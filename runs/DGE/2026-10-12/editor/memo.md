@@ -2,7 +2,7 @@
 
 **Rating: HOLD | Fair value 1,627p | Share price 1,673p (12 Oct 2026) | Upside -2.7% | Bear case 1,180p**
 
-Equity research memo, 13 October 2026. Rating from the desk's rule (BUY at +15% or more, SELL at -10% or worse); no PM override. **SELL starts at 1,506p, 122p below fair value; BUY starts at 1,924p.** All per-share values are pence per ordinary share (GBp); the DCF is in USD.
+Equity research memo, 13 October 2026. Rating from the desk's rule (BUY at +15% or more, SELL at -10% or worse), confirmed by the PM on 13 Oct 2026; no override. **SELL starts at 1,506p, 122p below fair value; BUY starts at 1,924p.** All per-share values are pence per ordinary share (GBp); the DCF is in USD.
 
 ```football
 marker: Share price | 1673
@@ -60,7 +60,7 @@ Three of the eleven single bear changes flip the rating to SELL (below 1,506p); 
 5. **Cost of capital.** A 2.0% credit spread gives 1,559p and beta 1.00 gives 1,585p, both HOLD. **Response:** our 1% spread is already about the BBB average (1.02%, vs 0.69% for A-rated bonds) for an A-band company.
 6. **USL minority at market.** USL's outside stake at market (USD 4,450m) plus other minorities at book (USD 1,328m) gives 1,480p (SELL). **Response:** an upper bound: it prices USL's minority at market but Diageo's own 57.21% at the DCF multiple, and the USD 1,328m still includes EABL's 35%.
 
-**PM view:** HOLD. The value is close to the price, the downside cases that flip the rating are structural (no recovery, returns falling to the cost of capital) and the only route to BUY is a low beta with weak statistical support (R-squared 0.15). Restructuring tax relief would add 7p.
+**PM view: HOLD (final).** Fair value is within the HOLD band under both discounting conventions (1,627p mid-year, 1,545p year-end), and the market-implied WACC (8.3%) is close to ours (8.46%), so the price is near fair value. The cases that flip the rating to SELL are structural (no recovery, returns falling to the cost of capital). The only route to BUY is a beta of 0.72 with an R-squared of 0.15 (95% range 0.51 to 0.93), too weak to override the industry beta. Comps (2,311p) point higher but rest on P/E alone. Restructuring tax relief would add 7p.
 
 ## Sources
 - Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529): financial statements, p.18, p.22, p.85, p.110, p.164, p.186-189, p.210-211, regional reviews pp.27-31; 20-F FY22-FY25 (SEC EDGAR XBRL).

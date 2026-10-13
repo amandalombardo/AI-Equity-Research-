@@ -5,7 +5,7 @@
 - New layout (desk/memo_pdf.py): rating strip (HOLD, fair value, price, upside, bear case), a valuation range chart (football field: DCF WACC range 1,481-1,798p, terminal growth range 1,572-1,767p, single changes 1,468-1,930p, bear 1,180p, comps 1,334-3,163p, with lines at the price and fair value), Sources on page 3 (not counted).
 - New numbers come only from valuation/valuation.json, sanity_checks.json, notes.md, bear/challenges.json and data/phase4_evidence.json (first-half cash, breakeven inflation, credit spreads, leverage after disposals).
 - memo_check: "All memo numbers trace to agent outputs." PDF: 2 pages + Sources page; body about 1,000 words (was 907; the brief asks for about 900, so I kept the extra words for the PM's responses).
-- FLAG: the bull case now reaches BUY (beta 0.72: 1,930p, 6p above the BUY line). FLAG: rating is the engine's HOLD, no override: the PM should confirm it as her final call.
+- FLAG: the bull case now reaches BUY (beta 0.72: 1,930p, 6p above the BUY line). PM confirmed HOLD as her final rating on 13 Oct 2026 ("as long as it is backed by evidence and justifiable"); the PM view paragraph now gives the evidence (HOLD under both discounting conventions, market-implied WACC 8.3% vs 8.46%, BUY only via a beta with R-squared 0.15 and 95% range 0.51-0.93).
 
 ## Phase 3 notes (superseded values)
 ## What I did
