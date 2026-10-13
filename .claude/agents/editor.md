@@ -13,7 +13,12 @@ Memo structure (2 pages excluding the appendix, about 900 words):
 4. **Fundamentals:** 3 to 4 key trends.
 5. **Risks:** beta, volatility, drawdown, leverage.
 6. **Bear case and our response:** each challenge from `bear/challenges.md`, with a one-line response. Write "PM to respond" where a response needs the PM.
-7. `## Sources` appendix.
+7. `## Sources` appendix (the PDF starts it on a new page; it is not counted in the two pages).
+
+Just under the header line, add a valuation range chart as a fenced `football` block: one line per bar,
+`label | low | high` in pence (DCF WACC range, DCF terminal growth range, single bear changes, bear scenario,
+comps range), and `marker: label | value` lines for the share price (first) and the DCF fair value.
+Every number in it must come from an agent output, like the rest of the memo.
 
 Rules
 - **Every number must already exist in an agent output file.** Never calculate or round in a new way. Afterwards run `python -m desk.memo_check runs/<TICKER>/<RUN_DATE>` and fix anything it lists.

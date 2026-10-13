@@ -126,7 +126,7 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
          (f"={nopat_l}*(1+{ref['g']})+{sales_l}*(1+{ref['g']})*{ref['da_pct']}"
           f"-{sales_l}*(1+{ref['g']})*{ref['tcapex_pct']}-{sales_l}*{ref['g']}*{ref['nwc_pct']}"), term["ufcf"]),
         ("tv", "Terminal value (Gordon growth)", f"={{tfcf}}/(WACC-{ref['g']})", base["dcf"]["terminal_value"]),
-        ("pvtv", "PV of terminal value", f"={{tv}}/(1+WACC)^({n}-{ref['stub']})", base["dcf"]["pv_terminal_value"]),
+        ("pvtv", "PV of terminal value", f"={{tv}}/(1+WACC)^({n}-{ref['stub']}{'-0.5' if d['mid_year_convention'] else ''})", base["dcf"]["pv_terminal_value"]),
         ("ev", "Enterprise value", "={pv}+{pvtv}", base["dcf"]["enterprise_value"]),
         # proportionate minorities: outside shareholders' share of operating profit x EV; else book value
         ("mi", "Minority interests deducted", f"=IF(ISBLANK({ref['mi_share']}),{ref['minorities']},{ref['mi_share']}*{{ev}})",

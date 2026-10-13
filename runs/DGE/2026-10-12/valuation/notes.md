@@ -1,4 +1,24 @@
-# Valuation agent notes: Diageo (DGE), run 2026-10-12 (Phase 3 re-run; minorities re-run 2026-10-13)
+# Valuation agent notes: Diageo (DGE), run 2026-10-12 (Phase 4 re-run 2026-10-13: mid-year discounting)
+
+## Phase 4 re-run (13 Oct 2026)
+**What changed.** PM decision (13 Oct 2026, evidence `docs/phase4/evidence-phase4.md`): the brief's `mid_year_convention` is now **true**. Each year's cash flow is discounted from the middle of the year (0.5, 1.5 ... 4.5 years from 30 June 2026) instead of its last day, because Diageo's free cash flow arrives through the year (61.7% of FY25 and 47.7% of FY26 came in the first half; `data/phase4_evidence.json`). The terminal value (Gordon growth) moves half a year too (4.5 years), after the engine fix logged as mistakes-log row 15; without that fix the switch would have given an inconsistent 1,566p.
+
+| | Base | Bear |
+|---|---|---|
+| WACC | 8.46% | 9.46% |
+| Enterprise value at 30 June 2026 (USD m) | 60,870 | 47,729 |
+| Minorities deducted (USD m, 2.566% x EV) | 1,562 | 1,225 |
+| Equity value at 30 June 2026 (USD m) | 46,579 | 33,775 |
+| Equity value rolled to 12 Oct 2026 (USD m) | 47,851 | 34,697 |
+| Value per share | USD 21.54 / **1,627p** | USD 15.62 / **1,180p** |
+| Upside vs 1,673p | **-2.7%** | -29.5% |
+| Rating (engine) | **HOLD** | SELL |
+
+Effect: +82p (1,544.8p -> 1,627.3p). The whole EV rises by (1 + WACC)^0.5 - 1 = 4.1%, so the terminal value share (74.9%) and the implied exit multiple (9.2x FY31 EBITDA) are unchanged. Live Excel (`dcf.xlsx`) recalculated in LibreOffice: 1,627.26p, same as Python.
+**SELL line 1,505.7p: 122p headroom** (was 39p). New SELL flips (`sanity_checks.json`): flow-through below 9.1%, beta above 1.078, WACC above 8.87%, terminal RONIC below 9.26%, minorities share above 8.28%. **BUY line 1,924p:** beta below 0.724 or WACC below 7.64%. Market-implied WACC at g = 2%: 8.32%.
+Comps (unchanged): median P/E implies 2,311p; DCF is 29.6% below it.
+FLAG: the HOLD is now less fragile, but the improvement is a timing convention, not new information about Diageo's business.
+
 
 **History of the base value:** 2,475p (first run, BUY) -> 2,141p (cost of debt fixed, BUY) -> 1,448p (bottom-up beta 0.96, SELL) -> 1,524p (Phase 3, HOLD) -> **1,545p (proportionate minorities, PM decision 2026-10-13, HOLD)**.
 

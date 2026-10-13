@@ -1,6 +1,15 @@
-# Bear agent notes: Diageo (DGE), run 2026-10-12 (Phase 3 re-run, refreshed 2026-10-13 for proportionate minorities)
+# Bear agent notes: Diageo (DGE), run 2026-10-12 (Phase 4 re-run 2026-10-13: mid-year discounting)
 
-## What I did
+## Phase 4 re-run (13 Oct 2026)
+- Re-ran `run_challenges.py` after the PM switched to mid-year discounting. Base **1,627.3p GBp, HOLD (-2.7%)**, 122p above SELL; engine bear scenario 1,179.9p (SELL).
+- **Only 3 of 11 single changes now flip to SELL**: terminal RONIC = WACC (1,468.3p), zero organic growth (1,490.7p), USL minority at market (1,480.0p, an upper bound). Flow-through 33% (1,584.4p) and 25% (1,558.0p), beta 1.00 (1,584.5p), credit spread 2% (1,559.3p), terminal growth 1.5% (1,571.6p) and RONIC 10.8% (1,561.8p) all stay HOLD.
+- **New: the bull case reaches BUY.** Beta 0.72 gives 1,929.6p (+15.3%), 6p above the BUY line (1,923.95p); BUY if beta is below 0.724.
+- FLAG (bear view): mid-year discounting is correct in principle (cash does arrive through the year), but it moved every value by 5% without any change in Diageo's prospects. The downside challenges that matter are now the structural ones: returns on new capital and no recovery.
+- `briefs/DGE.yaml` and `inputs.yaml` not changed by me.
+
+
+## Phase 3 notes (superseded values)
+### What I did
 - Refreshed after the PM decision of 2026-10-13 (minorities valued proportionately: 2.566% x EV = USD 1,500m, replacing book USD 2,083m). New base **1,544.8p GBp, HOLD (-7.7%)**; SELL line 1,505.7p, **39p headroom** (was 18p); engine bear scenario 1,108.2p.
 - Fixed `run_challenges.py`: inputs are now loaded with `valuation_run.extra_required(brief)` (roll-forward input **and** `minority_share_of_operating_profit`) instead of the hard-coded roll-forward list, so the run STOPs if the minorities input is missing. The script also STOPs if its base does not reproduce `valuation/valuation.json` (it matches: 1,544.8p). Nothing hard-coded book minorities; the bridge follows the brief's `minorities_method`.
 - Re-ran every challenge against the new base with `desk.valuation_run.build` (one change each, in-memory copies). Added a bisection solver (engine calls only) for the SELL flips: flow-through 33.6%, beta 0.997, terminal RONIC 11.66%, minorities USD 2,619m on a book basis; these match `valuation/sanity_checks.json`.

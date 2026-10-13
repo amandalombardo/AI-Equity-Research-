@@ -33,7 +33,7 @@ dcf:
                                     # LOW END of management's FY27-29 guidance of mid-single-digit organic operating profit growth
                                     # (4.0% CAGR; Capital Markets Day 6-K, 6 Aug 2026), the same low-end rule used for sales growth.
                                     # Track record (2017: 'two thirds reinvested'; FY23: GBP450m savings, +15bps margin) argues
-                                    # against more. Evidence: docs/phase3/savings-flow-through-evidence.md. Rating flipped to SELL at c.40% with book minorities; c.34% after the proportionate-minorities fix (13 Oct).
+                                    # against more. Evidence: docs/phase3/savings-flow-through-evidence.md. SELL-flip point: see runs/<TICKER>/<RUN_DATE>/valuation/sanity_checks.json (it moves with every other input).
   tax_rate: null                    # Data agent: FY26 tax rate before exceptional items (brief proposes c.23%)
   da_pct_sales: null                # Data agent: 5-year average depreciation & amortisation / net sales
   capex_pct_sales: null             # Data agent: 5-year average capex / net sales
@@ -48,7 +48,11 @@ dcf:
   # Evidence: docs/phase3/terminal-capex-evidence.md. Main risk: if returns fall to c.10.8%, capex 7.1% -> SELL.
   terminal_capex_pct_sales: null
   terminal_ronic: 0.134
-  mid_year_convention: false
+  # Cash timing (PM decision 2026-10-13, Phase 4): mid-year. Diageo's free cash flow arrives through the year, not on
+  # 30 June: 61.7% of FY25 and 47.7% of FY26 free cash flow came in the first half (interim 6-Ks 0001654954-25-001149 and
+  # 0001654954-26-001518), an average arrival point of 0.44-0.51 years. The terminal value moves half a year too
+  # (Gordon growth on mid-year flows). Evidence: docs/phase4/evidence-phase4.md. Was false (end-of-year): 1,545p -> 1,627p.
+  mid_year_convention: true
   # Valuation date (Phase 3, Codex audit BRIDGE-01): value the business at the 30 June balance sheet date, so the cash
   # flows and the net debt, minorities and associates are all at the same date, then roll the equity value forward to
   # the run date at the cost of equity, less any dividend that went ex in between. Alternative: "stub" (old method).

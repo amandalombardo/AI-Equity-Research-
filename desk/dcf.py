@@ -161,7 +161,10 @@ def value(inp: DcfInputs) -> dict:
     term = terminal_year(inp, last)
     # Gordon growth terminal value at the end of the last forecast year: next year's normalised FCF / (WACC - g)
     tv = term["ufcf"] / (inp.wacc - inp.terminal_growth)
-    tv_period = len(rows) - inp.stub_years  # end of final year, regardless of mid-year convention
+    # Terminal value sits at the end of the final year and assumes next year's cash arrives a year later.
+    # Under the mid-year convention every later year's cash also arrives mid-year, so the whole perpetuity
+    # is half a year nearer: discount it over (N - stub - 0.5) years, consistent with the forecast years.
+    tv_period = len(rows) - inp.stub_years - (0.5 if inp.mid_year else 0.0)
     pv_tv = tv / (1 + inp.wacc) ** tv_period
     ev = pv_total + pv_tv
     return {"rows": rows, "terminal_year": term, "pv_forecast": pv_total, "terminal_value": tv, "pv_terminal_value": pv_tv,
