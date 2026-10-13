@@ -1,4 +1,4 @@
-"""Unit conversions that are easy to get wrong: London prices in pence, USD reporting, US ADRs, US-listed shares in dollars."""
+"""Unit conversions that are easy to get wrong: London prices in pence, USD or EUR reporting, US ADRs, US-listed shares in dollars."""
 from __future__ import annotations
 
 PENCE_PER_POUND = 100
@@ -34,9 +34,34 @@ def price_currency(company: dict) -> str:
     return ccy
 
 
-def per_share_key(ccy: str) -> str:
+REPORTING_CURRENCIES = ("USD", "EUR")
+
+
+def reporting_currency(company: dict) -> str:
+    """Currency the accounts (and so the DCF cash flows) are in, from the brief: USD (the default) or EUR."""
+    ccy = company.get("reporting_currency", "USD")
+    if ccy not in REPORTING_CURRENCIES:
+        raise ValueError(f"Unknown company.reporting_currency {ccy!r}: use USD or EUR")
+    return ccy
+
+
+def fx_key(reporting_ccy: str) -> str:
+    """Name of the FX input that turns a reporting-currency value into pounds: reporting currency per GBP."""
+    return f"fx_{reporting_ccy.lower()}_per_gbp"
+
+
+def money_key(name: str, reporting_ccy: str) -> str:
+    """Name of an amount in millions of the reporting currency, e.g. dividends_ex_before_valuation_meur."""
+    return f"{name}_m{reporting_ccy.lower()}"
+
+
+def per_share_key(ccy: str, reporting_ccy: str = "USD") -> str:
     """Which value-per-share figure from dcf.equity_bridge is compared with the share price."""
-    return {"GBp": "per_share_gbp_pence", "USD": "per_share_usd"}[ccy]
+    if ccy == "GBp":
+        return "per_share_gbp_pence"
+    if reporting_ccy != ccy:
+        raise ValueError(f"A {ccy} share price needs {ccy} reporting, not {reporting_ccy}")
+    return f"per_share_{ccy.lower()}"
 
 
 def share_price_key(ccy: str) -> str:

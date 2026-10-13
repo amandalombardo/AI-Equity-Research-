@@ -7,7 +7,7 @@ Sources (all free):
   Diageo's own tags such as net sales and operating profit before exceptional items.
 - Yahoo Finance chart data for share prices (DGE.L in pence, KO in US dollars) and the benchmark index
   (FTSE 100 ^FTSE or S&P 500 ^GSPC, set in the brief)
-- FRED for the US 10-year Treasury yield (DGS10) and, for London prices only, GBP/USD (DEXUSUK)
+- FRED for the 10-year government bond yield in the reporting currency (US Treasury DGS10, or German Bund IRLTLT01DEM156N for euro reporters) and, for London prices only, the FX rate (DEXUSUK, with DEXUSEU for euro reporters)
 
 Network hosts needed: data.sec.gov, www.sec.gov, query1.finance.yahoo.com,
 query2.finance.yahoo.com, fc.yahoo.com, fred.stlouisfed.org.
@@ -34,7 +34,7 @@ import pandas as pd
 import requests
 import yaml
 
-from desk.units import price_currency
+from desk.units import fx_key, price_currency, reporting_currency
 
 # SEC asks automated requests to identify themselves with a contact.
 # Set SEC_CONTACT_EMAIL in the environment; SEC refuses requests without a real contact (HTTP 403).
@@ -305,6 +305,11 @@ def fred_series(series_id: str) -> pd.Series:
     return df.set_index(pd.to_datetime(df["date"]))[series_id]
 
 
+# risk-free rate by reporting currency: 10-year government bond yields on FRED
+RISK_FREE = {"USD": ("DGS10", "US 10-year Treasury, constant maturity, daily"),
+             "EUR": ("IRLTLT01DEM156N", "German 10-year Bund yield, OECD monthly average")}
+
+
 def price_ticker(company: dict) -> str:
     """The listing whose price the valuation compares with: company.price_ticker, else the London ticker."""
     return company.get("price_ticker") or company["ticker_lse"]
@@ -324,19 +329,26 @@ def main(brief_path: str, out_dir: str) -> None:
     px = pd.concat([prices(ticker), prices(co["benchmark_index"])], axis=1, sort=True)
     px.to_csv(out / "prices.csv")
 
-    rf = fred_series("DGS10")
+    rep = reporting_currency(co)
+    # the risk-free rate is in the currency of the cash flows (the reporting currency), not of the share price
+    rf_id, rf_name = RISK_FREE[rep]
+    rf = fred_series(rf_id)
     close = last_close(ticker)
     if close["currency"] != ccy:
         raise RuntimeError(f"{ticker} is quoted in {close['currency']}, expected {ccy} (brief company.price_currency)")
     market = {
-        "risk_free": {"value": float(rf.iloc[-1]) / 100, "date": str(rf.index[-1].date()),
-                      "source": "FRED DGS10 (US 10-year Treasury, constant maturity)"},
+        "risk_free": {"value": float(rf.iloc[-1]) / 100, "date": str(rf.index[-1].date()), "source": f"FRED {rf_id} ({rf_name})"},
         "downloaded_on": str(date.today()),
     }
     if ccy == "GBp":
-        fx = fred_series("DEXUSUK")
-        market["fx_usd_per_gbp"] = {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()),
-                                    "source": "FRED DEXUSUK (USD per GBP, noon buying rate New York)"}
+        usd_gbp = fred_series("DEXUSUK")
+        if rep == "USD":
+            fx, fx_src = usd_gbp, "FRED DEXUSUK (USD per GBP, noon buying rate New York)"
+        else:
+            # EUR per GBP = (USD per GBP) / (USD per EUR), both noon buying rates on the same day
+            both = pd.concat([usd_gbp, fred_series("DEXUSEU")], axis=1, join="inner").dropna()
+            fx, fx_src = both.iloc[:, 0] / both.iloc[:, 1], "FRED DEXUSUK / DEXUSEU (EUR per GBP, noon buying rates New York)"
+        market[fx_key(rep)] = {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()), "source": fx_src}
         market["share_price_gbp_pence"] = {"value": close["value"], "date": close["date"],
                                            "source": f"Yahoo Finance {ticker} close (pence, GBp)"}
     else:
