@@ -104,3 +104,6 @@ Built from SEC XBRL (FY25 10-K + latest 10-Q year-to-date; LTM = FY25 + 2026 YTD
 
 ## Files
 `financials.csv`, `financials_raw.csv`, `tie_out.csv`, `market_inputs.json`, `prices.csv`, `peers.csv`, `associates_rollforward_check.csv`, `build_inputs.py`, `build_peers.py`, `../inputs.yaml`
+
+## Update 2026-10-13 17:54 (Claude, after the PM's CCBA decision)
+The `base_sales` STOP above is resolved. CCBA's 2024 figures come from the buyer's announcement (Coca-Cola HBC, 21 Oct 2025: net sales revenue EUR 3,357m, EBIT EUR 246m, converted at 1.082), corroborated by MarketScreener (USD 3.63bn revenue, USD 267m EBIT). Evidence: docs/phase5/ko-ccba-evidence.md. `apply_pm_ccba_decision.py` wrote base_sales 44,308.7 and base_margin 33.191% to inputs.yaml. The PM was asked to verify the slides directly, because coca-colahellenic.com is not reachable from this environment.
