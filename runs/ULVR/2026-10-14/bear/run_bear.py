@@ -105,7 +105,11 @@ def run(name, change_inputs=None, change_brief=None):
 results = {}
 control = run("00_control")
 BASE, BEAR = control["base"]["value_pence"], control["bear"]["value_pence"]
-assert abs(BASE - 4017.842414427726) < 1e-6 and abs(BEAR - 3323.1512977057214) < 1e-6, "scratch copy must reproduce the run"
+VAL = json.loads((RUN / "valuation" / "valuation.json").read_text())   # the Valuation agent's current run
+assert abs(BASE - VAL["base"]["equity"]["per_share_gbp_pence"]) < 1e-6 and \
+    abs(BEAR - VAL["bear"]["equity"]["per_share_gbp_pence"]) < 1e-6, "scratch copy must reproduce the run"
+# the JV inside the current associates must be the Gordon value at the current cost of equity (PM decision 11)
+assert abs(JV0 + ASSOC_EX_JV - V["associates"]) < 1e-9 and abs(ASSOC_EX_JV - 3352.3) < 0.2, "associates must = JV at current Ke + 3,352.3"
 
 
 def record(key, label, res, case="base", ref=None, notes=""):
@@ -295,7 +299,12 @@ record("r_margin_182", "Margin 18.2% (18.8% less management's 0.6% guide)",
        run("r_margin_182", lambda i: setv(i, "base_margin", 0.182, "margin evidence pack option A2")))
 record("r_margin_188", "Margin 18.8% (restructuring treated as one-off)",
        run("r_margin_188", lambda i: setv(i, "base_margin", 0.188, "margin evidence pack option B")))
+record("r_margin_197", "Margin 19.7% (Valuation agent HOLD flip point)",
+       run("r_margin_197", lambda i: setv(i, "base_margin", 0.197, "valuation/notes.md flip point (e)")))
 record("r_mkc_deal_ref", f"McCormick back to USD {MKC_DEAL_REF} (deal reference price)", run("r_mkc_ref", mkc_at(MKC_DEAL_REF)))
+record("r_mkc_6655", "McCormick at USD 66.55 (Valuation agent HOLD flip point)", run("r_mkc_6655", mkc_at(66.55)))
+record("r_beta_0748", "Beta 0.748 (Valuation agent HOLD flip point), JVs consistent", run("r_beta_0748", beta_to(0.748)))
+record("r_beta_091", "Beta 0.91 (own 5y monthly), JVs consistent", run("r_beta_091", beta_to(0.91)))
 
 out = {"base_pence": BASE, "engine_bear_pence": BEAR, "share_price_pence": PRICE, "hold_floor_pence": HOLD_FLOOR,
        "buy_floor_pence": BUY_FLOOR, "results": results}

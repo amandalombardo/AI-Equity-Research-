@@ -46,7 +46,7 @@ dcf:
   nwc_pct_sales: null
   terminal_growth: 0.016
   terminal_capex_pct_sales: null
-  terminal_ronic: 0.068387
+  terminal_ronic: 0.070974
   mid_year_convention: true
   valuation_basis: balance_sheet_date
   wacc:
