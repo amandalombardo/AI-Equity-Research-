@@ -43,7 +43,7 @@ Base year FY25 (latest audited). Forecast FY26 to FY30. EUR, converted to pence 
 
 | # | Assumption | Proposal | Evidence / why | Status |
 |---|---|---|---|---|
-| A | How to value Foods | **Sum of the parts:** DCF of Unilever without the sale perimeter, plus the deal consideration at today's market value ($15.7bn cash + c.500m McCormick shares at $44.44 = $37.9bn = **€33.8bn, c.1,327p a share, 28% of the price**). Bear: the deal fails and Foods stays in the DCF | Signed deal with fixed terms; McCormick's own share price is the best evidence of what the shares are worth | **Decision 1, sent** |
+| A | How to value Foods | **Sum of the parts:** DCF of Unilever without the sale perimeter, plus the deal consideration at today's market value ($15.7bn cash + c.500m McCormick shares at $44.44 = $37.9bn = **€33.8bn, c.1,327p a share, 28% of the price**). Bear: the deal fails and Foods stays in the DCF | Signed deal with fixed terms; McCormick's own share price is the best evidence of what the shares are worth | **Agreed** 14 Oct 2026 (decision 1) |
 | B | Revenue growth (EUR, ex-perimeter) | FY26 **+0.5%** (H1 2026 actual reported change); FY27-30 **1.6%** a year (low end of 4-6% USG less the 9-year 2.4-point currency drag); bear 0.2% | ulvr-growth-evidence.md (FY17-25 results 6-Ks) | **Agreed** 13 Oct 2026 |
 | C | Operating margin | **17.7% flat**: FY25 underlying 18.8% without the sale perimeter, less 1.1% ongoing restructuring (FY23-25 actual; management's new 0.6% guide not used, never achieved in 10 years); **plus the €500m one-off stranded-cost restructuring (2027-29) deducted in the bridge**; bear 16.2% | ulvr-margin-evidence.md | **Agreed** 13 Oct 2026, re-confirmed after the stranded-cost correction (mistakes row 19) |
 | D | Minorities | **Proportionate** (Diageo rule): minorities' share of profit x DCF value, ratio for the remaining company computed by the Fundamentals agent; HUL at market (38% = c.€15.7bn) shown as a bear line | ulvr-minorities-evidence.md (20-F notes 15B, 27) | **Agreed** 13 Oct 2026 |
@@ -65,7 +65,7 @@ Same as Diageo: independent Excel check within 2%, source check of 5 random numb
 ## 7. Decisions
 | # | Decision | Status |
 |---|---|---|
-| 1 | How to value Foods (sum of the parts at today's deal value, whole-group DCF, or headline deal value) | **Sent** 13 Oct 2026 |
+| 1 | Foods: sum of the parts at today's deal value (DCF without the sale perimeter + $15.7bn cash + McCormick shares at the run-date price); bear: deal fails | **Agreed** 14 Oct 2026 |
 | 2 | Growth: FY26 +0.5%, FY27-30 1.6% a year in EUR; bear 0.2% | **Agreed** 13 Oct 2026, evidence in ulvr-growth-evidence.md |
 | 7 | Risk-free rate: German Bund 3.18% (euro cash flows), not the gilt; cost of debt = Bund + 0.70% | **Agreed** 13 Oct 2026 |
 | 6 | Terminal growth 1.6% (matches the FY27-30 forecast; not the portfolio's 2.0%) | **Agreed** 13 Oct 2026 |
