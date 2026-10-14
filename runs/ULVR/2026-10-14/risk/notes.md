@@ -1,5 +1,11 @@
 # Risk agent notes: Unilever PLC (ULVR), run 2026-10-14
 
+## Update 14 Oct 2026: risk-free rate changed by PM decision 11 (supersedes the 7.60% below)
+The PM changed the risk-free rate to **3.45%** (German 10-year Bund on the run date; source in `../inputs.yaml`, which flags that it comes from a data aggregator). **Beta is unchanged at 0.8844.**
+Cost of equity (CAPM, via `desk.dcf.cost_of_equity`) = 3.45% + 0.8844 x 5.0% = **7.872%**. This supersedes the 7.60% figure below.
+The sensitivities' costs of equity each rise by the same +0.27 points: June 2026 net debt 7.94%, no cash correction 7.70%, Damodaran 2020-24 average 8.45%.
+`beta_evidence.json` still shows the old costs of equity (at 3.18%). I did not re-run it, as instructed. Its beta values are unaffected.
+
 Money in EUR m unless labelled. Share prices in pence (GBp). Index in points.
 
 ## What I did
