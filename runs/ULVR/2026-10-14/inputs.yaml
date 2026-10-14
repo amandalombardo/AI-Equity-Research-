@@ -136,3 +136,9 @@ foods_perimeter_interim_cash_flows_meur:
     yet). Indicators only: perimeter FY25 UOP 2,600 (Unilever Foods/McCormick investor presentation, Form 425 (accession 0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm));
     H1 2026 Foods business group (wider than the perimeter) turnover EUR 6.3bn, UOM 23.3% (Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026,
     https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm), business group review).'
+beta:
+  value: 0.8844
+  source: 'Risk agent, bottom-up: Damodaran GLOBAL Household Products unlevered beta corrected for cash 0.7741 (588 firms, betaGlobal.xls dated 2026-01-05, sheet
+    ''Industry Averages'', PM upload 14 Oct 2026) relevered (Hamada) at Unilever''s market D/E 0.1924 = net debt EUR 23,076m (31 Dec 2025, FY25 results 6-K 0001654954-26-001155)
+    / market cap EUR 119,938.7m (2,154.328m shares x 4,710.5p / 100 x 1.18190 EUR per GBP) and tax 26.0% (brief). Cross-checks in risk/beta_evidence.json and risk/risk.json
+    (not used).'

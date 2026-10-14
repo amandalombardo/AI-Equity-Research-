@@ -1,0 +1,98 @@
+{
+  "rule": "PM, briefs/ULVR.yaml dcf.wacc.beta: bottom-up Damodaran GLOBAL Household Products unlevered beta corrected for cash, relevered at Unilever's market D/E and the 26.0% tax rate. Regressions are the cross-check.",
+  "industry": {
+    "industry": "Household Products",
+    "region": "Global",
+    "number_of_firms": 588,
+    "file_date": "2026-01-05",
+    "levered_beta": 0.830105897840148,
+    "industry_d_to_e": 0.156741690120733,
+    "unlevered_beta": 0.743172330958731,
+    "cash_to_firm_value": 0.0400081587968372,
+    "unlevered_beta_corrected_for_cash": 0.774144424006051,
+    "over_time": {
+      "2022": 1,
+      "2023": 0.959250721543237,
+      "2024": 0.846728400678949,
+      "2025": 0.796055885018307,
+      "Average (2020-24)": 0.875235886249309
+    },
+    "source": "Damodaran, Betas by Sector (Global), betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', row 'Household Products' (PM upload 14 Oct 2026, /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls, sha256 10c33f46df2a...)"
+  },
+  "market_cap": {
+    "shares_m": 2154.327621,
+    "price_gbp_pence": 4710.5,
+    "market_cap_gbp_m": 101479.60258720501,
+    "fx_eur_per_gbp": 1.1818994014115964,
+    "market_cap_eur_m": 119938.6815533043,
+    "sources": "inputs.yaml shares_outstanding_m (TVR 6-K 0001654954-26-008017), share_price_gbp_pence (Yahoo ULVR.L close 2026-10-13), fx_eur_per_gbp (FRED DEXUSUK/DEXUSEU 2026-10-09)"
+  },
+  "net_debt_meur": {
+    "31_dec_2025": 23076.0,
+    "30_jun_2026": 25961.0
+  },
+  "d_to_e": {
+    "31_dec_2025": 0.19239831304752456,
+    "30_jun_2026": 0.21645227097533304
+  },
+  "tax_rate": 0.26,
+  "relevered_betas": {
+    "BASE: cash-corrected 0.7741, net debt 31 Dec 2025": {
+      "beta": 0.8843630441191457,
+      "cost_of_equity": 0.07601815220595728
+    },
+    "Sensitivity: net debt 30 Jun 2026 (25,961)": {
+      "beta": 0.8981427597989117,
+      "cost_of_equity": 0.07670713798994558
+    },
+    "Sensitivity: unlevered beta without cash correction (0.7432)": {
+      "beta": 0.8489813070159727,
+      "cost_of_equity": 0.07424906535079864
+    },
+    "Sensitivity: Damodaran 2020-24 average cash-corrected (0.8752)": {
+      "beta": 0.9998473781937454,
+      "cost_of_equity": 0.08179236890968727
+    }
+  },
+  "cross_checks": {
+    "ULVR vs FTSE 100, 5y monthly": {
+      "beta": 0.9126383375784534,
+      "std_error": 0.18470211701963446,
+      "ci95": [
+        0.5506221882199698,
+        1.274654486936937
+      ],
+      "r_squared": 0.29624314750719116,
+      "observations": 60
+    },
+    "ULVR vs FTSE 100, 2y weekly": {
+      "beta": 0.43316955287692305,
+      "std_error": 0.14635843799569537,
+      "ci95": [
+        0.14630701440536015,
+        0.7200320913484859
+      ],
+      "r_squared": 0.07908593410705615,
+      "observations": 104
+    },
+    "ULVR vs FTSE 100, 5y weekly": {
+      "beta": 0.5365129635305416,
+      "std_error": 0.08365341236957298,
+      "ci95": [
+        0.3725522752861785,
+        0.7004736517749046
+      ],
+      "r_squared": 0.13704998549421854,
+      "observations": 261
+    },
+    "Peer median, 5y monthly vs home index (raw, not relevered)": {
+      "beta": 0.4471227578248469
+    }
+  },
+  "base_inside_each_95pct_interval": {
+    "ULVR vs FTSE 100, 5y monthly": true,
+    "ULVR vs FTSE 100, 2y weekly": false,
+    "ULVR vs FTSE 100, 5y weekly": false
+  },
+  "recommended_beta": 0.8844
+}
