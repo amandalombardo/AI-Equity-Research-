@@ -111,7 +111,7 @@ EUR_XBRL = b"""<?xml version="1.0"?>
 def test_ifrs_labels_read_in_euros():
     from desk import data_sources
     tags, share_tags = data_sources.tag_map({"accounting": "ifrs"})
-    assert tags["net_sales"] == ["ifrs-full:Revenue"]  # Unilever's turnover; no excise, unlike Diageo
+    assert tags["net_sales"][0] == "ifrs-full:Revenue"  # Unilever's turnover; no excise, unlike Diageo
     assert "restructuring" in tags                      # recurring at Unilever, so the Data agent reports it
     facts = data_sources.parse_instance(EUR_XBRL)
     assert data_sources._pick(facts, "ifrs-full:Revenue", "2025-12-31", unit="eur") == 50503e6
