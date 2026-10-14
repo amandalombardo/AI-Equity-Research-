@@ -79,3 +79,23 @@ def test_euro_excel_formulas_match_python(tmp_path):
             assert r[1] == pytest.approx(r[2], rel=1e-9), r[0]
             checked += 1
     assert checked == 14  # includes the pence line
+
+
+EUR_XBRL = b"""<?xml version="1.0"?>
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:ifrs-full="https://xbrl.ifrs.org/taxonomy/2025-03-27/ifrs-full">
+  <xbrli:context id="FY25"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000217410</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:startDate>2025-01-01</xbrli:startDate><xbrli:endDate>2025-12-31</xbrli:endDate></xbrli:period></xbrli:context>
+  <xbrli:unit id="EUR"><xbrli:measure>iso4217:EUR</xbrli:measure></xbrli:unit>
+  <ifrs-full:Revenue contextRef="FY25" unitRef="EUR" decimals="-6">50503000000</ifrs-full:Revenue>
+</xbrli:xbrl>"""
+
+
+def test_ifrs_labels_read_in_euros():
+    from desk import data_sources
+    tags, share_tags = data_sources.tag_map({"accounting": "ifrs"})
+    assert tags["net_sales"] == ["ifrs-full:Revenue"]  # Unilever's turnover; no excise, unlike Diageo
+    assert "restructuring" in tags                      # recurring at Unilever, so the Data agent reports it
+    facts = data_sources.parse_instance(EUR_XBRL)
+    assert data_sources._pick(facts, "ifrs-full:Revenue", "2025-12-31", unit="eur") == 50503e6
+    assert data_sources._pick(facts, "ifrs-full:Revenue", "2025-12-31") is None  # never read euros as dollars
+    assert units.money_key("value", "EUR") == "value_meur"  # financials_raw.csv column for a euro reporter

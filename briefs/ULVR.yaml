@@ -1,0 +1,137 @@
+# PM assumptions for Unilever PLC. Source of truth: phase5/brief-unilever.md (docs/phase5/), every decision agreed by
+# Amanda on 13-14 Oct 2026 (decisions 1-9). Code must read every assumption from here. Nothing is hard-coded.
+# Fields set to null are filled in by an agent from a cited source, then reviewed by the PM.
+# All money amounts are EUR m (Unilever reports in euros); the share price is in pence (GBp).
+
+company:
+  name: Unilever PLC
+  ticker: ULVR
+  price_ticker: ULVR.L       # London listing, quoted in pence (GBp). NYSE ADR UL: 1 ADR = 1 share (not used for value).
+  price_currency: GBp
+  sec_cik: "0000217410"
+  accounting: ifrs           # standard IFRS XBRL labels (desk/data_sources.py IFRS_TAGS)
+  annual_form: 20-F
+  reporting_currency: EUR    # cash flows in euros; converted to pence only at the end (EUR per GBP on the run date)
+  fiscal_year_end_month: 12  # calendar year: FY25 = 1 Jan to 31 Dec 2025
+  benchmark_index: "^FTSE"   # FTSE 100 (brief section 4)
+
+base_year:                   # FY25, the latest audited year (20-F accession 0000217410-26-000007, filed 12 Mar 2026),
+  fiscal_year: 2025          # continuing operations, i.e. without Ice Cream (demerged 6 Dec 2025)
+  net_sales_meur: 50503      # turnover, FY25 results 6-K (0001654954-26-001155)
+  underlying_operating_profit_meur: 10084   # non-GAAP, 20.0% margin
+  restructuring_meur: 599
+  # Foods sale perimeter (decision 1, agreed 14 Oct 2026): the DCF values Unilever WITHOUT the business sold to McCormick.
+  # Form 425 investor presentation (0000217410-26-000027): perimeter FY25 sales EUR 10.7bn, UOP EUR 2.6bn.
+  ex_perimeter_net_sales_meur: null              # Data agent: 50,503 - 10,700 = 39,803, with both sources
+  ex_perimeter_underlying_operating_profit_meur: null   # Data agent: 10,084 - 2,600 = 7,484 (18.8%)
+
+dcf:
+  currency: EUR
+  forecast_years: [2026, 2027, 2028, 2029, 2030]
+  # Revenue growth in EUROS, ex-perimeter (decision 2, agreed 13 Oct 2026). FY26 +0.5% = H1 2026 reported turnover change
+  # (USG 4.8% less 4.9% currency, H1 2026 6-K 0000217410-26-000057). FY27-30 1.6% = low end of the 4-6% USG range less
+  # the FY17-25 average currency drag of 2.4 points. Evidence: docs/phase5/ulvr-growth-evidence.md.
+  organic_growth: [0.005, 0.016, 0.016, 0.016, 0.016]
+  savings:                           # no savings programme modelled: margin held flat instead
+    cumulative_meur: [0.0, 0.0, 0.0, 0.0, 0.0]
+    flow_through: 0.0
+  # Operating margin (decision 3, agreed 13 Oct 2026, re-confirmed after mistakes row 19): 17.7% flat = ex-perimeter
+  # underlying 18.8% less 1.1% recurring restructuring (FY23-25 actual average, 20-F XBRL ExpenseOfRestructuringActivities).
+  # Management's 0.6% guide is not used: never achieved in ten years. Evidence: docs/phase5/ulvr-margin-evidence.md.
+  base_margin: 0.177
+  base_margin_rule: ex_perimeter_underlying_margin_less_recurring_restructuring_held_flat
+  # Tax (decision 9, agreed 13 Oct 2026): 26.0% = H1 2026 underlying ETR and management's "around 26%" guide for 2025
+  # and 2026; FY25's 25.7% was helped by one-off settlements (mistakes row 21). Evidence: docs/phase5/ulvr-stake-tax-check.md.
+  tax_rate: 0.260
+  # Capex and D&A (sign-off of items G-L, agreed 13 Oct 2026): FY25 actuals, 1,417 and 1,310 on 50,503 (20-F XBRL).
+  # FY25 rather than an average because capex has risen every year since FY23 (2.3%, 2.6%, 2.8%).
+  capex_pct_sales: 0.028
+  da_pct_sales: 0.026
+  nwc_pct_sales: null               # Data agent: FY25 (inventories + trade receivables - trade payables) / turnover
+  terminal_growth: 0.016            # decision 6, agreed 13 Oct 2026: matches the FY27-30 forecast (not the portfolio's 2.0%)
+  terminal_capex_pct_sales: null
+  # Terminal RONIC (sign-off, agreed 13 Oct 2026): FY25 ROIC after restructuring = (10,084 - 599) x (1 - 26.0%) / average
+  # invested capital 39,502 (FY25 results 6-K ROIC reconciliation) = 17.8%. Unilever's own underlying ROIC 19.0% ignores
+  # restructuring. FLAG: the ex-perimeter ROIC is not disclosed.
+  terminal_ronic: 0.178
+  # Cash timing (sign-off): mid-year. H1 2025 FCF was EUR 1.1bn of 5.9bn (19%): cash arrives at about 0.65 of a year.
+  mid_year_convention: true
+  # Value at the 31 Dec 2025 balance sheet date, then roll forward at the cost of equity less dividends that went ex.
+  valuation_basis: balance_sheet_date
+  wacc:
+    # Risk-free (decision 7, agreed 13 Oct 2026): German 10-year Bund, because the cash flows are in euros (mistakes
+    # row 20). Data agent: FRED IRLTLT01DEM156N, latest month (3.18% for Aug 2026).
+    risk_free: null
+    equity_risk_premium: 0.050
+    # Risk agent. PM rule (sign-off, same as Diageo): BOTTOM-UP beta from Damodaran's GLOBAL Household Products industry,
+    # unlevered beta corrected for cash 0.7741 (588 firms, file dated 5 Jan 2026; uploaded by the PM 14 Oct 2026, saved at
+    # /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls, sheet "Industry Averages"), relevered at Unilever's market
+    # D/E and the 26.0% tax rate. Unilever's own regressions vs the FTSE 100 are the cross-check.
+    beta: null
+    pre_tax_cost_of_debt: null      # Data agent: historic cost, for reference only
+    credit_spread: 0.0070           # sign-off: Unilever is rated A+/A1 (FY25 20-F), so cost of debt = Bund + the ICE BofA
+                                    # single-A spread, 0.70% on 12 Oct 2026 (FRED BAMLC0A3CA)
+    target_debt_weight: null        # market value: net debt / (net debt + market cap)
+  bridge:                           # all EUR m, at 31 Dec 2025 unless stated, Data agent fills from the FY25 20-F
+    net_debt_meur: null             # Unilever's net debt 23.1bn. State whether lease liabilities (1,326) are inside.
+    lease_liabilities_meur: null    # only if NOT already inside net debt
+    # Minorities (decision 4, agreed 13 Oct 2026): proportionate (Diageo rule) = minorities' share of profit x DCF value,
+    # ratio for the business that remains after Foods is sold (Fundamentals agent). Book 2,057 (HUL 1,569) for reference.
+    # Bear line: 38% of Hindustan Unilever at market. Evidence: docs/phase5/ulvr-minorities-evidence.md.
+    minority_interests_meur: null
+    minorities_method: proportionate
+    pension_deficit_meur: 0         # FY25: a net SURPLUS of EUR 3.5bn (20-F); not added (same rule as Diageo: 0 if surplus)
+    # Listed stakes (item E, agreed 13 Oct 2026): 19.85% of The Magnum Ice Cream Company = 121,604,413 shares (TMICC
+    # 424(b)(4), 13 Apr 2026) at the run-date MICC.AS price; other associates/JVs at book. Data agent re-checks for any
+    # sell-down. Evidence: docs/phase5/ulvr-stake-tax-check.md.
+    associates_meur: null
+    # Foods sale to McCormick (decision 1, agreed 14 Oct 2026): consideration at TODAY's market value =
+    # USD 15.7bn cash + the McCormick shares received by Unilever and its shareholders (65% of the enlarged company:
+    # McCormick's 269.06m shares = 35%, McCormick 10-Q to 31 Aug 2026) x the run-date MKC price, converted at the run-date
+    # EUR/USD rate. Tax on the cash (decision 5): MISSING, NOT deducted; the memo states each EUR 1bn = c.39p a share.
+    disposal_proceeds_meur: null
+    # One-off restructuring for stranded costs (decision 3): c.EUR 500m over 2027-29 (Form 425, 0000217410-26-000027).
+    restructuring_cash_meur: 500
+  shares_outstanding_m: null        # Data agent: shares with voting rights, latest 6-K (2,154.3m on 31 Aug 2026)
+  # FLAG for the valuation agent (not a PM decision; report the size of each in notes.md): the Foods consideration is
+  # received at closing (expected mid-2027) while the base case uses today's value; and Foods' own cash flows until closing
+  # belong to Unilever but are outside the ex-perimeter DCF. The two partly offset.
+
+scenarios:
+  bear:
+    organic_growth: [0.005, 0.002, 0.002, 0.002, 0.002]   # FY26 as base; then 0.2%, the FY17-25 record excluding FY22
+    # The engine's bear line moves growth and WACC only. The Bear agent also tests a 16.2% margin (the c.17.3% 2023 level
+    # less 1.1% restructuring, decision 3).
+    bear_agent_margin: 0.162
+    flow_through: 0.0
+    wacc_shift: 0.01
+    # Also to be quantified by the Bear agent (brief decisions 1, 4, 5): the deal FAILS and Foods stays in the DCF;
+    # tax on the Foods cash at 25% of the cash (c.EUR 3.5bn, c.137p); minorities at 38% of HUL's market value.
+
+comps:
+  peers:
+    - {name: Procter & Gamble, ticker: PG, fy_end_month: 6, source: SEC EDGAR}
+    - {name: Colgate-Palmolive, ticker: CL, fy_end_month: 12, source: SEC EDGAR}
+    - {name: Kimberly-Clark, ticker: KMB, fy_end_month: 12, source: SEC EDGAR}
+    - {name: Reckitt Benckiser, ticker: RKT.L, fy_end_month: 12, source: annual report + yfinance (flag)}
+    - {name: Beiersdorf, ticker: BEI.DE, fy_end_month: 12, source: annual report + yfinance (flag)}
+    - {name: L'Oreal, ticker: OR.PA, fy_end_month: 12, source: annual report + yfinance (flag)}
+    - {name: Henkel, ticker: HEN3.DE, fy_end_month: 12, source: annual report + yfinance (flag)}
+  optional_peers:
+    - {name: Hindustan Unilever, ticker: HINDUNILVR.NS, fy_end_month: 3, note: Unilever's 62%-owned Indian subsidiary, show separately}
+  multiples: [ev_ebitda_ntm, ev_ebitda_ltm, pe_ntm, fcf_yield]
+  statistic: median
+
+rating:
+  buy_if_upside_at_least: 0.15     # sign-off, same rule as the rest of the portfolio
+  sell_if_downside_at_least: 0.10
+
+checks:
+  data_tie_out_tolerance: 0.005
+  excel_match_tolerance: 0.02
+  published_fy25:                  # FY25 results 6-K, 12 Feb 2026 (continuing operations)
+    net_sales_meur: 50503
+    underlying_operating_profit_meur: 10084
+    underlying_operating_margin: 0.200
+    free_cash_flow_meur: 5900
+    net_debt_meur: 23100

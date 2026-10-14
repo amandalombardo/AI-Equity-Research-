@@ -15,7 +15,8 @@ query2.finance.yahoo.com, fc.yahoo.com, fred.stlouisfed.org.
 If a download fails, functions raise. The Data agent must report the failure and never
 replace missing data with estimates.
 
-Which XBRL labels are read is set by the brief: company.accounting = "diageo_ifrs" (default) or "us_gaap".
+Which XBRL labels are read is set by the brief: company.accounting = "diageo_ifrs" (default), "ifrs" (standard IFRS labels, e.g. Unilever) or "us_gaap".
+Amounts are read in the reporting currency (company.reporting_currency) and the output column says which.
 
 Usage: python -m desk.data_sources briefs/<TICKER>.yaml runs/<TICKER>/<date>/data
 """
@@ -34,7 +35,7 @@ import pandas as pd
 import requests
 import yaml
 
-from desk.units import fx_key, price_currency, reporting_currency
+from desk.units import fx_key, money_key, price_currency, reporting_currency
 
 # SEC asks automated requests to identify themselves with a contact.
 # Set SEC_CONTACT_EMAIL in the environment; SEC refuses requests without a real contact (HTTP 403).
@@ -145,7 +146,43 @@ SHARE_TAGS = {
                                 "ifrs-full:TypesOfSharebasedPaymentArrangementsAxis=deo:EmployeeShareTrustsMember"),
     "weighted_average_shares_m": ("ifrs-full:WeightedAverageShares", ""),
 }
-TAG_MAPS = {"diageo_ifrs": (TAGS, SHARE_TAGS), "us_gaap": (US_GAAP_TAGS, US_GAAP_SHARE_TAGS)}
+# Companies filing a 20-F with standard IFRS labels only (written for Unilever, FY25 20-F; checked against its XBRL file).
+# Traps: Unilever's "turnover" is ifrs-full:Revenue (no excise, unlike Diageo). Operating profit here is REPORTED, after
+# restructuring; the forecast base uses underlying operating profit (non-GAAP, results 6-K), which has no XBRL tag.
+IFRS_TAGS = {
+    "net_sales": ["ifrs-full:Revenue"],
+    "operating_profit_reported": ["ifrs-full:ProfitLossFromOperatingActivities"],
+    "restructuring": ["ifrs-full:ExpenseOfRestructuringActivities"],
+    "depreciation_amortisation": ["ifrs-full:DepreciationAndAmortisationExpense"],
+    "share_of_associates_profit": ["ifrs-full:ShareOfProfitLossOfAssociatesAndJointVenturesAccountedForUsingEquityMethod"],
+    "net_finance_charges": ["ifrs-full:FinanceIncomeCost"],
+    "profit_before_tax": ["ifrs-full:ProfitLossBeforeTax"],
+    "income_tax": ["ifrs-full:IncomeTaxExpenseContinuingOperations"],
+    "net_profit_to_owners": ["ifrs-full:ProfitLossAttributableToOwnersOfParent"],
+    "operating_cash_flow": ["ifrs-full:CashFlowsFromUsedInOperatingActivities"],
+    "capex": ["ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"],
+    "capex_intangibles": ["ifrs-full:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities"],
+    "dividends_paid_to_shareholders": ["ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities"],
+    "inventories": ["ifrs-full:Inventories"],
+    "trade_and_other_receivables": ["ifrs-full:TradeAndOtherCurrentReceivables"],
+    "trade_and_other_payables": ["ifrs-full:TradeAndOtherCurrentPayables"],
+    "cash": ["ifrs-full:CashAndCashEquivalents"],
+    "other_current_financial_assets": ["ifrs-full:OtherCurrentFinancialAssets"],
+    "gross_borrowings": ["ifrs-full:Borrowings"],
+    "lease_liabilities": ["ifrs-full:LeaseLiabilities"],
+    "non_controlling_interests": ["ifrs-full:NoncontrollingInterests"],
+    "investments_in_associates": ["ifrs-full:InvestmentAccountedForUsingEquityMethod"],
+    "post_employment_net_liability": ["ifrs-full:LiabilityAssetOfDefinedBenefitPlans"],  # negative = surplus
+    "equity_total": ["ifrs-full:Equity"],
+    "equity_to_owners": ["ifrs-full:EquityAttributableToOwnersOfParent"],
+    "assets_held_for_sale": ["ifrs-full:NoncurrentAssetsOrDisposalGroupsClassifiedAsHeldForSale"],
+    "liabilities_held_for_sale": ["ifrs-full:LiabilitiesIncludedInDisposalGroupsClassifiedAsHeldForSale"],
+}
+IFRS_SHARE_TAGS = {
+    "weighted_average_shares_m": ("ifrs-full:WeightedAverageShares", ""),
+}
+TAG_MAPS = {"diageo_ifrs": (TAGS, SHARE_TAGS), "ifrs": (IFRS_TAGS, IFRS_SHARE_TAGS),
+            "us_gaap": (US_GAAP_TAGS, US_GAAP_SHARE_TAGS)}
 
 
 def tag_map(company: dict) -> tuple[dict, dict]:
@@ -228,9 +265,11 @@ def _pick(facts: pd.DataFrame, tag: str, end: str, dims: str = "", unit: str = "
 
 
 def financials(cik: str, years: int = 5, form_type: str = "20-F", tags: dict | None = None,
-               share_tags: dict | None = None) -> pd.DataFrame:
-    """Line items for the last `years` fiscal years. Each year is taken from the newest annual report that
-    reports it, so restated comparatives win over the originally filed figure."""
+               share_tags: dict | None = None, currency: str = "USD") -> pd.DataFrame:
+    """Line items for the last `years` fiscal years, in millions of `currency` (the reporting currency; column
+    value_m<currency>, e.g. value_musd). Each year is taken from the newest annual report that reports it, so
+    restated comparatives win over the originally filed figure."""
+    col = money_key("value", currency)
     tags = TAGS if tags is None else tags
     share_tags = SHARE_TAGS if share_tags is None else share_tags
     reports = annual_reports(cik, years, form_type)
@@ -246,9 +285,9 @@ def financials(cik: str, years: int = 5, form_type: str = "20-F", tags: dict | N
                 if (item, fy) in seen:
                     continue
                 for tag in candidates:
-                    v = _pick(facts, tag, end)
+                    v = _pick(facts, tag, end, unit=currency.lower())
                     if v is not None:
-                        rows.append({"item": item, "fiscal_year": fy, "value_musd": v / 1e6, "tag": tag,
+                        rows.append({"item": item, "fiscal_year": fy, col: v / 1e6, "tag": tag,
                                      "source": f"SEC EDGAR {rep['form']} accession {rep['accession']} filed {rep['filed']} ({rep['document']})"})
                         seen.add((item, fy))
                         break
@@ -257,7 +296,7 @@ def financials(cik: str, years: int = 5, form_type: str = "20-F", tags: dict | N
                     continue
                 v = _pick(facts, tag, end, dims, unit="shares")
                 if v is not None:
-                    rows.append({"item": item, "fiscal_year": fy, "value_musd": v / 1e6, "tag": f"{tag} [{dims}]".replace(" []", ""),
+                    rows.append({"item": item, "fiscal_year": fy, col: v / 1e6, "tag": f"{tag} [{dims}]".replace(" []", ""),
                                  "source": f"SEC EDGAR {rep['form']} accession {rep['accession']} filed {rep['filed']} ({rep['document']})"})
                     seen.add((item, fy))
     out = pd.DataFrame(rows).sort_values(["item", "fiscal_year"]).reset_index(drop=True)
@@ -322,14 +361,15 @@ def main(brief_path: str, out_dir: str) -> None:
     out.mkdir(parents=True, exist_ok=True)
 
     tags, share_tags = tag_map(co)
-    fin = financials(co["sec_cik"], form_type=co.get("annual_form", "20-F"), tags=tags, share_tags=share_tags)
+    rep = reporting_currency(co)
+    fin = financials(co["sec_cik"], form_type=co.get("annual_form", "20-F"), tags=tags, share_tags=share_tags,
+                     currency=rep)
     fin.to_csv(out / "financials_raw.csv", index=False)
 
     ticker, ccy = price_ticker(co), price_currency(co)
     px = pd.concat([prices(ticker), prices(co["benchmark_index"])], axis=1, sort=True)
     px.to_csv(out / "prices.csv")
 
-    rep = reporting_currency(co)
     # the risk-free rate is in the currency of the cash flows (the reporting currency), not of the share price
     rf_id, rf_name = RISK_FREE[rep]
     rf = fred_series(rf_id)
