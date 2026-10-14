@@ -1,0 +1,25 @@
+# ILLUSTRATIVE TEST VALUES ONLY. Not Unilever data. A euro reporter priced in London pence.
+base_sales: {value: 40000, source: test fixture}
+base_margin: {value: 0.18, source: test fixture}
+tax_rate: {value: 0.257, source: test fixture}
+da_pct_sales: {value: 0.026, source: test fixture}
+capex_pct_sales: {value: 0.028, source: test fixture}
+nwc_pct_sales: {value: -0.05, source: test fixture}
+risk_free: {value: 0.032, source: test fixture}
+beta: {value: 0.7, source: test fixture}
+pre_tax_cost_of_debt: {value: 0.039, source: test fixture}
+debt_weight: {value: 0.17, source: test fixture}
+net_debt: {value: 23000, source: test fixture}
+lease_liabilities: {value: 0, source: test fixture}
+minority_interests: {value: 2000, source: test fixture}
+pension_deficit: {value: 0, source: test fixture}
+associates: {value: 2000, source: test fixture}
+disposal_proceeds: {value: 34000, source: test fixture}
+restructuring_cash: {value: 500, source: test fixture}
+shares_outstanding_m: {value: 2150, source: test fixture}
+fx_eur_per_gbp: {value: 1.1834, source: test fixture}
+share_price_gbp_pence: {value: 4700, source: test fixture}
+stub_years: {value: 0.78, source: test fixture}
+dividends_ex_before_valuation_meur: {value: 3000, source: test fixture}
+buybacks_after_balance_sheet_meur: {value: 1500, source: test fixture}
+priced_at_valuation_date_meur: {value: 30000, source: test fixture}

@@ -201,40 +201,46 @@ def minorities_deducted(enterprise_value: float, b: Bridge) -> float:
     return b.minority_share_of_ev * enterprise_value
 
 
-def roll_forward(equity_value: float, cost_of_equity: float, years: float, dividends: float = 0.0) -> float:
+def roll_forward(equity_value: float, cost_of_equity: float, years: float, dividends: float = 0.0,
+                 buybacks: float = 0.0, priced_at_valuation_date: float = 0.0) -> float:
     """Equity value at the balance sheet date carried forward to the valuation date.
 
     Shareholders expect to earn the cost of equity, so value grows at Ke until the valuation date,
-    less any dividend that went ex in between (that cash belongs to the previous holders).
+    less any dividend that went ex in between (that cash belongs to the previous holders), and less the cash spent
+    buying back shares in between (the sellers took that cash; the share count used is after the buyback).
+    Items in the bridge already priced at the valuation date (e.g. listed stakes at today's share price) are not grown:
+    growing them at Ke as well would count the time between the two dates twice.
     """
     if years < 0:
         raise ValuationError("roll-forward period must not be negative")
-    return equity_value * (1 + cost_of_equity) ** years - dividends
+    grown = (equity_value - priced_at_valuation_date) * (1 + cost_of_equity) ** years
+    return grown + priced_at_valuation_date - dividends - buybacks
 
 
-def equity_bridge(enterprise_value: float, b: Bridge, shares_m: float, fx_usd_per_gbp: float | None,
-                  roll: dict | None = None) -> dict:
-    """EV -> equity value -> value per share in USD and, for a London price, pence (GBp).
+def equity_bridge(enterprise_value: float, b: Bridge, shares_m: float, fx_per_gbp: float | None,
+                  roll: dict | None = None, reporting_currency: str = "USD") -> dict:
+    """EV -> equity value -> value per share in the reporting currency (USD or EUR) and, for a London price, pence.
 
     Equity = EV - net debt - leases - minorities (see minorities_deducted) - pension deficit - restructuring cash
              - contingent liabilities + associates + disposal proceeds.
-    If `roll` is given ({cost_of_equity, years, dividends}), EV and the bridge are at the balance sheet date
+    If `roll` is given ({cost_of_equity, years, dividends, buybacks, priced_at_valuation_date}), EV and the bridge are at the balance sheet date
     and the equity value is rolled forward to the valuation date (see roll_forward).
-    Per share (GBp) = equity (USD) / shares / (USD per GBP) x 100. With no FX rate (a US-dollar share price),
-    only the USD figure is produced.
+    Per share (GBp) = equity (reporting currency) / shares / (reporting currency per GBP) x 100. With no FX rate
+    (a US-dollar share price for a US-dollar reporter), only the reporting-currency figure is produced.
     """
-    if shares_m <= 0 or (fx_usd_per_gbp is not None and fx_usd_per_gbp <= 0):
+    if shares_m <= 0 or (fx_per_gbp is not None and fx_per_gbp <= 0):
         raise ValuationError("shares and FX rate must be positive")
     minorities = minorities_deducted(enterprise_value, b)
     equity_bs = (enterprise_value - b.net_debt - b.lease_liabilities - minorities - b.pension_deficit
                  - b.restructuring_cash - b.contingent_liabilities + b.associates + b.disposal_proceeds)
     equity = equity_bs if roll is None else roll_forward(equity_bs, roll["cost_of_equity"], roll["years"],
-                                                         roll.get("dividends", 0.0))
-    per_share_usd = equity / shares_m
-    per_share_gbp = None if fx_usd_per_gbp is None else per_share_usd / fx_usd_per_gbp
+                                                         roll.get("dividends", 0.0), roll.get("buybacks", 0.0),
+                                                         roll.get("priced_at_valuation_date", 0.0))
+    per_share = equity / shares_m
+    per_share_gbp = None if fx_per_gbp is None else per_share / fx_per_gbp
     return {"enterprise_value": enterprise_value, "minorities_deducted": minorities,
             "equity_value_balance_sheet_date": equity_bs, "equity_value": equity,
-            "per_share_usd": per_share_usd, "per_share_gbp": per_share_gbp,
+            f"per_share_{reporting_currency.lower()}": per_share, "per_share_gbp": per_share_gbp,
             "per_share_gbp_pence": None if per_share_gbp is None else per_share_gbp * 100}
 
 

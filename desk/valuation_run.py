@@ -17,17 +17,23 @@ import yaml
 from desk import dcf
 from desk.excel_export import write_dcf_workbook
 from desk.rating import rating
-from desk.units import per_share_key, price_currency, share_price_key
+from desk.units import fx_key, money_key, per_share_key, price_currency, reporting_currency, share_price_key
 
 REQUIRED = ["base_sales", "base_margin", "tax_rate", "da_pct_sales", "capex_pct_sales", "nwc_pct_sales",
             "risk_free", "beta", "pre_tax_cost_of_debt", "debt_weight", "net_debt", "shares_outstanding_m",
             "stub_years"]
-# the share price, and for a London price the FX rate, depend on the brief's company.price_currency
-PRICE_INPUTS = {"GBp": ["fx_usd_per_gbp", "share_price_gbp_pence"], "USD": ["share_price_usd"]}
 OPTIONAL_BRIDGE = ["lease_liabilities", "minority_interests", "pension_deficit", "associates", "disposal_proceeds",
                    "restructuring_cash"]
 # needed only when the brief values the company at its balance sheet date and rolls forward
-ROLL_FORWARD = ["dividends_ex_before_valuation_musd"]
+# (in millions of the reporting currency: dividends_ex_before_valuation_musd or _meur)
+DIVIDENDS = "dividends_ex_before_valuation"
+# needed only when the brief's bridge lists buybacks_after_balance_sheet_m<ccy> (e.g. Unilever's 2026 buyback): cash
+# spent on buybacks between the balance sheet date and the run date, when the share count is after the buyback
+BUYBACKS = "buybacks_after_balance_sheet"
+# needed only when the brief's bridge lists priced_at_valuation_date_m<ccy>: the part of associates and disposal proceeds
+# already valued at the run date (e.g. listed stakes at today's price), which the roll-forward must not grow again
+PRICED_NOW = "priced_at_valuation_date"
+ROLL_FORWARD = [money_key(DIVIDENDS, "USD")]
 # needed only when the brief values minorities proportionately (bridge.minorities_method: proportionate)
 PROPORTIONATE = ["minority_share_of_operating_profit"]
 # needed only when the brief lists contingent liabilities in its bridge (e.g. Coca-Cola's IRS case, assumed lost)
@@ -73,29 +79,63 @@ def proportionate_minorities(brief: dict) -> bool:
 
 
 def has_contingent_liabilities(brief: dict) -> bool:
-    """True if the brief's bridge has a contingent_liabilities_musd line, so the agent must supply a sourced value."""
-    return "contingent_liabilities_musd" in brief["dcf"]["bridge"]
+    """True if the brief's bridge has a contingent_liabilities_musd (or _meur) line, so the agent must supply a sourced value."""
+    bridge = brief["dcf"]["bridge"]
+    return "contingent_liabilities_musd" in bridge or money_key("contingent_liabilities", reporting_currency(brief["company"])) in bridge
+
+
+def buybacks_key(brief: dict) -> str | None:
+    """The buyback input name if the brief's bridge lists buybacks (rolled-forward valuations only), else None."""
+    key = money_key(BUYBACKS, reporting_currency(brief["company"]))
+    return key if rolls_forward(brief) and key in brief["dcf"]["bridge"] else None
+
+
+def priced_now_key(brief: dict) -> str | None:
+    """The input name for bridge items already priced at the valuation date, if the brief's bridge lists it."""
+    key = money_key(PRICED_NOW, reporting_currency(brief["company"]))
+    return key if rolls_forward(brief) and key in brief["dcf"]["bridge"] else None
+
+
+def price_inputs(company: dict) -> list:
+    """The share price and, for a London price, the FX rate (reporting currency per GBP) from the brief's company."""
+    if price_currency(company) == "GBp":
+        return [fx_key(reporting_currency(company)), "share_price_gbp_pence"]
+    per_share_key(price_currency(company), reporting_currency(company))  # refuses a USD price for a EUR reporter
+    return ["share_price_usd"]
+
+
+def dividends_key(brief: dict) -> str:
+    return money_key(DIVIDENDS, reporting_currency(brief["company"]))
 
 
 def extra_required(brief: dict) -> list:
-    return (PRICE_INPUTS[price_currency(brief["company"])]
-            + (ROLL_FORWARD if rolls_forward(brief) else []) + (PROPORTIONATE if proportionate_minorities(brief) else [])
-            + (CONTINGENT if has_contingent_liabilities(brief) else []))
+    return (price_inputs(brief["company"])
+            + ([dividends_key(brief)] if rolls_forward(brief) else []) + (PROPORTIONATE if proportionate_minorities(brief) else [])
+            + (CONTINGENT if has_contingent_liabilities(brief) else [])
+            + ([buybacks_key(brief)] if buybacks_key(brief) else [])
+            + ([priced_now_key(brief)] if priced_now_key(brief) else []))
 
 
 def fx_rate(brief: dict, v: dict) -> float | None:
-    """USD per GBP for a London price; None for a US-dollar price (no conversion needed)."""
-    return v["fx_usd_per_gbp"] if price_currency(brief["company"]) == "GBp" else None
+    """Reporting currency per GBP (USD or EUR per GBP) for a London price; None for a US-dollar price."""
+    co = brief["company"]
+    return v[fx_key(reporting_currency(co))] if price_currency(co) == "GBp" else None
+
+
+def savings_m(d: dict, rep: str) -> list:
+    """Announced savings per forecast year, in millions of the reporting currency (cumulative_musd or _meur)."""
+    return d["savings"].get(money_key("cumulative", rep), d["savings"].get("cumulative_musd"))
 
 
 def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) -> dict:
     d = brief["dcf"]
+    rep = reporting_currency(brief["company"])
     roll = rolls_forward(brief)
     w = dcf.wacc(dcf.WaccInputs(risk_free=v["risk_free"], equity_risk_premium=d["wacc"]["equity_risk_premium"],
                                 beta=v["beta"], pre_tax_cost_of_debt=v["pre_tax_cost_of_debt"],
                                 tax_rate=v["tax_rate"], debt_weight=v["debt_weight"]))
     inp = dcf.DcfInputs(base_sales=v["base_sales"], base_margin=v["base_margin"],
-                        growth=growth or d["organic_growth"], cumulative_savings=d["savings"]["cumulative_musd"],
+                        growth=growth or d["organic_growth"], cumulative_savings=savings_m(d, rep),
                         flow_through=d["savings"]["flow_through"] if flow_through is None else flow_through,
                         tax_rate=v["tax_rate"], da_pct_sales=v["da_pct_sales"], capex_pct_sales=v["capex_pct_sales"],
                         nwc_pct_sales=v["nwc_pct_sales"], wacc=w["wacc"] + wacc_shift,
@@ -114,11 +154,14 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
                         contingent_liabilities=v["contingent_liabilities"] if has_contingent_liabilities(brief) else 0.0,
                         minority_share_of_ev=v["minority_share_of_operating_profit"] if proportionate_minorities(brief) else None)
     roll_args = ({"cost_of_equity": w["cost_of_equity"], "years": v["stub_years"],
-                  "dividends": v["dividends_ex_before_valuation_musd"]} if roll else None)
-    eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], fx_rate(brief, v), roll_args)
+                  "dividends": v[dividends_key(brief)],
+                  "buybacks": v[buybacks_key(brief)] if buybacks_key(brief) else 0.0,
+                  "priced_at_valuation_date": v[priced_now_key(brief)] if priced_now_key(brief) else 0.0}
+                 if roll else None)
+    eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], fx_rate(brief, v), roll_args, rep)
     ccy = price_currency(brief["company"])
     # fair value and share price in the same units: pence for a London price, US dollars for a US price
-    r = rating(eq[per_share_key(ccy)], v[share_price_key(ccy)], **brief["rating"])
+    r = rating(eq[per_share_key(ccy, rep)], v[share_price_key(ccy)], **brief["rating"])
     return {"wacc": {**w, "wacc_used": inp.wacc}, "inputs": inp, "dcf": val, "bridge": bridge.__dict__, "roll": roll_args,
             "equity": eq, "rating": r}
 
@@ -137,29 +180,32 @@ def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     w0, g0 = base["inputs"].wacc, base["inputs"].terminal_growth
     # not rounded, so the middle cell of the grid equals the base case exactly
     waccs = [w0 + s for s in (-0.01, -0.005, 0, 0.005, 0.01)]
-    growths = [0.015, 0.020, 0.025, 0.030]
+    # terminal growth around the brief's own rate (2.0% for Diageo and KO gives 1.5%, 2.0%, 2.5%, 3.0% as before)
+    growths = [g0 + s for s in (-0.005, 0, 0.005, 0.01)]
     grid_ev = dcf.sensitivity(base["inputs"], waccs, growths, brief["dcf"].get("terminal_ronic"))
     b = dcf.Bridge(**base["bridge"])
-    ccy = price_currency(brief["company"])
-    grid_px = [[None if ev is None else dcf.equity_bridge(ev, b, v["shares_outstanding_m"], fx_rate(brief, v), base["roll"])[per_share_key(ccy)]
+    ccy, rep = price_currency(brief["company"]), reporting_currency(brief["company"])
+    key = per_share_key(ccy, rep)
+    grid_px = [[None if ev is None else dcf.equity_bridge(ev, b, v["shares_outstanding_m"], fx_rate(brief, v), base["roll"], rep)[key]
                 for ev in row] for row in grid_ev]
 
     def summary(s):
-        return {"wacc": s["wacc"], "enterprise_value_musd": s["dcf"]["enterprise_value"],
+        return {"wacc": s["wacc"], money_key("enterprise_value", rep): s["dcf"]["enterprise_value"],
                 "tv_share_of_ev": s["dcf"]["tv_share_of_ev"],
                 "terminal_year": s["dcf"]["terminal_year"], "implied_exit_ev_ebitda": s["dcf"]["implied_exit_ev_ebitda"],
                 "equity": s["equity"], "rating": s["rating"],
                 "forecast": [{k: r[k] for k in ("year", "sales", "ebit", "ebit_margin", "ufcf", "pv")} for r in s["dcf"]["rows"]]}
 
     grid_name = {"GBp": "sensitivity_value_per_share_pence", "USD": "sensitivity_value_per_share_usd"}[ccy]
-    result = {"price_currency": ccy, "base": summary(base), "bear": summary(bear), "bridge_musd": base["bridge"],
+    result = {"price_currency": ccy, "reporting_currency": rep, "base": summary(base), "bear": summary(bear),
+              money_key("bridge", rep): base["bridge"],
               grid_name: {"wacc": waccs, "terminal_growth": growths, "grid": grid_px},
               "inputs": v, "sources": sources}
     (out / "valuation.json").write_text(json.dumps(result, indent=2, default=float))
     write_dcf_workbook(out / "dcf.xlsx", brief, v, sources, base)
     unit = {"GBp": "pence", "USD": "usd"}[ccy]
-    print(json.dumps({f"base_value_{unit}": base["equity"][per_share_key(ccy)], "base_rating": base["rating"]["rating"],
-                      f"bear_value_{unit}": bear["equity"][per_share_key(ccy)]}, indent=2))
+    print(json.dumps({f"base_value_{unit}": base["equity"][key], "base_rating": base["rating"]["rating"],
+                      f"bear_value_{unit}": bear["equity"][key]}, indent=2))
 
 
 if __name__ == "__main__":

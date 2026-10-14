@@ -57,7 +57,7 @@ def test_price_currency_from_brief():
 
 def test_bridge_without_fx_gives_usd_only_and_deducts_contingent_liabilities_by_hand():
     b = dcf.Bridge(net_debt=100, associates=50, contingent_liabilities=30)
-    eq = dcf.equity_bridge(1000, b, shares_m=10, fx_usd_per_gbp=None)
+    eq = dcf.equity_bridge(1000, b, shares_m=10, fx_per_gbp=None)
     # equity = EV - net debt - contingent liabilities + associates = 1000 - 100 - 30 + 50
     assert eq["equity_value"] == pytest.approx(920)
     assert eq["per_share_usd"] == pytest.approx(92)

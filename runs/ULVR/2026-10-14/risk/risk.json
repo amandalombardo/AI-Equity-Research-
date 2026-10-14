@@ -1,0 +1,223 @@
+{
+  "ticker": "ULVR.L",
+  "benchmark_index": "^FTSE",
+  "price_currency": "GBp (pence)",
+  "data": "runs/ULVR/2026-10-14/data/prices.csv, Yahoo dividend-adjusted daily closes, 2021-10-14 to 2026-10-13 (2026-10-14 intraday row dropped)",
+  "price_unit_check": {
+    "jumps_over_50x": [],
+    "largest_daily_moves": {
+      "2022-05-31": 0.09426388847100253,
+      "2026-07-28": 0.08018147382258678,
+      "2022-01-24": 0.0730612653050633,
+      "2026-03-31": 0.07276147671624333,
+      "2022-01-17": 0.06973190546631769
+    },
+    "demerger_window_gbp_pence": {
+      "2025-12-03": 4761.08154296875,
+      "2025-12-04": 4734.3515625,
+      "2025-12-05": 4764.2890625,
+      "2025-12-08": 4678.8115234375,
+      "2025-12-09": 4845.26953125,
+      "2025-12-10": 4818.7763671875,
+      "2025-12-11": 4852.267578125
+    },
+    "verdict": "No 100x jump: the series is in pence throughout. The 8-for-9 share consolidation at the Ice Cream demerger (FY25 20-F p.152/163) shows no break."
+  },
+  "own_regressions_vs_ftse100": {
+    "5y_monthly": {
+      "beta": 0.9126383375784534,
+      "r_squared": 0.29624314750719116,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.18470211701963446,
+      "ci95": [
+        0.5506221882199698,
+        1.274654486936937
+      ]
+    },
+    "2y_weekly": {
+      "beta": 0.43316955287692305,
+      "r_squared": 0.07908593410705615,
+      "observations": 104,
+      "frequency": "W",
+      "start": "2024-10-25",
+      "end": "2026-10-16",
+      "std_error": 0.14635843799569537,
+      "ci95": [
+        0.14630701440536015,
+        0.7200320913484859
+      ]
+    },
+    "5y_weekly": {
+      "beta": 0.5365129635305416,
+      "r_squared": 0.13704998549421854,
+      "observations": 261,
+      "frequency": "W",
+      "start": "2021-10-22",
+      "end": "2026-10-16",
+      "std_error": 0.08365341236957298,
+      "ci95": [
+        0.3725522752861785,
+        0.7004736517749046
+      ]
+    }
+  },
+  "blume_adjusted_5y_monthly": 0.9414676861775637,
+  "volatility_annualised": {
+    "ulvr_1y_daily": 0.2236147173807973,
+    "ulvr_5y_daily": 0.19163956446378036,
+    "ftse_1y_daily": 0.11633910827119631,
+    "ftse_5y_daily": 0.12538265160956152
+  },
+  "max_drawdown_5y_gbp_pence": {
+    "max_drawdown": -0.2546243862914146,
+    "peak_date": "2026-02-24",
+    "trough_date": "2026-06-04",
+    "peak_price": 5470.61083984375,
+    "trough_price": 4077.659912109375
+  },
+  "peer_betas_5y_monthly_home_index": {
+    "Procter & Gamble": {
+      "ticker": "PG",
+      "index": "^GSPC",
+      "beta": 0.3894715816635951,
+      "r_squared": 0.10594648238431927,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.14855944375988825,
+      "ci95": [
+        0.0982950718942141,
+        0.680648091432976
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (PG, ^GSPC), fetched 2026-10-14"
+    },
+    "Colgate-Palmolive": {
+      "ticker": "CL",
+      "index": "^GSPC",
+      "beta": 0.3393808535898322,
+      "r_squared": 0.07935381051429567,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.15178743700882155,
+      "ci95": [
+        0.04187747705254197,
+        0.6368842301271225
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (CL, ^GSPC), fetched 2026-10-14"
+    },
+    "Kimberly-Clark": {
+      "ticker": "KMB",
+      "index": "^GSPC",
+      "beta": 0.27481169355708746,
+      "r_squared": 0.03831435269104911,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.1807827683940912,
+      "ci95": [
+        -0.07952253249533126,
+        0.6291459196095062
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (KMB, ^GSPC), fetched 2026-10-14"
+    },
+    "Reckitt Benckiser": {
+      "ticker": "RKT.L",
+      "index": "^FTSE",
+      "beta": 0.800155705373763,
+      "r_squared": 0.1693376431616077,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.23269980479171407,
+      "ci95": [
+        0.34406408798200344,
+        1.2562473227655226
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (RKT.L, ^FTSE), fetched 2026-10-14"
+    },
+    "Beiersdorf": {
+      "ticker": "BEI.DE",
+      "index": "^GDAXI",
+      "beta": 0.4471227578248469,
+      "r_squared": 0.10534644248221349,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.17109223045154745,
+      "ci95": [
+        0.11178198613981388,
+        0.7824635295098799
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (BEI.DE, ^GDAXI), fetched 2026-10-14"
+    },
+    "L'Oreal": {
+      "ticker": "OR.PA",
+      "index": "^FCHI",
+      "beta": 0.8724800156591391,
+      "r_squared": 0.3726929877258511,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.1486298199654872,
+      "ci95": [
+        0.5811655685267842,
+        1.163794462791494
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (OR.PA, ^FCHI), fetched 2026-10-14"
+    },
+    "Henkel": {
+      "ticker": "HEN3.DE",
+      "index": "^GDAXI",
+      "beta": 0.6667268141992811,
+      "r_squared": 0.23614169078969058,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.15745410743716437,
+      "ci95": [
+        0.358116763622439,
+        0.9753368647761234
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (HEN3.DE, ^GDAXI), fetched 2026-10-14"
+    }
+  },
+  "peer_beta_errors": {},
+  "peer_median_beta_5y_monthly": 0.4471227578248469,
+  "leverage": {
+    "fy25": {
+      "net_debt_meur": 23076.0,
+      "uebitda_meur": 11394.0,
+      "ratio": 2.0252764612954186,
+      "company_reported": "2.0x",
+      "source": "Unilever FY25 results 6-K (0001654954-26-001155): net debt reconciliation 23,076; UEBITDA reconciliation 11,394 (operating profit 9,037 + D&A 1,310 + non-underlying items 1,047); text 'net debt / underlying EBITDA ratio of 2.0x'"
+    },
+    "jun26_ltm": {
+      "net_debt_meur": 25961.0,
+      "uebitda_ltm_meur": 11454.0,
+      "ratio": 2.2665444386240616,
+      "company_reported": "2.3x",
+      "source": "Unilever H1 2026 results 6-K (0000217410-26-000057): net debt EUR 26.0bn (25,961); UEBITDA H1 26 5,812, H1 25 5,752; text '2.3x', FY26 guide 'around 2x'"
+    },
+    "target": "c.2x net debt / UEBITDA (FY25 20-F 0000217410-26-000007 p.14, financial framework 'Debt ~2x net debt/EBITDA'; H1 2026 6-K: FY26 'around 2x')",
+    "rating": "A+/A1 long-term, A1/P1 short-term; aim at least A/A2 long term (FY25 20-F p.162, capital management; p.32)"
+  },
+  "valuation_beta": "NOT set here. See beta_evidence.json (bottom-up, PM rule in briefs/ULVR.yaml dcf.wacc.beta)."
+}

@@ -7,7 +7,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-from desk.units import price_currency, share_price_key
+from desk.units import fx_key, money_key, price_currency, reporting_currency, share_price_key
 
 BOLD = Font(bold=True)
 INPUT_FILL = PatternFill("solid", fgColor="FFF2CC")  # yellow = input
@@ -18,10 +18,11 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
     ws = wb.active
     ws.title = "Inputs"
     d = brief["dcf"]
-    ccy = price_currency(brief["company"])
+    ccy, rep = price_currency(brief["company"]), reporting_currency(brief["company"])
+    m = f"{rep} m"
     brief_file = f"briefs/{brief['company'].get('ticker', 'DGE')}.yaml"
     inputs = [
-        ("base_sales", "Base-year net sales, excluding businesses being sold (USD m)", v["base_sales"]),
+        ("base_sales", f"Base-year net sales, excluding businesses being sold ({m})", v["base_sales"]),
         ("base_margin", "Base operating margin before exceptionals", v["base_margin"]),
         ("tax_rate", "Tax rate", v["tax_rate"]),
         ("da_pct", "D&A % of sales", v["da_pct_sales"]),
@@ -29,7 +30,7 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("tcapex_pct", "Terminal-year capex % of sales", base["dcf"]["terminal_year"]["capex_pct_sales"]),
         ("nwc_pct", "Net working capital % of sales", v["nwc_pct_sales"]),
         ("flow_through", "Savings flow-through", d["savings"]["flow_through"]),
-        ("rf", "Risk-free rate (US 10y)", v["risk_free"]),
+        ("rf", f"Risk-free rate (10-year government bond in {rep}, the cash-flow currency)", v["risk_free"]),
         ("erp", "Equity risk premium", d["wacc"]["equity_risk_premium"]),
         ("beta", "Beta", v["beta"]),
         ("kd", "Pre-tax cost of debt", v["pre_tax_cost_of_debt"]),
@@ -38,21 +39,24 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("stub", "Fraction of the first forecast year elapsed, used in discounting (0 = valued at the balance sheet date)",
          base["inputs"].stub_years),
         ("roll_years", "Years from the balance sheet date to valuation date (equity roll-forward)", (base["roll"] or {}).get("years", 0.0)),
-        ("divs", "Dividends gone ex before valuation date (USD m)", (base["roll"] or {}).get("dividends", 0.0)),
-        ("net_debt", "Net debt (USD m)", v["net_debt"]),
-        ("leases", "Lease liabilities not in net debt (USD m)", v["lease_liabilities"]),
-        ("minorities", "Minority interests at book (USD m)", v["minority_interests"]),
+        ("divs", f"Dividends gone ex before valuation date ({m})", (base["roll"] or {}).get("dividends", 0.0)),
+        ("buybacks", f"Share buybacks after the balance sheet date ({m})", (base["roll"] or {}).get("buybacks", 0.0)),
+        ("priced_now", f"Bridge items already priced at the valuation date, not grown ({m})",
+         (base["roll"] or {}).get("priced_at_valuation_date", 0.0)),
+        ("net_debt", f"Net debt ({m})", v["net_debt"]),
+        ("leases", f"Lease liabilities not in net debt ({m})", v["lease_liabilities"]),
+        ("minorities", f"Minority interests at book ({m})", v["minority_interests"]),
         ("mi_share", "Minorities' share of operating profit (proportionate method; blank = use book)",
          base["bridge"].get("minority_share_of_ev")),
-        ("pension", "Pension deficit (USD m)", v["pension_deficit"]),
-        ("associates", "Associates and equity stakes (USD m)", v["associates"]),
-        ("disposals", "Disposal proceeds not in net debt (USD m)", v["disposal_proceeds"]),
-        ("restructuring", "Restructuring cash still to pay (USD m)", v["restructuring_cash"]),
-        ("contingent", "Contingent liabilities assumed paid, e.g. a lost tax case (USD m)", base["bridge"]["contingent_liabilities"]),
+        ("pension", f"Pension deficit ({m})", v["pension_deficit"]),
+        ("associates", f"Associates and equity stakes ({m})", v["associates"]),
+        ("disposals", f"Disposal proceeds not in net debt ({m})", v["disposal_proceeds"]),
+        ("restructuring", f"Restructuring cash still to pay ({m})", v["restructuring_cash"]),
+        ("contingent", f"Contingent liabilities assumed paid, e.g. a lost tax case ({m})", base["bridge"]["contingent_liabilities"]),
         ("shares", "Ordinary shares (m)", v["shares_outstanding_m"]),
     ]
     if ccy == "GBp":
-        inputs += [("fx", "USD per GBP", v["fx_usd_per_gbp"]), ("price", "Share price (pence)", v["share_price_gbp_pence"])]
+        inputs += [("fx", f"{rep} per GBP", v[fx_key(rep)]), ("price", "Share price (pence)", v["share_price_gbp_pence"])]
     else:
         inputs += [("price", "Share price (USD)", v["share_price_usd"])]
     ws.append(["Input", "Value", "Source"])
@@ -70,12 +74,14 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
                   "kd": "pre_tax_cost_of_debt", "wd": "debt_weight", "stub": "stub_years", "leases": "lease_liabilities",
                   "minorities": "minority_interests", "pension": "pension_deficit", "disposals": "disposal_proceeds", "restructuring": "restructuring_cash",
                   "mi_share": "minority_share_of_operating_profit",
-                  "roll_years": "stub_years", "divs": "dividends_ex_before_valuation_musd",
+                  "roll_years": "stub_years", "divs": money_key("dividends_ex_before_valuation", rep),
+                  "buybacks": money_key("buybacks_after_balance_sheet", rep),
+                  "priced_now": money_key("priced_at_valuation_date", rep),
                   "contingent": "contingent_liabilities",
-                  "shares": "shares_outstanding_m", "fx": "fx_usd_per_gbp", "price": share_price_key(ccy)}
+                  "shares": "shares_outstanding_m", "fx": fx_key(rep), "price": share_price_key(ccy)}
     for i, (key, label, val) in enumerate(inputs, start=2):
         src = sources.get(source_key.get(key, key)) or (
-            "not in this brief's bridge (0)" if key == "contingent" and not val else f"PM assumption ({brief_file})")
+            "not in this brief's bridge (0)" if key in ("contingent", "buybacks", "priced_now") and not val else f"PM assumption ({brief_file})")
         ws.append([label, val, src])
         ws.cell(row=i, column=2).fill = INPUT_FILL
         ref[key] = f"Inputs!$B${i}"
@@ -83,11 +89,12 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
     ws.column_dimensions["C"].width = 70
 
     s = wb.create_sheet("DCF")
+    savings = d["savings"].get(money_key("cumulative", rep), d["savings"].get("cumulative_musd"))
     rows = base["dcf"]["rows"]
     n = len(rows)
     cols = [get_column_letter(3 + i) for i in range(n)]  # C.. for forecast years; B = base year
     base_fy = brief.get("base_year", {}).get("fiscal_year", rows[0]["year"] - 1)
-    s.append(["USD m", f"FY{base_fy % 100} base"] + [f"FY{r['year'] % 100}" for r in rows] + ["", "Python check (final year)"])
+    s.append([m, f"FY{base_fy % 100} base"] + [f"FY{r['year'] % 100}" for r in rows] + ["", "Python check (final year)"])
     labels = ["Growth", "Net sales", "Savings kept", "EBIT", "Tax", "NOPAT", "D&A", "Capex", "Increase in NWC",
               "Unlevered FCF", "Cash flow counted", "Discount period", "Discount factor", "PV of FCF"]
     for lab in labels:
@@ -99,7 +106,7 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         s[f"{c}{R['Growth']}"] = rows[i]["growth"]
         s[f"{c}{R['Growth']}"].fill = INPUT_FILL
         s[f"{c}{R['Net sales']}"] = f"={prev}{R['Net sales']}*(1+{c}{R['Growth']})"
-        s[f"{c}{R['Savings kept']}"] = f"={d['savings']['cumulative_musd'][i]}*{ref['flow_through']}"
+        s[f"{c}{R['Savings kept']}"] = f"={savings[i]}*{ref['flow_through']}"
         s[f"{c}{R['EBIT']}"] = f"={c}{R['Net sales']}*{ref['base_margin']}+{c}{R['Savings kept']}"
         s[f"{c}{R['Tax']}"] = f"={c}{R['EBIT']}*{ref['tax_rate']}"
         s[f"{c}{R['NOPAT']}"] = f"={c}{R['EBIT']}-{c}{R['Tax']}"
@@ -145,15 +152,18 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("eqbs", "Equity value at balance sheet date", (f"={{ev}}-{ref['net_debt']}-{ref['leases']}-{{mi}}"
                                 f"-{ref['pension']}-{ref['restructuring']}-{ref['contingent']}+{ref['associates']}+{ref['disposals']}"),
          eq["equity_value_balance_sheet_date"]),
-        # roll forward to the valuation date at the cost of equity, less dividends gone ex in between
-        ("eq", "Equity value at valuation date", f"={{eqbs}}*(1+{{ke}})^{ref['roll_years']}-{ref['divs']}", eq["equity_value"]),
-        ("usd", "Value per share (USD)", f"={{eq}}/{ref['shares']}", eq["per_share_usd"]),
+        # roll forward to the valuation date at the cost of equity (except items already priced at that date),
+        # less dividends gone ex and buybacks in between
+        ("eq", "Equity value at valuation date",
+         f"=({{eqbs}}-{ref['priced_now']})*(1+{{ke}})^{ref['roll_years']}+{ref['priced_now']}-{ref['divs']}-{ref['buybacks']}",
+         eq["equity_value"]),
+        ("rep", f"Value per share ({rep})", f"={{eq}}/{ref['shares']}", eq[f"per_share_{rep.lower()}"]),
     ]
     if ccy == "GBp":
-        spec += [("gbp", "Value per share (pence)", f"={{usd}}/{ref['fx']}*100", eq["per_share_gbp_pence"]),
+        spec += [("gbp", "Value per share (pence)", f"={{rep}}/{ref['fx']}*100", eq["per_share_gbp_pence"]),
                  ("up", "Upside vs share price", f"={{gbp}}/{ref['price']}-1", base["rating"]["upside"])]
     else:
-        spec += [("up", "Upside vs share price", f"={{usd}}/{ref['price']}-1", base["rating"]["upside"])]
+        spec += [("up", "Upside vs share price", f"={{rep}}/{ref['price']}-1", base["rating"]["upside"])]
     cell = {key: f"B{r0 + i}" for i, (key, *_rest) in enumerate(spec)}
     summary = [(lab, formula.format(**cell), py) for _key, lab, formula, py in spec]
     s[f"A{r0 - 1}"] = "Valuation"

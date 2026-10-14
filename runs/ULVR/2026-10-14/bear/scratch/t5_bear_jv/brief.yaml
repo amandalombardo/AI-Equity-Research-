@@ -1,0 +1,135 @@
+company:
+  name: Unilever PLC
+  ticker: ULVR
+  price_ticker: ULVR.L
+  price_currency: GBp
+  sec_cik: '0000217410'
+  accounting: ifrs
+  annual_form: 20-F
+  reporting_currency: EUR
+  fiscal_year_end_month: 12
+  benchmark_index: ^FTSE
+base_year:
+  fiscal_year: 2025
+  net_sales_meur: 50503
+  underlying_operating_profit_meur: 10084
+  restructuring_meur: 599
+  ex_perimeter_net_sales_meur: null
+  ex_perimeter_underlying_operating_profit_meur: null
+dcf:
+  currency: EUR
+  forecast_years:
+  - 2026
+  - 2027
+  - 2028
+  - 2029
+  - 2030
+  organic_growth:
+  - 0.005
+  - 0.016
+  - 0.016
+  - 0.016
+  - 0.016
+  savings:
+    cumulative_meur:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    flow_through: 0.0
+  base_margin: 0.177
+  base_margin_rule: ex_perimeter_underlying_margin_less_recurring_restructuring_held_flat
+  tax_rate: 0.26
+  capex_pct_sales: 0.0315
+  da_pct_sales: 0.026
+  nwc_pct_sales: null
+  terminal_growth: 0.016
+  terminal_capex_pct_sales: null
+  terminal_ronic: 0.178
+  mid_year_convention: true
+  valuation_basis: balance_sheet_date
+  wacc:
+    risk_free: null
+    equity_risk_premium: 0.05
+    beta: null
+    pre_tax_cost_of_debt: null
+    credit_spread: 0.007
+    target_debt_weight: null
+  bridge:
+    net_debt_meur: null
+    lease_liabilities_meur: null
+    minority_interests_meur: null
+    minorities_method: proportionate
+    pension_deficit_meur: 0
+    associates_meur: null
+    disposal_proceeds_meur: null
+    restructuring_cash_meur: 500
+    buybacks_after_balance_sheet_meur: null
+    priced_at_valuation_date_meur: null
+  shares_outstanding_m: null
+scenarios:
+  bear:
+    organic_growth:
+    - 0.005
+    - 0.002
+    - 0.002
+    - 0.002
+    - 0.002
+    bear_agent_margin: 0.162
+    flow_through: 0.0
+    wacc_shift: 0.01
+comps:
+  peers:
+  - name: Procter & Gamble
+    ticker: PG
+    fy_end_month: 6
+    source: SEC EDGAR
+  - name: Colgate-Palmolive
+    ticker: CL
+    fy_end_month: 12
+    source: SEC EDGAR
+  - name: Kimberly-Clark
+    ticker: KMB
+    fy_end_month: 12
+    source: SEC EDGAR
+  - name: Reckitt Benckiser
+    ticker: RKT.L
+    fy_end_month: 12
+    source: annual report + yfinance (flag)
+  - name: Beiersdorf
+    ticker: BEI.DE
+    fy_end_month: 12
+    source: annual report + yfinance (flag)
+  - name: L'Oreal
+    ticker: OR.PA
+    fy_end_month: 12
+    source: annual report + yfinance (flag)
+  - name: Henkel
+    ticker: HEN3.DE
+    fy_end_month: 12
+    source: annual report + yfinance (flag)
+  optional_peers:
+  - name: Hindustan Unilever
+    ticker: HINDUNILVR.NS
+    fy_end_month: 3
+    note: Unilever's 62%-owned Indian subsidiary
+    show separately: null
+  multiples:
+  - ev_ebitda_ntm
+  - ev_ebitda_ltm
+  - pe_ntm
+  - fcf_yield
+  statistic: median
+rating:
+  buy_if_upside_at_least: 0.15
+  sell_if_downside_at_least: 0.1
+checks:
+  data_tie_out_tolerance: 0.005
+  excel_match_tolerance: 0.02
+  published_fy25:
+    net_sales_meur: 50503
+    underlying_operating_profit_meur: 10084
+    underlying_operating_margin: 0.2
+    free_cash_flow_meur: 5900
+    net_debt_meur: 23100

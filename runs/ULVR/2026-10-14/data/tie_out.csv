@@ -1,0 +1,6 @@
+item,brief,data_agent,diff_pct,flag
+net_sales_meur,50503.0,50503.0,0.0,False
+underlying_operating_profit_meur,10084.0,10084.0,0.0,False
+underlying_operating_margin,0.2,0.19967,-0.00164,False
+free_cash_flow_meur,5900.0,5921.0,0.00356,False
+net_debt_meur,23100.0,23076.0,-0.00104,False
