@@ -183,6 +183,11 @@ manual = [
     ("accruals_current", 2025, F["accruals25"], F20 + " p.160, note 14"),
     ("social_security_and_sundry_taxes", 2025, F["social_sec25"], F20 + " p.160, note 14"),
     ("other_current_payables", 2025, F["other_pay25"], F20 + " p.160, note 14"),
+    ("receivable_due_from_tmicc_in_trade_receivables", 2025, 2100, F20 + " p.159, note 13: 'Trade and other current receivables for 2025 include EUR 2.1 billion due from TMICC' (TSA receivables, working capital subsidies recoverable on TSA exit)"),
+    ("dividends_from_jvs_associates_and_other_investments_cash_flow", 2025, 243, F20 + " p.132, cash flow statement 'Dividends from joint ventures, associates and other non-current investments' (includes other investments)"),
+    ("other_equity_investments_fvoci_ex_tmicc", 2025, 2216 - 1655, F20 + " p.174, note 17A: non-current FVOCI 2,216 less TMICC 1,655 (footnote e)"),
+    ("other_financial_assets_fvtpl_noncurrent", 2025, 341, F20 + " p.174, note 17A: non-current fair value through profit or loss 'Other' 341"),
+    ("financial_assets_amortised_cost_noncurrent", 2025, 368, F20 + " p.174, note 17A (incl. judicial deposits 175)"),
     ("payable_due_to_tmicc_in_trade_payables", 2025, F["tmicc_payable25"], F20 + " p.160, note 14: 'trade payables and other current liabilities include EUR 1.6 billion due to TMICC' (inventory subsidy + TSA balances)"),
     ("nci_hindustan_unilever_book", 2025, F["nci_hul25"], F20 + " p.162-163, note 15B"),
     ("average_invested_capital", 2025, F["avg_invested_capital25"], R25 + ", ROIC reconciliation"),
@@ -347,7 +352,10 @@ inputs = {
 import sys
 if "--write-inputs" in sys.argv:
     existing = yaml.safe_load((RUN / "inputs.yaml").read_text()) or {} if (RUN / "inputs.yaml").exists() else {}
-    merged = {**inputs, **{k: v for k, v in existing.items() if k not in inputs}}
+    # capex_pct_sales, nwc_pct_sales and associates are owned by apply_pm_decision10.py (PM decision 14 Oct 2026): keep them
+    owned_elsewhere = {"capex_pct_sales", "nwc_pct_sales", "associates"}
+    merged = {**{k: v for k, v in inputs.items() if k not in owned_elsewhere or k not in existing},
+              **{k: v for k, v in existing.items() if k not in inputs or k in owned_elsewhere}}
     (RUN / "inputs.yaml").write_text(yaml.safe_dump(merged, sort_keys=False, width=160, allow_unicode=True))
 else:
     print("inputs.yaml NOT written (pass --write-inputs to rewrite the Data agent keys)")

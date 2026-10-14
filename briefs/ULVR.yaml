@@ -90,7 +90,7 @@ dcf:
     # - Listed (item E, agreed 13 Oct 2026): 19.85% of The Magnum Ice Cream Company = 121,604,413 shares (TMICC 424(b)(4),
     #   13 Apr 2026) at the run-date MICC.AS price. Evidence: docs/phase5/ulvr-stake-tax-check.md.
     # - Joint ventures (PM card 14 Oct 2026, item B; mainly the Pepsi Lipton tea partnerships, kept by Unilever): FY25
-    #   dividends received from JVs and associates (EUR 229m, 20-F cash flow) as a growing perpetuity (Gordon growth):
+    #   dividends received from joint ventures (EUR 229m, 20-F note 11 p.158; the cash-flow line of 243 also includes other investments, valued separately below) as a growing perpetuity (Gordon growth):
     #   229 x (1 + 1.6%) / (cost of equity - 1.6%), at the run's cost of equity. Not book (EUR 109m). Associates at book.
     # - Other financial investments (item C): the fair-value lines of 20-F note 17A, EUR 561m (equity investments, FVOCI)
     #   + EUR 341m (fair value through profit or loss) = EUR 902m. Amortised-cost assets (EUR 368m, incl. judicial

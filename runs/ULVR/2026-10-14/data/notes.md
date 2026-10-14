@@ -3,6 +3,26 @@
 All money amounts are EUR m unless labelled otherwise. Share prices: ULVR in pence (GBp), MKC in USD, MICC.AS in EUR, HUL in INR.
 Every value in `../inputs.yaml` carries its source (document + page/section, or URL). Scripts: `build_inputs.py`, `build_peers.py` (re-runnable from the repo root).
 
+## 00. PM decision 10 applied (14 Oct 2026, docs/phase5/ulvr-run-flags.md items A-D)
+Applied by `apply_pm_decision10.py`. It changes only these three keys in `../inputs.yaml`; every other key, including beta, minority_share_of_operating_profit and buybacks_after_balance_sheet_meur, is unchanged (checked by comparing the file before and after). `build_inputs.py --write-inputs` now leaves these three keys alone.
+
+| Input | Was | Now | Arithmetic (script) |
+|---|---|---|---|
+| capex_pct_sales | 0.028 | **0.0315** | (PP&E 1,417 + intangibles 174) / 50,503 = 3.150% (20-F p.132; XBRL PurchaseOfPropertyPlantAndEquipment..., PurchaseOfIntangibleAssets...) |
+| nwc_pct_sales | -0.07821 | **-0.11979** | (4,043 + (7,346 - 2,100 due from TMICC) - (16,939 - 1,600 due to TMICC)) / 50,503 = -11.98% (20-F p.131; note 13 p.159 "include EUR 2.1 billion due from TMICC"; note 14 p.160 "include EUR 1.6 billion due to TMICC") |
+| associates | 2,044.2 | **7,228.7** | sum of the five parts below |
+
+Associates, EUR m:
+1. TMICC: 121,604,413 shares x EUR 15.914 (MICC.AS close, 13 Oct 2026) = **1,935.2**
+2. Joint ventures, Gordon growth: 229 x 1.016 / (7.602% - 1.6%) = **3,876.4**. Cost of equity 7.602% = risk-free 3.18% + beta 0.8844 x ERP 5.0% (both from inputs.yaml).
+   - **Source check:** the EUR 229m is in 20-F note 11, p.158: joint ventures "Dividends received/reductions (229)", associates nil. The cash-flow line on p.132, "Dividends from joint ventures, associates and other non-current investments", is **243**, because it also includes dividends from other investments. Those investments are valued in item 4, so 229 is the right figure and avoids double counting. The brief comment says "20-F cash flow" for 229; the figure is correct, but its location is note 11.
+   - If the run's cost of equity changes (e.g. a new beta), this value must be recomputed: re-run the script.
+3. Associates at book: **15** (note 11).
+4. Other fair-value financial investments: equity investments at FVOCI excluding TMICC 561 (2,216 - 1,655) + non-current fair value through P&L "Other" 341 = **902** (note 17A, p.174, confirmed). Amortised-cost assets of 368 (including judicial deposits of 175) are excluded.
+5. Net Magnum transition balance owed to Unilever: 2,100 - 1,600 = **500** (notes 13-14). Both amounts are disclosed rounded to EUR 0.1bn.
+
+These supersede section 3 FLAGs 3 (working capital), 5 (joint ventures), 6 (other investments) and 10 (capex), and the corresponding rows of section 4. Confidence: capex high; working capital medium (both Magnum amounts rounded to EUR 0.1bn); associates medium (the JV part depends on the cost of equity and on dividends continuing at the FY25 level). New source rows in financials.csv: receivable_due_from_tmicc_in_trade_receivables, dividends_from_jvs_associates_and_other_investments_cash_flow, other_equity_investments_fvoci_ex_tmicc, other_financial_assets_fvtpl_noncurrent, financial_assets_amortised_cost_noncurrent.
+
 ## 0. Corrections after hand-off (14 Oct 2026)
 **Continuing vs total figures in financials.csv (reported by the Fundamentals agent; verified against the FY25 20-F).** Two XBRL tags hold group TOTALS that include the discontinued Ice Cream business, but the rows were labelled as continuing operations: `ifrs-full:ProfitLossAttributableToOwnersOfParent` and `ifrs-full:CashFlowsFromUsedInOperatingActivities`. FY25 profit also includes the EUR 3,373m demerger gain. Corrected rows (EUR m):
 

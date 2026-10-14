@@ -16,7 +16,7 @@ The agreed capex of 2.8% counts only property, plant and equipment (€1,417m). 
 | Keep | 2.8% | PP&E only (inconsistent with D&A) |
 
 ### B. Joint ventures: worth far more than book value
-Unilever's share of joint-venture profit was **€245m** in FY25 (€250m FY24), and it received **€229m** of dividends from them (20-F income statement and cash flow). Most comes from the Pepsi Lipton tea partnerships (50% US, 45.45% rest of world, 20-F related undertakings). Those partnerships stay with Unilever: Lipton Ready-to-Drink is outside the Foods sale (Form 425). The JV profit sits **below** operating profit, so the DCF does not include it, and the brief carries the JVs at book value: **€109m (c.4p)**.
+Unilever's share of joint-venture profit was **€245m** in FY25 (€250m FY24), and it received **€229m** of dividends from them (20-F income statement; note 11, p.158). Most comes from the Pepsi Lipton tea partnerships (50% US, 45.45% rest of world, 20-F related undertakings). Those partnerships stay with Unilever: Lipton Ready-to-Drink is outside the Foods sale (Form 425). The JV profit sits **below** operating profit, so the DCF does not include it, and the brief carries the JVs at book value: **€109m (c.4p)**.
 
 | Option | Value | Basis |
 |---|---|---|
