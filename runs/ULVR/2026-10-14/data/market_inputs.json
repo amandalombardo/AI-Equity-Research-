@@ -1,0 +1,18 @@
+{
+  "risk_free": {
+    "value": 0.0318,
+    "date": "2026-08-01",
+    "source": "FRED IRLTLT01DEM156N (German 10-year Bund yield, OECD monthly average)"
+  },
+  "downloaded_on": "2026-10-14",
+  "fx_eur_per_gbp": {
+    "value": 1.1818994014115964,
+    "date": "2026-10-09",
+    "source": "FRED DEXUSUK / DEXUSEU (EUR per GBP, noon buying rates New York)"
+  },
+  "share_price_gbp_pence": {
+    "value": 4737.0,
+    "date": "2026-10-14",
+    "source": "Yahoo Finance ULVR.L close (pence, GBp)"
+  }
+}
