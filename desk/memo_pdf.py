@@ -118,10 +118,13 @@ def tick_step(span: float) -> float:
 
 
 def money_format(unit: str, axis: bool = False):
-    """Per-share value label in the price currency: pence as '1,627p', US dollars as '$47.60' ('$50' on the axis)."""
+    """Per-share value label in the price currency: pence as '1,627p' (a share price with half pence as '4,710.5p',
+    as quoted), US dollars as '$47.60' ('$50' on the axis)."""
     if unit == "USD":
         return (lambda v: f"${v:,.0f}") if axis else (lambda v: f"${v:,.2f}")
-    return lambda v: f"{v:,.0f}p"
+    if axis:
+        return lambda v: f"{v:,.0f}p"
+    return lambda v: f"{v:,.0f}p" if abs(v - round(v)) < 0.05 else f"{v:,.1f}p"
 
 
 def football(lines: list[str]) -> Drawing:

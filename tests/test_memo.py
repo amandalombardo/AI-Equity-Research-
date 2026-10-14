@@ -42,3 +42,11 @@ def test_football_tick_step_scales_with_range():
     assert memo_pdf.tick_step(1500) == 250
     assert memo_pdf.tick_step(70) == 10
     assert memo_pdf.tick_step(12) == 2.5
+
+
+def test_pence_labels_keep_half_pence_prices():
+    from desk.memo_pdf import money_format
+    fmt = money_format("GBp")
+    assert fmt(4710.5) == "4,710.5p"   # Unilever's quoted price, not rounded to 4,710p
+    assert fmt(4018.0) == "4,018p"
+    assert money_format("GBp", axis=True)(4500.0) == "4,500p"
