@@ -65,7 +65,10 @@ dcf:
   valuation_basis: balance_sheet_date
   wacc:
     # Risk-free (decision 7, agreed 13 Oct 2026): German 10-year Bund, because the cash flows are in euros (mistakes
-    # row 20). Data agent: FRED IRLTLT01DEM156N, latest month (3.18% for Aug 2026).
+    # row 20). Decision 11 (14 Oct 2026, evidence audit): the yield ON THE RUN DATE, as for Diageo and KO, not FRED's
+    # monthly average (IRLTLT01DEM156N, latest Aug 2026 = 3.18%, two months old). 3.45% on 14 Oct 2026 (Trading
+    # Economics; Bloomberg rates page; 3.50% on 9 Oct per thetrading.tools). FLAG: aggregator, the Bundesbank and ECB
+    # daily series are blocked here. Evidence: docs/phase5/ulvr-evidence-audit.md.
     risk_free: null
     equity_risk_premium: 0.050
     # Risk agent. PM rule (sign-off, same as Diageo): BOTTOM-UP beta from Damodaran's GLOBAL Household Products industry,

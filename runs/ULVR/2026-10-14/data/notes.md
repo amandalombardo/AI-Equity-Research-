@@ -3,6 +3,16 @@
 All money amounts are EUR m unless labelled otherwise. Share prices: ULVR in pence (GBp), MKC in USD, MICC.AS in EUR, HUL in INR.
 Every value in `../inputs.yaml` carries its source (document + page/section, or URL). Scripts: `build_inputs.py`, `build_peers.py` (re-runnable from the repo root).
 
+## 0000. PM decision 11 applied (14 Oct 2026): risk-free = Bund on the run date
+`apply_pm_decision11.py` sets **risk_free = 0.0345**: the German 10-year Bund yield on 14 Oct 2026, from Trading Economics and the Bloomberg rates page, with 3.50% on 9 Oct per thetrading.tools. It replaces FRED's August 2026 monthly average of 3.18% (two months old). **FLAG:** this is an aggregator figure. The Bundesbank and ECB daily series, and the aggregator pages themselves, are blocked from this environment, so I could not re-check the 3.45% myself. It is supplied by the PM from docs/phase5/ulvr-evidence-audit.md. Confidence: medium.
+I then re-ran `apply_pm_decision10.py`:
+- **Cost of equity:** 3.45% + 0.8844 x 5.0% = **7.872%** (was 7.602%).
+- **Joint ventures (Gordon growth):** 229 x 1.016 / (7.872% - 1.6%) = **3,709.6** (was 3,876.4).
+- **associates:** 1,935.2 + 3,709.6 + 15 + 902 + 500 = **7,061.8** (was 7,228.7).
+Only `risk_free` and `associates` changed. Comparing the file before and after: capex_pct_sales (0.0315), nwc_pct_sales (-0.11979), priced_at_valuation_date_meur (35,890.5) and every other key are identical.
+**priced_at_valuation_date_meur is unaffected** (TMICC 1,935.2 + disposal_proceeds 33,955.3 = 35,890.5, recomputed and equal).
+Side note: the source text of `pre_tax_cost_of_debt` (historic 3.77%, reference only, unchanged) still says the engine uses 3.18% + 0.70% = 3.88%. The engine now computes 3.45% + 0.70% = 4.15% from risk_free automatically. I left that key's text unchanged, as instructed.
+
 ## 000. priced_at_valuation_date_meur added (14 Oct 2026, mistakes log row 24)
 `add_priced_at_valuation_date.py` adds a single key to `../inputs.yaml`: **priced_at_valuation_date_meur = EUR 35,890.5m**. That is the TMICC stake at the 13 Oct 2026 MICC.AS close, **1,935.2** (component 1 of `associates`: 121,604,413 x EUR 15.914), plus the Foods consideration at the 13 Oct McCormick price, **33,955.3** (`disposal_proceeds`). Both are already at run-date market prices, so the engine must not grow them by the cost of equity in the roll-forward from 31 Dec 2025.
 Left out because they are 31 Dec 2025 values: the JVs (Gordon growth on FY25 dividends, 3,876.4), associates at book (15), fair-value investments (902) and the Magnum transition balance (500).

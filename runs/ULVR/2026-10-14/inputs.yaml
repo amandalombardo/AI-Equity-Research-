@@ -38,15 +38,18 @@ nwc_pct_sales:
     p.160 (''include EUR 1.6 billion due to TMICC''); XBRL ifrs-full:Inventories, TradeAndOtherCurrentReceivables, TradeAndOtherCurrentPayables. Both temporary Magnum
     transition balances removed; the net EUR 500m is in associates. Amounts as disclosed, rounded to EUR 0.1bn. Was -0.07821.'
 risk_free:
-  value: 0.0318
-  source: 'FRED IRLTLT01DEM156N (German 10-year Bund yield, OECD monthly average), latest month 2026-08-01 (Aug 2026 average 3.18%); PM decision 7: euro cash flows
-    -> Bund, not the gilt.'
+  value: 0.0345
+  source: 'PM decision 14 Oct 2026 (decision 11; briefs/ULVR.yaml wacc.risk_free comment; docs/phase5/ulvr-evidence-audit.md): German 10-year Bund yield on the run
+    date, 3.45% on 14 Oct 2026 (Trading Economics https://tradingeconomics.com/germany/government-bond-yield; also Bloomberg rates page https://www.bloomberg.com/markets/rates-bonds);
+    cross-check 3.50% on 9 Oct 2026 (https://www.thetrading.tools/germany-10-year-yield). Replaces FRED IRLTLT01DEM156N (OECD monthly average, latest Aug 2026 = 3.18%,
+    two months old). FLAG: data aggregator, not a primary source; the Bundesbank and ECB daily series (and these aggregator pages) are blocked from the Data agent''s
+    environment, so the Data agent could not re-check the 3.45% figure itself (PM-supplied, from the evidence audit).'
 pre_tax_cost_of_debt:
   value: 0.0377
   source: 'Historic, reference only: FY25 interest on bank loans 52 + bonds and other loans 967 + leases 79 = 1,098 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007,
     filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.148 note 5) / average gross debt 29,126 (bank loans +
     bonds + leases, 31 Dec 2024 30,655 and 31 Dec 2025 27,597; Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
-    p.164 note 15C). The engine uses risk-free + credit_spread 0.70% (brief) = 3.88%. H1 2026 6-K: net finance costs 2.5% of average net debt.'
+    p.164 note 15C). The engine uses risk-free + credit_spread 0.70% (brief) = 4.15% (3.45% Bund on 14 Oct 2026, PM decision 11). H1 2026 6-K: net finance costs 2.5% of average net debt.'
 debt_weight:
   value: 0.16135
   source: 'Market values: net debt 23,076 (31 Dec 2025) / (net debt + market cap EUR 119,939 = 2,154.328m shares x 4710.5p (Yahoo ULVR.L close 2026-10-13) x 1.18190
@@ -73,13 +76,13 @@ pension_deficit:
     p.43 and note 4B; XBRL ifrs-full:LiabilityAssetOfDefinedBenefitPlans = -3,518); gross deficit plans 944 (funded in deficit 100 + unfunded 844, p.131) are inside
     that net figure. 30 Jun 2026: surplus 3.7bn (Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm)).'
 associates:
-  value: 7228.7
+  value: 7061.8
   source: 'PM decision 14 Oct 2026 (decision 10, docs/phase5/ulvr-run-flags.md item B, C, D; E agreed 13 Oct; briefs/ULVR.yaml comments): sum of (1) TMICC 19.85%:
     121,604,413 shares (TMICC resale prospectus, Form 424(b)(4) (accession 0001104659-26-042683, 13 Apr 2026)) x EUR 15.914 (Yahoo MICC.AS close 2026-10-13) = 1,935.2;
     (2) joint ventures by Gordon growth: FY25 dividends received from JVs and associates EUR 229m (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed
     12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.158 note 11: JVs ''Dividends received/reductions (229)'', associates
     nil; the p.132 cash-flow line is 243 because it also includes dividends from other non-current investments, which are valued in (4)) x (1 + 1.6%) / (cost of equity
-    7.6020% - 1.6%) = 3,876.4, cost of equity = risk-free 3.18% (inputs.yaml) + beta 0.8844 (inputs.yaml, Risk agent) x ERP 5.0% (brief); (3) associates at book 15
+    7.8720% - 1.6%) = 3,709.6, cost of equity = risk-free 3.45% (inputs.yaml) + beta 0.8844 (inputs.yaml, Risk agent) x ERP 5.0% (brief); (3) associates at book 15
     (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
     p.158 note 11); (4) other fair-value financial investments 902 = equity investments FVOCI excl. TMICC 561 (2,216 - 1,655) + non-current FVTPL ''Other'' 341 (Unilever
     FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.174
