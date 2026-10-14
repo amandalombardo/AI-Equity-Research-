@@ -1,0 +1,281 @@
+{
+  "base_pence": 4017.842414427726,
+  "engine_bear_pence": 3323.1512977057214,
+  "share_price_pence": 4710.5,
+  "hold_floor_pence": 4239.45,
+  "buy_floor_pence": 5417.075,
+  "results": {
+    "t1_deal_fails": {
+      "label": "Deal fails: Foods stays in the DCF (no fee, no stranded-cost restructuring)",
+      "case_read": "base",
+      "value_pence": 4100.372131718795,
+      "impact_vs_reference_pence": 82.52971729106866,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1295250755,
+      "ev_meur": 129037.05049306793,
+      "minorities_deducted_meur": 10231.347733595356,
+      "notes": ""
+    },
+    "t1b_deal_fails_with_fee": {
+      "label": "Deal fails, McCormick pays the USD 420m termination fee",
+      "case_read": "base",
+      "value_pence": 4115.1078248005515,
+      "impact_vs_reference_pence": 97.2654103728255,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1263968104,
+      "ev_meur": 129037.05049306793,
+      "minorities_deducted_meur": 10231.347733595356,
+      "notes": ""
+    },
+    "t1c_deal_fails_keep_500": {
+      "label": "Deal fails, EUR 500m restructuring still spent",
+      "case_read": "base",
+      "value_pence": 4079.5704676675173,
+      "impact_vs_reference_pence": 61.72805323979128,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1339410959,
+      "ev_meur": 129037.05049306793,
+      "minorities_deducted_meur": 10231.347733595356,
+      "notes": ""
+    },
+    "t1_inputs": {
+      "group_margin_used": 0.18846677766621972,
+      "restructuring_avg_fy23_25": 0.011204528988830476,
+      "minority_share_group": 0.07929217884641361,
+      "break_fee_meur": 375.234521575985,
+      "growth": "unchanged (0.5%, then 1.6%): flatters this case, the perimeter's FY25 USG was 2.7% vs 3.5% Group"
+    },
+    "t2_tax_25pct": {
+      "label": "Tax 25% of the cash = EUR 3,507m, priced today",
+      "case_read": "base",
+      "value_pence": 3880.1194535274185,
+      "impact_vs_reference_pence": -137.7229609003075,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1762828885,
+      "ev_meur": 95467.33481498928,
+      "minorities_deducted_meur": 10199.730051633456,
+      "notes": ""
+    },
+    "t2_inputs": {
+      "cash_meur": 14026.623782721344,
+      "tax_meur": 3506.655945680336
+    },
+    "t3_hul_market": {
+      "label": "Minorities: 38.1% of HUL at market + others at book",
+      "case_read": "base",
+      "value_pence": 3812.8571395280696,
+      "impact_vs_reference_pence": -204.98527489965636,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1905621188,
+      "ev_meur": 95467.33481498928,
+      "minorities_deducted_meur": 15995.0,
+      "notes": ""
+    },
+    "t3b_hul_market_others_prop": {
+      "label": "HUL at market + other minorities proportionate",
+      "case_read": "base",
+      "value_pence": 3731.244231464267,
+      "impact_vs_reference_pence": -286.59818296345884,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.2078878609,
+      "ev_meur": 95467.33481498928,
+      "minorities_deducted_meur": 2449.691811352625,
+      "notes": ""
+    },
+    "t4_margin_162": {
+      "label": "Operating margin 16.2% (brief bear_agent_margin)",
+      "case_read": "base",
+      "value_pence": 3715.0603675826287,
+      "impact_vs_reference_pence": -302.7820468450973,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.2113235606,
+      "ev_meur": 87318.92653081517,
+      "minorities_deducted_meur": 9329.154110552292,
+      "notes": ""
+    },
+    "t5_engine_bear_jv": {
+      "label": "Engine bear (0.2% growth, WACC +1pt) with JVs at Ke +1pt",
+      "case_read": "bear",
+      "value_pence": 3300.119695268146,
+      "impact_vs_reference_pence": -23.031602437575202,
+      "reference_pence": 3323.1512977057214,
+      "rating": "SELL",
+      "upside": -0.2994120167,
+      "ev_meur": 76771.95010040043,
+      "minorities_deducted_meur": 8202.315148726782,
+      "notes": ""
+    },
+    "t5_inputs": {
+      "jv_base_meur": 3876.4411862712427,
+      "jv_bear_meur": 3322.8220508426166,
+      "ke_bear": 0.08602
+    },
+    "c_terminal_g_11": {
+      "label": "Terminal growth 1.1% (Data agent low end), JVs at g 1.1%",
+      "case_read": "base",
+      "value_pence": 3831.824104791916,
+      "impact_vs_reference_pence": -186.01830963581006,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1865355897,
+      "ev_meur": 90814.71236021598,
+      "minorities_deducted_meur": 9702.643868565476,
+      "notes": ""
+    },
+    "c_ronic_low": {
+      "label": "Terminal RONIC 16.5% (ex-Foods-goodwill lower bound)",
+      "case_read": "base",
+      "value_pence": 3996.3329940891795,
+      "impact_vs_reference_pence": -21.509420338546533,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1516117198,
+      "ev_meur": 94888.47771067738,
+      "minorities_deducted_meur": 10137.884958608773,
+      "notes": ""
+    },
+    "c_ronic_eq_wacc": {
+      "label": "Terminal RONIC = WACC (growth adds no value)",
+      "case_read": "base",
+      "value_pence": 3587.4144349267503,
+      "impact_vs_reference_pence": -430.42797950097565,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.2384217313,
+      "ev_meur": 83883.74539662326,
+      "minorities_deducted_meur": 8962.139358175229,
+      "notes": ""
+    },
+    "c_ronic_inputs": {
+      "nopat_ex_perimeter_meur": 5208.139338166609,
+      "ic_ex_foods_goodwill_meur": 31602.0,
+      "ronic_low": 0.16480410537834977,
+      "wacc": 0.0683868542
+    },
+    "c_beta_damo_5y": {
+      "label": "Beta 0.9998 (Damodaran 2020-24 average, relevered), JVs consistent",
+      "case_read": "base",
+      "value_pence": 3725.206986052106,
+      "impact_vs_reference_pence": -292.63542837562,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.2091695179,
+      "ev_meur": 87690.99316536919,
+      "minorities_deducted_meur": 9368.905709788045,
+      "notes": ""
+    },
+    "c_mkc_1sd": {
+      "label": "McCormick at USD 33.15 (1 s.d. fall to closing)",
+      "case_read": "base",
+      "value_pence": 3816.4441358476447,
+      "impact_vs_reference_pence": -201.3982785800813,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1898006293,
+      "ev_meur": 95467.33481498928,
+      "minorities_deducted_meur": 10199.730051633456,
+      "notes": ""
+    },
+    "c_mkc_inputs": {
+      "change_1y": -0.32158058785293775,
+      "change_vs_deal_ref": -0.22821577818726768,
+      "vol_1y": 0.3054673335509496,
+      "years_to_close": 0.7095890410958904,
+      "price_1sd": 33.153375428958135,
+      "price_1y_ago": 65.80000305175781,
+      "price_low": 44.13999938964844,
+      "price_high": 71.6500015258789
+    },
+    "c_bear_terminal_g": {
+      "label": "Engine bear + JV fix + terminal growth 0.2% (= bear forecast)",
+      "case_read": "bear",
+      "value_pence": 3016.7559305853056,
+      "impact_vs_reference_pence": -283.3637646828406,
+      "reference_pence": 3300.119695268146,
+      "rating": "SELL",
+      "upside": -0.3595677889,
+      "ev_meur": 69808.71388829254,
+      "minorities_deducted_meur": 7458.3629918251745,
+      "notes": ""
+    },
+    "s_stack_no_hul": {
+      "label": "Stack: engine bear + JV fix + margin 16.2% + 25% tax",
+      "case_read": "bear",
+      "value_pence": 2917.9139991414286,
+      "impact_vs_reference_pence": -1099.9284152862974,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.3805511094,
+      "ev_meur": 70192.4809217816,
+      "minorities_deducted_meur": 7499.364661683146,
+      "notes": ""
+    },
+    "s_stack_hul": {
+      "label": "Stack: as above + HUL at market (others proportionate)",
+      "case_read": "bear",
+      "value_pence": 2545.953581750575,
+      "impact_vs_reference_pence": -1471.8888326771512,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.4595152146,
+      "ev_meur": 70192.4809217816,
+      "minorities_deducted_meur": 1801.1390604529156,
+      "notes": ""
+    },
+    "r_beta_054": {
+      "label": "Beta 0.54 (own 5y weekly), JVs consistent",
+      "case_read": "base",
+      "value_pence": 5329.99831350223,
+      "impact_vs_reference_pence": 1312.1558990745043,
+      "reference_pence": 4017.842414427726,
+      "rating": "HOLD",
+      "upside": 0.1315143432,
+      "ev_meur": 130441.87438025403,
+      "minorities_deducted_meur": 13936.409858786341,
+      "notes": ""
+    },
+    "r_margin_182": {
+      "label": "Margin 18.2% (18.8% less management's 0.6% guide)",
+      "case_read": "base",
+      "value_pence": 4118.769763376093,
+      "impact_vs_reference_pence": 100.92734894836667,
+      "reference_pence": 4017.842414427726,
+      "rating": "SELL",
+      "upside": -0.1256194112,
+      "ev_meur": 98183.47090971404,
+      "minorities_deducted_meur": 10489.922031993849,
+      "notes": ""
+    },
+    "r_margin_188": {
+      "label": "Margin 18.8% (restructuring treated as one-off)",
+      "case_read": "base",
+      "value_pence": 4239.882582114133,
+      "impact_vs_reference_pence": 222.04016768640668,
+      "reference_pence": 4017.842414427726,
+      "rating": "HOLD",
+      "upside": -0.0999081664,
+      "ev_meur": 101442.83422338372,
+      "minorities_deducted_meur": 10838.152408426316,
+      "notes": ""
+    },
+    "r_mkc_deal_ref": {
+      "label": "McCormick back to USD 57.84 (deal reference price)",
+      "case_read": "base",
+      "value_pence": 4249.28155558306,
+      "impact_vs_reference_pence": 231.43914115533426,
+      "reference_pence": 4017.842414427726,
+      "rating": "HOLD",
+      "upside": -0.0979128425,
+      "ev_meur": 95467.33481498928,
+      "minorities_deducted_meur": 10199.730051633456,
+      "notes": ""
+    }
+  }
+}
