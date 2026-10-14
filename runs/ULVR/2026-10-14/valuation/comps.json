@@ -452,8 +452,8 @@
     "implied_value": 3917.6700173335225,
     "high": 6547.699459430038
   },
-  "dcf_value_pence": 4101.434719926086,
-  "dcf_vs_comps_median": 0.04690663118116278,
+  "dcf_value_pence": 4017.842414427726,
+  "dcf_vs_comps_median": 0.02556938094607153,
   "flags": [
     "KMB: price reflects the pending Kenvue acquisition, LTM figures do not (11.9x). CL: LTM EBITDA depressed by the USD 919m Filorga impairment, so 20.8x is overstated. Medians with and without both are shown.",
     "Peer EBITDA is GAAP/Yahoo unadjusted (after restructuring); Unilever primary metric is after recurring restructuring (PM 17.7% margin) to match. Underlying variant shown.",

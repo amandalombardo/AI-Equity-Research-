@@ -1,6 +1,6 @@
 {
   "units": "value per share in pence (GBp) unless labelled; money in EUR m",
-  "base_value_pence_recheck": 4101.434719926086,
+  "base_value_pence_recheck": 4017.842414427726,
   "price_pence": 4710.5,
   "rating_thresholds_pence": {
     "hold_if_at_least": 4239.45,
@@ -31,11 +31,11 @@
       "flag": false
     },
     "dcf_vs_comps": {
-      "dcf_pence": 4101.434719926086,
+      "dcf_pence": 4017.842414427726,
       "comps_median_pence": 3917.6700173335225,
       "comps_low_pence": 3173.006554383302,
       "comps_high_pence": 6547.699459430038,
-      "gap": 0.04690663118116278,
+      "gap": 0.02556938094607153,
       "comps_ex_KMB_pence": 4585.869379060984,
       "comps_underlying_ebitda_pence": 4101.196257878537
     }
@@ -69,14 +69,14 @@
     "foods_interim_cash_flows": "MISSING (inputs.yaml foods_perimeter_interim_cash_flows_meur: null). Data agent indicator only: about EUR 2.9bn (about 113p) before capex and working capital, if the economics to closing belong to Unilever. Offsets the timing reduction above."
   },
   "roll_forward_of_run_date_values_flag": {
-    "items_at_run_date_prices_meur": {
-      "foods_consideration": 33955.3,
-      "tmicc_stake": 1935.2125746714535
-    },
-    "extra_growth_meur": 2128.4267959213757,
-    "overstatement_pence": 83.59233478593652,
-    "value_if_corrected_pence": 4017.842385140149,
-    "rating_if_corrected": "SELL"
+    "status": "RESOLVED in desk/ (commit 3414aec, mistakes log row 24)",
+    "priced_at_valuation_date_meur_input": 35890.5,
+    "foods_plus_tmicc_recomputed_meur": 35890.512574671455,
+    "input_matches": true,
+    "engine_equity_meur": 102302.24432128355,
+    "hand_built_equity_meur": 102302.2435755637,
+    "previous_engine_value_pence": 4101.434719926086,
+    "change_pence": -83.59230549835956
   },
   "b_tax_on_foods_cash": {
     "per_eur_1bn_pence_today": 39.2742352925275,
@@ -84,53 +84,53 @@
     "per_eur_1bn_pence_paid_at_closing_pv_at_cost_of_debt": 38.22758419739487,
     "bear_25pct_of_cash_meur": 3506.655945680336,
     "bear_25pct_of_cash_pence_today": 137.72123070059007,
-    "note": "39p is the right size for a tax known today. The engine line is higher because the engine also grows bridge items at Ke for 0.786 years (see roll-forward FLAG)."
+    "note": "39p is the right size for a tax known today. The engine line is higher because a bridge line entered as a 31 Dec 2025 amount is grown at Ke for 0.786 years; a tax figure known today should be added to priced_at_valuation_date as well, which gives the 39p."
   },
   "c_beta_sensitivity": {
     "bottom_up_base": {
       "beta": 0.8844,
       "jv_value_meur": 3876.4411862712427,
       "associates_meur": 7228.7,
-      "value_per_share_pence": 4101.434719926086,
-      "value_per_share_eur": 48.47483240409379,
-      "upside": -0.1292994969,
+      "value_per_share_pence": 4017.842414427726,
+      "value_per_share_eur": 47.486855445782524,
+      "upside": -0.1470454486,
       "rating": "SELL",
       "wacc": 0.0683868542,
       "cost_of_equity": 0.07602,
       "enterprise_value_meur": 95467.33481498928,
       "tv_share_of_ev": 0.7664694993752678,
       "implied_exit_ev_ebitda": 11.388731344945278,
-      "value_if_jv_not_recomputed_pence": 4101.434719926086
+      "value_if_jv_not_recomputed_pence": 4017.842414427726
     },
     "own_5y_weekly": {
       "beta": 0.54,
       "jv_value_meur": 5436.07476635514,
       "associates_meur": 8788.333580083898,
-      "value_per_share_pence": 5394.770443534082,
-      "value_per_share_eur": 63.76075957965904,
-      "upside": 0.145264928,
+      "value_per_share_pence": 5329.999692935542,
+      "value_per_share_eur": 62.995234466045105,
+      "upside": 0.131514636,
       "rating": "HOLD",
       "wacc": 0.053945301200000004,
       "cost_of_equity": 0.058800000000000005,
       "enterprise_value_meur": 130441.87438025403,
       "tv_share_of_ev": 0.8233681195425891,
       "implied_exit_ev_ebitda": 15.723153845741987,
-      "value_if_jv_not_recomputed_pence": 5330.702392892163
+      "value_if_jv_not_recomputed_pence": 5265.931642293625
     },
     "own_5y_monthly": {
       "beta": 0.91,
       "jv_value_meur": 3795.4975530179445,
       "associates_meur": 7147.756366746702,
-      "value_per_share_pence": 4033.3957801169718,
-      "value_per_share_eur": 47.67068058176308,
-      "upside": -0.1437435983,
+      "value_per_share_pence": 3948.407008812471,
+      "value_per_share_eur": 46.666198802448115,
+      "upside": -0.1617860081,
       "rating": "SELL",
       "wacc": 0.0694603262,
       "cost_of_equity": 0.07730000000000001,
       "enterprise_value_meur": 93621.0001256603,
       "tv_share_of_ev": 0.7624378956622383,
       "implied_exit_ev_ebitda": 11.160048037466296,
-      "value_if_jv_not_recomputed_pence": 4036.7664540901296
+      "value_if_jv_not_recomputed_pence": 3951.7776827856287
     }
   },
   "d_value_decomposition": {
@@ -139,113 +139,113 @@
       "less_minorities_proportionate": -424.34271589561615,
       "less_net_debt_31dec2025": -960.0383992946025,
       "less_restructuring_cash": -20.801664051278443,
-      "foods_consideration": 1412.65348672075,
-      "tmicc_stake": 80.51128369225034,
+      "foods_consideration": 1333.568441628359,
+      "tmicc_stake": 76.00350013809911,
       "joint_ventures_gordon": 161.27285454270734,
-      "other_associates_investments_magnum_balance": 58.95383961999525,
+      "other_associates_investments_magnum_balance": 58.95436276817764,
       "less_dividends_ex_since_31dec": -119.34654620693257,
       "less_buybacks_since_31dec": -59.18627258583895
     },
     "subtotals_pence": {
       "dcf_remaining_business_after_minorities": 3547.416137489035,
-      "foods_consideration": 1412.65348672075,
-      "other_non_operating_assets": 300.737977854953,
-      "all_non_operating_assets": 1713.391464575703,
+      "foods_consideration": 1333.568441628359,
+      "other_non_operating_assets": 296.230717448984,
+      "all_non_operating_assets": 1629.7991590773431,
       "net_debt_restructuring_dividends_buybacks": -1159.3728821386524,
-      "total_value_per_share": 4101.434719926086
+      "total_value_per_share": 4017.842414427726
     },
     "share_of_value_per_share": {
-      "dcf_remaining_business_after_minorities": 0.8649207849766691,
-      "foods_consideration": 0.3444291042492097,
-      "other_non_operating_assets": 0.07332506754133411,
-      "net_debt_and_cash_paid_out": -0.28267495676721294
+      "dcf_remaining_business_after_minorities": 0.8829156974276964,
+      "foods_consideration": 0.33191158439654816,
+      "other_non_operating_assets": 0.07372880439144279,
+      "net_debt_and_cash_paid_out": -0.28855608621568735
     },
-    "growth_factor_at_ke": 1.0593033267912546
+    "growth_factor_at_ke_for_31dec_items": 1.0593033267912546
   },
   "e_flip_points": {
     "beta_jv_consistent": {
       "base_value": 0.8844,
       "sell_to_hold": {
-        "parameter": 0.8355308308266103,
-        "value_check_pence": 4239.44999981444,
+        "parameter": 0.8090978006832301,
+        "value_check_pence": 4239.449999818528,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.5357276241295039,
-        "value_check_pence": 5417.074999748631,
+        "parameter": 0.523713397141546,
+        "value_check_pence": 5417.074998666844,
         "status": "found"
       }
     },
     "wacc_shift_added_to_wacc": {
       "base_value": 0.0,
       "sell_to_hold": {
-        "parameter": -0.002034187242388725,
-        "value_check_pence": 4239.44998428625,
+        "parameter": -0.0031913205236196516,
+        "value_check_pence": 4239.450024607752,
         "status": "found",
-        "wacc_level": 0.06635266695761127
+        "wacc_level": 0.06519553367638035
       },
       "hold_to_buy": {
-        "parameter": -0.01457028456032276,
-        "value_check_pence": 5417.075040813723,
+        "parameter": -0.015227234289050099,
+        "value_check_pence": 5417.074989211276,
         "status": "found",
-        "wacc_level": 0.053816569639677236
+        "wacc_level": 0.053159619910949904
       }
     },
     "terminal_growth": {
       "base_value": 0.016,
       "sell_to_hold": {
-        "parameter": 0.019194906055927274,
-        "value_check_pence": 4239.450000985868,
+        "parameter": 0.020951990187168118,
+        "value_check_pence": 4239.449987107,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.03617519170045853,
-        "value_check_pence": 5417.075003672306,
+        "parameter": 0.036952492296695706,
+        "value_check_pence": 5417.07499359713,
         "status": "found"
       }
     },
     "long_run_growth_fy27_30_and_terminal": {
       "base_value": 0.016,
       "sell_to_hold": {
-        "parameter": 0.018470377027988434,
-        "value_check_pence": 4239.450013306706,
+        "parameter": 0.019866209924221036,
+        "value_check_pence": 4239.450012686093,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.033140569627285,
-        "value_check_pence": 5417.074997144927,
+        "parameter": 0.033877730667591095,
+        "value_check_pence": 5417.07500318394,
         "status": "found"
       }
     },
     "base_margin": {
       "base_value": 0.177,
       "sell_to_hold": {
-        "parameter": 0.18383735809475188,
-        "value_check_pence": 4239.450005188878,
+        "parameter": 0.18797856945544483,
+        "value_check_pence": 4239.449996504438,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.24217759016901252,
-        "value_check_pence": 5417.074997246391,
+        "parameter": 0.24631880220025776,
+        "value_check_pence": 5417.075002097364,
         "status": "found"
       }
     },
     "mkc_share_price_usd": {
       "base_value": 44.63999938964844,
       "sell_to_hold": {
-        "parameter": 52.07084927226424,
-        "value_check_pence": 4239.4499999961445,
+        "parameter": 57.27916986382297,
+        "value_check_pence": 4239.450000001916,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 115.4758872805669,
-        "value_check_pence": 5417.075000002913,
+        "parameter": 124.44433756108083,
+        "value_check_pence": 5417.075000004073,
         "status": "found"
       }
     },
     "extra_value_today_meur": {
-      "sell_to_hold": 3514.14302648876,
-      "hold_to_buy": 33498.81341481483,
+      "sell_to_hold": 5642.569076690283,
+      "hold_to_buy": 35627.239465016355,
       "note": "EUR m of value at today's date needed to reach each threshold (each EUR 1bn = 39.3p)."
     }
   },
@@ -264,35 +264,35 @@
     ],
     "grid": [
       [
-        4618.150306438485,
-        4907.178190381735,
-        5272.306032991086
+        4534.558000940126,
+        4823.585884883375,
+        5188.713727492725
       ],
       [
-        4240.474706662873,
-        4461.866086853093,
-        4734.445986678303
+        4156.882401164514,
+        4378.273781354734,
+        4650.853681179943
       ],
       [
-        3928.550580972253,
-        4101.434719926086,
-        4309.889293913311
+        3844.9582754738926,
+        4017.842414427726,
+        4226.296988414952
       ],
       [
-        3666.570313756546,
-        3803.700607247851,
-        3966.1985667168183
+        3582.9780082581865,
+        3720.1083017494916,
+        3882.6062612184587
       ],
       [
-        3443.4178494536054,
-        3553.5917633765116,
-        3682.241081402468
+        3359.825543955246,
+        3469.999457878152,
+        3598.6487759041083
       ]
     ],
-    "note": "valuation.json's grid uses growth 1.5-3.0%, so its centre is not the base case; this one is."
+    "note": "valuation.json's grid is now centred on 1.6% too (commit 3414aec; growth 1.1-2.6%); this copy is the same centre."
   },
   "bear_jv_consistency": {
-    "bear_value_pence": 3406.743603204081,
+    "bear_value_pence": 3323.1512977057214,
     "jv_value_if_ke_plus_1pt_meur": 3322.8220508426166,
     "jv_reduction_pence_today": 21.742968187269508,
     "note": "If the bear's +1 pt applies to the cost of equity too, the JV value falls; the engine does not do this."

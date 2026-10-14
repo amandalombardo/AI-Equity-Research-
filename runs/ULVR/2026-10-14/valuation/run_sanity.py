@@ -131,15 +131,20 @@ timing["foods_interim_cash_flows"] = ("MISSING (inputs.yaml foods_perimeter_inte
                                       "indicator only: about EUR 2.9bn (about 113p) before capex and working capital, if "
                                       "the economics to closing belong to Unilever. Offsets the timing reduction above.")
 
-# ================= roll-forward of run-date market values (consistency FLAG) =================
-# The engine grows the whole balance-sheet-date equity at the cost of equity for 0.786 years. The Foods consideration and
-# the TMICC stake are valued at 13 Oct 2026 prices, i.e. already at the valuation date, so they are grown once too often.
+# ================= roll-forward of run-date market values (FLAG 1 of the first run: RESOLVED, commit 3414aec) ==========
+# The engine now grows only the balance-sheet-date part of equity at Ke; the Foods consideration and the TMICC stake
+# (priced at 13 Oct 2026) are added back ungrown. Check that the input equals those two items and that the engine's
+# equity equals the hand-built roll-forward.
+PRICED = v0["priced_at_valuation_date_meur"]
 run_date_items = v0["disposal_proceeds"] + TMICC
-extra = grow(run_date_items, KE0, t_roll) - run_date_items
-roll_flag = {"items_at_run_date_prices_meur": {"foods_consideration": v0["disposal_proceeds"], "tmicc_stake": TMICC},
-             "extra_growth_meur": extra, "overstatement_pence": pence(extra),
-             "value_if_corrected_pence": B - pence(extra),
-             "rating_if_corrected": "SELL" if B - pence(extra) <= hold_floor else "HOLD"}
+eq_check = dcf.roll_forward(base["equity"]["equity_value_balance_sheet_date"], KE0, t_roll,
+                            v0["dividends_ex_before_valuation_meur"], v0["buybacks_after_balance_sheet_meur"], run_date_items)
+roll_flag = {"status": "RESOLVED in desk/ (commit 3414aec, mistakes log row 24)",
+             "priced_at_valuation_date_meur_input": PRICED, "foods_plus_tmicc_recomputed_meur": run_date_items,
+             "input_matches": abs(PRICED - run_date_items) < 0.1,
+             "engine_equity_meur": base["equity"]["equity_value"], "hand_built_equity_meur": eq_check,
+             "previous_engine_value_pence": 4101.434719926086, "change_pence": B - 4101.434719926086}
+assert roll_flag["input_matches"] and abs(eq_check - base["equity"]["equity_value"]) < 1.0
 
 # ================= (b) tax on the Foods cash: each EUR 1bn =================
 v_tax = copy.deepcopy(v0)
@@ -148,8 +153,9 @@ tax = {"per_eur_1bn_pence_today": pence(1000.0),
        "per_eur_1bn_pence_through_engine_bridge": B - ps(run(v_tax)),
        "per_eur_1bn_pence_paid_at_closing_pv_at_cost_of_debt": pence(pv(1000.0, kd, t_close)),
        "bear_25pct_of_cash_meur": 0.25 * cash_eur, "bear_25pct_of_cash_pence_today": pence(0.25 * cash_eur),
-       "note": "39p is the right size for a tax known today. The engine line is higher because the engine also grows "
-               "bridge items at Ke for 0.786 years (see roll-forward FLAG)."}
+       "note": "39p is the right size for a tax known today. The engine line is higher because a bridge line entered "
+               "as a 31 Dec 2025 amount is grown at Ke for 0.786 years; a tax figure known today should be added to "
+               "priced_at_valuation_date as well, which gives the 39p."}
 
 # ================= (c) beta sensitivity (JV value recomputed at each cost of equity) =================
 betas = {"bottom_up_base": v0["beta"], "own_5y_weekly": 0.54, "own_5y_monthly": 0.91}
@@ -164,8 +170,8 @@ for k, b in betas.items():
                     "value_if_jv_not_recomputed_pence": ps(run(v_nojv))}
 
 # ================= (d) where the value per share comes from =================
-# The engine: equity today = (EV - minorities - net debt - restructuring + associates + Foods) x (1 + Ke)^t - dividends
-# - buybacks. Each balance-sheet-date item is therefore grown at Ke before being divided by shares.
+# The engine: equity today = (equity at 31 Dec - items priced today) x (1 + Ke)^t + items priced today - dividends
+# - buybacks. Each balance-sheet-date item is grown at Ke; the Foods consideration and TMICC (priced today) are not.
 f = grow(1.0, KE0, t_roll)
 mi = base["equity"]["minorities_deducted"]
 parts_meur = {
@@ -173,10 +179,10 @@ parts_meur = {
     "less_minorities_proportionate": -mi * f,
     "less_net_debt_31dec2025": -v0["net_debt"] * f,
     "less_restructuring_cash": -v0["restructuring_cash"] * f,
-    "foods_consideration": v0["disposal_proceeds"] * f,
-    "tmicc_stake": TMICC * f,
+    "foods_consideration": v0["disposal_proceeds"],
+    "tmicc_stake": PRICED - v0["disposal_proceeds"],   # the input's TMICC figure (1,935.2, rounded), not grown
     "joint_ventures_gordon": JV0 * f,
-    "other_associates_investments_magnum_balance": (ASSOC_EX_JV - TMICC) * f,
+    "other_associates_investments_magnum_balance": (ASSOC_EX_JV - (PRICED - v0["disposal_proceeds"])) * f,
     "less_dividends_ex_since_31dec": -v0["dividends_ex_before_valuation_meur"],
     "less_buybacks_since_31dec": -v0["buybacks_after_balance_sheet_meur"]}
 parts_p = {k: pence(x) for k, x in parts_meur.items()}
@@ -192,7 +198,7 @@ decomp = {"pence": parts_p, "subtotals_pence": {
                                  "foods_consideration": parts_p["foods_consideration"] / B,
                                  "other_non_operating_assets": (non_op - parts_p["foods_consideration"]) / B,
                                  "net_debt_and_cash_paid_out": claims / B},
-    "growth_factor_at_ke": f}
+    "growth_factor_at_ke_for_31dec_items": f}
 
 # ================= (e) SELL/HOLD/BUY flip points (one variable at a time) =================
 def solve(fn, lo, hi, target, tol=1e-9):
@@ -246,6 +252,7 @@ def by_margin(mg):
 def by_mkc_price(px):  # McCormick share price (USD) -> Foods consideration at today's value
     v = copy.deepcopy(v0)
     v["disposal_proceeds"] = (15_700 + 499.691175 * px) / usd_per_eur
+    v["priced_at_valuation_date_meur"] = v["disposal_proceeds"] + TMICC   # still priced today, so not grown
     return ps(run(v))
 
 
@@ -292,7 +299,7 @@ out = {"units": "value per share in pence (GBp) unless labelled; money in EUR m"
        "b_tax_on_foods_cash": tax, "c_beta_sensitivity": beta_sens, "d_value_decomposition": decomp,
        "e_flip_points": flips,
        "sensitivity_grid_centred_pence": {"wacc": waccs, "terminal_growth": growths, "grid": grid,
-                                          "note": "valuation.json's grid uses growth 1.5-3.0%, so its centre is not the base case; this one is."},
+                                          "note": "valuation.json's grid is now centred on 1.6% too (commit 3414aec; growth 1.1-2.6%); this copy is the same centre."},
        "bear_jv_consistency": bear_note}
 (HERE / "sanity_checks.json").write_text(json.dumps(out, indent=2, default=float))
 print(json.dumps(out, indent=1, default=float))
