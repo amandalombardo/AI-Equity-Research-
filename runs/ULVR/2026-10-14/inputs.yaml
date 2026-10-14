@@ -165,3 +165,9 @@ minority_share_of_operating_profit:
     (539 / 940 = 57%; EUR 199m non-cash dividend). Cross-checks: FY25 10.39%, H1 2026 9.46%. Assumptions (FLAG): minorities'' share of operating profit = their share
     of net profit (HUL has net cash, so this slightly OVERstates); no minority profit leaves with the perimeter (minority holders of Indonesia etc. Foods do leave:
     slight OVERstatement).'
+priced_at_valuation_date_meur:
+  value: 35890.5
+  source: 'Bridge items already at run-date market prices (not grown in the roll-forward; mistakes log row 24): TMICC stake 1,935.2 (inputs.yaml `associates` component
+    (1): 121,604,413 shares x EUR 15.914, Yahoo MICC.AS close 2026-10-13) + Foods consideration 33,955.3 (inputs.yaml `disposal_proceeds`: USD 15,700m cash + 499,691,175
+    McCormick shares x USD 44.64, Yahoo MKC close 2026-10-13, at FRED DEXUSEU) = 35,890.5. Excluded (balance-sheet-date values): JVs by Gordon growth on FY25 dividends,
+    associates at book 15, fair-value investments 902 (31 Dec 2025), Magnum transition balance 500.'

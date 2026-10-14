@@ -3,6 +3,11 @@
 All money amounts are EUR m unless labelled otherwise. Share prices: ULVR in pence (GBp), MKC in USD, MICC.AS in EUR, HUL in INR.
 Every value in `../inputs.yaml` carries its source (document + page/section, or URL). Scripts: `build_inputs.py`, `build_peers.py` (re-runnable from the repo root).
 
+## 000. priced_at_valuation_date_meur added (14 Oct 2026, mistakes log row 24)
+`add_priced_at_valuation_date.py` adds a single key to `../inputs.yaml`: **priced_at_valuation_date_meur = EUR 35,890.5m**. That is the TMICC stake at the 13 Oct 2026 MICC.AS close, **1,935.2** (component 1 of `associates`: 121,604,413 x EUR 15.914), plus the Foods consideration at the 13 Oct McCormick price, **33,955.3** (`disposal_proceeds`). Both are already at run-date market prices, so the engine must not grow them by the cost of equity in the roll-forward from 31 Dec 2025.
+Left out because they are 31 Dec 2025 values: the JVs (Gordon growth on FY25 dividends, 3,876.4), associates at book (15), fair-value investments (902) and the Magnum transition balance (500).
+The script checks that the TMICC figure matches the `associates` source and that no other key changed (verified by comparing the file before and after). If `associates` or `disposal_proceeds` is recomputed, re-run the script.
+
 ## 00. PM decision 10 applied (14 Oct 2026, docs/phase5/ulvr-run-flags.md items A-D)
 Applied by `apply_pm_decision10.py`. It changes only these three keys in `../inputs.yaml`; every other key, including beta, minority_share_of_operating_profit and buybacks_after_balance_sheet_meur, is unchanged (checked by comparing the file before and after). `build_inputs.py --write-inputs` now leaves these three keys alone.
 
