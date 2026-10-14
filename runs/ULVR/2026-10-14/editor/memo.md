@@ -1,6 +1,6 @@
 # Unilever PLC (LSE: ULVR)
 
-**Rating: SELL | Desk rating: SELL (PM review pending) | Fair value 3,855p | Share price 4,710.5p (13 Oct 2026 close) | Upside -18.2% | Bear case 3,212p**
+**Rating: SELL | Desk rating: SELL (PM confirmed 14 Oct 2026) | Fair value 3,855p | Share price 4,710.5p (13 Oct 2026 close) | Upside -18.2% | Bear case 3,212p**
 
 Memo of 14 October 2026. Desk rule: BUY at +15% or more, SELL at -10% or worse. **HOLD starts at 4,239p, BUY at 5,417p.** Per-share values in pence (GBp); totals in EUR m (Unilever reports in euros), converted at EUR 1.18190 per GBP; 2,154.3m shares.
 
