@@ -142,3 +142,16 @@ beta:
     ''Industry Averages'', PM upload 14 Oct 2026) relevered (Hamada) at Unilever''s market D/E 0.1924 = net debt EUR 23,076m (31 Dec 2025, FY25 results 6-K 0001654954-26-001155)
     / market cap EUR 119,938.7m (2,154.328m shares x 4,710.5p / 100 x 1.18190 EUR per GBP) and tax 26.0% (brief). Cross-checks in risk/beta_evidence.json and risk/risk.json
     (not used).'
+minority_share_of_operating_profit:
+  value: 0.10684
+  source: 'Fundamentals agent (fundamentals/run_fundamentals.py, ratios.csv). Outside shareholders'' share of the operating profit of the business that REMAINS
+    after the Foods sale = FY24 minorities'' share of Group underlying net profit x Group UOP FY25 / (Group UOP FY25 - Foods perimeter UOP FY25) = 0.07929
+    x 10,084 / 7,484 = 10.68%. FY24 share = underlying NCI profit 587 (reported NCI continuing 609 less NCI share of non-underlying items +22) / (underlying
+    profit to shareholders 6,816 + 587 = 7,403). Sources: Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026) p.128 income statement
+    (NCI continuing 609), p.42 non-underlying items (NCI +22), p.43 underlying EPS reconciliation (6,816), p.137 note 2 (UOP 10,084); Foods perimeter UOP EUR
+    2.6bn, Form 425 investor presentation (accession 0000217410-26-000027) slide 25; the perimeter excludes India Foods (Form 425 call transcript), so all of
+    Hindustan Unilever stays. HUL check: HUL minorities 446 / HUL profit 1,167 = 38.2% in FY24 (20-F p.162 note 15B) vs 38.1% outside holding (Unilever 61.90%,
+    p.194); HUL alone = 446 / 7,403 = 6.0% of Group underlying profit; other minorities (e.g. PT Unilever Indonesia, 85% owned, p.183) the rest. FY24 used
+    because FY25 HUL figures are distorted by HUL''s ice cream demerger (539 / 940 = 57%; EUR 199m non-cash dividend). Cross-checks: FY25 10.39%, H1 2026
+    9.46%. Assumptions (FLAG): minorities'' share of operating profit = their share of net profit (HUL has net cash, so this slightly OVERstates); no minority
+    profit leaves with the perimeter (minority holders of Indonesia etc. Foods do leave: slight OVERstatement).'
