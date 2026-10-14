@@ -40,6 +40,7 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
          base["inputs"].stub_years),
         ("roll_years", "Years from the balance sheet date to valuation date (equity roll-forward)", (base["roll"] or {}).get("years", 0.0)),
         ("divs", f"Dividends gone ex before valuation date ({m})", (base["roll"] or {}).get("dividends", 0.0)),
+        ("buybacks", f"Share buybacks after the balance sheet date ({m})", (base["roll"] or {}).get("buybacks", 0.0)),
         ("net_debt", f"Net debt ({m})", v["net_debt"]),
         ("leases", f"Lease liabilities not in net debt ({m})", v["lease_liabilities"]),
         ("minorities", f"Minority interests at book ({m})", v["minority_interests"]),
@@ -72,11 +73,12 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
                   "minorities": "minority_interests", "pension": "pension_deficit", "disposals": "disposal_proceeds", "restructuring": "restructuring_cash",
                   "mi_share": "minority_share_of_operating_profit",
                   "roll_years": "stub_years", "divs": money_key("dividends_ex_before_valuation", rep),
+                  "buybacks": money_key("buybacks_after_balance_sheet", rep),
                   "contingent": "contingent_liabilities",
                   "shares": "shares_outstanding_m", "fx": fx_key(rep), "price": share_price_key(ccy)}
     for i, (key, label, val) in enumerate(inputs, start=2):
         src = sources.get(source_key.get(key, key)) or (
-            "not in this brief's bridge (0)" if key == "contingent" and not val else f"PM assumption ({brief_file})")
+            "not in this brief's bridge (0)" if key in ("contingent", "buybacks") and not val else f"PM assumption ({brief_file})")
         ws.append([label, val, src])
         ws.cell(row=i, column=2).fill = INPUT_FILL
         ref[key] = f"Inputs!$B${i}"
@@ -147,8 +149,9 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("eqbs", "Equity value at balance sheet date", (f"={{ev}}-{ref['net_debt']}-{ref['leases']}-{{mi}}"
                                 f"-{ref['pension']}-{ref['restructuring']}-{ref['contingent']}+{ref['associates']}+{ref['disposals']}"),
          eq["equity_value_balance_sheet_date"]),
-        # roll forward to the valuation date at the cost of equity, less dividends gone ex in between
-        ("eq", "Equity value at valuation date", f"={{eqbs}}*(1+{{ke}})^{ref['roll_years']}-{ref['divs']}", eq["equity_value"]),
+        # roll forward to the valuation date at the cost of equity, less dividends gone ex and buybacks in between
+        ("eq", "Equity value at valuation date", f"={{eqbs}}*(1+{{ke}})^{ref['roll_years']}-{ref['divs']}-{ref['buybacks']}",
+         eq["equity_value"]),
         ("rep", f"Value per share ({rep})", f"={{eq}}/{ref['shares']}", eq[f"per_share_{rep.lower()}"]),
     ]
     if ccy == "GBp":

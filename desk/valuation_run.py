@@ -27,6 +27,9 @@ OPTIONAL_BRIDGE = ["lease_liabilities", "minority_interests", "pension_deficit",
 # needed only when the brief values the company at its balance sheet date and rolls forward
 # (in millions of the reporting currency: dividends_ex_before_valuation_musd or _meur)
 DIVIDENDS = "dividends_ex_before_valuation"
+# needed only when the brief's bridge lists buybacks_after_balance_sheet_m<ccy> (e.g. Unilever's 2026 buyback): cash
+# spent on buybacks between the balance sheet date and the run date, when the share count is after the buyback
+BUYBACKS = "buybacks_after_balance_sheet"
 ROLL_FORWARD = [money_key(DIVIDENDS, "USD")]
 # needed only when the brief values minorities proportionately (bridge.minorities_method: proportionate)
 PROPORTIONATE = ["minority_share_of_operating_profit"]
@@ -78,6 +81,12 @@ def has_contingent_liabilities(brief: dict) -> bool:
     return "contingent_liabilities_musd" in bridge or money_key("contingent_liabilities", reporting_currency(brief["company"])) in bridge
 
 
+def buybacks_key(brief: dict) -> str | None:
+    """The buyback input name if the brief's bridge lists buybacks (rolled-forward valuations only), else None."""
+    key = money_key(BUYBACKS, reporting_currency(brief["company"]))
+    return key if rolls_forward(brief) and key in brief["dcf"]["bridge"] else None
+
+
 def price_inputs(company: dict) -> list:
     """The share price and, for a London price, the FX rate (reporting currency per GBP) from the brief's company."""
     if price_currency(company) == "GBp":
@@ -93,7 +102,8 @@ def dividends_key(brief: dict) -> str:
 def extra_required(brief: dict) -> list:
     return (price_inputs(brief["company"])
             + ([dividends_key(brief)] if rolls_forward(brief) else []) + (PROPORTIONATE if proportionate_minorities(brief) else [])
-            + (CONTINGENT if has_contingent_liabilities(brief) else []))
+            + (CONTINGENT if has_contingent_liabilities(brief) else [])
+            + ([buybacks_key(brief)] if buybacks_key(brief) else []))
 
 
 def fx_rate(brief: dict, v: dict) -> float | None:
@@ -134,7 +144,8 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
                         contingent_liabilities=v["contingent_liabilities"] if has_contingent_liabilities(brief) else 0.0,
                         minority_share_of_ev=v["minority_share_of_operating_profit"] if proportionate_minorities(brief) else None)
     roll_args = ({"cost_of_equity": w["cost_of_equity"], "years": v["stub_years"],
-                  "dividends": v[dividends_key(brief)]} if roll else None)
+                  "dividends": v[dividends_key(brief)],
+                  "buybacks": v[buybacks_key(brief)] if buybacks_key(brief) else 0.0} if roll else None)
     eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], fx_rate(brief, v), roll_args, rep)
     ccy = price_currency(brief["company"])
     # fair value and share price in the same units: pence for a London price, US dollars for a US price

@@ -1,0 +1,51 @@
+{
+  "ULVR.L": {
+    "date": "2026-10-13",
+    "close": 4710.5,
+    "currency": "GBp"
+  },
+  "MKC": {
+    "date": "2026-10-13",
+    "close": 44.63999938964844,
+    "currency": "USD"
+  },
+  "MICC.AS": {
+    "date": "2026-10-13",
+    "close": 15.913999557495117,
+    "currency": "EUR"
+  },
+  "HINDUNILVR.NS": {
+    "date": "2026-10-13",
+    "close": 1875.5,
+    "currency": "INR"
+  },
+  "EURUSD=X": {
+    "date": "2026-10-12",
+    "close": 1.1160216331481934,
+    "currency": "USD"
+  },
+  "EURGBP=X": {
+    "date": "2026-10-12",
+    "close": 0.844789981842041,
+    "currency": "GBP"
+  },
+  "MICC.AS@2026-06-30": {
+    "date": "2026-06-30",
+    "close": 15.236000061035156,
+    "currency": "EUR"
+  },
+  "HINDUNILVR.NS_shares": 2349591262,
+  "fred": {
+    "date": "2026-10-09",
+    "USD_per_EUR": 1.1193,
+    "USD_per_GBP": 1.3229,
+    "INR_per_USD": 96.73,
+    "EUR_per_GBP": 1.1818994014115964,
+    "INR_per_EUR": 108.269889
+  },
+  "desk_data_sources_price_14oct_intraday": {
+    "value": 4737.0,
+    "date": "2026-10-14",
+    "source": "Yahoo Finance ULVR.L close (pence, GBp)"
+  }
+}

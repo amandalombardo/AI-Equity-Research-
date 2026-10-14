@@ -20,6 +20,7 @@ def eur_brief():
     brief["company"].update({"ticker": "TEST", "price_currency": "GBp", "reporting_currency": "EUR"})
     brief["dcf"]["terminal_ronic"] = 0.18
     brief["dcf"]["bridge"].pop("contingent_liabilities_musd", None)
+    brief["dcf"]["bridge"]["buybacks_after_balance_sheet_meur"] = None  # Unilever bought back shares in H1 2026
     return brief
 
 
@@ -47,6 +48,21 @@ def test_euro_run_needs_euro_fx_and_euro_dividends():
     req = valuation_run.extra_required(eur_brief())
     assert "fx_eur_per_gbp" in req and "share_price_gbp_pence" in req and "dividends_ex_before_valuation_meur" in req
     assert "fx_usd_per_gbp" not in req and "dividends_ex_before_valuation_musd" not in req
+    assert "buybacks_after_balance_sheet_meur" in req  # listed in this brief's bridge, so it must be sourced
+
+
+def test_buyback_reduces_rolled_forward_equity(tmp_path):
+    brief_path = tmp_path / "TEST.yaml"
+    brief_path.write_text(yaml.safe_dump(eur_brief()))
+    inputs = yaml.safe_load(EUR_FIXTURE.read_text())
+    no_buyback = tmp_path / "no_buyback.yaml"
+    no_buyback.write_text(yaml.safe_dump({**inputs, "buybacks_after_balance_sheet_meur": {"value": 0, "source": "test"}}))
+    per_share = {}
+    for name, path in (("with", EUR_FIXTURE), ("without", no_buyback)):
+        valuation_run.main(str(brief_path), str(path), str(tmp_path / name))
+        per_share[name] = json.loads((tmp_path / name / "valuation.json").read_text())["base"]["equity"]["per_share_eur"]
+    # the EUR 1,500m spent on buybacks after the balance sheet date comes off equity, spread over 2,150m shares
+    assert per_share["without"] - per_share["with"] == pytest.approx(1500 / 2150)
 
 
 def test_full_euro_run_rates_in_pence(tmp_path):

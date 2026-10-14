@@ -92,6 +92,10 @@ dcf:
     disposal_proceeds_meur: null
     # One-off restructuring for stranded costs (decision 3): c.EUR 500m over 2027-29 (Form 425, 0000217410-26-000027).
     restructuring_cash_meur: 500
+    # Share buybacks after 31 Dec 2025 (mistakes row 22, caught by the Data agent 14 Oct 2026): the share count below is
+    # AFTER the 2026 buyback, so the cash spent (EUR 1,507m in H1 2026, H1 2026 6-K cash flow) leaves equity in the
+    # roll-forward, like a dividend. Not a PM assumption: it keeps net debt and the share count at consistent dates.
+    buybacks_after_balance_sheet_meur: null
   shares_outstanding_m: null        # Data agent: shares with voting rights, latest 6-K (2,154.3m on 31 Aug 2026)
   # FLAG for the valuation agent (not a PM decision; report the size of each in notes.md): the Foods consideration is
   # received at closing (expected mid-2027) while the base case uses today's value; and Foods' own cash flows until closing
