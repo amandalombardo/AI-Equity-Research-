@@ -22,3 +22,4 @@ share_price_gbp_pence: {value: 4700, source: test fixture}
 stub_years: {value: 0.78, source: test fixture}
 dividends_ex_before_valuation_meur: {value: 3000, source: test fixture}
 buybacks_after_balance_sheet_meur: {value: 1500, source: test fixture}
+priced_at_valuation_date_meur: {value: 30000, source: test fixture}

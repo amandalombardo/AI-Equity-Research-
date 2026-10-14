@@ -131,6 +131,8 @@ def test_roll_forward_by_hand():
     assert dcf.roll_forward(800, 0.10, 0.25, 5) == pytest.approx(800 * 1.1 ** 0.25 - 5)
     # a buyback after the balance sheet date is cash that left, like a dividend
     assert dcf.roll_forward(800, 0.10, 0.25, 5, buybacks=20) == pytest.approx(800 * 1.1 ** 0.25 - 25)
+    # a stake already at today's market price is not grown again
+    assert dcf.roll_forward(800, 0.10, 0.25, priced_at_valuation_date=300) == pytest.approx(500 * 1.1 ** 0.25 + 300)
     b = dcf.Bridge(net_debt=200)
     out = dcf.equity_bridge(1000, b, 100, 1.25, {"cost_of_equity": 0.10, "years": 0.25, "dividends": 5})
     assert out["equity_value_balance_sheet_date"] == pytest.approx(800)

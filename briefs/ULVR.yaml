@@ -109,6 +109,10 @@ dcf:
     # AFTER the 2026 buyback, so the cash spent (EUR 1,507m in H1 2026, H1 2026 6-K cash flow) leaves equity in the
     # roll-forward, like a dividend. Not a PM assumption: it keeps net debt and the share count at consistent dates.
     buybacks_after_balance_sheet_meur: null
+    # Bridge items already priced on the run date (mistakes row 24, caught by the Valuation agent 14 Oct 2026): the Foods
+    # consideration (McCormick price) and the Magnum Ice Cream stake (MICC.AS price) are at 13 Oct 2026 market values,
+    # so the roll-forward must not grow them at the cost of equity. Data agent: their sum, with sources.
+    priced_at_valuation_date_meur: null
   shares_outstanding_m: null        # Data agent: shares with voting rights, latest 6-K (2,154.3m on 31 Aug 2026)
   # FLAG for the valuation agent (not a PM decision; report the size of each in notes.md): the Foods consideration is
   # received at closing (expected mid-2027) while the base case uses today's value; and Foods' own cash flows until closing

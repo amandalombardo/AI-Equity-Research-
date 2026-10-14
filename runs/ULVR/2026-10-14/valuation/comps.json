@@ -1,0 +1,466 @@
+{
+  "units": "multiples unit-free; EBITDA, EV, equity in EUR m; value per share in pence (GBp) and EUR",
+  "price_pence": 4710.5,
+  "fx_eur_per_gbp": 1.1818994014115964,
+  "shares_m": 2154.327621,
+  "method": "- EV/EBITDA LTM: median of the 7 core peers, with and without the distorted peers (KMB: pending Kenvue deal;\n  CL: Q4 2025 Filorga impairment in LTM). Hindustan Unilever shown separately (brief optional_peers).\n- The multiple is applied to the EBITDA of the business that REMAINS after the Foods sale (ex-perimeter), then\n  the SAME non-operating items as the DCF are added/deducted (Foods consideration, stakes/JVs/investments, minorities\n  proportionate, net debt, restructuring), so the comps value and the DCF value per share are comparable.\n- Calendarisation: every peer's LTM ends 30 Jun 2026 (PG's own fiscal year ends then). To compare like with like,\n  Unilever's ex-perimeter EBITDA is put on the same 12 months to June 2026 with desk.comps.calendarise (6/12 FY25 +\n  6/12 FY26). Restating the peers onto December 2025 instead would need their H2 2025 figures, which are not in\n  data/peers.csv (MISSING). Forward P/E is calendarised onto Unilever's December year end (FY27 = Dec 2027).",
+  "ulvr_ebitda_meur": {
+    "fy25_pm_basis": 8080.008999999999,
+    "fy26_pm_basis_engine": 8120.4090449999985,
+    "fy25_underlying": 8518.878,
+    "fy26_underlying": 8561.472389999999,
+    "calendarised_ltm_jun2026": {
+      "pm_basis_after_restructuring": 8100.209022499999,
+      "underlying_before_restructuring": 8540.175195
+    }
+  },
+  "bridge_primary": {
+    "net_debt_30jun2026_meur": [
+      25961.0,
+      "Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm), net debt reconciliation at 30 Jun 2026 (fiscal_year 2026 = H1 2026)"
+    ],
+    "q2_2026_dividend_deducted_meur": 1004.8,
+    "minority_share_of_ev": 0.10684,
+    "associates_meur": 7228.7,
+    "disposal_proceeds_meur": 33955.3,
+    "restructuring_cash_meur": 500.0,
+    "roll_forward_at_cost_of_equity": "none (a market multiple already prices the company today)"
+  },
+  "bridge_variant_dcf_dates": {
+    "net_debt_31dec2025_meur": 23076.0,
+    "dividends_and_buybacks_deducted_meur": 4545.8
+  },
+  "peers": [
+    {
+      "peer": "Procter & Gamble",
+      "ticker": "PG",
+      "ccy": "USD",
+      "fy_end_month": 6,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 = PG fiscal year; Unilever EBITDA put on the same window",
+      "price": 153.04,
+      "market_cap_m": 355731.0,
+      "ev_m": 380157.0,
+      "ebitda_ltm_m": 22908.0,
+      "ev_ebitda_ltm": 16.59494499738083,
+      "ev_ebitda_ltm_csv": 16.59,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 22.17,
+      "pe_ntm_csv": 21.56,
+      "eps_fy27_dec_calendarised": 7.187469999999999,
+      "price_in_eps_units": 153.04,
+      "pe_fy27_dec_calendarised": 21.292610612635603,
+      "fcf_yield_ltm": 0.0426,
+      "flag": "flag: non-filing source (price, NTM EPS consensus); ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is GAAP unadjusted; PG fiscal year ends 30 June: LTM = FY26 (to 30 Jun 2026), Q1 FY27 10-Q not yet filed"
+    },
+    {
+      "peer": "Colgate-Palmolive",
+      "ticker": "CL",
+      "ccy": "USD",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); Unilever EBITDA put on the same window",
+      "price": 89.95,
+      "market_cap_m": 71706.0,
+      "ev_m": 78523.0,
+      "ebitda_ltm_m": 3772.0,
+      "ev_ebitda_ltm": 20.817338282078474,
+      "ev_ebitda_ltm_csv": 20.82,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 35.18,
+      "pe_ntm_csv": 22.22,
+      "eps_fy27_dec_calendarised": 4.09552,
+      "price_in_eps_units": 89.95,
+      "pe_fy27_dec_calendarised": 21.963023010509048,
+      "fcf_yield_ltm": 0.0538,
+      "flag": "flag: non-filing source (price, NTM EPS consensus); ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is GAAP unadjusted; current debt = ShortTermBankLoansAndNotesPayable only (no current long-term debt tagged at 30 Jun 2026); GAAP EBITDA and net income LTM (to 30 Jun 2026) depressed by the Q4 2025 skin health (Filorga) impairment, USD 919m pre-tax / 794m after tax (CL FY25 10-K, accession 0000021665-26-000006): EV/EBITDA LTM and P/E LTM overstated, prefer P/E NTM"
+    },
+    {
+      "peer": "Kimberly-Clark",
+      "ticker": "KMB",
+      "ccy": "USD",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); Unilever EBITDA put on the same window",
+      "price": 98.29,
+      "market_cap_m": 32689.0,
+      "ev_m": 38374.0,
+      "ebitda_ltm_m": 3239.0,
+      "ev_ebitda_ltm": 11.847483791293609,
+      "ev_ebitda_ltm_csv": 11.85,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 16.72,
+      "pe_ntm_csv": 13.23,
+      "eps_fy27_dec_calendarised": 7.44698,
+      "price_in_eps_units": 98.29,
+      "pe_fy27_dec_calendarised": 13.198638911343929,
+      "fcf_yield_ltm": 0.0557,
+      "flag": "flag: non-filing source (price, NTM EPS consensus); ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is GAAP unadjusted; DISTORTED: pending acquisition of Kenvue (merger agreement 2 Nov 2025, KMB Q2 2026 10-Q note 4; Kenvue note exchange offers under way, 8-Ks 0001104659-26-111354 and 0001104659-26-115239) and pending IFP joint venture with Suzano (held for sale): the price reflects the merger, LTM figures do not"
+    },
+    {
+      "peer": "Reckitt Benckiser",
+      "ticker": "RKT.L",
+      "ccy": "GBP",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); Unilever EBITDA put on the same window",
+      "price": 5258.0,
+      "market_cap_m": 33315.0,
+      "ev_m": 42691.0,
+      "ebitda_ltm_m": 3590.0,
+      "ev_ebitda_ltm": 11.891643454038997,
+      "ev_ebitda_ltm_csv": 11.89,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 11.53,
+      "pe_ntm_csv": 14.82,
+      "eps_fy27_dec_calendarised": 3.60497,
+      "price_in_eps_units": 52.58,
+      "pe_fy27_dec_calendarised": 14.585419573533207,
+      "fcf_yield_ltm": 0.0929,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); Yahoo LTM net income may include disposal gains or impairments (not checked): treat P/E LTM with care"
+    },
+    {
+      "peer": "Beiersdorf",
+      "ticker": "BEI.DE",
+      "ccy": "EUR",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); Unilever EBITDA put on the same window",
+      "price": 79.7,
+      "market_cap_m": 17380.0,
+      "ev_m": 14648.0,
+      "ebitda_ltm_m": 1580.0,
+      "ev_ebitda_ltm": 9.270886075949367,
+      "ev_ebitda_ltm_csv": 9.27,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 18.53,
+      "pe_ntm_csv": 20.2,
+      "eps_fy27_dec_calendarised": 3.98786,
+      "price_in_eps_units": 79.7,
+      "pe_fy27_dec_calendarised": 19.985656467378494,
+      "fcf_yield_ltm": 0.0322,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report)"
+    },
+    {
+      "peer": "L'Oreal",
+      "ticker": "OR.PA",
+      "ccy": "EUR",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); Unilever EBITDA put on the same window",
+      "price": 387.15,
+      "market_cap_m": 206215.0,
+      "ev_m": 218879.0,
+      "ebitda_ltm_m": 10350.0,
+      "ev_ebitda_ltm": 21.147729468599035,
+      "ev_ebitda_ltm_csv": 21.15,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 32.7,
+      "pe_ntm_csv": 26.42,
+      "eps_fy27_dec_calendarised": 14.9293,
+      "price_in_eps_units": 387.15,
+      "pe_fy27_dec_calendarised": 25.93222723101552,
+      "fcf_yield_ltm": 0.031,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report)"
+    },
+    {
+      "peer": "Henkel",
+      "ticker": "HEN3.DE",
+      "ccy": "EUR",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); Unilever EBITDA put on the same window",
+      "price": 75.72,
+      "market_cap_m": 29003.0,
+      "ev_m": 31358.0,
+      "ebitda_ltm_m": 3254.0,
+      "ev_ebitda_ltm": 9.636754763368161,
+      "ev_ebitda_ltm_csv": 9.64,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 15.16,
+      "pe_ntm_csv": 13.05,
+      "eps_fy27_dec_calendarised": 5.88165,
+      "price_in_eps_units": 75.72,
+      "pe_fy27_dec_calendarised": 12.87393843564306,
+      "fcf_yield_ltm": 0.0483,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); Henkel has two share lines (ordinary HEN.DE + preferred HEN3.DE): market cap uses both; P/E NTM uses the preferred price"
+    }
+  ],
+  "optional_peers_shown_separately": [
+    {
+      "peer": "Hindustan Unilever",
+      "ticker": "HINDUNILVR.NS",
+      "ccy": "INR",
+      "fy_end_month": 3,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); Unilever EBITDA put on the same window",
+      "price": 1875.5,
+      "market_cap_m": 4406658.0,
+      "ev_m": 4351508.0,
+      "ebitda_ltm_m": 148477.0,
+      "ev_ebitda_ltm": 29.3076234029513,
+      "ev_ebitda_ltm_csv": 29.31,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 41.66,
+      "pe_ntm_csv": 36.97,
+      "eps_fy27_dec_calendarised": 51.812055,
+      "price_in_eps_units": 1875.5,
+      "pe_fy27_dec_calendarised": 36.19813960283953,
+      "fcf_yield_ltm": null,
+      "flag": "fcf MISSING (Yahoo gives no FCF); flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); OPTIONAL: Unilever's 61.9%-owned subsidiary, show separately, not in the median",
+      "note": "Unilever's 62%-owned Indian subsidiary, show separately (brief optional_peers); not in any median. Its 29.3x reflects Indian market growth and valuation; it is already inside Unilever's DCF (consolidated), with the 38.1% outside holders deducted as minorities."
+    }
+  ],
+  "legs": {
+    "ev_ebitda_ltm_all_7": {
+      "peers": [
+        "PG",
+        "CL",
+        "KMB",
+        "RKT.L",
+        "BEI.DE",
+        "OR.PA",
+        "HEN3.DE"
+      ],
+      "peers_used": 7,
+      "median_multiple": 11.891643454038997,
+      "low_multiple": 9.270886075949367,
+      "high_multiple": 21.147729468599035,
+      "ulvr_ebitda_meur": 8100.209022499999,
+      "implied_ev_meur": {
+        "low": 75096.11503897468,
+        "implied_value": 96324.79759875973,
+        "high": 171301.02904693503
+      },
+      "value_per_share_pence": {
+        "low": 3173.006554383302,
+        "implied_value": 3917.6700173335225,
+        "high": 6547.699459430038
+      },
+      "value_per_share_eur": {
+        "low": 37.50174547300697,
+        "implied_value": 46.302918484146495,
+        "high": 77.38722071723396
+      },
+      "upside_vs_price": {
+        "low": -0.3263970800587407,
+        "implied_value": -0.1683112159359893,
+        "high": 0.3900221758688118
+      }
+    },
+    "ev_ebitda_ltm_ex_KMB": {
+      "peers": [
+        "PG",
+        "CL",
+        "RKT.L",
+        "BEI.DE",
+        "OR.PA",
+        "HEN3.DE"
+      ],
+      "peers_used": 6,
+      "median_multiple": 14.243294225709914,
+      "low_multiple": 9.270886075949367,
+      "high_multiple": 21.147729468599035,
+      "ulvr_ebitda_meur": 8100.209022499999,
+      "implied_ev_meur": {
+        "low": 75096.11503897468,
+        "implied_value": 115373.66039721758,
+        "high": 171301.02904693503
+      },
+      "value_per_share_pence": {
+        "low": 3173.006554383302,
+        "implied_value": 4585.869379060984,
+        "high": 6547.699459430038
+      },
+      "value_per_share_eur": {
+        "low": 37.50174547300697,
+        "implied_value": 54.20036274063946,
+        "high": 77.38722071723396
+      },
+      "upside_vs_price": {
+        "low": -0.3263970800587407,
+        "implied_value": -0.026458044992891616,
+        "high": 0.3900221758688118
+      }
+    },
+    "ev_ebitda_ltm_ex_CL": {
+      "peers": [
+        "PG",
+        "KMB",
+        "RKT.L",
+        "BEI.DE",
+        "OR.PA",
+        "HEN3.DE"
+      ],
+      "peers_used": 6,
+      "median_multiple": 11.869563622666302,
+      "low_multiple": 9.270886075949367,
+      "high_multiple": 21.147729468599035,
+      "ulvr_ebitda_meur": 8100.209022499999,
+      "implied_ev_meur": {
+        "low": 75096.11503897468,
+        "implied_value": 96145.94634945935,
+        "high": 171301.02904693503
+      },
+      "value_per_share_pence": {
+        "low": 3173.006554383302,
+        "implied_value": 3911.3962417338407,
+        "high": 6547.699459430038
+      },
+      "value_per_share_eur": {
+        "low": 37.50174547300697,
+        "implied_value": 46.22876876788794,
+        "high": 77.38722071723396
+      },
+      "upside_vs_price": {
+        "low": -0.3263970800587407,
+        "implied_value": -0.1696430863530749,
+        "high": 0.3900221758688118
+      }
+    },
+    "ev_ebitda_ltm_ex_KMB_and_CL": {
+      "peers": [
+        "PG",
+        "RKT.L",
+        "BEI.DE",
+        "OR.PA",
+        "HEN3.DE"
+      ],
+      "peers_used": 5,
+      "median_multiple": 11.891643454038997,
+      "low_multiple": 9.270886075949367,
+      "high_multiple": 21.147729468599035,
+      "ulvr_ebitda_meur": 8100.209022499999,
+      "implied_ev_meur": {
+        "low": 75096.11503897468,
+        "implied_value": 96324.79759875973,
+        "high": 171301.02904693503
+      },
+      "value_per_share_pence": {
+        "low": 3173.006554383302,
+        "implied_value": 3917.6700173335225,
+        "high": 6547.699459430038
+      },
+      "value_per_share_eur": {
+        "low": 37.50174547300697,
+        "implied_value": 46.302918484146495,
+        "high": 77.38722071723396
+      },
+      "upside_vs_price": {
+        "low": -0.3263970800587407,
+        "implied_value": -0.1683112159359893,
+        "high": 0.3900221758688118
+      }
+    },
+    "ev_ebitda_ltm_all_7_x_underlying_ebitda": {
+      "peers_used": 7,
+      "median_multiple": 11.891643454038997,
+      "low_multiple": 9.270886075949367,
+      "high_multiple": 21.147729468599035,
+      "ulvr_ebitda_meur": 8540.175195,
+      "implied_ev_meur": {
+        "low": 79174.99130149366,
+        "implied_value": 101556.71845396796,
+        "high": 180605.3146383
+      },
+      "value_per_share_pence": {
+        "low": 3316.086093777177,
+        "implied_value": 4101.196257878537,
+        "high": 6874.076826901203
+      },
+      "value_per_share_eur": {
+        "low": 39.19280169264565,
+        "implied_value": 48.47201402258121,
+        "high": 81.24467286971858
+      },
+      "upside_vs_price": {
+        "low": -0.2960224830108954,
+        "implied_value": -0.12935012039517313,
+        "high": 0.45930937838896146
+      }
+    },
+    "ev_ebitda_ltm_all_7_dcf_dates_bridge_low_bound": {
+      "peers_used": 7,
+      "median_multiple": 11.891643454038997,
+      "low_multiple": 9.270886075949367,
+      "high_multiple": 21.147729468599035,
+      "ulvr_ebitda_meur": 8100.209022499999,
+      "implied_ev_meur": {
+        "low": 75096.11503897468,
+        "implied_value": 96324.79759875973,
+        "high": 171301.02904693503
+      },
+      "value_per_share_pence": {
+        "low": 3147.2426560314043,
+        "implied_value": 3891.906118981625,
+        "high": 6521.9355610781395
+      },
+      "value_per_share_eur": {
+        "low": 37.19724211260559,
+        "implied_value": 45.99841512374512,
+        "high": 77.08271735683257
+      },
+      "upside_vs_price": {
+        "low": -0.3318665415494312,
+        "implied_value": -0.1737806774266798,
+        "high": 0.3845527143781211
+      }
+    },
+    "pe_fy27_dec_calendarised": {
+      "status": "MULTIPLE ONLY: Unilever's forward EPS for the business that remains is not available (no consensus in the data folder, and group EPS still includes Foods). Not estimated.",
+      "all_7": {
+        "median": 19.985656467378494
+      },
+      "ex_KMB": {
+        "median": 20.639133540007048
+      },
+      "ex_CL": {
+        "median": 17.28553802045585
+      },
+      "ex_KMB_and_CL": {
+        "median": 19.985656467378494
+      }
+    },
+    "fcf_yield_ltm": {
+      "status": "MULTIPLE ONLY: free cash flow of the business that remains is not disclosed. Not estimated.",
+      "all_7": {
+        "median": 0.0483
+      },
+      "ex_KMB": {
+        "median": 0.045450000000000004
+      },
+      "ex_CL": {
+        "median": 0.045450000000000004
+      },
+      "ex_KMB_and_CL": {
+        "median": 0.0426
+      }
+    },
+    "ev_ebitda_ntm": {
+      "status": "MISSING: no NTM EBITDA consensus for any peer (data/notes.md FLAG 13)."
+    }
+  },
+  "ulvr_own_multiples": {
+    "market_cap_meur": 119938.68155330427,
+    "market_implied_ev_remaining_business_meur": 118926.5994371717,
+    "market_implied_ev_ebitda_ltm_pm_basis": 14.681917356308777,
+    "market_implied_ev_ebitda_ltm_underlying": 13.925545638314238,
+    "note": "What the market pays for the business that remains, after taking out the Foods consideration and the stakes at the same values as the DCF (primary bridge)."
+  },
+  "comps_range_pence_primary": {
+    "low": 3173.006554383302,
+    "implied_value": 3917.6700173335225,
+    "high": 6547.699459430038
+  },
+  "dcf_value_pence": 4101.434719926086,
+  "dcf_vs_comps_median": 0.04690663118116278,
+  "flags": [
+    "KMB: price reflects the pending Kenvue acquisition, LTM figures do not (11.9x). CL: LTM EBITDA depressed by the USD 919m Filorga impairment, so 20.8x is overstated. Medians with and without both are shown.",
+    "Peer EBITDA is GAAP/Yahoo unadjusted (after restructuring); Unilever primary metric is after recurring restructuring (PM 17.7% margin) to match. Underlying variant shown.",
+    "peers.csv labels Reckitt's currency GBP but its price (5,258) is in pence (GBp); the forward P/E converts it to pounds with desk.units.pence_to_pounds (14.6x, not 1,459x). Market cap and EV in peers.csv are in GBP m (checked against the Data agent's EV/EBITDA).",
+    "Four European peers' figures are from Yahoo (non-filing source); not checked to annual reports.",
+    "Ex-perimeter D&A is not disclosed: Unilever's ex-perimeter EBITDA uses the PM's 2.6% D&A ratio.",
+    "EV/EBITDA NTM MISSING (no NTM EBITDA consensus). P/E and FCF yield: multiples shown, no Unilever-side metric for the remaining business.",
+    "Wide peer range (9.3x to 21.2x): L'Oreal and P&G are premium-growth names; treat comps as a cross-check."
+  ]
+}

@@ -21,6 +21,7 @@ def eur_brief():
     brief["dcf"]["terminal_ronic"] = 0.18
     brief["dcf"]["bridge"].pop("contingent_liabilities_musd", None)
     brief["dcf"]["bridge"]["buybacks_after_balance_sheet_meur"] = None  # Unilever bought back shares in H1 2026
+    brief["dcf"]["bridge"]["priced_at_valuation_date_meur"] = None      # Foods deal and Magnum stake at today's prices
     return brief
 
 
@@ -49,6 +50,7 @@ def test_euro_run_needs_euro_fx_and_euro_dividends():
     assert "fx_eur_per_gbp" in req and "share_price_gbp_pence" in req and "dividends_ex_before_valuation_meur" in req
     assert "fx_usd_per_gbp" not in req and "dividends_ex_before_valuation_musd" not in req
     assert "buybacks_after_balance_sheet_meur" in req  # listed in this brief's bridge, so it must be sourced
+    assert "priced_at_valuation_date_meur" in req
 
 
 def test_buyback_reduces_rolled_forward_equity(tmp_path):
@@ -115,3 +117,15 @@ def test_ifrs_labels_read_in_euros():
     assert data_sources._pick(facts, "ifrs-full:Revenue", "2025-12-31", unit="eur") == 50503e6
     assert data_sources._pick(facts, "ifrs-full:Revenue", "2025-12-31") is None  # never read euros as dollars
     assert units.money_key("value", "EUR") == "value_meur"  # financials_raw.csv column for a euro reporter
+
+
+def test_grid_is_centred_on_the_briefs_terminal_growth(tmp_path):
+    brief = eur_brief()
+    brief["dcf"]["terminal_growth"] = 0.016  # Unilever's agreed rate, below the portfolio's 2.0%
+    brief_path = tmp_path / "TEST.yaml"
+    brief_path.write_text(yaml.safe_dump(brief))
+    valuation_run.main(str(brief_path), str(EUR_FIXTURE), str(tmp_path))
+    result = json.loads((tmp_path / "valuation.json").read_text())
+    grid = result["sensitivity_value_per_share_pence"]
+    assert grid["terminal_growth"][1] == pytest.approx(0.016)
+    assert grid["grid"][2][1] == pytest.approx(result["base"]["equity"]["per_share_gbp_pence"])

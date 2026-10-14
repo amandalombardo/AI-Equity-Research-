@@ -30,6 +30,9 @@ DIVIDENDS = "dividends_ex_before_valuation"
 # needed only when the brief's bridge lists buybacks_after_balance_sheet_m<ccy> (e.g. Unilever's 2026 buyback): cash
 # spent on buybacks between the balance sheet date and the run date, when the share count is after the buyback
 BUYBACKS = "buybacks_after_balance_sheet"
+# needed only when the brief's bridge lists priced_at_valuation_date_m<ccy>: the part of associates and disposal proceeds
+# already valued at the run date (e.g. listed stakes at today's price), which the roll-forward must not grow again
+PRICED_NOW = "priced_at_valuation_date"
 ROLL_FORWARD = [money_key(DIVIDENDS, "USD")]
 # needed only when the brief values minorities proportionately (bridge.minorities_method: proportionate)
 PROPORTIONATE = ["minority_share_of_operating_profit"]
@@ -87,6 +90,12 @@ def buybacks_key(brief: dict) -> str | None:
     return key if rolls_forward(brief) and key in brief["dcf"]["bridge"] else None
 
 
+def priced_now_key(brief: dict) -> str | None:
+    """The input name for bridge items already priced at the valuation date, if the brief's bridge lists it."""
+    key = money_key(PRICED_NOW, reporting_currency(brief["company"]))
+    return key if rolls_forward(brief) and key in brief["dcf"]["bridge"] else None
+
+
 def price_inputs(company: dict) -> list:
     """The share price and, for a London price, the FX rate (reporting currency per GBP) from the brief's company."""
     if price_currency(company) == "GBp":
@@ -103,7 +112,8 @@ def extra_required(brief: dict) -> list:
     return (price_inputs(brief["company"])
             + ([dividends_key(brief)] if rolls_forward(brief) else []) + (PROPORTIONATE if proportionate_minorities(brief) else [])
             + (CONTINGENT if has_contingent_liabilities(brief) else [])
-            + ([buybacks_key(brief)] if buybacks_key(brief) else []))
+            + ([buybacks_key(brief)] if buybacks_key(brief) else [])
+            + ([priced_now_key(brief)] if priced_now_key(brief) else []))
 
 
 def fx_rate(brief: dict, v: dict) -> float | None:
@@ -145,7 +155,9 @@ def build(brief: dict, v: dict, growth=None, flow_through=None, wacc_shift=0.0) 
                         minority_share_of_ev=v["minority_share_of_operating_profit"] if proportionate_minorities(brief) else None)
     roll_args = ({"cost_of_equity": w["cost_of_equity"], "years": v["stub_years"],
                   "dividends": v[dividends_key(brief)],
-                  "buybacks": v[buybacks_key(brief)] if buybacks_key(brief) else 0.0} if roll else None)
+                  "buybacks": v[buybacks_key(brief)] if buybacks_key(brief) else 0.0,
+                  "priced_at_valuation_date": v[priced_now_key(brief)] if priced_now_key(brief) else 0.0}
+                 if roll else None)
     eq = dcf.equity_bridge(val["enterprise_value"], bridge, v["shares_outstanding_m"], fx_rate(brief, v), roll_args, rep)
     ccy = price_currency(brief["company"])
     # fair value and share price in the same units: pence for a London price, US dollars for a US price
@@ -168,7 +180,8 @@ def main(brief_path: str, inputs_path: str, out_dir: str) -> None:
     w0, g0 = base["inputs"].wacc, base["inputs"].terminal_growth
     # not rounded, so the middle cell of the grid equals the base case exactly
     waccs = [w0 + s for s in (-0.01, -0.005, 0, 0.005, 0.01)]
-    growths = [0.015, 0.020, 0.025, 0.030]
+    # terminal growth around the brief's own rate (2.0% for Diageo and KO gives 1.5%, 2.0%, 2.5%, 3.0% as before)
+    growths = [g0 + s for s in (-0.005, 0, 0.005, 0.01)]
     grid_ev = dcf.sensitivity(base["inputs"], waccs, growths, brief["dcf"].get("terminal_ronic"))
     b = dcf.Bridge(**base["bridge"])
     ccy, rep = price_currency(brief["company"]), reporting_currency(brief["company"])
