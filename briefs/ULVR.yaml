@@ -43,11 +43,16 @@ dcf:
   # Tax (decision 9, agreed 13 Oct 2026): 26.0% = H1 2026 underlying ETR and management's "around 26%" guide for 2025
   # and 2026; FY25's 25.7% was helped by one-off settlements (mistakes row 21). Evidence: docs/phase5/ulvr-stake-tax-check.md.
   tax_rate: 0.260
-  # Capex and D&A (sign-off of items G-L, agreed 13 Oct 2026): FY25 actuals, 1,417 and 1,310 on 50,503 (20-F XBRL).
-  # FY25 rather than an average because capex has risen every year since FY23 (2.3%, 2.6%, 2.8%).
-  capex_pct_sales: 0.028
+  # Capex and D&A (sign-off of items G-L, agreed 13 Oct 2026; capex corrected 14 Oct 2026, PM card "Accept all four",
+  # mistakes row 23): FY25 actuals on 50,503 (20-F XBRL). Capex 3.15% = (PP&E 1,417 + software and other intangibles 174),
+  # because the 2.6% D&A (1,310) includes amortisation of those intangibles. Was 2.8% (PP&E only). FY24 same basis 3.08%.
+  # FY25 rather than an average because capex has risen every year since FY23. Evidence: docs/phase5/ulvr-run-flags.md (A).
+  capex_pct_sales: 0.0315
   da_pct_sales: 0.026
-  nwc_pct_sales: null               # Data agent: FY25 (inventories + trade receivables - trade payables) / turnover
+  # Working capital (PM card 14 Oct 2026, item D): FY25 (inventories + trade and other receivables - trade payables and other
+  # current liabilities) / turnover, EXCLUDING both temporary Magnum Ice Cream transition balances (EUR 2.1bn receivable,
+  # EUR 1.6bn payable, 20-F notes 13-14) = -11.98%. The net EUR 0.5bn owed to Unilever goes in the bridge (cash to come).
+  nwc_pct_sales: null
   terminal_growth: 0.016            # decision 6, agreed 13 Oct 2026: matches the FY27-30 forecast (not the portfolio's 2.0%)
   terminal_capex_pct_sales: null
   # Terminal RONIC (sign-off, agreed 13 Oct 2026): FY25 ROIC after restructuring = (10,084 - 599) x (1 - 26.0%) / average
@@ -81,9 +86,17 @@ dcf:
     minority_interests_meur: null
     minorities_method: proportionate
     pension_deficit_meur: 0         # FY25: a net SURPLUS of EUR 3.5bn (20-F); not added (same rule as Diageo: 0 if surplus)
-    # Listed stakes (item E, agreed 13 Oct 2026): 19.85% of The Magnum Ice Cream Company = 121,604,413 shares (TMICC
-    # 424(b)(4), 13 Apr 2026) at the run-date MICC.AS price; other associates/JVs at book. Data agent re-checks for any
-    # sell-down. Evidence: docs/phase5/ulvr-stake-tax-check.md.
+    # Stakes and investments (EUR m), all ADDED because their income is outside operating profit:
+    # - Listed (item E, agreed 13 Oct 2026): 19.85% of The Magnum Ice Cream Company = 121,604,413 shares (TMICC 424(b)(4),
+    #   13 Apr 2026) at the run-date MICC.AS price. Evidence: docs/phase5/ulvr-stake-tax-check.md.
+    # - Joint ventures (PM card 14 Oct 2026, item B; mainly the Pepsi Lipton tea partnerships, kept by Unilever): FY25
+    #   dividends received from JVs and associates (EUR 229m, 20-F cash flow) as a growing perpetuity (Gordon growth):
+    #   229 x (1 + 1.6%) / (cost of equity - 1.6%), at the run's cost of equity. Not book (EUR 109m). Associates at book.
+    # - Other financial investments (item C): the fair-value lines of 20-F note 17A, EUR 561m (equity investments, FVOCI)
+    #   + EUR 341m (fair value through profit or loss) = EUR 902m. Amortised-cost assets (EUR 368m, incl. judicial
+    #   deposits) are left out.
+    # - Magnum Ice Cream transition balances (item D): net EUR 500m owed TO Unilever (2.1bn receivable - 1.6bn payable).
+    # Evidence for B-D: docs/phase5/ulvr-run-flags.md.
     associates_meur: null
     # Foods sale to McCormick (decision 1, agreed 14 Oct 2026): consideration at TODAY's market value =
     # USD 15.7bn cash + the McCormick shares received by Unilever and its shareholders (65% of the enlarged company:
