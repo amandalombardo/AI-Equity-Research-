@@ -2,7 +2,7 @@
 
 Inputs: financials_raw.csv and market_inputs.json written by `python -m desk.data_sources briefs/ULVR.yaml <this folder>`,
 plus figures read from the primary filings (cited row by row below). All money amounts EUR m unless the name says otherwise.
-Run from the repo root:  python runs/ULVR/2026-10-14/data/build_inputs.py
+Run from the repo root:  PYTHONPATH=. python runs/ULVR/2026-10-14/data/build_inputs.py [--write-inputs]
 """
 import datetime as dt
 import json
@@ -130,6 +130,30 @@ for r in raw.itertuples():
         b = basis[r.fiscal_year] or "continuing operations, re-presented without Ice Cream"
     rows.append({"item": r.item, "fiscal_year": r.fiscal_year, "value_meur": r.value_meur,
                  "source": f"{r.source} | XBRL tag {r.tag} | basis: {b}"})
+# Trap (found by the Fundamentals agent): the XBRL tags ProfitLossAttributableToOwnersOfParent and
+# CashFlowsFromUsedInOperatingActivities are TOTALS including discontinued operations (Ice Cream; FY25 also the EUR 3,373m
+# demerger gain). Replace FY23-25 with the continuing-operations lines from the FY25 20-F, keep the totals as separate rows.
+CONT = {  # item: {year: (continuing value, total value)}, FY25 20-F income statement p.128 / cash flow statement p.132
+    "net_profit_to_owners": {2023: (6002, 6487), 2024: (5430, 5744), 2025: (5682, 9469)},
+    "operating_cash_flow": {2023: (8393, 9426), 2024: (8461, 9519), 2025: (8052, 8350)},
+}
+CONT_SRC = {"net_profit_to_owners": F20 + " p.128, consolidated income statement: 'Total profit attributable to shareholders' equity arises from: Continuing operations'",
+            "operating_cash_flow": F20 + " p.132, consolidated cash flow statement: 'Net cash flow from continuing operating activities' (after income tax paid)"}
+TOT_LBL = {"net_profit_to_owners": "Shareholders' equity share of TOTAL net profit (continuing + discontinued Ice Cream; FY25 incl. EUR 3,373m demerger gain)",
+           "operating_cash_flow": "'Total cash flows from operating activities' (continuing + discontinued Ice Cream)"}
+for item, yrs in CONT.items():
+    for y, (cont, tot) in yrs.items():
+        r = [x for x in rows if x["item"] == item and x["fiscal_year"] == y][0]
+        assert abs(r["value_meur"] - tot) < 0.5, (item, y, r["value_meur"])   # the XBRL total is what was captured
+        xbrl_src = r["source"].split(" | basis")[0]
+        r["value_meur"], r["source"] = cont, CONT_SRC[item] + " | basis: continuing operations (corrected 14 Oct 2026; XBRL tag holds the total)"
+        rows.append({"item": item + "_total_incl_discontinued", "fiscal_year": y, "value_meur": tot,
+                     "source": f"{xbrl_src} | {TOT_LBL[item]} | basis: TOTAL incl. discontinued operations, NOT for forecasting"})
+for y in (2021, 2022):
+    for item in CONT:
+        r = [x for x in rows if x["item"] == item and x["fiscal_year"] == y][0]
+        r["source"] = r["source"].replace("basis: Group incl. Ice Cream (as first reported)",
+                                          "basis: Group TOTAL incl. Ice Cream, as first reported (not re-presented; not comparable with FY23-25 continuing)")
 for y, (uop, sales, src) in UOP_HIST.items():
     rows.append({"item": "underlying_operating_profit", "fiscal_year": y, "value_meur": uop, "source": src})
     rows.append({"item": "turnover_same_basis_as_uop", "fiscal_year": y, "value_meur": sales, "source": src})
@@ -305,9 +329,9 @@ inputs = {
         f"(ex 6 Aug 2026, {H126} note 10) x 2,154,327,344 voting shares ({TVR_JUL}) = {S(div_q2,1)}. Q3 2026 goes ex 12 Nov 2026 (after the run date). "
         f"EXCLUDES the EUR 1,507m H1 2026 buyback (FLAG in notes.md)."},
     # ---- extra items for other agents (not read by the engine)
-    "buyback_after_balance_sheet_meur": {"value": float(F["buyback_h126"]), "source":
+    "buybacks_after_balance_sheet_meur": {"value": float(F["buyback_h126"]), "source":
         f"{H126} cash flow 'Repurchase of shares (1,507)'; 30,703,780 shares now in treasury ({TVR_AUG}). Cash left after 31 Dec 2025 while "
-        f"shares_outstanding_m is post-buyback: FLAG for the valuation agent (not read by the engine)."},
+        f"shares_outstanding_m is post-buyback: Deducted in the equity roll-forward (engine change 14 Oct 2026, mistakes row 22)."},
     "tmicc_payable_meur": {"value": float(F["tmicc_payable25"]), "source": f"{F20} p.160 note 14: EUR 1.6bn due to TMICC inside trade payables. Possible debt-like item: FLAG."},
     "hul_market_value_meur": {"value": round(hul_mv_eur, 1), "source":
         f"Bear line: Hindustan Unilever {hul_sh/1e6:,.1f}m shares (Yahoo HINDUNILVR.NS sharesOutstanding: flag non-filing source) x INR "
@@ -318,7 +342,15 @@ inputs = {
         f"no S-4 yet). Indicators only: perimeter FY25 UOP 2,600 ({P425}); H1 2026 Foods business group (wider than the perimeter) turnover "
         f"EUR 6.3bn, UOM 23.3% ({H126}, business group review)."},
 }
-(RUN / "inputs.yaml").write_text(yaml.safe_dump(inputs, sort_keys=False, width=160, allow_unicode=True))
+# inputs.yaml is shared: other agents add their own keys (beta, minority_share_of_operating_profit). Only rewrite it when asked,
+# and then keep every key this script does not own (found 14 Oct 2026: a plain re-run wiped the Risk and Fundamentals inputs).
+import sys
+if "--write-inputs" in sys.argv:
+    existing = yaml.safe_load((RUN / "inputs.yaml").read_text()) or {} if (RUN / "inputs.yaml").exists() else {}
+    merged = {**inputs, **{k: v for k, v in existing.items() if k not in inputs}}
+    (RUN / "inputs.yaml").write_text(yaml.safe_dump(merged, sort_keys=False, width=160, allow_unicode=True))
+else:
+    print("inputs.yaml NOT written (pass --write-inputs to rewrite the Data agent keys)")
 
 print(tie.to_string())
 for k, v in inputs.items():
