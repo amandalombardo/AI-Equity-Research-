@@ -143,7 +143,13 @@ roll_flag = {"status": "RESOLVED in desk/ (commit 3414aec, mistakes log row 24)"
              "priced_at_valuation_date_meur_input": PRICED, "foods_plus_tmicc_recomputed_meur": run_date_items,
              "input_matches": abs(PRICED - run_date_items) < 0.1,
              "engine_equity_meur": base["equity"]["equity_value"], "hand_built_equity_meur": eq_check,
-             "previous_engine_value_pence": 4101.434719926086, "change_pence": B - 4101.434719926086}
+             # what the old engine (growing everything at Ke) would give on today's inputs: the size of the fix
+             "old_engine_value_same_inputs_pence": pence(dcf.roll_forward(
+                 base["equity"]["equity_value_balance_sheet_date"], KE0, t_roll, v0["dividends_ex_before_valuation_meur"],
+                 v0["buybacks_after_balance_sheet_meur"])),
+             "fix_effect_pence": B - pence(dcf.roll_forward(
+                 base["equity"]["equity_value_balance_sheet_date"], KE0, t_roll, v0["dividends_ex_before_valuation_meur"],
+                 v0["buybacks_after_balance_sheet_meur"]))}
 assert roll_flag["input_matches"] and abs(eq_check - base["equity"]["equity_value"]) < 1.0
 
 # ================= (b) tax on the Foods cash: each EUR 1bn =================
@@ -260,7 +266,7 @@ w0 = base["wacc"]["wacc"]
 flips = {}
 for label, fn, lo, hi, now in [("beta_jv_consistent", by_beta, 0.2, 1.2, v0["beta"]),
                                ("wacc_shift_added_to_wacc", by_wacc_shift, -0.03, 0.02, 0.0),
-                               ("terminal_growth", by_tg, 0.0, 0.04, G0),
+                               ("terminal_growth", by_tg, 0.0, base["wacc"]["wacc"] - 0.001, G0),
                                ("long_run_growth_fy27_30_and_terminal", by_lr_growth, 0.0, 0.04, G0),
                                ("base_margin", by_margin, 0.12, 0.30, v0["base_margin"]),
                                ("mkc_share_price_usd", by_mkc_price, 1.0, 150.0, mkt["MKC"]["close"])]:
