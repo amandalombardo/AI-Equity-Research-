@@ -1,0 +1,134 @@
+# PM assumptions for RELX PLC. Source of truth: phase5/brief-relx.md (docs/phase5/), every decision agreed by Amanda on
+# 14 Oct 2026 by decision card, with an evidence file each (docs/phase5/relx-*.md, copied from
+# /mnt/project-files/equity-desk/phase5/). Code must read every assumption from here. Nothing is hard-coded.
+# Fields set to null are filled in by an agent from a cited source, then reviewed by the PM.
+# All money amounts are GBP m (RELX reports in pounds); the share price is in pence (GBp), so no exchange rate is needed.
+
+company:
+  name: RELX PLC
+  ticker: RELX
+  price_ticker: REL.L        # London listing, quoted in pence (GBp). NYSE ADR RELX: 1 ADR = 1 share (not used for value).
+  price_currency: GBp
+  sec_cik: "0000929869"
+  accounting: ifrs           # standard IFRS XBRL labels (desk/data_sources.py IFRS_TAGS)
+  annual_form: 20-F
+  reporting_currency: GBP    # cash flows in pounds; pence = pounds x 100
+  fiscal_year_end_month: 12  # calendar year: FY25 = 1 Jan to 31 Dec 2025
+  benchmark_index: "^FTSE"   # FTSE 100
+
+base_year:                   # FY25, the latest audited year (20-F 0001104659-26-017277, filed 19 Feb 2026)
+  fiscal_year: 2025
+  net_sales_mgbp: 9590       # revenue, FY25 results 6-K p.26 and Annual Report p.186
+  adjusted_operating_profit_mgbp: 3342   # non-GAAP, 34.8% margin (excludes acquired-intangible amortisation)
+  print_revenue_mgbp: 399    # print and print-related, reported separately from 2025 (FY25 results p.9), being run off
+  print_adjusted_operating_profit_mgbp: 185
+
+dcf:
+  currency: GBP
+  forecast_years: [2026, 2027, 2028, 2029, 2030]
+  # Revenue growth in POUNDS (agreed 14 Oct 2026). FY26 +3% = H1 2026 revenue change in GBP (H1 2026 results p.1, the
+  # Unilever rule). FY27-30 5.0% = constant-currency growth averaged over FY24 (6%), FY25 (4%) and H1 2026 (5%): it already
+  # includes print run-off and disposals. No currency deduction: sterling/dollar has no steady trend (-6 to +7 points a
+  # year, FY21-25). Not RELX's 7% "underlying" growth, which leaves out print. Evidence: docs/phase5/relx-growth-evidence.md.
+  organic_growth: [0.030, 0.050, 0.050, 0.050, 0.050]
+  savings:                           # no savings programme modelled: margin held flat instead
+    cumulative_mgbp: [0.0, 0.0, 0.0, 0.0, 0.0]
+    flow_through: 0.0
+  # Operating margin (agreed 14 Oct 2026): 35.0% flat = H1 2026 adjusted operating margin WITHOUT print
+  # ((1,727 - 78) / (4,871 - 157), H1 2026 results p.1-9). Print earns c.50% but is being run off, so a margin held
+  # forever leaves it out. Management guides profit growing faster than revenue (no number), so flat is cautious.
+  # Evidence: docs/phase5/relx-margin-evidence.md.
+  base_margin: 0.350
+  base_margin_rule: h1_2026_adjusted_margin_ex_print_held_flat
+  # Tax (agreed 14 Oct 2026): 22.8% = H1 2026 adjusted effective tax rate, RELX's "best estimate of the annual tax rate
+  # expected for the full financial year" (H1 2026 note 7). Evidence: docs/phase5/relx-tax-evidence.md.
+  tax_rate: 0.228
+  # Capex and D&A (agreed 14 Oct 2026; capex corrected by the evidence audit, agreed 14 Oct 2026): H1 2026, % of revenue
+  # 4,871. Capex 7.10% = RELX capex line 292 (capitalised development 280 + PP&E 12) + pre-publication spend 54 (H1 2026
+  # results p.10), because D&A includes pre-publication amortisation. D&A 5.07% = development 193 + PP&E 12 +
+  # pre-publication 42 (H1 2026 results p.25); lease depreciation left out (lease costs reduce cash flow, so leases are
+  # NOT in net debt below); acquired-intangible amortisation is outside adjusted profit. Unilever lesson, mistakes row 23.
+  # Evidence: docs/phase5/relx-capex-evidence.md.
+  capex_pct_sales: 0.0710
+  da_pct_sales: 0.0507
+  # Acquisitions (agreed 14 Oct 2026): NOT in the base-case cash flows. The 5.0% growth is organic (FY25: acquisitions
+  # added GBP 14m of revenue, Annual Report p.199). Bear case deducts 2.7% of revenue (FY21-25 average spend, SEC XBRL).
+  nwc_pct_sales: null               # Data agent: FY25 (inventories and pre-publication + trade and other receivables
+                                    # - trade and other payables) / revenue, with sources. RELX runs negative working capital.
+  terminal_growth: 0.020            # agreed 14 Oct 2026: the 2% inflation targets (Bank of England, Fed); portfolio default
+  terminal_capex_pct_sales: null
+  # Terminal RONIC (agreed 14 Oct 2026): RELX's reported FY25 ROIC 15.4% (Annual Report p.186), which counts every
+  # pound paid for past acquisitions: the cautious measure. Evidence: docs/phase5/relx-ronic-evidence.md.
+  terminal_ronic: 0.154
+  mid_year_convention: true         # same as the rest of the portfolio
+  # Value at the 31 Dec 2025 balance sheet date, then roll forward at the cost of equity less dividends and buybacks.
+  valuation_basis: balance_sheet_date
+  wacc:
+    # Risk-free (agreed 14 Oct 2026): UK 10-year gilt, because the cash flows are in pounds, ON THE PRICE DATE (Unilever
+    # decision 11): 5.45% at the 13 Oct 2026 close (Investing.com 5.4542%; Trading Economics 5.44%). FLAG: aggregators;
+    # the Bank of England data site is blocked here. FRED's monthly average (IRLTLT01GBM156N, Aug 2026 4.99%) is stale.
+    # Evidence: docs/phase5/relx-riskfree-evidence.md.
+    risk_free: null
+    equity_risk_premium: 0.050
+    # Beta (agreed 14 Oct 2026): Damodaran GLOBAL Information Services, unlevered beta corrected for cash 0.8737 (86 firms,
+    # betaGlobal.xls dated 5 Jan 2026, /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls), relevered at RELX's
+    # market D/E (31 Dec 2025 net debt / market cap) and the 22.8% tax rate = 0.974. Own regressions vs the FTSE 100
+    # (0.38-0.67, R-squared 0.04-0.12) are the cross-check. Evidence: docs/phase5/relx-beta-evidence.md.
+    beta: null
+    pre_tax_cost_of_debt: null      # Data agent: historic cost, for reference only (3.9% average on gross debt, FY25)
+    # Cost of debt (agreed 14 Oct 2026): gilt + the ICE BofA single-A spread, 0.70% on 13 Oct 2026 (FRED BAMLC0A3CA)
+    # = 6.15%. Ratings: Moody's A3, S&P A-, Fitch BBB+ (RELX Capital term sheet, 24 Mar 2025, 0001193125-25-061449).
+    credit_spread: 0.0070
+    target_debt_weight: null        # market value: net debt / (net debt + market cap)
+  bridge:                           # all GBP m, at 31 Dec 2025 unless stated (signed off 14 Oct 2026, relx-bridge-evidence.md)
+    net_debt_mgbp: null             # Data agent: 7,201 less the 97 of leases inside it = 7,104 (FY25 results p.13)
+    lease_liabilities_mgbp: 0       # leases are left out: their depreciation is not added back in D&A (see capex)
+    minority_interests_mgbp: null   # Data agent: book, 24 (FY25 results p.22); immaterial (13 of FY25 profit)
+    minorities_method: book
+    pension_deficit_mgbp: 0         # FY25: a net SURPLUS of 43 (FY25 results p.29-30); not added (Unilever rule)
+    # Joint ventures: NOT added. Their profit is already inside adjusted operating profit (FY25 results p.19 and p.26;
+    # JV share of adjusted operating profit 57, Annual Report p.206). Venture capital and other investments: ADDED at book
+    # (held at fair value), 131 (Annual Report p.167).
+    associates_mgbp: null
+    disposal_proceeds_mgbp: 0       # no pending disposal
+    restructuring_cash_mgbp: 0      # no announced one-off restructuring programme
+    # Buybacks after 31 Dec 2025 (agreed in the audit, 14 Oct 2026): cash spent 1 Jan to 25 Sep 2026, the date of the
+    # share count below: H1 1,750 (cash flow) + 100 (1-21 Jul) + 150 (23 Jul-4 Sep) + 56.2 (7-25 Sep, daily notices).
+    buybacks_after_balance_sheet_mgbp: null
+  shares_outstanding_m: null        # Data agent: shares excluding treasury, 1,743.75m at 25 Sep 2026 (6-K, 28 Sep 2026)
+
+scenarios:
+  bear:
+    organic_growth: [0.030, 0.030, 0.030, 0.030, 0.030]   # AI pressure halves Legal and STM growth (stress test)
+    flow_through: 0.0
+    wacc_shift: 0.01
+    # Also to be quantified by the Bear agent (agreed bear lines): margin 33.1% (FY23 level); tax 25.0% (statutory);
+    # terminal growth 1.5%; RONIC = WACC; acquisitions at 2.7% of revenue; cost of debt at the BBB spread (1.03%).
+    bear_agent_margin: 0.331
+
+comps:
+  peers:
+    - {name: Thomson Reuters, ticker: TRI, fy_end_month: 12, source: SEC EDGAR (40-F) + yfinance}
+    - {name: Verisk Analytics, ticker: VRSK, fy_end_month: 12, source: SEC EDGAR}
+    - {name: S&P Global, ticker: SPGI, fy_end_month: 12, source: SEC EDGAR}
+    - {name: Moody's, ticker: MCO, fy_end_month: 12, source: SEC EDGAR}
+    - {name: Wolters Kluwer, ticker: WKL.AS, fy_end_month: 12, source: annual report + yfinance (flag)}
+    - {name: Experian, ticker: EXPN.L, fy_end_month: 3, source: annual report + yfinance (flag)}
+    - {name: London Stock Exchange Group, ticker: LSEG.L, fy_end_month: 12, source: annual report + yfinance (flag)}
+  optional_peers:
+    - {name: Informa, ticker: INF.L, fy_end_month: 12, note: exhibitions and academic publishing, show separately}
+  multiples: [ev_ebitda_ntm, ev_ebitda_ltm, pe_ntm, fcf_yield]
+  statistic: median
+
+rating:
+  buy_if_upside_at_least: 0.15     # same rule as the rest of the portfolio
+  sell_if_downside_at_least: 0.10
+
+checks:
+  data_tie_out_tolerance: 0.005
+  excel_match_tolerance: 0.02
+  published_fy25:                  # FY25 results 6-K, 12 Feb 2026
+    net_sales_mgbp: 9590
+    adjusted_operating_profit_mgbp: 3342
+    adjusted_operating_margin: 0.348
+    net_debt_mgbp: 7201
