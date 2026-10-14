@@ -346,7 +346,8 @@ def fred_series(series_id: str) -> pd.Series:
 
 # risk-free rate by reporting currency: 10-year government bond yields on FRED
 RISK_FREE = {"USD": ("DGS10", "US 10-year Treasury, constant maturity, daily"),
-             "EUR": ("IRLTLT01DEM156N", "German 10-year Bund yield, OECD monthly average")}
+             "EUR": ("IRLTLT01DEM156N", "German 10-year Bund yield, OECD monthly average"),
+             "GBP": ("IRLTLT01GBM156N", "UK 10-year gilt yield, OECD monthly average")}
 
 
 def price_ticker(company: dict) -> str:
@@ -382,13 +383,16 @@ def main(brief_path: str, out_dir: str) -> None:
     }
     if ccy == "GBp":
         usd_gbp = fred_series("DEXUSUK")
-        if rep == "USD":
+        if rep == "GBP":
+            fx, fx_src = None, None  # pounds to pence: no exchange rate needed
+        elif rep == "USD":
             fx, fx_src = usd_gbp, "FRED DEXUSUK (USD per GBP, noon buying rate New York)"
         else:
             # EUR per GBP = (USD per GBP) / (USD per EUR), both noon buying rates on the same day
             both = pd.concat([usd_gbp, fred_series("DEXUSEU")], axis=1, join="inner").dropna()
             fx, fx_src = both.iloc[:, 0] / both.iloc[:, 1], "FRED DEXUSUK / DEXUSEU (EUR per GBP, noon buying rates New York)"
-        market[fx_key(rep)] = {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()), "source": fx_src}
+        if fx is not None:
+            market[fx_key(rep)] = {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()), "source": fx_src}
         market["share_price_gbp_pence"] = {"value": close["value"], "date": close["date"],
                                            "source": f"Yahoo Finance {ticker} close (pence, GBp)"}
     else:

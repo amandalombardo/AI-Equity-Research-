@@ -99,6 +99,8 @@ def priced_now_key(brief: dict) -> str | None:
 def price_inputs(company: dict) -> list:
     """The share price and, for a London price, the FX rate (reporting currency per GBP) from the brief's company."""
     if price_currency(company) == "GBp":
+        if reporting_currency(company) == "GBP":
+            return ["share_price_gbp_pence"]  # pounds to pence needs no exchange rate
         return [fx_key(reporting_currency(company)), "share_price_gbp_pence"]
     per_share_key(price_currency(company), reporting_currency(company))  # refuses a USD price for a EUR reporter
     return ["share_price_usd"]
@@ -117,8 +119,11 @@ def extra_required(brief: dict) -> list:
 
 
 def fx_rate(brief: dict, v: dict) -> float | None:
-    """Reporting currency per GBP (USD or EUR per GBP) for a London price; None for a US-dollar price."""
+    """Reporting currency per GBP (USD or EUR per GBP) for a London price; None for a US-dollar price.
+    A pound reporter (RELX) needs no conversion: 1 GBP per GBP."""
     co = brief["company"]
+    if price_currency(co) == "GBp" and reporting_currency(co) == "GBP":
+        return 1.0
     return v[fx_key(reporting_currency(co))] if price_currency(co) == "GBp" else None
 
 
