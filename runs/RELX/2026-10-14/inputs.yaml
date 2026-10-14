@@ -120,3 +120,10 @@ buybacks_after_balance_sheet_mgbp:
     + 56.2 (7-25 Sep, 2,225,133 shares x daily VWAP summed over 15 trading days, RELX ''Transactions in own shares'' weekly notices, 6-K of 1 Oct 2026 ex 99.3, 99.4,
     99.6 (accession 0000929869-26-000071, https://www.sec.gov/Archives/edgar/data/929869/000092986926000071/); excludes 0.5% stamp duty and commission, c. GBP 0.3m)
     = 2,056.2. Employee Benefit Trust purchases (60 in H1) are not buybacks and are excluded.'
+beta:
+  value: 0.9729
+  source: 'Risk agent, bottom-up: Damodaran GLOBAL Information Services unlevered beta corrected for cash 0.8737 (86 firms, betaGlobal.xls dated 2026-01-05, sheet
+    ''Industry Averages'', PM upload) relevered (Hamada) at RELX''s market D/E 0.1470 = net debt ex leases GBP 7,104m (31 Dec 2025, 7,201 less 97 leases, FY25 results
+    6-K 0000929869-26-000008 p.13) / market cap GBP 48,319.4m (1,743.754727m shares x 2,771p / 100) and tax 22.8% (brief). PM decision 14 Oct 2026 (briefs/RELX.yaml
+    dcf.wacc.beta). The PM card''s 0.974 used net debt incl. leases 7,201; at the brief''s 7,104 the value is 0.9729. Cross-checks in risk/beta_evidence.json and
+    risk/risk.json (not used).'

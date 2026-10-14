@@ -1,0 +1,180 @@
+{
+  "rule": "PM, briefs/RELX.yaml dcf.wacc.beta (agreed 14 Oct 2026): bottom-up Damodaran GLOBAL Information Services unlevered beta corrected for cash, relevered (Hamada) at RELX's market D/E (31 Dec 2025 net debt / market cap) and the 22.8% tax rate. Own regressions vs the FTSE 100 are the cross-check.",
+  "industry": {
+    "industry": "Information Services",
+    "region": "Global",
+    "number_of_firms": 86,
+    "file_date": "2026-01-05",
+    "levered_beta": 1.02372059331953,
+    "industry_d_to_e": 0.319802750209393,
+    "unlevered_beta": 0.826468382455036,
+    "cash_to_firm_value": 0.0540982249990836,
+    "unlevered_beta_corrected_for_cash": 0.873735946265916,
+    "over_time": {
+      "2022": 1.23,
+      "2023": 1.3416385726684,
+      "2024": 1.02286195569045,
+      "2025": 0.896334525837189,
+      "Average (2020-24)": 1.07291420009239
+    },
+    "source": "Damodaran, Betas by Sector (Global), betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', row 'Information Services' (PM upload, /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls, sha256 10c33f46df2a...)"
+  },
+  "other_industries_reference": {
+    "Publishing & Newspapers": {
+      "firms": 307,
+      "unlevered_beta_corrected_for_cash": 0.778788963026827
+    },
+    "Business & Consumer Services": {
+      "firms": 994,
+      "unlevered_beta_corrected_for_cash": 0.908330381234732
+    }
+  },
+  "market_cap": {
+    "shares_m": 1743.754727,
+    "price_gbp_pence": 2771.0,
+    "market_cap_gbp_m": 48319.44348517,
+    "sources": "inputs.yaml shares_outstanding_m (6-K 0000929869-26-000071 ex 99.6, 25 Sep 2026), share_price_gbp_pence (Yahoo REL.L close 2026-10-13)"
+  },
+  "net_debt_mgbp_31_dec_2025_ex_leases": 7104.0,
+  "d_to_e": 0.14702156083772633,
+  "tax_rate": 0.228,
+  "relevered_betas": {
+    "BASE: Information Services 0.8737, net debt ex leases 7,104 (31 Dec 2025)": {
+      "unlevered": 0.873735946265916,
+      "net_debt_mgbp": 7104.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.14702156083772633,
+      "beta": 0.9729055396977089,
+      "cost_of_equity": 0.10314527698488545
+    },
+    "PM card reconciliation: net debt incl. leases 7,201, this market cap": {
+      "unlevered": 0.873735946265916,
+      "net_debt_mgbp": 7201.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.1490290342894802,
+      "beta": 0.9742596290224393,
+      "cost_of_equity": 0.10321298145112197
+    },
+    "PM card as printed: 7,201 and 1,747.0m shares": {
+      "unlevered": 0.873735946265916,
+      "net_debt_mgbp": 7201.0,
+      "market_cap_mgbp": 48409.37,
+      "d_to_e": 0.1487521940483836,
+      "beta": 0.9740728935939846,
+      "cost_of_equity": 0.10320364467969922
+    },
+    "Sensitivity: net debt ex leases 30 Jun 2026 (8,614)": {
+      "unlevered": 0.873735946265916,
+      "net_debt_mgbp": 8614.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.17827192075678133,
+      "beta": 0.993984662175469,
+      "cost_of_equity": 0.10419923310877345
+    },
+    "Sensitivity: net debt RELX definition 30 Jun 2026 (8,733; PM option C)": {
+      "unlevered": 0.873735946265916,
+      "net_debt_mgbp": 8733.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.180734697465634,
+      "beta": 0.9956458645429217,
+      "cost_of_equity": 0.10428229322714608
+    },
+    "Sensitivity: unlevered beta without cash correction (0.8265)": {
+      "unlevered": 0.826468382455036,
+      "net_debt_mgbp": 7104.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.14702156083772633,
+      "beta": 0.9202730769082882,
+      "cost_of_equity": 0.10051365384541441
+    },
+    "Sensitivity: Damodaran 2020-24 average, cash-corrected (1.0729)": {
+      "unlevered": 1.07291420009239,
+      "net_debt_mgbp": 7104.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.14702156083772633,
+      "beta": 1.1946906537968336,
+      "cost_of_equity": 0.11423453268984168
+    },
+    "Sensitivity: Publishing & Newspapers (0.7788)": {
+      "unlevered": 0.778788963026827,
+      "net_debt_mgbp": 7104.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.14702156083772633,
+      "beta": 0.8671820126233385,
+      "cost_of_equity": 0.09785910063116693
+    },
+    "Sensitivity: Business & Consumer Services (0.9083)": {
+      "unlevered": 0.908330381234732,
+      "net_debt_mgbp": 7104.0,
+      "market_cap_mgbp": 48319.44348517,
+      "d_to_e": 0.14702156083772633,
+      "beta": 1.011426465347745,
+      "cost_of_equity": 0.10507132326738725
+    }
+  },
+  "difference_vs_pm_card_0974": -0.001167353896275758,
+  "cross_checks": {
+    "REL.L vs FTSE 100, 2y weekly": {
+      "beta": 0.6732043665806589,
+      "std_error": 0.22433409829586906,
+      "ci95": [
+        0.23350953392075552,
+        1.1128991992405621
+      ],
+      "r_squared": 0.08112582764591543,
+      "observations": 104
+    },
+    "REL.L vs FTSE 100, 5y weekly": {
+      "beta": 0.6601144881944233,
+      "std_error": 0.10911129235180354,
+      "ci95": [
+        0.4462563551848884,
+        0.8739726212039582
+      ],
+      "r_squared": 0.12382047509424375,
+      "observations": 261
+    },
+    "REL.L vs FTSE 100, 5y monthly": {
+      "beta": 0.3782656055382868,
+      "std_error": 0.23601566350916797,
+      "ci95": [
+        -0.08432509493968243,
+        0.840856306016256
+      ],
+      "r_squared": 0.04240956904134068,
+      "observations": 60
+    },
+    "Peer median (7 core peers), 5y monthly vs home index (raw, not relevered)": {
+      "beta": 0.7516488286374292
+    }
+  },
+  "base_inside_each_95pct_interval": {
+    "REL.L vs FTSE 100, 2y weekly": true,
+    "REL.L vs FTSE 100, 5y weekly": false,
+    "REL.L vs FTSE 100, 5y monthly": false
+  },
+  "pm_evidence_regressions_match": {
+    "2y weekly": {
+      "pm_beta": 0.67,
+      "pm_r2": 0.08,
+      "agent_beta": 0.6732043665806589,
+      "agent_r2": 0.08112582764591543,
+      "match_to_2dp": true
+    },
+    "5y weekly": {
+      "pm_beta": 0.66,
+      "pm_r2": 0.12,
+      "agent_beta": 0.6601144881944233,
+      "agent_r2": 0.12382047509424375,
+      "match_to_2dp": true
+    },
+    "5y monthly": {
+      "pm_beta": 0.38,
+      "pm_r2": 0.04,
+      "agent_beta": 0.3782656055382868,
+      "agent_r2": 0.04240956904134068,
+      "match_to_2dp": true
+    }
+  },
+  "recommended_beta": 0.9729
+}
