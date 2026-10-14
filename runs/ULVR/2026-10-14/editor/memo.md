@@ -69,13 +69,13 @@ Every sourced bear test stays SELL. Values in pence per share, impact vs 3,855p.
 
 | Challenge | Test: value (impact) | Response |
 |---|---|---|
-| 1. Foods consideration worth less | Tax 25% of cash: 3,718p (-138p); McCormick -1 s.d. (USD 33.15): 3,654p (-201p); deal fails: +1p to +37p (roughly neutral) | PM to respond |
-| 2. 17.7% margin is a peak | 16.2%: 3,566p (-290p) | PM to respond |
-| 3. HUL minorities at market | 3,632p (-224p) to 3,555p (-301p) | PM to respond |
-| 4. Growth and terminal value | Terminal growth 1.1%: 3,690p (-166p); RONIC = WACC: 3,473p (-383p) | PM to respond |
-| 5. Discount rate | Bear with JVs at Ke + 1 pt: 3,191p (-21p); beta 0.9998: 3,588p (-267p) | PM to respond |
+| 1. Foods consideration worth less | Tax 25% of cash: 3,718p (-138p); McCormick -1 s.d. (USD 33.15): 3,654p (-201p); deal fails: +1p to +37p (roughly neutral) | Risk, not a base change: McCormick at the 13 Oct close; Foods tax undisclosed, shown per EUR 1bn |
+| 2. 17.7% margin is a peak | 16.2%: 3,566p (-290p) | Keep 17.7%: already below reported underlying margin after the sale perimeter and recurring restructuring |
+| 3. HUL minorities at market | 3,632p (-224p) to 3,555p (-301p) | Keep proportionate (Diageo rule); market value shown as the bear line |
+| 4. Growth and terminal value | Terminal growth 1.1%: 3,690p (-166p); RONIC = WACC: 3,473p (-383p) | Partly accepted: 1.6% is at the top of the evidence range and terminal value is flagged; RONIC = WACC is an extreme case |
+| 5. Discount rate | Bear with JVs at Ke + 1 pt: 3,191p (-21p); beta 0.9998: 3,588p (-267p) | Keep the latest Damodaran beta; the bear's is an older 2020-24 average |
 
-Stacked bear (engine bear + JV fix + 16.2% margin + 25% tax): 2,817p; with HUL at market 2,437p. **PM view:** PM to respond.
+Stacked bear (engine bear + JV fix + 16.2% margin + 25% tax): 2,817p; with HUL at market 2,437p. **PM view (14 Oct 2026):** every sourced bear test stays SELL, so the bear case supports the call; the main risk runs the other way (a lower beta).
 
 ## Sources
 - Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026): balance sheet p.131, cash flow p.132, notes 2 (pp.137-138), 4B, 11 (p.158), 13-14 (pp.159-160), 15B-15C (pp.162-164), 17A (p.174), related undertakings p.194; XBRL.

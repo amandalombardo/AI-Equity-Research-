@@ -69,6 +69,7 @@ Same as Diageo: independent Excel check within 2%, source check of 5 random numb
 | 2 | Growth: FY26 +0.5%, FY27-30 1.6% a year in EUR; bear 0.2% | **Agreed** 13 Oct 2026, evidence in ulvr-growth-evidence.md |
 | 7 | Risk-free rate: German Bund 3.18% (euro cash flows), not the gilt; cost of debt = Bund + 0.70% | **Agreed** 13 Oct 2026 |
 | 6 | Terminal growth 1.6% (matches the FY27-30 forecast; not the portfolio's 2.0%) | **Agreed** 13 Oct 2026 |
+| 13 | Bear responses: the five drafted responses in ulvr-bear-responses.md | **Agreed** 14 Oct 2026 |
 | 12 | Final rating SELL at 3,855p vs 4,710.5p (-18.2%; HOLD starts at 4,239p) | **Agreed** 14 Oct 2026 |
 | 11 | Risk-free = Bund yield on the run date, 3.45% (14 Oct 2026), not FRED's August average 3.18% | **Agreed** 14 Oct 2026, evidence in ulvr-evidence-audit.md |
 | 10 | Data-agent fixes: capex 3.15% incl. software; JVs on dividends (Gordon); +€902m fair-value investments; Magnum transition balances out of working capital, net €0.5bn added | **Agreed** 14 Oct 2026, evidence in ulvr-run-flags.md |
