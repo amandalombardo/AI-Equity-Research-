@@ -1,5 +1,37 @@
 # Editor agent notes: The Coca-Cola Company (KO), run 2026-10-13
 
+## Final update 15 Oct 2026 (after the PM's bear responses)
+
+### What changed
+- Updated memo.md to the final agent outputs after the PM's bear responses (`docs/audit-2026-10-15/bear-responses-2026-10-15.md`, PM decision 15 Oct 2026 "Accept all"): FY26 growth +5.0% instead of +6.0%, in base and bear (`briefs/KO.yaml`).
+- Header unchanged in wording: "Desk rating: SELL (PM confirmed; re-run 15 Oct 2026 after evidence audit)". Fair value **USD 50.25** (morning USD 50.76), price USD 90.12 (13 Oct 2026), upside **-44.2%** (morning -43.7%), bear case **USD 37.86** (stacked bear from bear/challenges.md; not the engine's USD 39.50, not the morning USD 38.25).
+- Valuation: growth line now 5.0% in FY26 (PM decision 15 Oct 2026); EV USD 212,139m, equity USD 212,551m at 31 Dec 2025 and USD 216,169m at 13 Oct 2026; DCF 28.3% below the comps median; sensitivity grid from valuation.json (USD 40.60 to USD 73.85), rounded to cents; IRS lose / halfway / win USD 50.25 / USD 53.96 / USD 57.66. WACC (7.55%), TV share (76.7%) and exit multiple (12.0x) are unchanged.
+- Thesis: market-implied WACC 5.11%, HOLD breakeven WACC 5.45%; generous stack USD 83.41, 7.4% below the price. Risks: beta HOLD breakeven 0.059.
+- Every "PM to respond" / "PM to confirm" replaced with the PM's 15 Oct response: K1 FY26 5.0% accepted (row 2); K2 keep ERP 4.2% once confirmed on Damodaran's site (row 6 and the WACC line); K3 old "every generous stack stays SELL" wording withdrawn, SELL kept (PM view paragraph); K4 13 Oct responses kept (rows 1, 3, 4, 5). The only "PM to verify" left is in Sources (CCBA PDF not opened), which is not a bear response.
+- Bear table and generous table: final values from bear/challenges.md and bear_runs.json (e.g. margin 31.9% USD 48.19, 1% growth USD 46.70, beta 0.868 USD 42.66, ERP 5.0% / 5.5% USD 46.54 / USD 44.49; generous beta 0.35 USD 61.40, IRS win USD 57.66, g 3% USD 57.58, RONIC USD 50.70, all four USD 83.41 HOLD; leave-one-out USD 66.17 to USD 75.01 SELL).
+- Football chart (USD): WACC 7.05%-8.05% USD 46.03-55.30; g 1.5%-3.0% USD 47.48-57.58; single bear USD 42.66-50.03; single generous USD 50.70-61.40; all four generous USD 83.41; bear USD 37.86; comps USD 42.01-107.05; markers price USD 90.12, DCF USD 50.25.
+- Shortened a few responses so the body still fits two pages.
+
+### Checks run
+- `python -m desk.memo_check runs/KO/2026-10-13`: "All memo numbers trace to agent outputs." (passes).
+- `python -m desk.memo_pdf runs/KO/2026-10-13/editor/memo.md`: memo.pdf is 3 pages, two of body and Sources alone on page 3. Checked page 1 (header, chart with USD labels, grid) by eye. Body about 1,370 words against the target of about 900 (the audit disclosures and the PM responses account for the extra).
+- Checked the key numbers by hand against valuation.json, sanity_checks.json, valuation/notes.md, bear/challenges.md and bear_runs.json (memo_check only proves that a number appears somewhere in the run folder; the run folder also still holds superseded figures in the kept-for-the-record sections).
+
+### FLAGs
+1. ERP 4.2% seen only in search summaries: the PM's decision is to keep it once confirmed on Damodaran's site; that confirmation is still outstanding. The generous stack sits USD 2.30 above HOLD and depends on it.
+2. TV share 76.7% of EV, above the 75% limit.
+3. CCBA figures sourced, not verified (PDF not opened from this environment).
+4. Still open, not bear challenges and not in the base: CCBA 25% stake at USD 783m, margin denominator, 13 Oct risk-free print.
+5. Fundamentals and risk outputs were not re-run; the FY26 growth change does not affect them.
+6. Body is longer than the ~900-word guide (about 1,370 words), though still two pages.
+
+### Confidence
+High that the memo matches the final 15 Oct agent outputs. SELL is robust to every single change; only the three-way generous stack reaches HOLD.
+
+---
+
+# Morning update 15 Oct 2026 (SUPERSEDED by the final update above; kept for the record)
+
 ## Update 15 Oct 2026 (re-run after the evidence audit)
 
 ### What changed
