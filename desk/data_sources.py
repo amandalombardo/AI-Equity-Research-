@@ -341,6 +341,25 @@ def last_close(ticker: str) -> dict:
     return {"value": float(c), "date": str(pd.to_datetime(t, unit="s").date()), "currency": res["meta"].get("currency")}
 
 
+def daily_closes(ticker: str, years: int = 2) -> pd.DataFrame:
+    """Daily closes from Yahoo Finance chart data, two columns: adj_close (dividend-adjusted, for total
+    returns) and close (the actual traded price, for comparing with a fair value). Index = trading date."""
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{requests.utils.quote(ticker)}"
+    r = requests.get(url, params={"range": f"{years}y", "interval": "1d"}, headers=YAHOO_HEADERS, timeout=60)
+    r.raise_for_status()
+    res = r.json()["chart"]["result"][0]
+    # dates in the exchange's own time zone: Yahoo stamps a London FX day at 23:00 UTC the evening before
+    tz = res["meta"].get("exchangeTimezoneName", "UTC")
+    idx = pd.to_datetime(res["timestamp"], unit="s", utc=True).tz_convert(tz).tz_localize(None).normalize()
+    close = res["indicators"]["quote"][0]["close"]
+    adj = res["indicators"].get("adjclose", [{"adjclose": close}])[0]["adjclose"]  # FX and some indices have no adjclose
+    df = pd.DataFrame({"adj_close": adj, "close": close}, index=idx, dtype=float).dropna()
+    if df.empty:
+        raise RuntimeError(f"no price data for {ticker}")
+    df.attrs["currency"] = res["meta"].get("currency")
+    return df[~df.index.duplicated(keep="last")]
+
+
 def fred_series(series_id: str) -> pd.Series:
     url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
     r = requests.get(url, timeout=60)

@@ -1,0 +1,40 @@
+# Paper portfolio design. Every choice below was made by the PM (Amanda) on 15 Oct 2026
+# ("all recommended"); the options she chose between are in portfolio/design-options.md.
+# Agents never change this file.
+
+fund_gbp: 100000            # paper fund size, pounds
+start_date: "2026-10-15"    # closing prices on the day the four final calls were published (no hindsight)
+end_date: "2027-10-15"      # 12-month test
+fx_ticker: "GBPUSD=X"       # Yahoo Finance, US dollars per pound; converts the US legs into pounds
+
+# Benchmark: 75% FTSE 100 / 25% S&P 500, matching where the calls are (3 UK, 1 US). Total return
+# (dividends reinvested). Yahoo has no clean FTSE 100 total-return index, so the iShares Core FTSE 100
+# accumulating ETF (reinvests dividends) is the proxy; its small annual fee is a known drag (FLAG).
+benchmark:
+  ftse100:
+    weight: 0.75
+    ticker: "CUKX.L"
+    currency: GBP
+    label: "FTSE 100 total return (proxy: iShares Core FTSE 100 UCITS ETF Acc, CUKX.L)"
+  sp500:
+    weight: 0.25
+    ticker: "^SP500TR"
+    currency: USD
+    label: "S&P 500 Total Return index (^SP500TR)"
+
+# Active bet per SELL call, as a fraction of the fund: short the stock, put the same amount in its
+# home index. HOLD calls get no bet. No rebalancing: positions only change when a call changes.
+bet_size: 0.10
+
+# The four final calls (15 Oct 2026). Rating and fair value are read from each run's valuation.json,
+# and the rating band thresholds from briefs/<name>.yaml, so nothing here is retyped by hand.
+calls:
+  - {name: DGE,  ticker: "DGE.L",  currency: GBP, home_leg: ftse100, brief: briefs/DGE.yaml,  run: runs/DGE/2026-10-12}
+  - {name: KO,   ticker: "KO",     currency: USD, home_leg: sp500,   brief: briefs/KO.yaml,   run: runs/KO/2026-10-13}
+  - {name: ULVR, ticker: "ULVR.L", currency: GBP, home_leg: ftse100, brief: briefs/ULVR.yaml, run: runs/ULVR/2026-10-14}
+  - {name: RELX, ticker: "REL.L",  currency: GBP, home_leg: ftse100, brief: briefs/RELX.yaml, run: runs/RELX/2026-10-14}
+
+# Known gaps, disclosed in every update:
+missing:
+  - "Short borrow fee: not sourced, so not charged. A real short pays a fee to the lender of the shares."
+  - "Trading costs: none charged (paper portfolio)."

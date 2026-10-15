@@ -25,6 +25,13 @@ Student portfolio project, not investment advice.
 
 Desk rule: BUY at +15% or more upside, SELL at -10% or worse, HOLD in between. Pence (GBp) for London listings, US dollars for Coca-Cola. Every number in each memo traces to a filing, a data series or a file in this repository; the four inputs seen only second-hand are disclosed in the memos.
 
+## Paper portfolio (from 15 October 2026)
+
+The four calls are tested as a GBP 100,000 paper fund against a 75% FTSE 100 / 25% S&P 500 total-return benchmark.
+The fund starts fully in the benchmark; each SELL call (Coca-Cola, RELX) is a GBP 10,000 paper short of the stock with the same amount added to its home index, so **fund return minus benchmark return is exactly the value added by the calls**. HOLDs carry no bet. No rebalancing; calls stay as published, and any stock whose price crosses into a different rating band is flagged for the PM.
+The PM's design choices and the options she chose between: [portfolio/design-options.md](portfolio/design-options.md). Settings: [portfolio/portfolio.yaml](portfolio/portfolio.yaml).
+Update: `python -m portfolio.update` (after 21:00 UK time) writes `runs/portfolio/<date>/report.md`.
+
 ## How the desk works
 
 ![How the six agents work together](publish/agent-diagram.svg)
