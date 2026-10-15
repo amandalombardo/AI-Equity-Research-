@@ -1,0 +1,13 @@
+{
+  "risk_free": {
+    "value": 0.049886,
+    "date": "2026-08-01",
+    "source": "FRED IRLTLT01GBM156N (UK 10-year gilt yield, OECD monthly average)"
+  },
+  "downloaded_on": "2026-10-14",
+  "share_price_gbp_pence": {
+    "value": 2771.0,
+    "date": "2026-10-13",
+    "source": "Yahoo Finance REL.L close (pence, GBp)"
+  }
+}

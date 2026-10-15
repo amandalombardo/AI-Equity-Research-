@@ -56,7 +56,8 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
         ("shares", "Ordinary shares (m)", v["shares_outstanding_m"]),
     ]
     if ccy == "GBp":
-        inputs += [("fx", f"{rep} per GBP", v[fx_key(rep)]), ("price", "Share price (pence)", v["share_price_gbp_pence"])]
+        fx = 1.0 if rep == "GBP" else v[fx_key(rep)]  # a pound reporter needs no exchange rate
+        inputs += [("fx", f"{rep} per GBP", fx), ("price", "Share price (pence)", v["share_price_gbp_pence"])]
     else:
         inputs += [("price", "Share price (USD)", v["share_price_usd"])]
     ws.append(["Input", "Value", "Source"])
@@ -79,6 +80,8 @@ def write_dcf_workbook(path, brief: dict, v: dict, sources: dict, base: dict) ->
                   "priced_now": money_key("priced_at_valuation_date", rep),
                   "contingent": "contingent_liabilities",
                   "shares": "shares_outstanding_m", "fx": fx_key(rep), "price": share_price_key(ccy)}
+    if rep == "GBP":
+        sources[fx_key(rep)] = "1: the company reports in pounds, so no exchange rate is needed to reach pence"
     for i, (key, label, val) in enumerate(inputs, start=2):
         src = sources.get(source_key.get(key, key)) or (
             "not in this brief's bridge (0)" if key in ("contingent", "buybacks", "priced_now") and not val else f"PM assumption ({brief_file})")

@@ -1,0 +1,263 @@
+{
+  "ticker": "REL.L",
+  "benchmark_index": "^FTSE",
+  "price_currency": "GBp (pence)",
+  "data": "runs/RELX/2026-10-14/data/prices.csv, Yahoo dividend-adjusted daily closes, 2021-10-14 to 2026-10-13",
+  "price_unit_check": {
+    "jumps_over_50x": [],
+    "largest_daily_moves": {
+      "2026-02-03": 0.1435202928861795,
+      "2026-02-13": 0.09990255638353274,
+      "2025-04-07": 0.07835417973040104,
+      "2026-07-30": 0.06924145847628704,
+      "2022-03-08": 0.06416630287893499
+    },
+    "adjusted_price_range_gbp_pence": [
+      2012.4769287109373,
+      4133.2509765625
+    ],
+    "last_adjusted_close_gbp_pence": 2771.0,
+    "verdict": "No 100x jump: the series is in pence throughout (adjusted range shown; the 13 Oct 2026 adjusted close equals the 2,771p unadjusted close in inputs.yaml)."
+  },
+  "own_regressions_vs_ftse100": {
+    "2y_weekly": {
+      "beta": 0.6732043665806589,
+      "r_squared": 0.08112582764591543,
+      "observations": 104,
+      "frequency": "W",
+      "start": "2024-10-25",
+      "end": "2026-10-16",
+      "std_error": 0.22433409829586906,
+      "ci95": [
+        0.23350953392075552,
+        1.1128991992405621
+      ]
+    },
+    "5y_weekly": {
+      "beta": 0.6601144881944233,
+      "r_squared": 0.12382047509424375,
+      "observations": 261,
+      "frequency": "W",
+      "start": "2021-10-22",
+      "end": "2026-10-16",
+      "std_error": 0.10911129235180354,
+      "ci95": [
+        0.4462563551848884,
+        0.8739726212039582
+      ]
+    },
+    "5y_monthly": {
+      "beta": 0.3782656055382868,
+      "r_squared": 0.04240956904134068,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.23601566350916797,
+      "ci95": [
+        -0.08432509493968243,
+        0.840856306016256
+      ]
+    }
+  },
+  "blume_adjusted_5y_monthly": 0.5834379557106522,
+  "volatility_annualised": {
+    "relx_1y_daily": 0.35962920473357857,
+    "relx_5y_daily": 0.23151217304421903,
+    "ftse_1y_daily": 0.11633910827119631,
+    "ftse_5y_daily": 0.12538265160956152
+  },
+  "max_drawdown_5y_gbp_pence": {
+    "max_drawdown": -0.5131007189927157,
+    "peak_date": "2025-02-13",
+    "trough_date": "2026-02-11",
+    "peak_price": 4133.2509765625,
+    "trough_price": 2012.4769287109373
+  },
+  "max_drawdown_5y_ftse_points": {
+    "max_drawdown": -0.1343433128094449,
+    "peak_date": "2025-03-03",
+    "trough_date": "2025-04-09",
+    "peak_price": 8871.2998046875,
+    "trough_price": 7679.5
+  },
+  "peer_betas_5y_monthly_home_index": {
+    "Thomson Reuters": {
+      "ticker": "TRI",
+      "index": "^GSPC",
+      "optional": false,
+      "currency": "USD",
+      "beta": 0.7516488286374292,
+      "r_squared": 0.20523129901860762,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.19422251299531942,
+      "ci95": [
+        0.37097270316660313,
+        1.1323249541082552
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (TRI, ^GSPC), fetched 2026-10-14"
+    },
+    "Verisk Analytics": {
+      "ticker": "VRSK",
+      "index": "^GSPC",
+      "optional": false,
+      "currency": "USD",
+      "beta": 0.6870830784457418,
+      "r_squared": 0.1807117297741288,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.19209694276551356,
+      "ci95": [
+        0.31057307062533523,
+        1.0635930862661485
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (VRSK, ^GSPC), fetched 2026-10-14"
+    },
+    "S&P Global": {
+      "ticker": "SPGI",
+      "index": "^GSPC",
+      "optional": false,
+      "currency": "USD",
+      "beta": 1.069777832916763,
+      "r_squared": 0.4711977250163175,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.14880744593764475,
+      "ci95": [
+        0.7781152388789794,
+        1.3614404269545468
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (SPGI, ^GSPC), fetched 2026-10-14"
+    },
+    "Moody's": {
+      "ticker": "MCO",
+      "index": "^GSPC",
+      "optional": false,
+      "currency": "USD",
+      "beta": 1.3217548815750038,
+      "r_squared": 0.6677876790628507,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.12241245080344955,
+      "ci95": [
+        1.0818264780002427,
+        1.5616832851497648
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (MCO, ^GSPC), fetched 2026-10-14"
+    },
+    "Wolters Kluwer": {
+      "ticker": "WKL.AS",
+      "index": "^AEX",
+      "optional": false,
+      "currency": "EUR",
+      "beta": 0.5790966592374062,
+      "r_squared": 0.08200039442501059,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.2544194675380338,
+      "ci95": [
+        0.08043450286285991,
+        1.0777588156119524
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (WKL.AS, ^AEX), fetched 2026-10-14"
+    },
+    "Experian": {
+      "ticker": "EXPN.L",
+      "index": "^FTSE",
+      "optional": false,
+      "currency": "GBp",
+      "beta": 1.0406415853963789,
+      "r_squared": 0.16558662717525488,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.3067363023397519,
+      "ci95": [
+        0.43943843281046513,
+        1.6418447379822925
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (EXPN.L, ^FTSE), fetched 2026-10-14"
+    },
+    "London Stock Exchange Group": {
+      "ticker": "LSEG.L",
+      "index": "^FTSE",
+      "optional": false,
+      "currency": "GBp",
+      "beta": 0.5946762594882855,
+      "r_squared": 0.076182649310807,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.27191403583603,
+      "ci95": [
+        0.061724749249666644,
+        1.1276277697269044
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (LSEG.L, ^FTSE), fetched 2026-10-14"
+    },
+    "Informa": {
+      "ticker": "INF.L",
+      "index": "^FTSE",
+      "optional": true,
+      "currency": "GBp",
+      "beta": 1.175844528745515,
+      "r_squared": 0.3750749144923411,
+      "observations": 60,
+      "frequency": "M",
+      "start": "2021-11-30",
+      "end": "2026-10-31",
+      "std_error": 0.19929246350585747,
+      "ci95": [
+        0.7852313002740344,
+        1.5664577572169955
+      ],
+      "unit_jumps": [],
+      "source": "Yahoo Finance adjusted closes (INF.L, ^FTSE), fetched 2026-10-14"
+    }
+  },
+  "peer_beta_errors": {},
+  "peer_median_beta_5y_monthly_core7": 0.7516488286374292,
+  "leverage": {
+    "fy25": {
+      "net_debt_relx_def_mgbp": 7201.0,
+      "net_debt_ex_leases_mgbp": 7104.0,
+      "ebitda_mgbp": 3846.0,
+      "ratio_relx_def_gbp": 1.8723348933957358,
+      "ratio_ex_leases_gbp": 1.8471138845553823,
+      "company_reported": "2.0x (net debt incl. pensions / EBITDA, calculated in US dollars)",
+      "source": "RELX FY2025 results 6-K ex 99.1 (0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.2 ('Net debt/EBITDA 2.0x (1.8x): Net debt at 31 December 2025 was GBP 7,201m ... EBITDA was GBP 3,846m'), p.11 (EBITDA = adjusted OP 3,342 + D&A 504), p.13 (leases 97; ratio 'calculated in US dollars'); Data agent financials.csv adjusted_ebitda 2025 = 3,846 (AR25 p.186)"
+    },
+    "jun26_ltm": {
+      "net_debt_relx_def_mgbp": 8733.0,
+      "net_debt_ex_leases_mgbp": 8614.0,
+      "ebitda_ltm_mgbp": 3930.0,
+      "ratio_relx_def_gbp": 2.2221374045801525,
+      "ratio_ex_leases_gbp": 2.1918575063613233,
+      "company_reported": "2.3x (twelve months to 30 Jun 2026, calculated in US dollars)",
+      "source": "RELX H1 2026 results 6-K ex 99.1 (0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.2 ('Net debt/EBITDA 2.3x (2.2x): Net debt at 30 June 2026 was GBP 8,733m'), p.10 (EBITDA H1 26 1,992, H1 25 1,908), p.11 (net debt ex leases 8,614, per Data agent inputs.yaml), p.12 (ratio text)"
+    },
+    "target": "NO numeric target range published. RELX 'seeks to maintain cash flow conversion of 90% or higher and credit rating agency metrics that are consistent with a solid investment grade credit rating' (RELX Annual Report 2025, 20-F ex 15.2, 0001104659-26-017277, p.72). History FY21-25: 2.4x, 2.1x, 2.0x, 1.8x, 2.0x (AR25 p.67-68).",
+    "rating": "Moody's A3, S&P A-, Fitch BBB+ (brief dcf.wacc.credit_spread comment: RELX Capital term sheet, 24 Mar 2025, 0001193125-25-061449; not re-fetched by the Risk agent)"
+  },
+  "valuation_beta": "NOT set here. See beta_evidence.json (bottom-up, PM rule in briefs/RELX.yaml dcf.wacc.beta)."
+}

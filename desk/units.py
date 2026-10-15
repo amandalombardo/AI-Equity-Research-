@@ -34,14 +34,14 @@ def price_currency(company: dict) -> str:
     return ccy
 
 
-REPORTING_CURRENCIES = ("USD", "EUR")
+REPORTING_CURRENCIES = ("USD", "EUR", "GBP")
 
 
 def reporting_currency(company: dict) -> str:
-    """Currency the accounts (and so the DCF cash flows) are in, from the brief: USD (the default) or EUR."""
+    """Currency the accounts (and so the DCF cash flows) are in, from the brief: USD (the default), EUR or GBP."""
     ccy = company.get("reporting_currency", "USD")
     if ccy not in REPORTING_CURRENCIES:
-        raise ValueError(f"Unknown company.reporting_currency {ccy!r}: use USD or EUR")
+        raise ValueError(f"Unknown company.reporting_currency {ccy!r}: use USD, EUR or GBP")
     return ccy
 
 

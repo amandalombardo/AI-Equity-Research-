@@ -1,0 +1,5 @@
+item,brief,data_agent,diff_pct,flag
+net_sales_mgbp,9590.0,9590.0,0.0,False
+adjusted_operating_profit_mgbp,3342.0,3342.0,0.0,False
+adjusted_operating_margin,0.348,0.34849,0.00141,False
+net_debt_mgbp,7201.0,7201.0,0.0,False

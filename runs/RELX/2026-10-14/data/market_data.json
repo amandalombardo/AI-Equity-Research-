@@ -1,0 +1,22 @@
+{
+  "price_date": "2026-10-13",
+  "market_inputs": {
+    "risk_free": {
+      "value": 0.049886,
+      "date": "2026-08-01",
+      "source": "FRED IRLTLT01GBM156N (UK 10-year gilt yield, OECD monthly average)"
+    },
+    "downloaded_on": "2026-10-14",
+    "share_price_gbp_pence": {
+      "value": 2771.0,
+      "date": "2026-10-13",
+      "source": "Yahoo Finance REL.L close (pence, GBp)"
+    }
+  },
+  "not_needed_items": {
+    "restructuring": "RELX has no separately reported restructuring line or programme; the forecast base is adjusted operating profit and the brief sets restructuring_cash_mgbp 0",
+    "capex_intangibles": "the IFRS label is not used; RELX's capitalised development spend is read from the AR25 p.140 cash flow text (row capitalised_development_spend). The valuation uses the brief's capex_pct_sales (H1 2026)",
+    "other_current_financial_assets": "not part of RELX's net debt definition (FY25R p.13); not needed",
+    "assets_held_for_sale / liabilities_held_for_sale": "none at 31 Dec 2025 (AR25 p.141 balance sheet has no such line; only FY23 had 44/14); confirms disposal_proceeds 0"
+  }
+}

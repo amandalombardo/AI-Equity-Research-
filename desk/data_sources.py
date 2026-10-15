@@ -71,7 +71,7 @@ TAGS = {
               "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"],
     "proceeds_from_ppe_disposals": ["deo:ProceedsFromDisposalOfPropertyPlantAndEquipmentAndComputerSoftware"],
     "dividends_paid_to_shareholders": ["ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities"],
-    "inventories": ["ifrs-full:Inventories"],
+    "inventories": ["ifrs-full:Inventories", "relx:InventoriesAndPrepublicationCosts"],  # RELX's own label
     "maturing_inventories": ["deo:MaturingInventories"],
     "trade_and_other_receivables": ["ifrs-full:TradeAndOtherCurrentReceivables"],
     "trade_and_other_payables": ["ifrs-full:TradeAndOtherCurrentPayables"],
@@ -150,7 +150,7 @@ SHARE_TAGS = {
 # Traps: Unilever's "turnover" is ifrs-full:Revenue (no excise, unlike Diageo). Operating profit here is REPORTED, after
 # restructuring; the forecast base uses underlying operating profit (non-GAAP, results 6-K), which has no XBRL tag.
 IFRS_TAGS = {
-    "net_sales": ["ifrs-full:Revenue"],
+    "net_sales": ["ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"],  # RELX uses the second
     "operating_profit_reported": ["ifrs-full:ProfitLossFromOperatingActivities"],
     "restructuring": ["ifrs-full:ExpenseOfRestructuringActivities"],
     "depreciation_amortisation": ["ifrs-full:DepreciationAndAmortisationExpense"],
@@ -163,7 +163,7 @@ IFRS_TAGS = {
     "capex": ["ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"],
     "capex_intangibles": ["ifrs-full:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities"],
     "dividends_paid_to_shareholders": ["ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities"],
-    "inventories": ["ifrs-full:Inventories"],
+    "inventories": ["ifrs-full:Inventories", "relx:InventoriesAndPrepublicationCosts"],  # RELX's own label
     "trade_and_other_receivables": ["ifrs-full:TradeAndOtherCurrentReceivables"],
     "trade_and_other_payables": ["ifrs-full:TradeAndOtherCurrentPayables"],
     "cash": ["ifrs-full:CashAndCashEquivalents"],
@@ -230,6 +230,12 @@ def parse_instance(xml_bytes: bytes) -> pd.DataFrame:
         seg = c.find(f"{xi}entity/{xi}segment")
         dims = ";".join(f"{m.get('dimension')}={(m.text or '').strip()}" for m in seg) if seg is not None else ""
         contexts[c.get("id")] = (start.text if start is not None else None, (end if end is not None else inst).text, dims)
+    # unit ids are free text (RELX: "Unit_Standard_GBP_<hash>"), so read the currency from the unit's own measure
+    # (iso4217:GBP -> "GBP", xbrli:shares -> "shares"); ratio units such as GBP per share keep their id
+    units = {}
+    for u in root.iter(f"{xi}unit"):
+        m = u.find(f"{xi}measure")
+        units[u.get("id")] = m.text.strip().split(":")[-1] if m is not None and m.text else u.get("id")
     rows = []
     for el in root:
         ctx = el.get("contextRef")
@@ -238,7 +244,7 @@ def parse_instance(xml_bytes: bytes) -> pd.DataFrame:
         uri, name = el.tag[1:].split("}")
         start, end, dims = contexts[ctx]
         rows.append({"tag": f"{prefixes.get(uri, uri)}:{name}", "start": start, "end": end, "dims": dims,
-                     "unit": el.get("unitRef", ""), "value": el.text.strip()})
+                     "unit": units.get(el.get("unitRef", ""), el.get("unitRef", "")), "value": el.text.strip()})
     return pd.DataFrame(rows)
 
 
@@ -299,6 +305,8 @@ def financials(cik: str, years: int = 5, form_type: str = "20-F", tags: dict | N
                     rows.append({"item": item, "fiscal_year": fy, col: v / 1e6, "tag": f"{tag} [{dims}]".replace(" []", ""),
                                  "source": f"SEC EDGAR {rep['form']} accession {rep['accession']} filed {rep['filed']} ({rep['document']})"})
                     seen.add((item, fy))
+    if not rows:
+        raise RuntimeError(f"No line items found in {currency} in the {form_type} filings: check the tag map and the units")
     out = pd.DataFrame(rows).sort_values(["item", "fiscal_year"]).reset_index(drop=True)
     fys = sorted(out["fiscal_year"].unique())[-years:]
     out = out[out["fiscal_year"].isin(fys)]
@@ -346,7 +354,8 @@ def fred_series(series_id: str) -> pd.Series:
 
 # risk-free rate by reporting currency: 10-year government bond yields on FRED
 RISK_FREE = {"USD": ("DGS10", "US 10-year Treasury, constant maturity, daily"),
-             "EUR": ("IRLTLT01DEM156N", "German 10-year Bund yield, OECD monthly average")}
+             "EUR": ("IRLTLT01DEM156N", "German 10-year Bund yield, OECD monthly average"),
+             "GBP": ("IRLTLT01GBM156N", "UK 10-year gilt yield, OECD monthly average")}
 
 
 def price_ticker(company: dict) -> str:
@@ -382,13 +391,16 @@ def main(brief_path: str, out_dir: str) -> None:
     }
     if ccy == "GBp":
         usd_gbp = fred_series("DEXUSUK")
-        if rep == "USD":
+        if rep == "GBP":
+            fx, fx_src = None, None  # pounds to pence: no exchange rate needed
+        elif rep == "USD":
             fx, fx_src = usd_gbp, "FRED DEXUSUK (USD per GBP, noon buying rate New York)"
         else:
             # EUR per GBP = (USD per GBP) / (USD per EUR), both noon buying rates on the same day
             both = pd.concat([usd_gbp, fred_series("DEXUSEU")], axis=1, join="inner").dropna()
             fx, fx_src = both.iloc[:, 0] / both.iloc[:, 1], "FRED DEXUSUK / DEXUSEU (EUR per GBP, noon buying rates New York)"
-        market[fx_key(rep)] = {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()), "source": fx_src}
+        if fx is not None:
+            market[fx_key(rep)] = {"value": float(fx.iloc[-1]), "date": str(fx.index[-1].date()), "source": fx_src}
         market["share_price_gbp_pence"] = {"value": close["value"], "date": close["date"],
                                            "source": f"Yahoo Finance {ticker} close (pence, GBp)"}
     else:

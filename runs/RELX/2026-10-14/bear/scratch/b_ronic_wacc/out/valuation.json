@@ -1,0 +1,274 @@
+{
+  "price_currency": "GBp",
+  "reporting_currency": "GBP",
+  "base": {
+    "wacc": {
+      "cost_of_equity": 0.103145,
+      "after_tax_cost_of_debt": 0.047478,
+      "equity_weight": 0.87182,
+      "debt_weight": 0.12818,
+      "wacc": 0.09600960394000001,
+      "wacc_used": 0.09600960394000001
+    },
+    "enterprise_value_mgbp": 33948.69363019413,
+    "tv_share_of_ev": 0.6720423659393331,
+    "terminal_year": {
+      "sales": 12246.534207337503,
+      "nopat": 3309.0135428225935,
+      "da": 620.8992843120114,
+      "capex": 1347.4899964814026,
+      "capex_pct_sales": 0.11003031336605053,
+      "delta_nwc": -37.28469345829983,
+      "ufcf": 2619.707524111502,
+      "reinvestment": 689.3060187110914,
+      "reinvestment_rate": 0.2083116342047704,
+      "implied_ronic": 0.09600999999999997
+    },
+    "implied_exit_ev_ebitda": 7.163940452349287,
+    "equity": {
+      "enterprise_value": 33948.69363019413,
+      "minorities_deducted": 24.0,
+      "equity_value_balance_sheet_date": 26951.69363019413,
+      "equity_value": 25833.38554860746,
+      "per_share_gbp": 14.814804598724658,
+      "per_share_gbp_pence": 1481.4804598724659
+    },
+    "rating": {
+      "rating": "SELL",
+      "upside": -0.465362519,
+      "fair_value": 1481.4804598724659,
+      "share_price": 2771.0
+    },
+    "forecast": [
+      {
+        "year": 2026,
+        "sales": 9877.7,
+        "ebit": 3457.195,
+        "ebit_margin": 0.35,
+        "ufcf": 2513.1084090000004,
+        "pv": 2400.512896276047
+      },
+      {
+        "year": 2027,
+        "sales": 10371.585000000001,
+        "ebit": 3630.0547500000002,
+        "ebit_margin": 0.35,
+        "ufcf": 2668.5446154500005,
+        "pv": 2325.6959071149704
+      },
+      {
+        "year": 2028,
+        "sales": 10890.164250000002,
+        "ebit": 3811.5574875,
+        "ebit_margin": 0.35,
+        "ufcf": 2801.9718462225,
+        "pv": 2228.0650586383017
+      },
+      {
+        "year": 2029,
+        "sales": 11434.672462500002,
+        "ebit": 4002.1353618750004,
+        "ebit_margin": 0.35,
+        "ufcf": 2942.0704385336257,
+        "pv": 2134.5326748599273
+      },
+      {
+        "year": 2030,
+        "sales": 12006.406085625003,
+        "ebit": 4202.242129968751,
+        "ebit_margin": 0.35,
+        "ufcf": 3089.173960460307,
+        "pv": 2044.9267055196528
+      }
+    ]
+  },
+  "bear": {
+    "wacc": {
+      "cost_of_equity": 0.103145,
+      "after_tax_cost_of_debt": 0.047478,
+      "equity_weight": 0.87182,
+      "debt_weight": 0.12818,
+      "wacc": 0.09600960394000001,
+      "wacc_used": 0.10600960394
+    },
+    "enterprise_value_mgbp": 28336.797579119186,
+    "tv_share_of_ev": 0.6324580907381071,
+    "terminal_year": {
+      "sales": 11339.787139987742,
+      "nopat": 3064.010485224688,
+      "da": 574.9272079973786,
+      "capex": 1247.720332517161,
+      "capex_pct_sales": 0.11003031336605051,
+      "delta_nwc": -34.52409312207634,
+      "ufcf": 2425.741453826982,
+      "reinvestment": 638.2690313977062,
+      "reinvestment_rate": 0.20831163420477036,
+      "implied_ronic": 0.09600999999999998
+    },
+    "implied_exit_ev_ebitda": 6.331017136326715,
+    "equity": {
+      "enterprise_value": 28336.797579119186,
+      "minorities_deducted": 24.0,
+      "equity_value_balance_sheet_date": 21339.797579119186,
+      "equity_value": 19772.796750673402,
+      "per_share_gbp": 11.339207541355902,
+      "per_share_gbp_pence": 1133.9207541355902
+    },
+    "rating": {
+      "rating": "SELL",
+      "upside": -0.5907900562,
+      "fair_value": 1133.9207541355902,
+      "share_price": 2771.0
+    },
+    "forecast": [
+      {
+        "year": 2026,
+        "sales": 9877.7,
+        "ebit": 3457.195,
+        "ebit_margin": 0.35,
+        "ufcf": 2513.1084090000004,
+        "pv": 2389.6361207753753
+      },
+      {
+        "year": 2027,
+        "sales": 10174.031,
+        "ebit": 3560.91085,
+        "ebit_margin": 0.35,
+        "ufcf": 2588.5016612700006,
+        "pv": 2225.410336068078
+      },
+      {
+        "year": 2028,
+        "sales": 10479.25193,
+        "ebit": 3667.7381754999997,
+        "ebit_margin": 0.35,
+        "ufcf": 2666.1567111081,
+        "pv": 2072.4708338739415
+      },
+      {
+        "year": 2029,
+        "sales": 10793.629487900002,
+        "ebit": 3777.770320765,
+        "ebit_margin": 0.35,
+        "ufcf": 2746.141412441343,
+        "pv": 1930.0419736734602
+      },
+      {
+        "year": 2030,
+        "sales": 11117.438372537003,
+        "ebit": 3891.1034303879505,
+        "ebit_margin": 0.35,
+        "ufcf": 2828.5256548145844,
+        "pv": 1797.4014202063918
+      }
+    ]
+  },
+  "bridge_mgbp": {
+    "net_debt": 7104.0,
+    "lease_liabilities": 0.0,
+    "minority_interests": 24.0,
+    "pension_deficit": 0.0,
+    "associates": 131.0,
+    "disposal_proceeds": 0.0,
+    "restructuring_cash": 0.0,
+    "contingent_liabilities": 0.0,
+    "minority_share_of_ev": null
+  },
+  "sensitivity_value_per_share_pence": {
+    "wacc": [
+      0.08600960394000001,
+      0.09100960394,
+      0.09600960394000001,
+      0.10100960394000001,
+      0.10600960394
+    ],
+    "terminal_growth": [
+      0.015,
+      0.02,
+      0.025,
+      0.03
+    ],
+    "grid": [
+      [
+        1755.6281156249745,
+        1779.5704292296919,
+        1806.253992912666,
+        1836.4129441839204
+      ],
+      [
+        1605.8833831926502,
+        1620.100222356594,
+        1635.3996999033423,
+        1652.047996478128
+      ],
+      [
+        1474.553579189363,
+        1481.4804598724659,
+        1488.4074093194472,
+        1495.3344431561877
+      ],
+      [
+        1358.4291196472002,
+        1359.8539731721041,
+        1360.5735061913006,
+        1360.438727483904
+      ],
+      [
+        1255.0056834107297,
+        1252.260393554617,
+        1248.3554516894633,
+        1243.062008048477
+      ]
+    ]
+  },
+  "inputs": {
+    "base_sales": 9590.0,
+    "base_margin": 0.35,
+    "tax_rate": 0.228,
+    "da_pct_sales": 0.0507,
+    "capex_pct_sales": 0.071,
+    "nwc_pct_sales": -0.15527,
+    "risk_free": 0.0545,
+    "pre_tax_cost_of_debt": 0.0615,
+    "debt_weight": 0.12818,
+    "net_debt": 7104.0,
+    "lease_liabilities": 0.0,
+    "minority_interests": 24.0,
+    "pension_deficit": 0.0,
+    "associates": 131.0,
+    "disposal_proceeds": 0.0,
+    "restructuring_cash": 0.0,
+    "shares_outstanding_m": 1743.754727,
+    "share_price_gbp_pence": 2771.0,
+    "stub_years": 0.78356,
+    "dividends_ex_before_valuation_mgbp": 1217.0,
+    "buybacks_after_balance_sheet_mgbp": 2056.2,
+    "beta": 0.9729,
+    "pre_tax_cost_of_debt_historic": 0.039
+  },
+  "sources": {
+    "base_sales": "GBP m, FY25 revenue 9,590 (RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.26; RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.186; XBRL ifrs-full:RevenueFromContractsWithCustomers). The DCF base is FY25 revenue INCLUDING print (399); the margin decision (35.0%) is on H1 2026 adjusted margin EX print, applied to this base (PM decision, brief dcf.base_margin comment).",
+    "base_margin": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.base_margin: H1 2026 adjusted operating margin without print (1,727 - 78) / (4,871 - 157) = 35.0% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.1-9). Data agent check: FY25 adjusted margin 3,342 / 9,590 = 34.85% incl. print (AR25 p.186).",
+    "tax_rate": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.tax_rate: H1 2026 effective tax rate 22.8%, 'best estimate of the annual tax rate expected for the full financial year' (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.28, note 7).",
+    "da_pct_sales": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.da_pct_sales: H1 2026 (internally developed 193 + PP&E 12 + pre-publication 42) / revenue 4,871 = 5.07% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.10 and p.25); lease depreciation (18) excluded because leases are not in net debt.",
+    "capex_pct_sales": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.capex_pct_sales: H1 2026 (capex 292 incl. capitalised development 280 + pre-publication spend 54) / 4,871 = 7.10% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.10, quote re-checked: 'Capital expenditure was GBP 292m ... excludes pre-publication costs of GBP 54m').",
+    "nwc_pct_sales": "FY25 (inventories and pre-publication costs 311 + trade and other receivables 2468 - trade and other payables 4268) / revenue 9,590 = -1489 / 9,590 = -15.5266%. RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.141 balance sheet, notes 18-20 (p.176; payables include deferred income 2390); XBRL relx:InventoriesAndPrepublicationCosts, ifrs-full:TradeAndOtherCurrentReceivables, TradeAndOtherCurrentPayables. FLAG: the results release balance sheet shows current payables 4260 with 9 non-current (RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.22) against 4268 + 1 in the audited Annual Report: GBP 8m reclassified between current and non-current. The audited 4,268 is used; with 4,260 the ratio would be -15.4432%.",
+    "risk_free": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.wacc.risk_free comment: UK 10-year gilt at the 13 Oct 2026 close, 5.45% (Investing.com historical data 5.4542%; Trading Economics 5.44%). FLAG: aggregator figures; the Bank of England and DMO sites are blocked, and Trading Economics did not resolve from the Data agent's environment, so the Data agent could not re-check 5.45% itself. Reference only: FRED IRLTLT01GBM156N (OECD monthly average) Aug 2026 = 4.9886% (stale); FRED DGS10 (US 10-year) 13 Oct 2026 = 5.21%.",
+    "pre_tax_cost_of_debt": "risk-free 5.45% + credit spread 0.70% (PM rule, briefs)",
+    "debt_weight": "Market values: net debt ex leases 7,104 (31 Dec 2025, FY25R p.13) / (net debt + market cap GBP 48,319.4m = 1,743.754727m shares (ex treasury, 25 Sep 2026, RELX 'Transactions in own shares' 28 Sep 2026, 6-K ex 99.6 (accession 0000929869-26-000071, https://www.sec.gov/Archives/edgar/data/929869/000092986926000071/relx-ex99d6.htm)) x 2771p (Yahoo REL.L close 2026-10-13)). Cross-check with 30 Jun 2026 net debt ex leases 8,614 (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.11): 15.13%.",
+    "net_debt": "RELX net debt 7,201 at 31 Dec 2025 LESS the 97 of lease liabilities inside it = 7,104 (RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.13: 'Gross debt of GBP 7,267m ... bank and bond borrowings of GBP 7,170m ... and lease liabilities of GBP 97m ... In aggregate, these give the net debt figure of GBP 7,201m'). Includes hedging derivative net liabilities 60 and non-hedge swap liabilities 5, net of cash 131. PM bridge decision: leases excluded because lease depreciation is not added back in D&A. Does NOT include the 2026 buybacks (deducted separately).",
+    "lease_liabilities": "PM bridge (briefs/RELX.yaml lease_liabilities_mgbp 0): the GBP 97m of leases (RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.13) is taken OUT of net debt and NOT added here, because lease costs already reduce the forecast cash flow (lease depreciation is left out of D&A).",
+    "minority_interests": "Book value of non-controlling interests at 31 Dec 2025 (RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.22; RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.141; XBRL ifrs-full:NoncontrollingInterests 24). Brief minorities_method: book.",
+    "pension_deficit": "Brief rule (0 when in surplus): net SURPLUS of 43 at 31 Dec 2025 = net pension assets 197 - net pension obligations 154 (RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.141; XBRL ifrs-full:LiabilityAssetOfDefinedBenefitPlans = -43; FY25R p.29-30).",
+    "associates": "Venture capital and other investments at book = fair value, 131 at 31 Dec 2025 (RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.167, note 15; p.141 'Other investments'). Joint ventures and associates (book 164) are NOT added: their profit is inside adjusted operating profit (JV share of adjusted operating profit 57, RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.206; reconciliation reclassifies JV tax +14 and finance income -1 into adjusted OP, RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.26).",
+    "disposal_proceeds": "Brief: no pending disposal. No assets held for sale at 31 Dec 2025 (RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.141 balance sheet; no XBRL held-for-sale facts for FY25).",
+    "restructuring_cash": "Brief: no announced one-off restructuring programme (none in FY25R or H126).",
+    "shares_outstanding_m": "RELX 'Transactions in own shares' 28 Sep 2026, 6-K ex 99.6 (accession 0000929869-26-000071, https://www.sec.gov/Archives/edgar/data/929869/000092986926000071/relx-ex99d6.htm): 'RELX PLC holds 85,329,583 ordinary shares in treasury, and has 1,743,754,727 ordinary shares in issue (excluding treasury shares)' after buybacks to 25 Sep 2026. Ordinary shares; 1 ADR = 1 share (not used). Includes shares held by the Employee Benefit Trust (4.89m at 31 Dec 2025, RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.179): FLAG in notes.md. Purchases from 28 Sep to 13 Oct 2026 not yet filed.",
+    "share_price_gbp_pence": "Yahoo Finance REL.L close 2026-10-13 (pence, GBp), the 13 Oct 2026 CLOSE (desk.data_sources last_close, unadjusted). Not an intraday 14 Oct price.",
+    "stub_years": "286 days from the 31 Dec 2025 balance sheet to the 13 Oct 2026 price date / 365.",
+    "dividends_ex_before_valuation_mgbp": "Dividends that went ex between 31 Dec 2025 and 13 Oct 2026: 2025 final 48.0p (ex 7 May 2026, RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.27), cash GBP 851m (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.20 cash flow and p.25 note 4: 'amounted to GBP 851m'); 2026 interim 20.9p (ex 6 Aug 2026, paid 10 Sep 2026), 'expected total cost of funding this dividend is GBP 366m' (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.25 note 4; payment confirmed RELX 6-K 27 Aug 2026, interim dividend euro equivalent (accession 0000929869-26-000064)). = 1,217. Excludes distributions to minorities (9 in H1). FLAG: 366 is RELX's expected cost; the actual cash is not yet published.",
+    "buybacks_after_balance_sheet_mgbp": "Cash spent on buybacks 1 Jan to 25 Sep 2026 (the date of the share count): H1 1,750 (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.20 cash flow; p.12 'Total consideration ... was GBP 1,750m') + 100 (1-21 Jul, RELX buyback announcement 23 Jul 2026, 6-K ex 99.1 (accession 0000929869-26-000056, https://www.sec.gov/Archives/edgar/data/929869/000092986926000056/relx-20260723xex99d1.htm): 'completion of a GBP 100 million ... programme on 21 July 2026') + 150 (23 Jul-4 Sep, RELX buyback announcement 7 Sep 2026, 6-K ex 99.1 (accession 0000929869-26-000068, https://www.sec.gov/Archives/edgar/data/929869/000092986926000068/relx-20260803xex99d1.htm): 'completion of a GBP 150 million ... programme on 4 September 2026') + 56.2 (7-25 Sep, 2,225,133 shares x daily VWAP summed over 15 trading days, RELX 'Transactions in own shares' weekly notices, 6-K of 1 Oct 2026 ex 99.3, 99.4, 99.6 (accession 0000929869-26-000071, https://www.sec.gov/Archives/edgar/data/929869/000092986926000071/); excludes 0.5% stamp duty and commission, c. GBP 0.3m) = 2,056.2. Employee Benefit Trust purchases (60 in H1) are not buybacks and are excluded.",
+    "beta": "Risk agent, bottom-up: Damodaran GLOBAL Information Services unlevered beta corrected for cash 0.8737 (86 firms, betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', PM upload) relevered (Hamada) at RELX's market D/E 0.1470 = net debt ex leases GBP 7,104m (31 Dec 2025, 7,201 less 97 leases, FY25 results 6-K 0000929869-26-000008 p.13) / market cap GBP 48,319.4m (1,743.754727m shares x 2,771p / 100) and tax 22.8% (brief). PM decision 14 Oct 2026 (briefs/RELX.yaml dcf.wacc.beta). The PM card's 0.974 used net debt incl. leases 7,201; at the brief's 7,104 the value is 0.9729. Cross-checks in risk/beta_evidence.json and risk/risk.json (not used).",
+    "pre_tax_cost_of_debt_historic": "Historic, reference only: RELX-stated effective interest rate on gross bank and bond borrowings 3.9% in 2025 (RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.13; 'average interest rate on gross debt was 3.9%', p.2). Cross-check: finance costs 298 (RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.156, note 7) / average gross debt incl. leases 6,905.5 (31 Dec 2024 6,544, 31 Dec 2025 7,267; FY25R p.13) = 4.32% (finance costs include derivative and pension items). The engine uses risk-free 5.45% + credit_spread 0.70% (brief; FRED BAMLC0A3CA 0.70 on 13 Oct 2026) = 6.15%."
+  }
+}
