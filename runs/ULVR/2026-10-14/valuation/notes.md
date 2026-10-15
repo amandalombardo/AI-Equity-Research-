@@ -1,113 +1,136 @@
-# Valuation agent notes: Unilever PLC (ULVR), run 2026-10-14 (fourth run: evidence audit re-run, 15 Oct 2026)
+# Valuation agent notes: Unilever PLC (ULVR), run 2026-10-14 (fourth run: evidence audit re-run, 15 Oct 2026; final 4,258.5p HOLD)
 
 Units: money in EUR m (Unilever reports in euros). Value per share in pence (GBp, the London price) and EUR. EUR 1.18190 per GBP (FRED, 9 Oct 2026). 2,154.3m shares. Price 4,710.5p (ULVR.L close 13 Oct 2026). Rating rule: SELL at -10% or worse (below 4,239.45p), BUY at +15% or better (5,417.1p and above).
 
-## Re-run 15 Oct 2026 (evidence audit)
+## Re-run 15 Oct 2026 (evidence audit): FINAL figures, 4,258.5p HOLD
 
-**Why.** The evidence audit of 15 Oct 2026 (docs/audit-2026-10-15/ULVR.md and summary.md) found the 5.0% equity risk premium (ERP) had no source, and that two value items were left out. The PM decided three changes. They are already in briefs/ULVR.yaml and inputs.yaml (applied by runs/ULVR/2026-10-14/apply_audit_fixes_2026-10-15.py, committed in 780d879). I did not change the brief or inputs.yaml.
-1. **ERP 5.0% -> 4.2%.** This is Damodaran's implied ERP (4.20% at 1 Oct 2026). It is the premium the market is pricing over today's bond yield, so it pairs with the spot Bund. Brief FLAG: seen in search summaries only; the PM is to confirm it on Damodaran's site.
-2. **Pension plans in deficit deducted after tax: EUR 698.6m** = EUR 944m (unfunded 844 + funded deficit 100, 20-F p.131) x (1 - 26%). These plans are no longer netted against the EUR 3.5bn surplus in other plans. The surplus is still not added.
-3. **McCormick dividends the new shares miss before closing: EUR 642.9m deducted** = 499,691,175 shares x USD 0.48 a quarter x 3 quarters (Jan, Apr, Jul 2027 ex-dates) / 1.1193 USD per EUR. It comes off both the Foods consideration (EUR 33,955.3m -> 33,312.4m) and `priced_at_valuation_date_meur` (EUR 35,890.5m -> 35,247.6m), so it is not grown in the roll-forward.
+**Result: 4,258.5p (EUR 50.33) per share, -9.6% vs 4,710.5p: HOLD**, only 19.1p (0.4% of the price) above the SELL line of 4,239.45p. The old run (14 Oct) was 3,855p SELL. This replaces my earlier 15 Oct re-run (4,180p SELL), which used a stale JV value and FY26 growth of +0.5%.
+
+**Why it changed.** The PM made five changes, all already in briefs/ULVR.yaml and inputs.yaml. I changed neither file.
+1. **ERP 5.0% -> 4.2%.** Damodaran implied ERP, 4.20% at 1 Oct 2026. Brief FLAG: seen in search summaries only; the PM is to confirm it on Damodaran's site.
+2. **Pension plans in deficit deducted after tax: EUR 698.6m** = EUR 944m (unfunded 844 + funded deficit 100, 20-F p.131) x (1 - 26%). The surplus in other plans is not added.
+3. **McCormick dividends the new shares miss before closing: EUR 642.9m deducted** = 499,691,175 shares x USD 0.48 x 3 quarters / 1.1193 USD per EUR. Foods consideration EUR 33,955.3m -> 33,312.4m; items priced today EUR 35,890.5m -> 35,247.6m (not grown in the roll-forward).
+4. **JV value recomputed at the new cost of equity** (runs/ULVR/2026-10-14/apply_audit_fixes_2026-10-15.py): 229 x 1.016 / (7.164% - 1.6%) = EUR 4,181.2m (was EUR 3,709.6m at 7.872%). `associates` EUR 7,061.8m -> **EUR 7,533.5m**. This closes FLAG 2 of my earlier re-run; the JV in inputs.yaml now matches this run's cost of equity (checked: implied Ke 7.164%).
+5. **FY26 growth +0.5% -> +2.0%** (PM decision 15 Oct 2026, audit finding 3). +2.0% is the H1 2026 reported turnover change of the three businesses the DCF values (H1 2026 6-K). +0.5% was the whole Group including Foods, which the DCF leaves out. The bear case FY26 is also +2.0%. FY27-30 stay at +1.6% (bear +0.2%).
 
 **What I did.**
-- **Input check:** every value in inputs.yaml has a source, including beta 0.8844 (Risk agent), and the loader found nothing missing. I checked 33,955.3 - 642.9 = 33,312.4 and 35,890.5 - 642.9 = 35,247.6.
-- **Engine:** I re-ran `python -m desk.valuation_run briefs/ULVR.yaml runs/ULVR/2026-10-14/inputs.yaml runs/ULVR/2026-10-14/valuation`. It rewrote valuation.json and dcf.xlsx.
-- **Excel check:** I recalculated dcf.xlsx in LibreOffice. All 14 valuation lines match Python, from the cost of equity down to the upside; the largest relative difference is 1.6e-10. The Inputs sheet shows ERP 0.042, pension 698.6, Foods consideration 33,312.4 and priced-today 35,247.6.
-- **Comps:** I re-ran run_comps.py. The peer multiples do not change. The comps values per share fall by about 53p because the comps bridge uses the same pension and Foods lines as the DCF.
-- **Sanity checks:** I re-ran run_sanity.py (writes sanity_checks.json), with these script changes:
-  - The non-JV part of `associates` is now taken from its components (EUR 3,352.2m) instead of being back-solved from the run's cost of equity.
-  - The value breakdown has a pension line.
-  - The McCormick-price flip point keeps the dividend deduction.
-  - New outputs: ERP and risk-free breakevens, the market-implied WACC, and a JV consistency check.
-- **Old figures:** I computed them with the same script on the pre-audit brief and inputs (commit 44ea7e2). They reproduce 3,855p exactly.
+- **Input check.** Every value in inputs.yaml has a source, including beta 0.8844 (Risk agent). The loader found nothing missing. `foods_perimeter_interim_cash_flows_meur` is still null; it is informational and MISSING, as before.
+- **Engine.** I ran `python -m desk.valuation_run briefs/ULVR.yaml runs/ULVR/2026-10-14/inputs.yaml runs/ULVR/2026-10-14/valuation`. It rewrote valuation.json and dcf.xlsx: base 4,258.5p HOLD, bear 3,475.6p SELL.
+- **Excel check.** I recalculated dcf.xlsx in LibreOffice. All 14 valuation lines match Python, from the cost of equity down to the upside; the largest relative difference is 3.7e-10. The DCF sheet shows FY26 growth 0.02. The Inputs sheet shows ERP 0.042, pension 698.6, associates 7,533.5, Foods consideration 33,312.4 and priced-today 35,247.6.
+- **Comps.** I re-ran run_comps.py. Peer multiples are unchanged. The comps median rises from 3,858p to 3,902p for two reasons: the JV (+EUR 471.7m in associates), and FY26 growth, which lifts Unilever's calendarised EBITDA (12 months to June 2026) from EUR 8,100m to EUR 8,161m.
+- **Sanity checks.** I re-ran run_sanity.py (writes sanity_checks.json) and added two outputs:
+  - a step table from the old run to the final figure (`step_table_old_to_final`), built by undoing each PM decision in memory;
+  - an FY26-growth breakeven (`e_flip_points.fy26_growth_only`).
 
-### Old vs new key numbers
+  The first step reproduces the old 3,855p exactly, and the last step equals the engine's 4,258.5p.
 
-| | Old (14 Oct, ERP 5.0%) | **New (15 Oct, ERP 4.2%)** |
+### Step table: old 14 Oct run -> final (value per share in pence, GBp; upside vs 4,710.5p)
+
+| Step (each on top of the one above) | Change | Value | Upside | Rating |
+|---|---|---|---|---|
+| Old run 14 Oct (ERP 5.0%) | | 3,855.3p | -18.2% | SELL |
+| 1. ERP 5.0% -> 4.2% | +379.1p | 4,234.4p | -10.1% | SELL |
+| 2. Pension deficit after tax, EUR 698.6m (grown at Ke to today) | -29.0p | 4,205.4p | -10.7% | SELL |
+| 3. McCormick dividends before closing, EUR 642.9m (not grown) | -25.2p | 4,180.2p | -11.3% | SELL (my earlier re-run) |
+| 4. JV recomputed at Ke 7.164% (associates EUR 7,061.8m -> 7,533.5m) | +19.6p | 4,199.7p | -10.8% | SELL |
+| 5. FY26 growth +0.5% -> +2.0% | +58.8p | **4,258.5p** | **-9.6%** | **HOLD** |
+| **Total** | **+403.3p** | | | |
+
+Steps 1 and 5 depend a little on the order they are applied in (each is sized at the inputs above it), but the total does not.
+
+### Final key numbers
+
+| | Old (14 Oct) | **Final (15 Oct)** |
 |---|---|---|
 | Cost of equity (Ke) = Bund 3.45% + beta 0.8844 x ERP | 7.872% | **7.164%** |
-| After-tax cost of debt = (3.45% + 0.70%) x (1 - 26%) | 3.071% | 3.071% (unchanged) |
-| Weights equity / debt | 83.87% / 16.13% | 83.87% / 16.13% (unchanged) |
+| After-tax cost of debt = (3.45% + 0.70%) x (1 - 26%) | 3.071% | 3.071% |
+| Weights equity / debt | 83.87% / 16.13% | 83.87% / 16.13% |
 | **WACC** | 7.10% | **6.50%** |
-| PV of FCF FY26-30, EUR m | 22,165 | 22,464 |
-| Terminal value (Gordon growth, g 1.6%), EUR m | 93,907 | 105,269 |
-| PV of terminal value, EUR m | 68,975 | 79,278 |
-| **EV, EUR m** | 91,140 | **101,742** |
-| Minorities (proportionate 10.684% x EV), EUR m | -9,737 | -10,870 |
-| Pension plans in deficit after tax, EUR m | 0 | **-698.6** |
-| Foods consideration (today's value), EUR m | 33,955.3 | **33,312.4** |
-| Equity at 31 Dec 2025, EUR m | 98,844 | 106,971 |
-| **Equity at 14 Oct 2026, EUR m** | 98,163 | **106,436** |
-| **Value per share** | EUR 45.57 = **3,855p** | **EUR 49.41 = 4,180p** |
-| **Upside vs 4,710.5p** | -18.2% | **-11.3%** |
-| **Rating** | SELL (384p inside the SELL band) | **SELL (59p inside the SELL band)** |
-| Bear (FY27-30 growth 0.2%, WACC +1 pt), engine | 3,212p (-31.8%), SELL, WACC 8.10% | **3,409p (-27.6%), SELL**, WACC 7.50% |
-| **Terminal value share of EV** | 75.7% (FLAG, marginal) | **77.9% (FLAG)** |
-| Implied exit EV/EBITDA (TV / FY30 EBITDA) | 10.9x | 12.2x (peer range 9.3x-21.2x; peer median 11.9x) |
-| Market-implied WACC (DCF value = 4,710.5p, all else unchanged) | 5.96% | **5.88%** |
-| **ERP at which SELL becomes HOLD** (JV as in inputs / JV recomputed) | 4.19% / 4.23% | **4.09% / 4.13%** |
-| **Risk-free at which SELL becomes HOLD** (moves Ke and cost of debt; JV as in inputs / recomputed) | 2.83% / 2.85% | **3.37% / 3.40%** |
-| WACC at which SELL becomes HOLD | 6.52% | 6.43% (-0.08 pt) |
-| Comps (EV/EBITDA LTM, all 7 peers) low / median / high | 3,166 / 3,911 / 6,541p | 3,114 / **3,858** / 6,488p |
-| DCF vs comps median | 1.4% below | **8.3% above** |
+| FY26 sales (ex-Foods perimeter), EUR m | 40,002 | 40,599 |
+| PV of FCF FY26-30, EUR m | 22,165 | 22,868 |
+| Terminal value (Gordon growth, g 1.6%), EUR m | 93,907 | 106,840 |
+| PV of terminal value, EUR m | 68,975 | 80,461 |
+| **EV, EUR m** | 91,140 | **103,329** |
+| Minorities (proportionate 10.684% x EV), EUR m | -9,737 | -11,040 |
+| Pension plans in deficit after tax, EUR m | 0 | -698.6 |
+| Associates and stakes, EUR m | 7,061.8 | 7,533.5 |
+| Foods consideration (today's value), EUR m | 33,955.3 | 33,312.4 |
+| Equity at 31 Dec 2025, EUR m | 98,844 | 108,861 |
+| **Equity at 14 Oct 2026, EUR m** | 98,163 | **108,431** |
+| **Value per share** | EUR 45.57 = 3,855p | **EUR 50.33 = 4,258.5p** |
+| **Upside vs 4,710.5p** | -18.2% | **-9.6%** |
+| **Rating** | SELL | **HOLD (19.1p above the SELL line of 4,239.45p; BUY starts at 5,417.1p)** |
+| Bear (FY26 +2.0%, FY27-30 +0.2%, WACC +1 pt to 7.50%) | 3,212p (-31.8%) SELL | **3,475.6p (-26.2%) SELL** |
+| **Terminal value share of EV** | 75.7% | **77.9% (FLAG)** |
+| Implied exit EV/EBITDA (TV / FY30 EBITDA) | 10.9x | 12.2x |
+| **Market-implied WACC** (DCF value = 4,710.5p, all else unchanged) | 5.96% | **5.97%** |
+| Comps (EV/EBITDA LTM, all 7 peers) low / median / high | 3,166 / 3,911 / 6,541p | 3,152 / **3,902** / 6,552p |
+| DCF vs comps median | 1.4% below | **9.1% above** |
+| Sensitivity grid (valuation.json): WACC 5.50-7.50% x terminal growth 1.1-2.6% | 3,254p to 5,296p | 3,504p to 6,273p |
 
-**Where the change comes from (pence).** ERP alone: +379p (3,855p to about 4,234p). Pension plans in deficit: -29p (EUR 698.6m, grown at Ke to today). McCormick dividends: -25p (EUR 642.9m, not grown). Net: +325p.
-**2-quarter alternative for the McCormick dividends.** If closing comes before the July 2027 ex-date, only 2 quarters are missed (EUR 428.6m instead of 642.9m): **4,189p (+8p), -11.1%, still SELL.**
+### Breakevens: what turns the HOLD back into a SELL (one input at a time, value = 4,239.45p)
 
-### Sanity checks (new)
+The cushion is **19.1p, or about EUR 486m of value today** (each EUR 1bn = 39.3p).
+
+| Input | Used | HOLD -> SELL at | Distance |
+|---|---|---|---|
+| **ERP** (JV recomputed at each Ke / JV held as in inputs) | 4.20% | **4.234% / 4.236%** | +0.03 pt. Damodaran's January figure of 4.23% would still give HOLD (4,241.6p), by about 2p |
+| **Risk-free (Bund)**; moves Ke, cost of debt and JV | 3.45% | **3.476%** (JV held: 3.477%) | **+0.03 pt (about 3 basis points)**. The 9 Oct cross-check of 3.50% gives **4,222p, SELL** |
+| **FY26 growth only** (FY27-30 unchanged) | +2.0% | **+1.51%** | -0.49 pt |
+| Long-run growth (FY27-30 and terminal together, JV consistent) | 1.6% | 1.569% | -0.03 pt |
+| Terminal growth only (JV consistent) | 1.6% | 1.560% | -0.04 pt |
+| **McCormick share price** (dividend deduction kept) | USD 44.64 | **USD 43.55** | -2.4% (USD 1.09) |
+| WACC (added directly) | 6.50% | 6.53% | +0.03 pt |
+| Beta (JV consistent) | 0.8844 | 0.892 | +0.007 |
+| Operating margin | 17.7% | 17.61% | -0.09 pt |
+
+BUY (5,417.1p) would need an ERP of 2.63%, a risk-free rate of 2.24%, a WACC of 5.33%, or a McCormick price of USD 110.72. FY26 growth alone cannot reach BUY.
+
+### Sanity checks (final)
 | Check | Result | |
 |---|---|---|
-| Terminal value share of EV | **77.9%** | **FLAG (above 75%)**. Up from 75.7%, because a lower discount rate puts more weight on later years |
-| Implied exit EV/EBITDA | **12.2x** | OK: within the peer range 9.3x-21.2x and just above the peer median of 11.9x. Unilever's own market multiple for the remaining business is 14.9x (was 14.7x) |
-| WACC within 6-9% | **6.50%** | OK, but close to the floor. Not changed |
-| DCF vs comps | DCF 4,180p vs comps median 3,858p (range 3,114-6,488p) | DCF **8.3% above** comps. Both are SELL. The DCF rose with the lower WACC; the comps fell 53p with the pension and McCormick lines |
+| Terminal value share of EV | **77.9%** | **FLAG (above 75%)** |
+| Implied exit EV/EBITDA | **12.2x** | OK: within the peer range 9.3x-21.2x, just above the peer median of 11.9x. The market pays 14.7x for Unilever's remaining business |
+| WACC within 6-9% | **6.50%** | OK, close to the floor. Not changed |
+| DCF vs comps | DCF 4,258.5p vs comps median 3,902p (range 3,152-6,552p) | DCF **9.1% above** comps. On these comps the value is SELL (-17.2%), while the DCF gives HOLD. Without KMB the comps median is 4,575p (HOLD) |
 
-### Other sizes, updated (sanity_checks.json; new inputs)
-- **Value breakdown (pence):**
-  - DCF of the remaining business after minorities: 3,768p (90% of the value)
-  - Foods consideration: 1,308p (31%)
-  - Other stakes (JVs 154p, TMICC 76p, other 59p): 289p
-  - Net debt -957p, restructuring -21p, **pension -29p**, dividends since December -119p, buyback -59p
-- **Beta (JV recomputed at each Ke):**
-  - Bottom-up 0.8844: 4,200p, SELL
-  - Own 5-year monthly 0.91: 4,133p (-12.3%), SELL
-  - Own 5-year weekly 0.54: **5,410p (+14.9%), HOLD, 7p short of BUY**, at WACC 5.29% (below the 6-9% range)
-  - HOLD starts at a beta of 0.870 (was 0.748)
-- **Other single-variable flip points to HOLD:**
-  - Terminal growth 1.68% (was 2.50%)
-  - Operating margin 17.98% (was 19.7%)
-  - McCormick share price USD 48.02 (+8%; was USD 66.55)
-  - EUR 1.5bn of extra value today (was EUR 9.8bn)
-- **Foods timing:** cash part discounted at the cost of debt -16p; whole consideration at WACC -57p, at Ke -63p; each 1 point of discount rate 9.2p.
-- **Foods tax:** each EUR 1bn costs 39.3p; the bear's 25% of the cash costs 138p.
-- **Sensitivity grid (valuation.json):** WACC 5.50-7.50% x terminal growth 1.1-2.6%, range 3,437p to 6,165p.
+### Other sizes (sanity_checks.json, final inputs)
+- **Value breakdown (pence):** DCF of the remaining business after minorities 3,827p; Foods consideration 1,308p; other stakes 308p (JVs 173p, TMICC 76p, other 59p); net debt -957p, restructuring -21p, pension -29p, dividends since December -119p, buyback -59p. Total 4,258.5p.
+- **Beta (JV recomputed):** own 5-year monthly 0.91 gives 4,191p (-11.0%) SELL. Own 5-year weekly 0.54 gives **5,486p (+16.5%) BUY** at WACC 5.29%, which is below the 6-9% range.
+- **McCormick dividends, 2 quarters instead of 3** (closing before the July 2027 ex-date): **4,267p (+8.4p), -9.4%, HOLD.**
+- **Foods timing (not in the base, as before):** cash part discounted at the cost of debt -16p; whole consideration at WACC -57p. Either would make it SELL.
+- **Foods tax (MISSING, not deducted):** each EUR 1bn costs 39.3p. Any tax above about EUR 0.49bn makes it SELL. The bear's 25% of the cash costs 138p.
+- **Credit spread 1.0% instead of 0.70%:** 4,232p, SELL.
 
-### FLAGs from this re-run
-1. **The SELL is now marginal: 59p (1.3% of the price) below the HOLD line of 4,239.45p.** Several open items, each within normal input uncertainty, are big enough to tip it:
-   - ERP: 4.09% gives HOLD. That is 0.11 points below the 4.2% used, and Damodaran's January figure was 4.23%.
-   - Risk-free: 3.37% gives HOLD. That is 0.08 points below the 3.45% aggregator figure.
-   - JV item: +20p (FLAG 2).
-   - Audit finding 3, FY26 growth for Home and Personal Care at +2.0% instead of the Group's +0.5% (not adopted): **4,239.0p**, 0.5p below HOLD. Together with the JV recompute it gives **4,259p, HOLD**. With the JV recompute and 2 quarters of McCormick dividends it gives 4,267p, HOLD.
+### FLAGs (final)
+1. **HOLD by 19.1p (0.4% of the price): a borderline call.** It flips to SELL with:
+   - ERP 0.03 points higher;
+   - a Bund 3 basis points higher (the 9 Oct reading of 3.50% gives SELL);
+   - McCormick 2.4% lower;
+   - a credit spread of 1.0%;
+   - any discount for the Foods consideration arriving in mid-2027;
+   - Foods tax above about EUR 0.49bn.
 
-   The memo should present this as a borderline SELL, not a firm one.
-2. **JV value in `associates` is stale (inputs.yaml, not changed by me).** `associates` (EUR 7,061.8m) still holds the JVs at EUR 3,709.6m, valued at the old cost of equity of 7.872%. Its own source says "If the run's cost of equity changes, the JV value must be recomputed." At the new Ke of 7.164%, the PM's Gordon formula gives 229 x 1.016 / (7.164% - 1.6%) = **EUR 4,181.2m**, so `associates` should be **EUR 7,533.5m**. On that basis the value is **4,200p (-10.8%), still SELL** (+20p). This is a Data agent / PM fix to inputs.yaml; the engine as run uses 7,061.8. The beta table and the flip points in sanity_checks.json marked "jv_recomputed" or "jv_consistent" already use the recomputed JV.
-3. **Terminal value is 77.9% of EV** (above 75%).
-4. **The WACC of 6.50% is near the bottom of the 6-9% check range.** The bear's +1 point (7.50%) is now lower than the old base WACC (7.10%).
-5. **The ERP is not yet confirmed at the source** (Damodaran's site is blocked here). The risk-free rate is still from an aggregator. Together they decide the rating (FLAG 1).
-6. **Credit spread:** 0.70% is a US-dollar single-A index added to a euro Bund (audit finding 8). A spread of 1.0% would cost about 21p.
-7. **McCormick dividends:** USD 0.48 a quarter is the current rate. A dividend increase before closing would add a little to the deduction. Closing timing decides 2 or 3 quarters (+8p for 2).
-8. **Bear case** still holds the JV at the base Ke (as before). With Ke +1 point the JV would be EUR 3,544m, about -6.5p against the inputs value.
+   The memo should present this as a borderline HOLD that leans SELL, not as a firm HOLD.
+2. **Terminal value is 77.9% of EV** (above 75%).
+3. **WACC 6.50% is near the bottom of the 6-9% range.** The market-implied WACC is 5.97%.
+4. **The ERP (4.2%) is not yet confirmed at the source,** and the risk-free rate (3.45%) is from an aggregator. Each one alone decides the rating within a few basis points.
+5. **Comps and DCF give different ratings.** Comps median 3,902p (SELL, -17.2%); DCF 4,258.5p (HOLD).
+6. **The FY26 +2.0% is the H1 reported growth, not a full-year figure,** and it is worth +58.8p. If H2 currency drag or the business mix pulls the full year below +1.51%, the rating is SELL.
+7. **Bear case** still holds the JV at the base Ke. At Ke +1 point the JV would be EUR 3,544m, about -25p (bear stays SELL).
+8. **Still open from earlier runs:** Foods tax MISSING; Foods interim cash flows MISSING; credit spread is a USD index on a EUR Bund; McCormick dividend rate and the 2 vs 3 quarters timing; leverage date; comps data quality.
 
 ### For the PM (nothing changed)
-- I agree with the three decisions; each has a source.
-- Because the rating is now within about 1.3% of the HOLD line, I would ask for two things before the memo is final:
-  - The JV figure in inputs.yaml recomputed at Ke 7.164% (+20p). The input's own rule requires it.
-  - A decision on the audit's FY26 growth point (finding 3, +59p on today's inputs). Taken together, these two make the call HOLD.
-- Previous FLAGs not mentioned here still apply (Foods tax MISSING; Foods interim cash flows MISSING; leverage date; comps data quality).
+- I agree with all five changes; each has a source. The JV recompute follows the input's own rule. FY26 +2.0% fixes a real mismatch, because the DCF excludes Foods.
+- Before the memo is final, I would ask for two things:
+  - confirmation of the 4.2% ERP and of the Bund on the run date at primary sources;
+  - a view on Foods tax and closing timing.
+
+  Each of these is bigger than the 19.1p cushion.
 
 ### Confidence
-**High on the mechanics.** Excel matches Python, the old run reproduces exactly, and the value breakdown adds back to 4,180p.
-**Low-to-medium on the rating.** SELL vs HOLD now depends on inputs that are uncertain by more than the 59p margin.
+**High on the mechanics.** Excel matches Python, the step table reproduces the old 3,855p and the final 4,258.5p exactly, and the value breakdown adds up to 4,258.5p.
+**Low on the rating.** HOLD vs SELL depends on inputs whose normal uncertainty is several times the 19.1p margin.
 
 ---
 
@@ -116,7 +139,7 @@ Units: money in EUR m (Unilever reports in euros). Value per share in pence (GBp
 # Run 3 (14 Oct 2026, PM decision 11): superseded 15 Oct 2026
 
 
-**History of this folder** (Run 4, 15 Oct 2026, is at the top: 4,180p SELL):
+**History of this folder** (Run 4, 15 Oct 2026, is at the top: final 4,258.5p HOLD):
 - **Run 1:** 4,101p, SELL.
 - **Run 2** (engine fix 3414aec: run-date market values no longer grown in the roll-forward; grid centred on 1.6%): 4,018p, SELL.
 - **Run 3 (this one, PM decision 11):**
