@@ -3,165 +3,165 @@
   "reporting_currency": "EUR",
   "base": {
     "wacc": {
-      "cost_of_equity": 0.07872000000000001,
+      "cost_of_equity": 0.07164480000000001,
       "after_tax_cost_of_debt": 0.03071,
       "equity_weight": 0.83865,
       "debt_weight": 0.16135,
-      "wacc": 0.0709735865,
-      "wacc_used": 0.0709735865
+      "wacc": 0.06503997002,
+      "wacc_used": 0.06503997002
     },
-    "enterprise_value_meur": 90594.82530743783,
-    "tv_share_of_ev": 0.7553343494380328,
+    "enterprise_value_meur": 102692.68473037951,
+    "tv_share_of_ev": 0.777318392082135,
     "terminal_year": {
-      "sales": 43306.23299073982,
-      "nopat": 5672.250397127101,
-      "da": 1125.9620577592354,
-      "capex": 1758.361312880658,
-      "capex_pct_sales": 0.04060296154728232,
-      "delta_nwc": -81.69533307024776,
-      "ufcf": 5121.546475075926,
-      "reinvestment": 550.7039220511748,
-      "reinvestment_rate": 0.0970873786407767,
-      "implied_ronic": 0.1648
+      "sales": 43952.59467716878,
+      "nopat": 5756.910850815567,
+      "da": 1142.7674616063882,
+      "capex": 1784.6055115803692,
+      "capex_pct_sales": 0.04060296154728231,
+      "delta_nwc": -82.9146663996543,
+      "ufcf": 5197.98746724124,
+      "reinvestment": 558.9233835743267,
+      "reinvestment_rate": 0.09708737864077667,
+      "implied_ronic": 0.16480000000000006
     },
-    "implied_exit_ev_ebitda": 10.766989971119603,
+    "implied_exit_ev_ebitda": 12.069747479058027,
     "equity": {
-      "enterprise_value": 90594.82530743783,
-      "minorities_deducted": 9679.151135846658,
-      "equity_value_balance_sheet_date": 98356.77417159118,
-      "equity_value": 97645.95331431006,
-      "per_share_eur": 45.32548919787074,
-      "per_share_gbp": 38.34970145829369,
-      "per_share_gbp_pence": 3834.970145829369
+      "enterprise_value": 102692.68473037951,
+      "minorities_deducted": 10971.686436593747,
+      "equity_value_balance_sheet_date": 108292.29829378575,
+      "equity_value": 107830.7983869317,
+      "per_share_eur": 50.0531104627803,
+      "per_share_gbp": 42.349721476294505,
+      "per_share_gbp_pence": 4234.972147629451
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.1858677113,
-      "fair_value": 3834.970145829369,
+      "upside": -0.1009506108,
+      "fair_value": 4234.972147629451,
       "share_price": 4710.5
     },
     "forecast": [
       {
         "year": 2026,
-        "sales": 40002.01499999999,
-        "ebit": 7080.356654999999,
+        "sales": 40599.06,
+        "ebit": 7186.033619999999,
         "ebit_margin": 0.177,
-        "ufcf": 5043.292849049997,
-        "pv": 4873.318624716002
+        "ufcf": 5189.7300761999995,
+        "pv": 5028.77051034166
       },
       {
         "year": 2027,
-        "sales": 40642.04723999999,
-        "ebit": 7193.642361479999,
+        "sales": 41248.64496,
+        "ebit": 7301.010157919999,
         "ebit_margin": 0.177,
-        "ufcf": 5176.433549704799,
-        "pv": 4670.490611604835
+        "ufcf": 5253.693751939199,
+        "pv": 4779.867887496479
       },
       {
         "year": 2028,
-        "sales": 41292.31999583999,
-        "ebit": 7308.7406392636785,
+        "sales": 41908.62327936,
+        "ebit": 7417.826320446719,
         "ebit_margin": 0.177,
-        "ufcf": 5259.256486500075,
-        "pv": 4430.7520943613035
+        "ufcf": 5337.752851970226,
+        "pv": 4559.777952376031
       },
       {
         "year": 2029,
-        "sales": 41952.99711577343,
-        "ebit": 7425.680489491897,
+        "sales": 42579.16125182976,
+        "ebit": 7536.511541573867,
         "ebit_margin": 0.177,
-        "ufcf": 5343.404590284077,
-        "pv": 4203.319469887864
+        "ufcf": 5423.156897601751,
+        "pv": 4349.82210059877
       },
       {
         "year": 2030,
-        "sales": 42624.24506962581,
-        "ebit": 7544.491377323768,
+        "sales": 43260.42783185904,
+        "ebit": 7657.095726239049,
         "ebit_margin": 0.177,
-        "ufcf": 5428.899063728622,
-        "pv": 3987.5610708220484
+        "ufcf": 5509.927407963378,
+        "pv": 4149.533706350344
       }
     ]
   },
   "bear": {
     "wacc": {
-      "cost_of_equity": 0.07872000000000001,
+      "cost_of_equity": 0.07164480000000001,
       "after_tax_cost_of_debt": 0.03071,
       "equity_weight": 0.83865,
       "debt_weight": 0.16135,
-      "wacc": 0.0709735865,
-      "wacc_used": 0.0809735865
+      "wacc": 0.06503997002,
+      "wacc_used": 0.07503997002
     },
-    "enterprise_value_meur": 73441.97196578774,
-    "tv_share_of_ev": 0.7152339700944467,
+    "enterprise_value_meur": 81712.76516713918,
+    "tv_share_of_ev": 0.7360113208605796,
     "terminal_year": {
-      "sales": 40968.160328249534,
-      "nopat": 5366.009639794123,
-      "da": 1065.1721685344878,
-      "capex": 1663.428638470813,
-      "capex_pct_sales": 0.040602961547282324,
-      "delta_nwc": -77.28466024757539,
-      "ufcf": 4845.037830105373,
-      "reinvestment": 520.9718096887498,
+      "sales": 41579.62540777565,
+      "nopat": 5446.099335910455,
+      "da": 1081.0702606021669,
+      "capex": 1688.2559315823175,
+      "capex_pct_sales": 0.04060296154728232,
+      "delta_nwc": -78.43816263932989,
+      "ufcf": 4917.351827569634,
+      "reinvestment": 528.7475083408208,
       "reinvestment_rate": 0.09708737864077668,
       "implied_ronic": 0.16480000000000003
     },
-    "implied_exit_ev_ebitda": 9.109856580288609,
+    "implied_exit_ev_ebitda": 10.025412518357783,
     "equity": {
-      "enterprise_value": 73441.97196578774,
-      "minorities_deducted": 7846.540284824763,
-      "equity_value_balance_sheet_date": 83036.53168096299,
-      "equity_value": 81385.15832247834,
-      "per_share_eur": 37.777521640232614,
-      "per_share_gbp": 31.96339857276617,
-      "per_share_gbp_pence": 3196.339857276617
+      "enterprise_value": 81712.76516713918,
+      "minorities_deducted": 8730.19183045715,
+      "equity_value_balance_sheet_date": 89553.87333668204,
+      "equity_value": 88044.61291352207,
+      "per_share_eur": 40.86872027043563,
+      "per_share_gbp": 34.57884843805171,
+      "per_share_gbp_pence": 3457.884843805171
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.3214436138,
-      "fair_value": 3196.339857276617,
+      "upside": -0.2659197869,
+      "fair_value": 3457.884843805171,
       "share_price": 4710.5
     },
     "forecast": [
       {
         "year": 2026,
-        "sales": 40002.01499999999,
-        "ebit": 7080.356654999999,
+        "sales": 40599.06,
+        "ebit": 7186.033619999999,
         "ebit_margin": 0.177,
-        "ufcf": 5043.292849049997,
-        "pv": 4850.724910164945
+        "ufcf": 5189.7300761999995,
+        "pv": 5005.327104794123
       },
       {
         "year": 2027,
-        "sales": 40082.01902999999,
-        "ebit": 7094.517368309997,
+        "sales": 40680.25812,
+        "ebit": 7200.40568724,
         "ebit_margin": 0.177,
-        "ufcf": 5039.075430638097,
-        "pv": 4483.614202858815
+        "ufcf": 5114.2855116924,
+        "pv": 4588.260339762077
       },
       {
         "year": 2028,
-        "sales": 40162.18306805999,
-        "ebit": 7108.706403046617,
+        "sales": 40761.61863624,
+        "ebit": 7214.806498614479,
         "ebit_margin": 0.177,
-        "ufcf": 5049.153581499374,
-        "pv": 4156.051070415802
+        "ufcf": 5124.514082715783,
+        "pv": 4276.526444273573
       },
       {
         "year": 2029,
-        "sales": 40242.50743419611,
-        "ebit": 7122.9238158527105,
+        "sales": 40843.141873512475,
+        "ebit": 7229.236111611708,
         "ebit_margin": 0.177,
-        "ufcf": 5059.251888662373,
-        "pv": 3852.4189902179755
+        "ufcf": 5134.763110881216,
+        "pv": 3985.9722583918456
       },
       {
         "year": 2030,
-        "sales": 40322.9924490645,
-        "ebit": 7137.169663484416,
+        "sales": 40924.8281572595,
+        "ebit": 7243.694583834931,
         "ebit_margin": 0.177,
-        "ufcf": 5069.370392439698,
-        "pv": 3570.9696114747862
+        "ufcf": 5145.032637102979,
+        "pv": 3715.158798081086
       }
     ]
   },
@@ -169,20 +169,20 @@
     "net_debt": 23076.0,
     "lease_liabilities": 0.0,
     "minority_interests": 2057.0,
-    "pension_deficit": 0.0,
-    "associates": 7061.8,
-    "disposal_proceeds": 33955.3,
+    "pension_deficit": 698.6,
+    "associates": 7533.5,
+    "disposal_proceeds": 33312.4,
     "restructuring_cash": 500.0,
     "contingent_liabilities": 0.0,
     "minority_share_of_ev": 0.10684
   },
   "sensitivity_value_per_share_pence": {
     "wacc": [
-      0.0609735865,
-      0.0659735865,
-      0.0709735865,
-      0.07597358650000001,
-      0.0809735865
+      0.05503997002,
+      0.06003997002000001,
+      0.06503997002,
+      0.07003997002000001,
+      0.07503997002
     ],
     "terminal_growth": [
       0.011,
@@ -192,34 +192,34 @@
     ],
     "grid": [
       [
-        4312.949119265266,
-        4554.60812716429,
-        4855.513036806598,
-        5241.0741253494825
+        4830.891239791758,
+        5172.887816645027,
+        5613.8836538509295,
+        6205.014785787835
       ],
       [
-        3972.7210514252056,
-        4158.858565744931,
-        4385.332373741379,
-        4667.278580481099
+        4394.021668611018,
+        4650.771584249783,
+        4972.032781781629,
+        5386.232701883732
       ],
       [
-        3689.1580522992826,
-        3834.970145829369,
-        4009.0331509226125,
-        4220.769568794193
+        4037.918371959312,
+        4234.972147629451,
+        4475.6813437272185,
+        4776.819316023104
       ],
       [
-        3449.1797308632913,
-        3564.972783350136,
-        3701.004096248852,
-        3863.348356758005
+        3742.0631750206353,
+        3895.9825520723966,
+        4080.3309761804007,
+        4305.472571244742
       ],
       [
-        3243.4443153153034,
-        3336.4278022884746,
-        3444.17463271871,
-        3570.7131075766183
+        3492.345777197628,
+        3614.2913164153965,
+        3757.9518183730734,
+        3929.9693026511327
       ]
     ]
   },
@@ -236,9 +236,9 @@
     "net_debt": 23076.0,
     "lease_liabilities": 0.0,
     "minority_interests": 2057.0,
-    "pension_deficit": 0.0,
-    "associates": 7061.8,
-    "disposal_proceeds": 33955.3,
+    "pension_deficit": 698.6,
+    "associates": 7533.5,
+    "disposal_proceeds": 33312.4,
     "restructuring_cash": 500.0,
     "shares_outstanding_m": 2154.327621,
     "fx_eur_per_gbp": 1.1818994014115964,
@@ -251,7 +251,7 @@
     "foods_perimeter_interim_cash_flows_meur": null,
     "beta": 0.8844,
     "minority_share_of_operating_profit": 0.10684,
-    "priced_at_valuation_date_meur": 35890.5,
+    "priced_at_valuation_date_meur": 35247.6,
     "pre_tax_cost_of_debt_historic": 0.0377
   },
   "sources": {
@@ -267,9 +267,9 @@
     "net_debt": "Unilever's definition at 31 Dec 2025 (Unilever FY25 results 6-K (accession 0001654954-26-001155, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/217410/000165495426001155/a6773s.htm), net debt reconciliation; Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.164 note 15C): total financial liabilities 28,278 (bank 233 + bonds 26,038 + LEASES 1,326 + derivatives 452 + other 229) - cash 3,941 - other current financial assets 1,121 - non-current financial asset derivatives 140 = 23,076. Lease liabilities ARE INSIDE. TMICC stake is non-current FVOCI, NOT inside. Does NOT reflect the EUR 1,507m share buyback of H1 2026 (see notes.md FLAG).",
     "lease_liabilities": "0 because the EUR 1,326m of lease liabilities is already inside net debt (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.164 note 15C; p.171 note 16B 'Less: lease liabilities (1,326)').",
     "minority_interests": "Book value at 31 Dec 2025, of which Hindustan Unilever 1,569 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.131 balance sheet, p.162-163 note 15B; XBRL ifrs-full:NoncontrollingInterests). Reference only: brief minorities_method = proportionate (Fundamentals agent supplies minority_share_of_operating_profit).",
-    "pension_deficit": "Brief rule (0 if in surplus): net SURPLUS EUR 3,518m at 31 Dec 2025 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.43 and note 4B; XBRL ifrs-full:LiabilityAssetOfDefinedBenefitPlans = -3,518); gross deficit plans 944 (funded in deficit 100 + unfunded 844, p.131) are inside that net figure. 30 Jun 2026: surplus 3.7bn (Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm)).",
-    "associates": "PM decision 14 Oct 2026 (decision 10, docs/phase5/ulvr-run-flags.md item B, C, D; E agreed 13 Oct; briefs/ULVR.yaml comments): sum of (1) TMICC 19.85%: 121,604,413 shares (TMICC resale prospectus, Form 424(b)(4) (accession 0001104659-26-042683, 13 Apr 2026)) x EUR 15.914 (Yahoo MICC.AS close 2026-10-13) = 1,935.2; (2) joint ventures by Gordon growth: FY25 dividends received from JVs and associates EUR 229m (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.158 note 11: JVs 'Dividends received/reductions (229)', associates nil; the p.132 cash-flow line is 243 because it also includes dividends from other non-current investments, which are valued in (4)) x (1 + 1.6%) / (cost of equity 7.8720% - 1.6%) = 3,709.6, cost of equity = risk-free 3.45% (inputs.yaml) + beta 0.8844 (inputs.yaml, Risk agent) x ERP 5.0% (brief); (3) associates at book 15 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.158 note 11); (4) other fair-value financial investments 902 = equity investments FVOCI excl. TMICC 561 (2,216 - 1,655) + non-current FVTPL 'Other' 341 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.174 note 17A); amortised-cost assets 368 (incl. judicial deposits 175) excluded; (5) net Magnum transition balance owed to Unilever 2,100 - 1,600 = 500 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) notes 13-14, p.159-160). Was 2,044.2 (TMICC + JVs/associates at book 109). If the run's cost of equity changes, the JV value must be recomputed.",
-    "disposal_proceeds": "Foods consideration at run-date market value (decision 1): cash USD 15,700m + new McCormick shares 499,691,175 (= existing 269,064,479 [voting 14,522,864 + non-voting 254,541,615, McCormick 10-Q for the quarter to 31 Aug 2026 (accession 0000063754-26-000329, filed 1 Oct 2026, https://www.sec.gov/Archives/edgar/data/63754/000006375426000329/mkc-20260831.htm) cover] x 65/35; 55.1% to Unilever shareholders + 9.9% to Unilever, 10-Q note 2) x USD 44.64 (Yahoo MKC close 2026-10-13) = USD 22,306.2m; total USD 38,006.2m / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = EUR 33,955.3m. Yahoo EURUSD=X 1.1160 (2026-10-12) would give 34,055.1. Tax on the cash: MISSING, NOT deducted (PM decision 5; CFO: 'premature to start making estimates', Unilever investor call transcript 31 Mar 2026, Form 425 (accession 0000217410-26-000032)). Received at closing (expected mid-2027): timing FLAG in notes.md.",
+    "pension_deficit": "PM decision 15 Oct 2026 (evidence audit): plans in deficit 944 (funded in deficit 100 + unfunded 844, Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026) p.131) x (1 - 26% tax, briefs/ULVR.yaml tax_rate) = 698.6. The net surplus (3,518) is not offset against them; surpluses are not added (brief rule)",
+    "associates": "PM decision 14 Oct 2026 (decision 10, docs/phase5/ulvr-run-flags.md item B, C, D; E agreed 13 Oct; briefs/ULVR.yaml comments): sum of (1) TMICC 19.85%: 121,604,413 shares (TMICC resale prospectus, Form 424(b)(4) (accession 0001104659-26-042683, 13 Apr 2026)) x EUR 15.914 (Yahoo MICC.AS close 2026-10-13) = 1,935.2; (2) joint ventures by Gordon growth: FY25 dividends received from JVs and associates EUR 229m (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.158 note 11: JVs 'Dividends received/reductions (229)', associates nil; the p.132 cash-flow line is 243 because it also includes dividends from other non-current investments, which are valued in (4)) x (1 + 1.6%) / (cost of equity 7.8720% - 1.6%) = 3,709.6, cost of equity = risk-free 3.45% (inputs.yaml) + beta 0.8844 (inputs.yaml, Risk agent) x ERP 5.0% (brief); (3) associates at book 15 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.158 note 11); (4) other fair-value financial investments 902 = equity investments FVOCI excl. TMICC 561 (2,216 - 1,655) + non-current FVTPL 'Other' 341 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.174 note 17A); amortised-cost assets 368 (incl. judicial deposits 175) excluded; (5) net Magnum transition balance owed to Unilever 2,100 - 1,600 = 500 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) notes 13-14, p.159-160). Was 2,044.2 (TMICC + JVs/associates at book 109). If the run's cost of equity changes, the JV value must be recomputed. JV value recomputed 15 Oct 2026 at the new cost of equity 7.1645% (ERP 4.2%): 229 x 1.016 / (7.1645% - 1.6%) = 4181.2 (was 3709.6 at 7.8720%)",
+    "disposal_proceeds": "Foods consideration at run-date market value (decision 1): cash USD 15,700m + new McCormick shares 499,691,175 (= existing 269,064,479 [voting 14,522,864 + non-voting 254,541,615, McCormick 10-Q for the quarter to 31 Aug 2026 (accession 0000063754-26-000329, filed 1 Oct 2026, https://www.sec.gov/Archives/edgar/data/63754/000006375426000329/mkc-20260831.htm) cover] x 65/35; 55.1% to Unilever shareholders + 9.9% to Unilever, 10-Q note 2) x USD 44.64 (Yahoo MKC close 2026-10-13) = USD 22,306.2m; total USD 38,006.2m / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = EUR 33,955.3m. Yahoo EURUSD=X 1.1160 (2026-10-12) would give 34,055.1. Tax on the cash: MISSING, NOT deducted (PM decision 5; CFO: 'premature to start making estimates', Unilever investor call transcript 31 Mar 2026, Form 425 (accession 0000217410-26-000032)). Received at closing (expected mid-2027): timing FLAG in notes.md. LESS McCormick dividends the new shares miss before closing (PM decision 15 Oct 2026): 499,691,175 shares x USD 0.48 a quarter (McCormick 10-Q to 31 Aug 2026, accession 0000063754-26-000329) x 3 quarters (ex-dates Jan, Apr, Jul 2027; closing expected mid-2027, Form 425 0000217410-26-000027) / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = 642.9; 33955.3 - 642.9. FLAG: if closing comes before the July ex-date, 2 quarters (+c.8p)",
     "restructuring_cash": "Brief (decision 3): 'c.EUR 500m one-off restructuring to offset stranded costs ... to be incurred over 2027-2029' (Unilever Foods/McCormick investor presentation, Form 425 (accession 0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm), slide 19).",
     "shares_outstanding_m": "Unilever 6-K Total Voting Rights 1 Sep 2026 (accession 0001654954-26-008017): position at 31 Aug 2026: issued 2,185,205,247 - treasury 30,703,780 - group-held 173,846 = 2,154,327,621 shares with voting rights. No later Total Voting Rights 6-K on EDGAR at the run date (latest Unilever filing 25 Sep 2026). Ordinary shares; 1 UL ADR = 1 share.",
     "fx_eur_per_gbp": "FRED DEXUSUK / DEXUSEU (EUR per GBP, noon buying rates New York), 2026-10-09 (USD per GBP 1.3229 / USD per EUR 1.1193); Yahoo EURGBP=X 2026-10-12: 1.18373.",
@@ -282,7 +282,7 @@
     "foods_perimeter_interim_cash_flows_meur": "MISSING: no cash-flow disclosure for the perimeter between 1 Jan 2026 and closing (not in Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm), Unilever Foods/McCormick investor presentation, Form 425 (accession 0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm), or McCormick filings; no S-4 yet). Indicators only: perimeter FY25 UOP 2,600 (Unilever Foods/McCormick investor presentation, Form 425 (accession 0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm)); H1 2026 Foods business group (wider than the perimeter) turnover EUR 6.3bn, UOM 23.3% (Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm), business group review).",
     "beta": "Risk agent, bottom-up: Damodaran GLOBAL Household Products unlevered beta corrected for cash 0.7741 (588 firms, betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', PM upload 14 Oct 2026) relevered (Hamada) at Unilever's market D/E 0.1924 = net debt EUR 23,076m (31 Dec 2025, FY25 results 6-K 0001654954-26-001155) / market cap EUR 119,938.7m (2,154.328m shares x 4,710.5p / 100 x 1.18190 EUR per GBP) and tax 26.0% (brief). Cross-checks in risk/beta_evidence.json and risk/risk.json (not used).",
     "minority_share_of_operating_profit": "Fundamentals agent (fundamentals/run_fundamentals.py, ratios.csv). Outside shareholders' share of the operating profit of the business that REMAINS after the Foods sale = FY24 minorities' share of Group underlying net profit x Group UOP FY25 / (Group UOP FY25 - Foods perimeter UOP FY25) = 0.07929 x 10,084 / 7,484 = 10.68%. FY24 share = underlying NCI profit 587 (reported NCI continuing 609 less NCI share of non-underlying items +22) / (underlying profit to shareholders 6,816 + 587 = 7,403). Sources: Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026) p.128 income statement (NCI continuing 609), p.42 non-underlying items (NCI +22), p.43 underlying EPS reconciliation (6,816), p.137 note 2 (UOP 10,084); Foods perimeter UOP EUR 2.6bn, Form 425 investor presentation (accession 0000217410-26-000027) slide 25; the perimeter excludes India Foods (Form 425 call transcript), so all of Hindustan Unilever stays. HUL check: HUL minorities 446 / HUL profit 1,167 = 38.2% in FY24 (20-F p.162 note 15B) vs 38.1% outside holding (Unilever 61.90%, p.194); HUL alone = 446 / 7,403 = 6.0% of Group underlying profit; other minorities (e.g. PT Unilever Indonesia, 85% owned, p.183) the rest. FY24 used because FY25 HUL figures are distorted by HUL's ice cream demerger (539 / 940 = 57%; EUR 199m non-cash dividend). Cross-checks: FY25 10.39%, H1 2026 9.46%. Assumptions (FLAG): minorities' share of operating profit = their share of net profit (HUL has net cash, so this slightly OVERstates); no minority profit leaves with the perimeter (minority holders of Indonesia etc. Foods do leave: slight OVERstatement).",
-    "priced_at_valuation_date_meur": "Bridge items already at run-date market prices (not grown in the roll-forward; mistakes log row 24): TMICC stake 1,935.2 (inputs.yaml `associates` component (1): 121,604,413 shares x EUR 15.914, Yahoo MICC.AS close 2026-10-13) + Foods consideration 33,955.3 (inputs.yaml `disposal_proceeds`: USD 15,700m cash + 499,691,175 McCormick shares x USD 44.64, Yahoo MKC close 2026-10-13, at FRED DEXUSEU) = 35,890.5. Excluded (balance-sheet-date values): JVs by Gordon growth on FY25 dividends, associates at book 15, fair-value investments 902 (31 Dec 2025), Magnum transition balance 500.",
+    "priced_at_valuation_date_meur": "Bridge items already at run-date market prices (not grown in the roll-forward; mistakes log row 24): TMICC stake 1,935.2 (inputs.yaml `associates` component (1): 121,604,413 shares x EUR 15.914, Yahoo MICC.AS close 2026-10-13) + Foods consideration 33,955.3 (inputs.yaml `disposal_proceeds`: USD 15,700m cash + 499,691,175 McCormick shares x USD 44.64, Yahoo MKC close 2026-10-13, at FRED DEXUSEU) = 35,890.5. Excluded (balance-sheet-date values): JVs by Gordon growth on FY25 dividends, associates at book 15, fair-value investments 902 (31 Dec 2025), Magnum transition balance 500. LESS McCormick dividends the new shares miss before closing (PM decision 15 Oct 2026): 499,691,175 shares x USD 0.48 a quarter (McCormick 10-Q to 31 Aug 2026, accession 0000063754-26-000329) x 3 quarters (ex-dates Jan, Apr, Jul 2027; closing expected mid-2027, Form 425 0000217410-26-000027) / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = 642.9; 35890.5 - 642.9. FLAG: if closing comes before the July ex-date, 2 quarters (+c.8p)",
     "pre_tax_cost_of_debt_historic": "Historic, reference only: FY25 interest on bank loans 52 + bonds and other loans 967 + leases 79 = 1,098 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.148 note 5) / average gross debt 29,126 (bank loans + bonds + leases, 31 Dec 2024 30,655 and 31 Dec 2025 27,597; Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.164 note 15C). The engine uses risk-free + credit_spread 0.70% (brief) = 4.15% (3.45% Bund on 14 Oct 2026, PM decision 11). H1 2026 6-K: net finance costs 2.5% of average net debt."
   }
 }

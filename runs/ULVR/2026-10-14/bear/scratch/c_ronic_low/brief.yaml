@@ -25,7 +25,7 @@ dcf:
   - 2029
   - 2030
   organic_growth:
-  - 0.005
+  - 0.02
   - 0.016
   - 0.016
   - 0.016
@@ -51,7 +51,7 @@ dcf:
   valuation_basis: balance_sheet_date
   wacc:
     risk_free: null
-    equity_risk_premium: 0.05
+    equity_risk_premium: 0.042
     beta: null
     pre_tax_cost_of_debt: null
     credit_spread: 0.007
@@ -61,7 +61,7 @@ dcf:
     lease_liabilities_meur: null
     minority_interests_meur: null
     minorities_method: proportionate
-    pension_deficit_meur: 0
+    pension_deficit_meur: null
     associates_meur: null
     disposal_proceeds_meur: null
     restructuring_cash_meur: 500
@@ -71,7 +71,7 @@ dcf:
 scenarios:
   bear:
     organic_growth:
-    - 0.005
+    - 0.02
     - 0.002
     - 0.002
     - 0.002

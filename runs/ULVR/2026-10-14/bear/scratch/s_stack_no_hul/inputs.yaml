@@ -72,13 +72,13 @@ minority_interests:
     p.131 balance sheet, p.162-163 note 15B; XBRL ifrs-full:NoncontrollingInterests). Reference only: brief minorities_method = proportionate (Fundamentals agent
     supplies minority_share_of_operating_profit).'
 pension_deficit:
-  value: 0.0
-  source: 'Brief rule (0 if in surplus): net SURPLUS EUR 3,518m at 31 Dec 2025 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
-    p.43 and note 4B; XBRL ifrs-full:LiabilityAssetOfDefinedBenefitPlans = -3,518); gross deficit plans 944 (funded in deficit 100 + unfunded 844, p.131) are inside
-    that net figure. 30 Jun 2026: surplus 3.7bn (Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm)).'
+  value: 698.6
+  source: 'PM decision 15 Oct 2026 (evidence audit): plans in deficit 944 (funded in deficit 100 + unfunded 844, Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007,
+    filed 12 Mar 2026) p.131) x (1 - 26% tax, briefs/ULVR.yaml tax_rate) = 698.6. The net surplus (3,518) is not offset against them; surpluses are not added (brief
+    rule)'
 associates:
-  value: 6551.7
-  source: 'BEAR SCRATCH (bear/run_bear.py): JVs by Gordon growth at Ke 8.8720% and g 1.6% = 3,199.4 (apply_pm_decision10.py formula). Base value was 7061.8; base
+  value: 6896.6
+  source: 'BEAR SCRATCH (bear/run_bear.py): JVs by Gordon growth at Ke 8.1645% and g 1.6% = 3,544.3 (apply_pm_decision10.py formula). Base value was 7533.5; base
     source: PM decision 14 Oct 2026 (decision 10, docs/phase5/ulvr-run-flags.md item B, C, D; E agreed 13 Oct; briefs/ULVR.yaml comments): sum of (1) TMICC 19.85%:
     121,604,413 shares (TMICC resale prospectus, Form 424(b)(4) (accession 0001104659-26-042683, 13 Apr 2026)) x EUR 15.914 (Yahoo MICC.AS close 2026-10-13) = 1,935.2;
     (2) joint ventures by Gordon growth: FY25 dividends received from JVs and associates EUR 229m (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed
@@ -90,15 +90,19 @@ associates:
     FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.174
     note 17A); amortised-cost assets 368 (incl. judicial deposits 175) excluded; (5) net Magnum transition balance owed to Unilever 2,100 - 1,600 = 500 (Unilever
     FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) notes
-    13-14, p.159-160). Was 2,044.2 (TMICC + JVs/associates at book 109). If the run''s cost of equity changes, the JV value must be recomputed.'
+    13-14, p.159-160). Was 2,044.2 (TMICC + JVs/associates at book 109). If the run''s cost of equity changes, the JV value must be recomputed. JV value recomputed
+    15 Oct 2026 at the new cost of equity 7.1645% (ERP 4.2%): 229 x 1.016 / (7.1645% - 1.6%) = 4181.2 (was 3709.6 at 7.8720%)'
 disposal_proceeds:
-  value: 33955.3
+  value: 33312.4
   source: 'Foods consideration at run-date market value (decision 1): cash USD 15,700m + new McCormick shares 499,691,175 (= existing 269,064,479 [voting 14,522,864
     + non-voting 254,541,615, McCormick 10-Q for the quarter to 31 Aug 2026 (accession 0000063754-26-000329, filed 1 Oct 2026, https://www.sec.gov/Archives/edgar/data/63754/000006375426000329/mkc-20260831.htm)
     cover] x 65/35; 55.1% to Unilever shareholders + 9.9% to Unilever, 10-Q note 2) x USD 44.64 (Yahoo MKC close 2026-10-13) = USD 22,306.2m; total USD 38,006.2m
     / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = EUR 33,955.3m. Yahoo EURUSD=X 1.1160 (2026-10-12) would give 34,055.1. Tax on the cash: MISSING, NOT deducted
     (PM decision 5; CFO: ''premature to start making estimates'', Unilever investor call transcript 31 Mar 2026, Form 425 (accession 0000217410-26-000032)). Received
-    at closing (expected mid-2027): timing FLAG in notes.md.'
+    at closing (expected mid-2027): timing FLAG in notes.md. LESS McCormick dividends the new shares miss before closing (PM decision 15 Oct 2026): 499,691,175 shares
+    x USD 0.48 a quarter (McCormick 10-Q to 31 Aug 2026, accession 0000063754-26-000329) x 3 quarters (ex-dates Jan, Apr, Jul 2027; closing expected mid-2027, Form
+    425 0000217410-26-000027) / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = 642.9; 33955.3 - 642.9. FLAG: if closing comes before the July ex-date, 2 quarters
+    (+c.8p)'
 restructuring_cash:
   value: 4006.7
   source: 'BEAR SCRATCH (bear/run_bear.py): 500 + 25% tax. Base value was 500.0; base source: Brief (decision 3): ''c.EUR 500m one-off restructuring to offset stranded
@@ -171,9 +175,11 @@ minority_share_of_operating_profit:
     of net profit (HUL has net cash, so this slightly OVERstates); no minority profit leaves with the perimeter (minority holders of Indonesia etc. Foods do leave:
     slight OVERstatement).'
 priced_at_valuation_date_meur:
-  value: 32383.8
-  source: 'BEAR SCRATCH (bear/run_bear.py): tax and HUL are today amounts. Base value was 35890.5; base source: Bridge items already at run-date market prices (not
+  value: 31740.9
+  source: 'BEAR SCRATCH (bear/run_bear.py): tax and HUL are today amounts. Base value was 35247.6; base source: Bridge items already at run-date market prices (not
     grown in the roll-forward; mistakes log row 24): TMICC stake 1,935.2 (inputs.yaml `associates` component (1): 121,604,413 shares x EUR 15.914, Yahoo MICC.AS close
     2026-10-13) + Foods consideration 33,955.3 (inputs.yaml `disposal_proceeds`: USD 15,700m cash + 499,691,175 McCormick shares x USD 44.64, Yahoo MKC close 2026-10-13,
     at FRED DEXUSEU) = 35,890.5. Excluded (balance-sheet-date values): JVs by Gordon growth on FY25 dividends, associates at book 15, fair-value investments 902 (31
-    Dec 2025), Magnum transition balance 500.'
+    Dec 2025), Magnum transition balance 500. LESS McCormick dividends the new shares miss before closing (PM decision 15 Oct 2026): 499,691,175 shares x USD 0.48
+    a quarter (McCormick 10-Q to 31 Aug 2026, accession 0000063754-26-000329) x 3 quarters (ex-dates Jan, Apr, Jul 2027; closing expected mid-2027, Form 425 0000217410-26-000027)
+    / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = 642.9; 35890.5 - 642.9. FLAG: if closing comes before the July ex-date, 2 quarters (+c.8p)'

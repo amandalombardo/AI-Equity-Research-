@@ -1,4 +1,6 @@
-"""Bear case agent (ULVR, run 2026-10-14): every value impact comes from re-running desk.valuation_run.
+"""Bear case agent (ULVR, run 2026-10-14; re-run 15 Oct 2026 on the evidence-audit brief and inputs:
+ERP 4.2%, pension deficit 698.6, McCormick dividends 642.9 deducted, JV at Ke 7.164%, FY26 growth +2.0%).
+Every value impact comes from re-running desk.valuation_run.
 
 For each test the script copies briefs/ULVR.yaml and ../inputs.yaml into bear/scratch/<test>/, changes ONE thing (one
 assumption, plus any input that must move with it for consistency, each stated in the source text), and runs
@@ -57,11 +59,19 @@ PERIM_SALES, PERIM_UOP = 10700.0, 2600.0   # Form 425 investor presentation slid
 BETA_DAMO_5Y = 0.9998      # Damodaran 2020-24 average cash-corrected 0.8752 relevered at D/E 0.1924 (risk/notes.md)
 BETA_OWN_WEEKLY = 0.54     # ULVR.L vs FTSE 100, 5y weekly (risk/notes.md, risk.json)
 DATA_G_LOW = 0.011         # low end of Data agent's 1.1-1.6% euro market-growth reading (data/notes.md section 5)
+GROUP_G_FY26 = 0.005       # whole-Group H1 2026 turnover change incl. Foods (H1 2026 6-K): the right perimeter if the deal FAILS
+MKC_DPS, MKC_QTRS = 0.48, 3  # USD a quarter (McCormick 10-Q 0000063754-26-000329); 3 quarters to mid-2027 closing (PM decision 15 Oct 2026)
+# McCormick dividends the new shares miss before closing (already deducted in inputs.yaml): shares x dividend x quarters / FX
+DIV_LEAK = MKC_NEW_SHARES_M * MKC_DPS * MKC_QTRS / USD_PER_EUR
+ERP_KROLL = 0.050          # Kroll recommended US ERP 5.0% (docs/audit-2026-10-15/erp-evidence.md 2b; secondhand)
+ERP_FERNANDEZ = 0.055      # Fernandez et al. 2025 survey, US 5.5% (UK and Germany 5.4%) (erp-evidence.md 2c; secondhand)
+BUND_9OCT = 0.0350         # German 10y Bund 3.50% on 9 Oct 2026 (thetrading.tools; brief risk_free comment)
+SPREAD_STRESS = 0.010      # credit spread 1.0% vs 0.70% USD index (audit finding 8: USD spread on a EUR Bund)
 
 
-def ke(beta):
+def ke(beta, erp=None, rf=None):
     """Cost of equity (CAPM): risk-free + beta x equity risk premium (desk.dcf.cost_of_equity)."""
-    return dcf.cost_of_equity(V["risk_free"], beta, ERP)
+    return dcf.cost_of_equity(V["risk_free"] if rf is None else rf, beta, ERP if erp is None else erp)
 
 
 def jv_value(k, g):
@@ -109,7 +119,9 @@ VAL = json.loads((RUN / "valuation" / "valuation.json").read_text())   # the Val
 assert abs(BASE - VAL["base"]["equity"]["per_share_gbp_pence"]) < 1e-6 and \
     abs(BEAR - VAL["bear"]["equity"]["per_share_gbp_pence"]) < 1e-6, "scratch copy must reproduce the run"
 # the JV inside the current associates must be the Gordon value at the current cost of equity (PM decision 11)
-assert abs(JV0 + ASSOC_EX_JV - V["associates"]) < 1e-9 and abs(ASSOC_EX_JV - 3352.3) < 0.2, "associates must = JV at current Ke + 3,352.3"
+assert abs(ASSOC_EX_JV - 3352.3) < 0.2, "associates must = JV at current Ke (audit fix 15 Oct 2026) + 3,352.3"
+assert abs(V["disposal_proceeds"] - ((FOODS_CASH_USD + MKC_NEW_SHARES_M * MKC_PRICE) / USD_PER_EUR - DIV_LEAK)) < 0.2, \
+    "disposal_proceeds must = cash + shares x MKC price - 3 quarters of dividends"
 
 
 def record(key, label, res, case="base", ref=None, notes=""):
@@ -125,6 +137,12 @@ def record(key, label, res, case="base", ref=None, notes=""):
 restr_avg = sum(r / s for r, s in RESTR) / len(RESTR)          # FY23-25 average restructuring % of turnover (1.12%)
 group_margin = GROUP_UOP / GROUP_SALES - restr_avg               # whole-group underlying margin less recurring restructuring
 TMICC_TODAY = V["priced_at_valuation_date_meur"] - V["disposal_proceeds"]   # TMICC stake at today's price (1,935.2)
+
+
+def group_fy26(b):
+    """Deal fails: Foods stays in, so FY26 uses the whole-Group +0.5% (H1 2026 6-K), the perimeter the DCF now values."""
+    b["dcf"]["organic_growth"][0] = GROUP_G_FY26
+    b["scenarios"]["bear"]["organic_growth"][0] = GROUP_G_FY26
 
 
 def deal_fails(fee_usd=0.0, keep_stranded=False):
@@ -145,12 +163,12 @@ def deal_fails(fee_usd=0.0, keep_stranded=False):
     return f
 
 
-record("t1_deal_fails", "Deal fails: Foods stays in the DCF (no fee, no stranded-cost restructuring)", run("t1_deal_fails", deal_fails()))
-record("t1b_deal_fails_with_fee", "Deal fails, McCormick pays the USD 420m termination fee", run("t1b_deal_fails_fee", deal_fails(BREAK_FEE_USD)))
-record("t1c_deal_fails_keep_500", "Deal fails, EUR 500m restructuring still spent", run("t1c_deal_fails_keep500", deal_fails(0.0, True)))
+record("t1_deal_fails", "Deal fails: Foods stays in the DCF (no fee, no stranded-cost restructuring)", run("t1_deal_fails", deal_fails(), group_fy26))
+record("t1b_deal_fails_with_fee", "Deal fails, McCormick pays the USD 420m termination fee", run("t1b_deal_fails_fee", deal_fails(BREAK_FEE_USD), group_fy26))
+record("t1c_deal_fails_keep_500", "Deal fails, EUR 500m restructuring still spent", run("t1c_deal_fails_keep500", deal_fails(0.0, True), group_fy26))
 results["t1_inputs"] = {"group_margin_used": group_margin, "restructuring_avg_fy23_25": restr_avg,
                         "minority_share_group": NCI_GROUP_SHARE, "break_fee_meur": BREAK_FEE_USD / USD_PER_EUR,
-                        "growth": "unchanged (0.5%, then 1.6%): flatters this case, the perimeter's FY25 USG was 2.7% vs 3.5% Group"}
+                        "growth": "FY26 +0.5% (whole Group incl. Foods, H1 2026 6-K), then 1.6%: still flatters, the perimeter's FY25 USG was 2.7% vs 3.5% Group"}
 
 # ======================= REQUIRED TEST 2: tax at 25% of the USD 15.7bn cash, priced today =======================
 cash_eur = FOODS_CASH_USD / USD_PER_EUR                          # USD 15.7bn in EUR at FRED 1.1193
@@ -251,10 +269,11 @@ t_close = 259 / 365                                               # 14 Oct 2026 
 mkc_1sd = MKC_PRICE * (1 - mkc_vol * math.sqrt(t_close))          # one-standard-deviation fall over the time to closing
 
 
-def mkc_at(p):
+def mkc_at(p, leak=DIV_LEAK):
     def f(i):
-        new = (FOODS_CASH_USD + MKC_NEW_SHARES_M * p) / USD_PER_EUR   # consideration = cash + shares x price, in EUR
-        setv(i, "disposal_proceeds", round(new, 1), f"MKC at USD {p:.2f}")
+        # consideration = cash + shares x price, in EUR, less the McCormick dividends missed before closing (as inputs.yaml)
+        new = (FOODS_CASH_USD + MKC_NEW_SHARES_M * p) / USD_PER_EUR - leak
+        setv(i, "disposal_proceeds", round(new, 1), f"MKC at USD {p:.2f}, less {leak:,.1f} McCormick dividends before closing")
         setv(i, "priced_at_valuation_date_meur", round(V["priced_at_valuation_date_meur"] - V["disposal_proceeds"] + new, 1),
              "consideration is priced today")
     return f
@@ -293,17 +312,63 @@ def stack(with_hul):
 record("s_stack_no_hul", "Stack: engine bear + JV fix + margin 16.2% + 25% tax", run("s_stack_no_hul", stack(False)), case="bear", ref=BASE)
 record("s_stack_hul", "Stack: as above + HUL at market (others proportionate)", run("s_stack_hul", stack(True)), case="bear", ref=BASE)
 
-# ======================= RISKS TO THE SELL (bull side) =======================
+# ======================= AUDIT STRESS LINES (15 Oct 2026; each one change, JV consistent where Ke moves) =======================
+def erp_to(e):
+    def fb(b):
+        b["dcf"]["wacc"]["equity_risk_premium"] = e
+    return fb
+
+
+record("a_erp_50_kroll", "ERP 5.0% (Kroll US recommended), JVs at the new Ke",
+       run("a_erp_50", jv_at(ke(V["beta"], erp=ERP_KROLL), G0), erp_to(ERP_KROLL)))
+record("a_erp_55_fernandez", "ERP 5.5% (Fernandez 2025 survey, US), JVs at the new Ke",
+       run("a_erp_55", jv_at(ke(V["beta"], erp=ERP_FERNANDEZ), G0), erp_to(ERP_FERNANDEZ)))
+
+
+def bund(i):
+    setv(i, "risk_free", BUND_9OCT, "Bund 3.50% on 9 Oct 2026 (thetrading.tools, brief risk_free comment); moves Ke and Kd")
+    jv_at(ke(V["beta"], rf=BUND_9OCT), G0)(i)
+
+
+record("a_bund_350", "Bund 3.50% (9 Oct 2026); Ke, cost of debt and JVs all move", run("a_bund_350", bund))
+record("a_spread_100", "Credit spread 1.0% (vs 0.70% USD single-A index)",
+       run("a_spread_100", change_brief=lambda b: b["dcf"]["wacc"].__setitem__("credit_spread", SPREAD_STRESS)))
+
+kd0 = V["risk_free"] + BRIEF0["dcf"]["wacc"]["credit_spread"]    # pre-tax cost of debt = Bund + spread (4.15%)
+
+
+def foods_discount(amount, rate, label):
+    # present value of a sum received at closing: amount x (1 - 1 / (1 + r)^t); the loss is netted from today's items
+    loss = amount * (1 - (1 + rate) ** -t_close)
+    def f(i):
+        setv(i, "disposal_proceeds", round(V["disposal_proceeds"] - loss, 1), f"{label}: discount {loss:,.1f} over {t_close:.4f} years at {rate:.2%}")
+        setv(i, "priced_at_valuation_date_meur", round(V["priced_at_valuation_date_meur"] - loss, 1), "consideration priced today")
+    return f, loss
+
+
+f_cash, loss_cash = foods_discount(cash_eur, kd0, "USD 15.7bn cash part at the pre-tax cost of debt")
+record("a_foods_cash_kd", "Foods cash part discounted to mid-2027 at Kd 4.15%", run("a_foods_cash_kd", f_cash))
+wacc_base = json.loads((SCRATCH / "00_control" / "out" / "valuation.json").read_text())["base"]["wacc"]["wacc"]
+f_all, loss_all = foods_discount(V["disposal_proceeds"], wacc_base, "whole consideration at WACC")
+record("a_foods_all_wacc", "Whole Foods consideration discounted to mid-2027 at WACC (upper bound)", run("a_foods_all_wacc", f_all))
+results["a_foods_inputs"] = {"years": t_close, "kd": kd0, "wacc": wacc_base, "loss_cash_meur": loss_cash, "loss_all_meur": loss_all}
+
+leak2 = MKC_NEW_SHARES_M * MKC_DPS * 2 / USD_PER_EUR
+record("a_mkc_div_2q", "McCormick dividends 2 quarters, not 3 (closing before the July 2027 ex-date): upside",
+       run("a_mkc_div_2q", mkc_at(MKC_PRICE, leak2)))
+results["a_div_inputs"] = {"leak_3q_meur": DIV_LEAK, "leak_2q_meur": leak2}
+
+# ======================= RISKS TO THE BEAR VIEW (bull side) =======================
 record("r_beta_054", "Beta 0.54 (own 5y weekly), JVs consistent", run("r_beta_054", beta_to(BETA_OWN_WEEKLY)))
 record("r_margin_182", "Margin 18.2% (18.8% less management's 0.6% guide)",
        run("r_margin_182", lambda i: setv(i, "base_margin", 0.182, "margin evidence pack option A2")))
 record("r_margin_188", "Margin 18.8% (restructuring treated as one-off)",
        run("r_margin_188", lambda i: setv(i, "base_margin", 0.188, "margin evidence pack option B")))
-record("r_margin_197", "Margin 19.7% (Valuation agent HOLD flip point)",
-       run("r_margin_197", lambda i: setv(i, "base_margin", 0.197, "valuation/notes.md flip point (e)")))
+record("r_margin_1761", "Margin 17.61% (Valuation agent HOLD->SELL breakeven)",
+       run("r_margin_1761", lambda i: setv(i, "base_margin", 0.1761, "valuation/notes.md breakevens 15 Oct 2026")))
 record("r_mkc_deal_ref", f"McCormick back to USD {MKC_DEAL_REF} (deal reference price)", run("r_mkc_ref", mkc_at(MKC_DEAL_REF)))
-record("r_mkc_6655", "McCormick at USD 66.55 (Valuation agent HOLD flip point)", run("r_mkc_6655", mkc_at(66.55)))
-record("r_beta_0748", "Beta 0.748 (Valuation agent HOLD flip point), JVs consistent", run("r_beta_0748", beta_to(0.748)))
+record("r_mkc_4355", "McCormick at USD 43.55 (Valuation agent HOLD->SELL breakeven)", run("r_mkc_4355", mkc_at(43.55)))
+record("r_beta_0892", "Beta 0.892 (Valuation agent HOLD->SELL breakeven), JVs consistent", run("r_beta_0892", beta_to(0.892)))
 record("r_beta_091", "Beta 0.91 (own 5y monthly), JVs consistent", run("r_beta_091", beta_to(0.91)))
 
 out = {"base_pence": BASE, "engine_bear_pence": BEAR, "share_price_pence": PRICE, "hold_floor_pence": HOLD_FLOOR,
