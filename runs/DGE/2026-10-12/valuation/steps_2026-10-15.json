@@ -1,0 +1,47 @@
+{
+ "steps": [
+  {
+   "step": "13 Oct value (ERP 5.0%, 2,222m shares, debt weight 0.29395, FY30-31 growth 3.0%)",
+   "pence": 1627.2561466643722,
+   "change_pence": null,
+   "wacc": 0.08459049358000001,
+   "rating": "HOLD"
+  },
+  {
+   "step": "1. ERP 5.0% -> 4.2% (PM decision 15 Oct 2026)",
+   "pence": 1810.719829019475,
+   "change_pence": 183.46368235510272,
+   "wacc": 0.07916746474,
+   "rating": "HOLD"
+  },
+  {
+   "step": "2. Shares 2,222m -> 2,224m basic, debt weight 0.29376 (audit finding 8)",
+   "pence": 1808.767352755584,
+   "change_pence": -1.9524762638909579,
+   "wacc": 0.079176098112,
+   "rating": "HOLD"
+  },
+  {
+   "step": "3. Shares 2,224m -> 2,231m diluted, debt weight 0.29311 (PM decision 15 Oct, D3)",
+   "pence": 1801.9874759805266,
+   "change_pence": -6.779876775057346,
+   "wacc": 0.07920563333200001,
+   "rating": "HOLD"
+  },
+  {
+   "step": "4. FY30-31 growth 3.0% -> 2.0% (PM decision 15 Oct, D4)",
+   "pence": 1772.1431502095886,
+   "change_pence": -29.844325770937985,
+   "wacc": 0.07920563333200001,
+   "rating": "HOLD"
+  }
+ ],
+ "final_pence": 1772.1431502095886,
+ "sell_if_erp_above": 0.05442068494841425,
+ "buy_if_erp_below": 0.03621189531714557,
+ "market_implied_erp": 0.04624396334401362,
+ "value_at_erp_5pct_pence": 1592.5978309159505,
+ "value_at_erp_5_5pct_pence": 1494.87781080783,
+ "sell_line_pence": 1505.7,
+ "buy_line_pence": 1923.9499999999998
+}

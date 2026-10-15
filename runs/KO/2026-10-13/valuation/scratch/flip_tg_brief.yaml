@@ -25,7 +25,7 @@ dcf:
   - 2029
   - 2030
   organic_growth:
-  - 0.06
+  - 0.05
   - 0.03
   - 0.03
   - 0.03
@@ -43,7 +43,7 @@ dcf:
   da_pct_sales: null
   capex_pct_sales: null
   nwc_pct_sales: null
-  terminal_growth: 0.05397908867966114
+  terminal_growth: 0.05423003459649352
   terminal_capex_pct_sales: null
   terminal_ronic: 0.27
   mid_year_convention: true
@@ -70,7 +70,7 @@ dcf:
 scenarios:
   bear:
     organic_growth:
-    - 0.06
+    - 0.05
     - 0.01
     - 0.01
     - 0.01

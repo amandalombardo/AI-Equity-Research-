@@ -4,8 +4,8 @@ base_sales:
     and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from
     this environment, PM asked to verify. FLAG: CCBA figure is calendar 2024. PM decision 2026-10-13'
 base_margin:
-  value: 0.6599809531646967
-  source: 'SCRATCH SCENARIO ONLY, not the base: margin 0.6599809531646967'
+  value: 0.6662889964228869
+  source: 'SCRATCH SCENARIO ONLY, not the base: margin 0.6662889964228869'
 tax_rate:
   value: 0.237
   source: 'PM decision (IRS case assumed lost): 19.9% underlying effective tax rate, FY26 guidance (KO Q2 2026 results 8-K ex.99.1 (accession 0001628280-26-049922, https://www.sec.gov/Archives/edgar/data/21344/000162828026049922/a2026q2earningsreleaseex-9.htm),

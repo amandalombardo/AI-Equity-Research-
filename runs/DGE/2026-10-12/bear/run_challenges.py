@@ -1,5 +1,6 @@
 """Bear agent (Phase 3 re-run; refreshed 2026-10-13 for proportionate minorities; re-run 2026-10-15 after the evidence
-audit: ERP 4.2%, 2,224m shares, plus audit lines A1-A5 and stacked cases S1-S3): re-run the engine with ONE change at a time (desk.valuation_run.build), record the impact.
+audit: ERP 4.2%, 2,224m shares, plus audit lines A1-A5 and stacked cases S1-S3; final re-run 15 Oct 2026 after the PM
+accepted the bear responses: 2,231m diluted shares and FY30-31 growth 2.0% are now in the base): re-run the engine with ONE change at a time (desk.valuation_run.build), record the impact.
 
 Run from the repo root:  PYTHONPATH=. python runs/DGE/2026-10-12/bear/run_challenges.py
 The brief values at the 30 June balance sheet date and rolls equity forward, so inputs are loaded with ROLL_FORWARD.
@@ -157,7 +158,7 @@ buy_flips = {
     "beta": solve(lambda x: _value(inputs={"beta": x}) - BUY_ABOVE, 0.5, 0.96),
     "erp": solve(lambda x: _value({"dcf.wacc.equity_risk_premium": x}) - BUY_ABOVE, 0.02, 0.042),
 }
-out = {"run": "re-run 2026-10-15 (evidence audit: ERP 4.2%, 2,224m shares)",
+out = {"run": "final re-run 2026-10-15 (ERP 4.2%; PM decisions 15 Oct: diluted 2,231m shares, FY30-31 growth 2.0%; A1 and A3 are now in the base, so their impact is 0)",
        "base_value_pence": base, "base_wacc": base_wacc, "share_price_pence": v["share_price_gbp_pence"],
        "sell_threshold_pence": SELL_BELOW, "headroom_to_sell_pence": base - SELL_BELOW,
        "buy_threshold_pence": BUY_ABOVE, "gap_to_buy_pence": BUY_ABOVE - base,

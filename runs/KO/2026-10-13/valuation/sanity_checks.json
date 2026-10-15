@@ -1,9 +1,9 @@
 {
   "currency": "USD per share; USD m",
-  "base_value_usd_recheck": 50.75675833766664,
+  "base_value_usd_recheck": 50.248446250150536,
   "checks": {
     "tv_share_of_ev": {
-      "value": 0.7672105501844445,
+      "value": 0.7673600561216202,
       "threshold": 0.75,
       "flag": true
     },
@@ -24,11 +24,11 @@
       "flag": false
     },
     "dcf_vs_comps": {
-      "dcf_usd": 50.75675833766664,
+      "dcf_usd": 50.248446250150536,
       "comps_median_usd": 70.07070068682833,
       "comps_low_usd": 42.011408659483486,
       "comps_high_usd": 107.05404655358934,
-      "gap": -0.2756350680077082
+      "gap": -0.2828893423696549
     }
   },
   "rating_thresholds_usd": {
@@ -39,58 +39,58 @@
     "beta": {
       "sell_to_hold_at_usd": {
         "target_value_usd": 81.10800247192383,
-        "parameter": 0.06818715328276156,
-        "value_check_usd": 81.10800545775298,
+        "parameter": 0.059419380137324326,
+        "value_check_usd": 81.10800521762071,
         "status": "found"
       },
       "hold_to_buy_at_usd": {
         "target_value_usd": 103.63800315856933,
-        "parameter": -0.12615861781537532,
-        "value_check_usd": 103.63800665342947,
+        "parameter": -0.13291566489040854,
+        "value_check_usd": 103.6379997891371,
         "status": "found"
       }
     },
     "wacc": {
       "sell_to_hold_at_usd": {
         "target_value_usd": 81.10800247192383,
-        "parameter": -0.020582695007324223,
-        "value_check_usd": 81.1079289392604,
+        "parameter": -0.02092159271240234,
+        "value_check_usd": 81.10798538348806,
         "status": "found",
-        "wacc_level": 0.05487467042467578
+        "wacc_level": 0.05453577271959766
       },
       "hold_to_buy_at_usd": {
         "target_value_usd": 103.63800315856933,
-        "parameter": -0.02811656951904297,
-        "value_check_usd": 103.63798871342632,
+        "parameter": -0.02838062286376953,
+        "value_check_usd": 103.63809084874981,
         "status": "found",
-        "wacc_level": 0.047340795912957034
+        "wacc_level": 0.047076742568230474
       }
     },
     "terminal_growth": {
       "sell_to_hold_at_usd": {
         "target_value_usd": 81.10800247192383,
-        "parameter": 0.046363970261499333,
-        "value_check_usd": 81.10800343919601,
+        "parameter": 0.04672629046264013,
+        "value_check_usd": 81.10795125450515,
         "status": "found"
       },
       "hold_to_buy_at_usd": {
         "target_value_usd": 103.63800315856933,
-        "parameter": 0.05397908867966114,
-        "value_check_usd": 103.63799610200421,
+        "parameter": 0.05423003459649352,
+        "value_check_usd": 103.63796142186662,
         "status": "found"
       }
     },
     "base_margin": {
       "sell_to_hold_at_usd": {
         "target_value_usd": 81.10800247192383,
-        "parameter": 0.520206620195508,
-        "value_check_usd": 81.10799867005444,
+        "parameter": 0.5251834825187921,
+        "value_check_usd": 81.10799880531287,
         "status": "found"
       },
       "hold_to_buy_at_usd": {
         "target_value_usd": 103.63800315856933,
-        "parameter": 0.6599809531646967,
-        "value_check_usd": 103.63800673840026,
+        "parameter": 0.6662889964228869,
+        "value_check_usd": 103.63800636454033,
         "status": "found"
       }
     }
@@ -100,59 +100,59 @@
       "unlevered": 0.820485,
       "relever_factor": 1.0584193437257772,
       "beta": 0.8684171952368444,
-      "value_per_share_usd": 43.09901481628704,
-      "upside": -0.5217597259,
+      "value_per_share_usd": 42.66219326538627,
+      "upside": -0.5266068357,
       "rating": "SELL",
       "wacc": 0.08557409679708719,
       "cost_of_equity": 0.08867352219994745,
-      "enterprise_value_musd": 182005.39256793997,
-      "tv_share_of_ev": 0.7321176329566005,
-      "implied_exit_ev_ebitda": 10.16766611809015
+      "enterprise_value_musd": 180247.21420280918,
+      "tv_share_of_ev": 0.7322847588434277,
+      "implied_exit_ev_ebitda": 10.167666118090152
     },
     "irs_case_won": {
       "contingent_liabilities_musd": 0.0,
       "associates_musd": 52625.5,
       "tax_rate": 0.199,
       "note": "beta left at 0.6091 (relevered at 23.7%); USD 385m interest receivable not added",
-      "value_per_share_usd": 58.19618897372725,
-      "upside": -0.3542367155,
+      "value_per_share_usd": 57.66420405441014,
+      "upside": -0.3601397881,
       "rating": "SELL",
       "wacc": 0.07561708672800001,
       "cost_of_equity": 0.0777822,
-      "enterprise_value_musd": 224381.24681814527,
-      "tv_share_of_ev": 0.7661585137383371,
-      "implied_exit_ev_ebitda": 12.585003357461026
+      "enterprise_value_musd": 222223.1062354598,
+      "tv_share_of_ev": 0.7663010291156188,
+      "implied_exit_ev_ebitda": 12.585003357461025
     },
     "irs_case_halfway": {
       "contingent_liabilities_musd": 7000.0,
       "associates_musd": 49625.5,
       "tax_rate": 0.218,
       "note": "midpoint of lost and won on every IRS lever",
-      "value_per_share_usd": 54.47820727366627,
-      "upside": -0.3954926141,
+      "value_per_share_usd": 53.95804241538424,
+      "upside": -0.4012645276,
       "rating": "SELL",
       "wacc": 0.07553722608,
       "cost_of_equity": 0.0777822,
-      "enterprise_value_musd": 219298.24934730813,
-      "tv_share_of_ev": 0.7666787395487857,
+      "enterprise_value_musd": 217188.06003632856,
+      "tv_share_of_ev": 0.7668246632732687,
       "implied_exit_ev_ebitda": 12.304150224063443
     },
-    "irs_probability_50_50_usd": 54.47647365569695,
+    "irs_probability_50_50_usd": 53.95632515228034,
     "bear_engine_with_pm_bear_margin_0_319": {
       "note": "information only; Bear agent owns the stacked bear case",
-      "value_per_share_usd": 38.24797628316742,
-      "upside": -0.5755883809,
+      "value_per_share_usd": 37.85771862195119,
+      "upside": -0.5799188031,
       "rating": "SELL",
       "wacc": 0.085457365432,
       "cost_of_equity": 0.0777822,
-      "enterprise_value_musd": 163455.9314637151,
-      "tv_share_of_ev": 0.7260312846903025,
-      "implied_exit_ev_ebitda": 10.155072054527913
+      "enterprise_value_musd": 161872.7458022573,
+      "tv_share_of_ev": 0.7262158441760463,
+      "implied_exit_ev_ebitda": 10.155072054527915
     }
   },
   "market_implied_wacc": {
-    "wacc_shift": -0.02404499053955078,
-    "wacc_level": 0.05141237489244922,
+    "wacc_shift": -0.024349327087402346,
+    "wacc_level": 0.05110803834459766,
     "share_price_usd": 90.12000274658203
   }
 }

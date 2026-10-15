@@ -1,31 +1,31 @@
 {
-  "run": "re-run 2026-10-15 (evidence audit: ERP 4.2%, 2,224m shares)",
-  "base_value_pence": 1808.767352755584,
-  "base_wacc": 0.079176098112,
+  "run": "final re-run 2026-10-15 (ERP 4.2%; PM decisions 15 Oct: diluted 2,231m shares, FY30-31 growth 2.0%; A1 and A3 are now in the base, so their impact is 0)",
+  "base_value_pence": 1772.1431502095886,
+  "base_wacc": 0.07920563333200001,
   "share_price_pence": 1673.0,
   "sell_threshold_pence": 1505.7,
-  "headroom_to_sell_pence": 303.0673527555839,
+  "headroom_to_sell_pence": 266.44315020958857,
   "buy_threshold_pence": 1923.9499999999998,
-  "gap_to_buy_pence": 115.18264724441588,
-  "base_minorities_deducted_musd": 1702.690360958111,
+  "gap_to_buy_pence": 151.8068497904112,
+  "base_minorities_deducted_musd": 1679.2190023568692,
   "usl_minority_market_musd": 4450.386220942435,
   "mixed_minorities_musd": 5778.386220942435,
   "minorities_operating_profit_ex_eabl_musd": 139.40564799999999,
-  "dcf_multiple_on_minorities_x": 12.213926662125706,
+  "dcf_multiple_on_minorities_x": 12.045559318779318,
   "usl_market_stake_over_all_minorities_op_profit_x": 31.924002253785552,
   "sell_if": {
     "flow_through_below": null,
-    "beta_above": 1.2816647338867189,
+    "beta_above": 1.2440310668945314,
     "terminal_ronic_below": null,
-    "minorities_book_basis_above_musd": 10402.703285217285,
-    "erp_above": 0.0560670623779297,
+    "minorities_book_basis_above_musd": 9351.954460144043,
+    "erp_above": 0.054420913696289056,
     "terminal_growth_below": null,
     "disposal_tax_above_musd": null,
     "_note": "null = no SELL flip in the tested range (flow-through 0-46%, terminal RONIC WACC-13.4%, terminal growth 0-2%, disposal tax 0 to all proceeds)"
   },
   "buy_if": {
-    "beta_below": 0.8600641822814941,
-    "erp_below": 0.03762356567382813
+    "beta_below": 0.8277871131896972,
+    "erp_below": 0.03621163940429688
   },
   "retired": {
     "6 (old)": "Deducting the 30c FY26 final dividend: retired. It goes ex on 15 Oct 2026, after the 12 Oct valuation date, so the 1,673p price is cum-dividend (data/notes.md, Phase 3 additions)."
@@ -34,12 +34,12 @@
     {
       "id": "1",
       "challenge": "Risk: beta 0.72 (Diageo's own 5y weekly regression) instead of bottom-up 0.96 [case FOR the stock]",
-      "value_pence": 2107.2222678005696,
-      "impact_pence": 298.4549150449857,
-      "wacc": 0.07205423270399999,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 2064.486723695548,
+      "impact_pence": 292.34357348595927,
+      "wacc": 0.07207721319400001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "BUY",
-      "upside": 0.2595470818,
+      "upside": 0.2340028235,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -49,12 +49,12 @@
     {
       "id": "1b",
       "challenge": "Risk: beta 1.00 (volatility 2.5x the index; Risk agent FLAG 1)",
-      "value_pence": 1765.9759995663258,
-      "impact_pence": -42.79135318925819,
-      "wacc": 0.08035961510400001,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1730.227329088092,
+      "impact_pence": -41.91582112149672,
+      "wacc": 0.080390239594,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.055574417,
+      "upside": 0.0342064131,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -64,12 +64,12 @@
     {
       "id": "2a",
       "challenge": "Valuation/PM: savings flow-through 40%",
-      "value_pence": 1787.2904205922555,
-      "impact_pence": -21.476932163328456,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.06178498119797188,
+      "value_pence": 1750.7439472127476,
+      "impact_pence": -21.39920299684104,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.06182857948285135,
       "rating": "HOLD",
-      "upside": 0.0683146567,
+      "upside": 0.0464697832,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.savings.flow_through": 0.4
@@ -79,12 +79,12 @@
     {
       "id": "2b",
       "challenge": "Valuation/PM: savings flow-through 33% (Diageo's 2017 'two thirds reinvested' rule)",
-      "value_pence": 1762.2339997350398,
-      "impact_pence": -46.533353020544155,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.06139776462587435,
+      "value_pence": 1725.7782103830991,
+      "impact_pence": -46.36493982648949,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.06143373321089993,
       "rating": "HOLD",
-      "upside": 0.0533377165,
+      "upside": 0.0315470474,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.savings.flow_through": 0.33
@@ -94,12 +94,12 @@
     {
       "id": "2c",
       "challenge": "Valuation/PM: savings flow-through 25% (FY22-24 track record; brief bear)",
-      "value_pence": 1733.5980901839353,
-      "impact_pence": -75.16926257164869,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.06095523140062004,
+      "value_pence": 1697.2459397206435,
+      "impact_pence": -74.89721048894512,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.060982480328669715,
       "rating": "HOLD",
-      "upside": 0.0362212135,
+      "upside": 0.0144924924,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.savings.flow_through": 0.25
@@ -109,12 +109,12 @@
     {
       "id": "2d",
       "challenge": "Valuation/PM: supply-chain savings phased 25/50/75/100% FY27-30 (slower than brief)",
-      "value_pence": 1808.005667894561,
-      "impact_pence": -0.7616848610230136,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1771.3838963797168,
+      "impact_pence": -0.7592538298717955,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0806967531,
+      "upside": 0.0588068717,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.savings.cumulative_musd": [
@@ -130,12 +130,12 @@
     {
       "id": "3a",
       "challenge": "Valuation/PM: terminal RONIC 10.8% (capex c.7.1% of sales held forever)",
-      "value_pence": 1735.8500902368767,
-      "impact_pence": -72.91726251870728,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.07071487028921222,
+      "value_pence": 1700.8035736846218,
+      "impact_pence": -71.33957652496679,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.07077707858273002,
       "rating": "HOLD",
-      "upside": 0.0375672984,
+      "upside": 0.016618992,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.terminal_ronic": 0.108
@@ -145,12 +145,12 @@
     {
       "id": "3a'",
       "challenge": "Check: terminal capex = 5y average 7.106% exactly (terminal_ronic off)",
-      "value_pence": 1732.9231368271658,
-      "impact_pence": -75.84421592841818,
-      "wacc": 0.079176098112,
+      "value_pence": 1698.4593977538123,
+      "impact_pence": -73.68375245577636,
+      "wacc": 0.07920563333200001,
       "terminal_capex_pct_sales": null,
       "rating": "HOLD",
-      "upside": 0.0358177746,
+      "upside": 0.015217811,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.terminal_ronic": null
@@ -160,27 +160,27 @@
     {
       "id": "3b",
       "challenge": "Valuation/PM: terminal RONIC = WACC (growth creates no value)",
-      "value_pence": 1599.0392589669934,
-      "impact_pence": -209.7280937885905,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.08684682595073989,
+      "value_pence": 1567.1398865248084,
+      "impact_pence": -205.00326368478022,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.08690911001934777,
       "rating": "HOLD",
-      "upside": -0.0442084525,
+      "upside": -0.0632756207,
       "flips_to_sell": false,
       "brief_changes": {
-        "dcf.terminal_ronic": 0.079176098112
+        "dcf.terminal_ronic": 0.07920563333200001
       },
       "input_changes": {}
     },
     {
       "id": "4",
       "challenge": "Data/Valuation: terminal growth 1.5% (IWSR: spirits volumes falling)",
-      "value_pence": 1735.9343657274837,
-      "impact_pence": -72.8329870281002,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.05500293974234985,
+      "value_pence": 1700.9489079083096,
+      "impact_pence": -71.19424230127902,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.05504054326305836,
       "rating": "HOLD",
-      "upside": 0.0376176723,
+      "upside": 0.0167058625,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.terminal_growth": 0.015
@@ -190,12 +190,12 @@
     {
       "id": "5",
       "challenge": "Fundamentals: no organic growth FY27-31 (3-year record -0.3% CAGR vs 4.0% target)",
-      "value_pence": 1656.8498149349598,
-      "impact_pence": -151.91753782062415,
-      "wacc": 0.079176098112,
+      "value_pence": 1650.6403478285854,
+      "impact_pence": -121.50280238100322,
+      "wacc": 0.07920563333200001,
       "terminal_capex_pct_sales": 0.0623808387175547,
       "rating": "HOLD",
-      "upside": -0.009653428,
+      "upside": -0.0133650043,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.organic_growth": [
@@ -211,12 +211,12 @@
     {
       "id": "6",
       "challenge": "Valuation/PM: credit spread 2.0% (leverage 3.1x above the A-band range)",
-      "value_pence": 1728.3184541269165,
-      "impact_pence": -80.4488986286674,
-      "wacc": 0.081399861312,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1693.577469929033,
+      "impact_pence": -78.56568028055563,
+      "wacc": 0.08142447603200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0330654239,
+      "upside": 0.0122997429,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -226,12 +226,12 @@
     {
       "id": "7",
       "challenge": "Data: restructuring cash after tax relief at 24.3% (850 -> 643) [case FOR the stock]",
-      "value_pence": 1815.9625803006159,
-      "impact_pence": 7.195227545031912,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1779.315801962234,
+      "impact_pence": 7.172651752645379,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0854528274,
+      "upside": 0.0635479988,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -241,12 +241,12 @@
     {
       "id": "8",
       "challenge": "Valuation/PM: minorities = USL outside stake at market (USD 4450m) + others at book (USD 1,328m) = USD 5778m",
-      "value_pence": 1666.7893371809914,
-      "impact_pence": -141.97801557459252,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1629.7955397773783,
+      "impact_pence": -142.34761043221033,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": -0.003712291,
+      "upside": -0.0258245429,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.bridge.minorities_method": "book"
@@ -258,12 +258,12 @@
     {
       "id": "8'",
       "challenge": "Check: old book method (USD 2,083m, incl. EABL's 35%)",
-      "value_pence": 1795.5191591439866,
-      "impact_pence": -13.248193611597344,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1758.1214582200953,
+      "impact_pence": -14.02169198949332,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0732332093,
+      "upside": 0.0508795327,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.bridge.minorities_method": "book"
@@ -273,12 +273,12 @@
     {
       "id": "A1",
       "challenge": "Audit/Fundamentals: organic growth FY30-31 2% instead of 3% (3% unsourced; IWSR volumes falling)",
-      "value_pence": 1778.8099225296044,
-      "impact_pence": -29.95743022597958,
-      "wacc": 0.079176098112,
+      "value_pence": 1772.1431502095886,
+      "impact_pence": 0.0,
+      "wacc": 0.07920563333200001,
       "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0632456202,
+      "upside": 0.0592606995,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.organic_growth": [
@@ -294,12 +294,12 @@
     {
       "id": "A2",
       "challenge": "Audit/Data: disposal proceeds net of an illustrative USD 300m tax and costs (brief asks for NET; input is gross)",
-      "value_pence": 1798.3167680859658,
-      "impact_pence": -10.450584669618138,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1761.7253553618834,
+      "impact_pence": -10.417794847705181,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0749054203,
+      "upside": 0.0530336852,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -309,12 +309,12 @@
     {
       "id": "A2'",
       "challenge": "Check: disposal proceeds less USD 100m (per-USD-100m sensitivity)",
-      "value_pence": 1805.283824532378,
-      "impact_pence": -3.4835282232058944,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1768.6705519270201,
+      "impact_pence": -3.4725982825684696,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0790698294,
+      "upside": 0.057185028,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -324,12 +324,12 @@
     {
       "id": "A3",
       "challenge": "Audit/Data: diluted shares 2,231m (2,224m + 7m dilutive options, 20-F FY26)",
-      "value_pence": 1803.0921526348807,
-      "impact_pence": -5.675200120703266,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1772.1431502095886,
+      "impact_pence": 0.0,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.0777598043,
+      "upside": 0.0592606995,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -339,12 +339,12 @@
     {
       "id": "A4a",
       "challenge": "Audit/Valuation: ERP 5.0% (Kroll recommended US ERP; old desk figure) with the 10-year risk-free",
-      "value_pence": 1625.4742864123532,
-      "impact_pence": -183.29306634323075,
-      "wacc": 0.084600586304,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1592.5978309159505,
+      "impact_pence": -179.54531929363816,
+      "wacc": 0.08463511404400001,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": -0.0284074797,
+      "upside": -0.0480586785,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.wacc.equity_risk_premium": 0.05
@@ -354,12 +354,12 @@
     {
       "id": "A4b",
       "challenge": "Audit/Valuation: ERP 5.0% with Kroll's own pairing, the 20-year Treasury 5.60% (13 Oct 2026, FRED DGS20)",
-      "value_pence": 1545.6829264155685,
-      "impact_pence": -263.0844263400154,
-      "wacc": 0.087284298304,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1514.4352810079743,
+      "impact_pence": -257.70786920161436,
+      "wacc": 0.087321296044,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": -0.0761010601,
+      "upside": -0.0947786724,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.wacc.equity_risk_premium": 0.05
@@ -371,13 +371,13 @@
     {
       "id": "A4c",
       "challenge": "Audit/Valuation: ERP 5.5% (Fernandez 2025 survey, US 5.5% / UK 5.4%)",
-      "value_pence": 1525.7182452737634,
-      "impact_pence": -283.04910748182056,
-      "wacc": 0.087990891424,
-      "terminal_capex_pct_sales": 0.062116881116912624,
-      "rating": "HOLD",
-      "upside": -0.0880345217,
-      "flips_to_sell": false,
+      "value_pence": 1494.87781080783,
+      "impact_pence": -277.26533940175864,
+      "wacc": 0.08802853948900001,
+      "terminal_capex_pct_sales": 0.062167019144524,
+      "rating": "SELL",
+      "upside": -0.1064687323,
+      "flips_to_sell": true,
       "brief_changes": {
         "dcf.wacc.equity_risk_premium": 0.055
       },
@@ -386,12 +386,12 @@
     {
       "id": "A5",
       "challenge": "Audit: terminal growth 1.5% (= challenge 4; listed again as an audit line)",
-      "value_pence": 1735.9343657274837,
-      "impact_pence": -72.8329870281002,
-      "wacc": 0.079176098112,
-      "terminal_capex_pct_sales": 0.05500293974234985,
+      "value_pence": 1700.9489079083096,
+      "impact_pence": -71.19424230127902,
+      "wacc": 0.07920563333200001,
+      "terminal_capex_pct_sales": 0.05504054326305836,
       "rating": "HOLD",
-      "upside": 0.0376176723,
+      "upside": 0.0167058625,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.terminal_growth": 0.015
@@ -401,12 +401,12 @@
     {
       "id": "S1",
       "challenge": "Stack: audit's sourced small corrections (diluted 2,231m + risk-free 5.24% (9 Oct) + USD 300m disposal tax)",
-      "value_pence": 1787.4936940429066,
-      "impact_pence": -21.27365871267739,
-      "wacc": 0.079317346112,
-      "terminal_capex_pct_sales": 0.062116881116912624,
+      "value_pence": 1756.6347237697144,
+      "impact_pence": -15.508426439874256,
+      "wacc": 0.079347011332,
+      "terminal_capex_pct_sales": 0.062167019144524,
       "rating": "HOLD",
-      "upside": 0.068436159,
+      "upside": 0.049990869,
       "flips_to_sell": false,
       "brief_changes": {},
       "input_changes": {
@@ -418,12 +418,12 @@
     {
       "id": "S2",
       "challenge": "Stack: audit bear lines A1 + A2 + A3 + A4a (ERP 5.0%) + A5 (g 1.5%)",
-      "value_pence": 1528.809024237412,
-      "impact_pence": -279.95832851817204,
-      "wacc": 0.084600586304,
+      "value_pence": 1527.8351870483816,
+      "impact_pence": -244.307963161207,
+      "wacc": 0.08463511404400001,
       "terminal_capex_pct_sales": 0.05504054326305836,
       "rating": "HOLD",
-      "upside": -0.0861870746,
+      "upside": -0.0867691649,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.organic_growth": [
@@ -444,12 +444,12 @@
     {
       "id": "S3",
       "challenge": "Stack: S2 with ERP 5.5% (Fernandez survey) instead of 5.0%",
-      "value_pence": 1439.3636601068092,
-      "impact_pence": -369.4036926487747,
-      "wacc": 0.087990891424,
+      "value_pence": 1438.3972794673932,
+      "impact_pence": -333.7458707421954,
+      "wacc": 0.08802853948900001,
       "terminal_capex_pct_sales": 0.05504054326305836,
       "rating": "SELL",
-      "upside": -0.1396511296,
+      "upside": -0.140228763,
       "flips_to_sell": true,
       "brief_changes": {
         "dcf.organic_growth": [
@@ -470,12 +470,12 @@
     {
       "id": "S4",
       "challenge": "Stack: S2 + flow-through 33% (2017 'two thirds reinvested') + beta 1.00",
-      "value_pence": 1449.8066889096326,
-      "impact_pence": -358.96066384595133,
-      "wacc": 0.08600953510400002,
+      "value_pence": 1448.8556946593005,
+      "impact_pence": -323.2874555502881,
+      "wacc": 0.08604535959400002,
       "terminal_capex_pct_sales": 0.05449057881284031,
       "rating": "SELL",
-      "upside": -0.1334090323,
+      "upside": -0.1339774688,
       "flips_to_sell": true,
       "brief_changes": {
         "dcf.organic_growth": [
@@ -498,12 +498,12 @@
     {
       "id": "S5",
       "challenge": "Stack: S4 but ERP kept at 4.2% (business bear only: A1 + A2 + A3 + A5 + flow-through 33% + beta 1.00)",
-      "value_pence": 1609.5662463011056,
-      "impact_pence": -199.20110645447835,
-      "wacc": 0.08035961510400001,
+      "value_pence": 1608.6081261772908,
+      "impact_pence": -163.53502403229777,
+      "wacc": 0.080390239594,
       "terminal_capex_pct_sales": 0.05449057881284031,
       "rating": "HOLD",
-      "upside": -0.0379161708,
+      "upside": -0.0384888666,
       "flips_to_sell": false,
       "brief_changes": {
         "dcf.organic_growth": [
@@ -525,12 +525,12 @@
     {
       "id": "B",
       "challenge": "Engine bear scenario (no growth, 25% flow-through, WACC +1pt): combined, NOT a single change",
-      "value_pence": 1298.3031219659958,
-      "impact_pence": -510.4642307895881,
-      "wacc": 0.089176098112,
+      "value_pence": 1293.516037320596,
+      "impact_pence": -478.62711288899254,
+      "wacc": 0.089205633332,
       "terminal_capex_pct_sales": 0.0610986866183603,
       "rating": "SELL",
-      "upside": -0.223967052,
+      "upside": -0.2268284296,
       "flips_to_sell": true,
       "brief_changes": {},
       "input_changes": {}
