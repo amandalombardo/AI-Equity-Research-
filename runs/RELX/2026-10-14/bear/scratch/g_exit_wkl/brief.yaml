@@ -1,0 +1,132 @@
+company:
+  name: RELX PLC
+  ticker: RELX
+  price_ticker: REL.L
+  price_currency: GBp
+  sec_cik: 0000929869
+  accounting: ifrs
+  annual_form: 20-F
+  reporting_currency: GBP
+  fiscal_year_end_month: 12
+  benchmark_index: ^FTSE
+base_year:
+  fiscal_year: 2025
+  net_sales_mgbp: 9590
+  adjusted_operating_profit_mgbp: 3342
+  print_revenue_mgbp: 399
+  print_adjusted_operating_profit_mgbp: 185
+dcf:
+  currency: GBP
+  forecast_years:
+  - 2026
+  - 2027
+  - 2028
+  - 2029
+  - 2030
+  organic_growth:
+  - 0.03
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  savings:
+    cumulative_mgbp:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    flow_through: 0.0
+  base_margin: 0.35
+  base_margin_rule: h1_2026_adjusted_margin_ex_print_held_flat
+  tax_rate: 0.228
+  capex_pct_sales: 0.071
+  da_pct_sales: 0.0507
+  nwc_pct_sales: null
+  terminal_growth: 0.054629
+  terminal_capex_pct_sales: null
+  terminal_ronic: 0.154
+  mid_year_convention: true
+  valuation_basis: balance_sheet_date
+  wacc:
+    risk_free: null
+    equity_risk_premium: 0.05
+    beta: null
+    pre_tax_cost_of_debt: null
+    credit_spread: 0.007
+    target_debt_weight: null
+  bridge:
+    net_debt_mgbp: null
+    lease_liabilities_mgbp: 0
+    minority_interests_mgbp: null
+    minorities_method: book
+    pension_deficit_mgbp: 0
+    associates_mgbp: null
+    disposal_proceeds_mgbp: 0
+    restructuring_cash_mgbp: 0
+    buybacks_after_balance_sheet_mgbp: null
+  shares_outstanding_m: null
+scenarios:
+  bear:
+    organic_growth:
+    - 0.03
+    - 0.03
+    - 0.03
+    - 0.03
+    - 0.03
+    flow_through: 0.0
+    wacc_shift: 0.01
+    bear_agent_margin: 0.331
+comps:
+  peers:
+  - name: Thomson Reuters
+    ticker: TRI
+    fy_end_month: 12
+    source: SEC EDGAR (40-F) + yfinance
+  - name: Verisk Analytics
+    ticker: VRSK
+    fy_end_month: 12
+    source: SEC EDGAR
+  - name: S&P Global
+    ticker: SPGI
+    fy_end_month: 12
+    source: SEC EDGAR
+  - name: Moody's
+    ticker: MCO
+    fy_end_month: 12
+    source: SEC EDGAR
+  - name: Wolters Kluwer
+    ticker: WKL.AS
+    fy_end_month: 12
+    source: annual report + yfinance (flag)
+  - name: Experian
+    ticker: EXPN.L
+    fy_end_month: 3
+    source: annual report + yfinance (flag)
+  - name: London Stock Exchange Group
+    ticker: LSEG.L
+    fy_end_month: 12
+    source: annual report + yfinance (flag)
+  optional_peers:
+  - name: Informa
+    ticker: INF.L
+    fy_end_month: 12
+    note: exhibitions and academic publishing
+    show separately: null
+  multiples:
+  - ev_ebitda_ntm
+  - ev_ebitda_ltm
+  - pe_ntm
+  - fcf_yield
+  statistic: median
+rating:
+  buy_if_upside_at_least: 0.15
+  sell_if_downside_at_least: 0.1
+checks:
+  data_tie_out_tolerance: 0.005
+  excel_match_tolerance: 0.02
+  published_fy25:
+    net_sales_mgbp: 9590
+    adjusted_operating_profit_mgbp: 3342
+    adjusted_operating_margin: 0.348
+    net_debt_mgbp: 7201
