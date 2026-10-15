@@ -2,7 +2,7 @@
 
 A team of six AI agents that produces a two-page buy/hold/sell investment memo on a listed company.
 **Portfolio manager: Amanda.** She writes the brief, sets the assumptions, challenges the outputs and makes the final call.
-Claude Code builds the desk, Codex independently audits the maths, and Amanda validates the key numbers against her own Excel model.
+Claude Code builds the desk, Codex independently audits the maths, and at Amanda's request every calculation was rechecked: automated tests against hand-worked answers, a test that the Excel DCF matches the Python engine, and an evidence audit of every input.
 
 Student portfolio project, not investment advice.
 
