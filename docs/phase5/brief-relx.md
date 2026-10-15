@@ -19,5 +19,6 @@ relx-facts.md; primary-source checks: relx-verification.md; audit: relx-evidence
 | 10 | Terminal RONIC | 15.4% (RELX's reported FY25 ROIC); bear = WACC | relx-ronic-evidence.md |
 | 11 | Bridge | net debt 7,104 (no leases); pension 0; JVs 0 (in profit); +131 investments; -24 minorities; dividends and buybacks (2,056 to 25 Sep) in the roll-forward; 1,743.75m shares | relx-bridge-evidence.md |
 | 12 | Audit corrections | capex 7.10% (actual pre-publication £54m); Fitch BBB+; buybacks to 25 Sep | relx-evidence-audit.md |
+| 13 | Final rating | SELL at 1,621p vs 2,771p (-41.5%), "SELL on the desk's discount rate", agreed 15 Oct 2026 | runs/RELX/2026-10-14 |
 
 Unchanged portfolio rules: ERP 5%, mid-year discounting, balance-sheet-date roll-forward, Buy >= +15%, Sell <= -10%.

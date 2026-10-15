@@ -1,6 +1,6 @@
 # RELX PLC (LSE: REL.L)
 
-**Rating: SELL | Desk rating: SELL (PM review pending) | Fair value 1,621p | Share price 2,771p (13 Oct 2026 close) | Upside -41.5% | Bear case 1,244p**
+**Rating: SELL | Desk rating: SELL (PM confirmed 15 Oct 2026) | Fair value 1,621p | Share price 2,771p (13 Oct 2026 close) | Upside -41.5% | Bear case 1,244p**
 
 Memo of 14 October 2026. Desk rule: BUY at +15% or more, SELL at -10% or worse. **HOLD starts at 2,494p, BUY at 3,187p.** Per-share values in pence (GBp); totals in GBP m (RELX reports in pounds, so no exchange rate is used); 1,743.75m shares (25 Sep 2026).
 
