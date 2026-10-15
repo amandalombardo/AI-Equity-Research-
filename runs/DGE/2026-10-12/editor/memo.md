@@ -27,10 +27,12 @@ DCF in USD m, valued at 30 June 2026 with mid-year discounting, rolled forward t
 - **Growth path:** base net sales USD 18,505.5m (ex-EABL); organic growth 0.0%, 1.5%, 2.5%, 3.0%, 3.0% (FY27-31). The FY30-31 3% has no source; 2% gives 1,778.8p.
 - **Savings flow-through:** 46% of cumulative savings (USD 377.5m, 962.5m, then 1,000m) reaches operating profit.
 - **WACC 7.92%:** risk-free 5.22% (US 10-year, FRED, 8 Oct 2026), beta 0.96 (industry bottom-up), **ERP 4.2%** (Damodaran implied ERP for the S&P 500, 1 Oct 2026; seen only in search summaries, PM to confirm on Damodaran's site; the old 5.0% had no source), cost of equity 9.25%; pre-tax cost of debt 6.22% (risk-free + 1%); debt weight 29.4%.
-- **Terminal:** growth 2.0%; terminal capex 6.21% of sales (new investment earns FY26 ROIC of 13.4%). **Terminal value is 76.7% of EV**, above the desk's 75% flag; exit multiple 10.0x FY31 EBITDA, slightly above the c.9.75x the market pays today.
+- **Terminal:** growth 2.0%; terminal capex 6.21% of sales (RONIC 13.4%, the FY26 ROIC). **Terminal value is 76.7% of EV** (above the desk's 75% flag); exit multiple 10.0x FY31 EBITDA vs c.9.75x at market today.
 - **Minorities:** 2.566% x EV = USD 1,703m.
 
-Bridge (USD m): EV 66,356 - net debt 20,482 - minorities 1,703 - restructuring cash 850 + associates 5,284 + disposal proceeds 3,318 = equity 51,923 at 30 June; 53,236 at 12 Oct; 2,224m shares = **1,808.8p**. The price is the 12 Oct close, **cum-dividend**: the 30c final dividend (about 22.6p) went ex on 15 Oct, so later prices are not like-for-like. ERP: 5.5% gives 1,525.7p; SELL above 5.61%, BUY below 3.76%. Comps: median P/E 18.5x on four peers implies 2,311p (DCF 21.7% below); P/E only, two peers press-sourced, little weight.
+Bridge (USD m): EV 66,356 - net debt 20,482 - minorities 1,703 - restructuring cash 850 + associates 5,284 + disposal proceeds 3,318 = equity 51,923 at 30 June; 53,236 at 12 Oct; 2,224m shares = **1,808.8p**. The price is the 12 Oct close, **cum-dividend**: the 30c final dividend (about 22.6p) went ex on 15 Oct, so later prices are not like-for-like. ERP: 5.5% gives 1,525.7p; SELL above 5.61%, BUY below 3.76%. Book-value minorities (USD 2,083m) would give 1,795.5p. Comps: median P/E 18.5x on four peers implies 2,311p (DCF 21.7% below); P/E only, two peers press-sourced, little weight.
+
+Sensitivity of the DCF value (pence per share, GBp) to WACC and terminal growth (g); base in bold.
 
 | Value per share (p) | g 1.5% | g 2.0% | g 2.5% | g 3.0% |
 |---|---|---|---|---|
