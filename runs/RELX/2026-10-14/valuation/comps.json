@@ -1,0 +1,417 @@
+{
+  "units": "multiples unit-free; EBITDA, EV, equity in GBP m; value per share in pence (GBp) and GBP",
+  "price_pence": 2771.0,
+  "shares_m": 1743.754727,
+  "method": "multiples ev_ebitda_ntm, ev_ebitda_ltm, pe_ntm, fcf_yield; statistic median):\n- EV/EBITDA LTM (primary): median of the 7 core peers. Informa (brief optional_peers) shown separately, not in the median.\n- Calendarisation: six peers' LTM ends 30 Jun 2026; Experian's (fiscal year to March) ends 31 Mar 2026. Restating the\n  peers onto RELX's December 2025 year would need their H2 2025 figures, which are not in data/peers.csv (MISSING). So,\n  as in the Unilever run, RELX's EBITDA is put on the peers' window (12 months to June 2026) with desk.comps.calendarise\n  (6/12 FY25 actual + 6/12 FY26 engine forecast), and checked against RELX's ACTUAL LTM to June 2026 (3,930: FY25 3,846\n  - H1 2025 1,908 + H1 2026 1,992, H1 2026 results p.10). Experian's 3-month offset is left as is (flagged).\n- Forward P/E: each peer's consensus EPS is calendarised onto RELX's December year end (Dec 2026 and Dec 2027).\n  Multiple only: RELX has no consensus EPS in the data folder (MISSING), so no implied value is computed.\n- The EV is turned into equity with the SAME non-operating items as the DCF (minorities 24 at book, venture capital and\n  other investments 131), so the comps value and the DCF value per share are comparable. A market multiple prices the\n  company TODAY, so there is no growth at the cost of equity. Primary bridge: net debt ex leases at 30 Jun 2026 (8,614,\n  latest reported) plus the cash paid out after June and before the 25 Sep share count (buybacks 100 + 150 + 56.2,\n  interim dividend 366). Low-bound variant at the DCF's dates: 31 Dec 2025 net debt 7,104 plus every dividend and buyback\n  since (no credit for the cash earned in 2026).",
+  "relx_metrics_mgbp": {
+    "ebitda_calendarised_ltm_jun2026": 3901.997195,
+    "ebitda_actual_ltm_jun2026": 3930.0,
+    "ebitda_fy25_adjusted": 3846.0,
+    "ebitda_fy26_engine": 3957.9943900000003,
+    "ebitda_fy25_reported_basis": 3779.0,
+    "fcf_fy25_ocf_less_capex": 2311.0,
+    "sources": {
+      "ebitda_fy25_adjusted": "RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.186, five year summary (adjusted figures, non-GAAP)",
+      "h1_ebitda": "RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.10 (adjusted EBITDA H1 2026 1,992; H1 2025 1,908), as cited by the Risk agent",
+      "ebitda_fy25_reported_basis": "operating_profit_reported 3,027 + depreciation_amortisation 752 (financials.csv, 20-F XBRL)",
+      "fcf_fy25": "operating_cash_flow 2,836 - capex_total_relx_definition 525 (financials.csv, 20-F XBRL)"
+    }
+  },
+  "bridge_primary": {
+    "net_debt_ex_leases_30jun2026_mgbp": 8614.0,
+    "buybacks_after_june_mgbp": 306.2,
+    "interim_dividend_after_june_mgbp": 366.0,
+    "minorities_book_mgbp": 24.0,
+    "investments_mgbp": 131.0,
+    "roll_forward_at_cost_of_equity": "none (a market multiple already prices the company today)"
+  },
+  "bridge_low_bound_dcf_dates": {
+    "net_debt_31dec2025_mgbp": 7104.0,
+    "dividends_and_buybacks_deducted_mgbp": 3273.2
+  },
+  "peers": [
+    {
+      "peer": "Thomson Reuters",
+      "ticker": "TRI",
+      "ccy": "USD",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); RELX EBITDA put on the same window; forward EPS = Dec FY",
+      "price": 105.14,
+      "market_cap_m": 45552.0,
+      "ev_m": 47916.0,
+      "ebitda_ltm_m": 3302.0,
+      "ev_ebitda_ltm": 14.511205330102968,
+      "ev_ebitda_ltm_csv": 14.51,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 27.41,
+      "pe_ntm_csv": 21.26,
+      "price_in_eps_units": 105.14,
+      "eps_dec2026_calendarised": 4.4331,
+      "eps_dec2027_calendarised": 5.08445,
+      "pe_dec2026_calendarised": 23.717037738828363,
+      "pe_dec2027_calendarised": 20.678736146485853,
+      "fcf_yield_ltm": 0.049,
+      "flag": "flag: non-filing source (price, NTM EPS consensus, shares); ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is reported operating income + D&A, unadjusted; TRI reports under IFRS in USD; D&A = depreciation + amortisation of computer software + other identifiable intangibles; capex tag (PP&E line) is TRI's 'capital expenditures' incl. capitalised software (FY25 634); shares from Yahoo (40-F cover count is stale); PENDING: sale of 51% of Global Print to a KKR joint venture (TRI Q2 2026 results 6-K ex 99.1, accession 0001193125-26-333835): LTM figures still include print"
+    },
+    {
+      "peer": "Verisk Analytics",
+      "ticker": "VRSK",
+      "ccy": "USD",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); RELX EBITDA put on the same window; forward EPS = Dec FY",
+      "price": 176.65,
+      "market_cap_m": 22992.0,
+      "ev_m": 26914.0,
+      "ebitda_ltm_m": 1637.0,
+      "ev_ebitda_ltm": 16.441050702504583,
+      "ev_ebitda_ltm_csv": 16.44,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 25.97,
+      "pe_ntm_csv": 20.81,
+      "price_in_eps_units": 176.65,
+      "eps_dec2026_calendarised": 7.70588,
+      "eps_dec2027_calendarised": 8.70235,
+      "pe_dec2026_calendarised": 22.924052801237497,
+      "pe_dec2027_calendarised": 20.29911460697398,
+      "fcf_yield_ltm": 0.0538,
+      "flag": "flag: non-filing source (price, NTM EPS consensus); ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is reported operating income + D&A, unadjusted; debt = current debt + long-term debt incl. finance leases"
+    },
+    {
+      "peer": "S&P Global",
+      "ticker": "SPGI",
+      "ccy": "USD",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); RELX EBITDA put on the same window; forward EPS = Dec FY",
+      "price": 409.99,
+      "market_cap_m": 120865.0,
+      "ev_m": 137040.0,
+      "ebitda_ltm_m": 8369.0,
+      "ev_ebitda_ltm": 16.374716214601506,
+      "ev_ebitda_ltm_csv": 16.37,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 24.55,
+      "pe_ntm_csv": 20.82,
+      "price_in_eps_units": 409.99,
+      "eps_dec2026_calendarised": 17.85844,
+      "eps_dec2027_calendarised": 20.19098,
+      "pe_dec2026_calendarised": 22.957772347416682,
+      "pe_dec2027_calendarised": 20.305601808332238,
+      "fcf_yield_ltm": 0.0461,
+      "flag": "flag: non-filing source (price, NTM EPS consensus); ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is reported operating income + D&A, unadjusted; EV includes redeemable non-controlling interest (S&P Dow Jones Indices minority, CME Group) at carrying amount"
+    },
+    {
+      "peer": "Moody's",
+      "ticker": "MCO",
+      "ccy": "USD",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); RELX EBITDA put on the same window; forward EPS = Dec FY",
+      "price": 464.13,
+      "market_cap_m": 80387.0,
+      "ev_m": 86007.0,
+      "ebitda_ltm_m": 4150.0,
+      "ev_ebitda_ltm": 20.724578313253012,
+      "ev_ebitda_ltm_csv": 20.72,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 28.76,
+      "pe_ntm_csv": 25.13,
+      "price_in_eps_units": 464.13,
+      "eps_dec2026_calendarised": 16.94514,
+      "eps_dec2027_calendarised": 18.8876,
+      "pe_dec2026_calendarised": 27.39015434513967,
+      "pe_dec2027_calendarised": 24.573264999258775,
+      "fcf_yield_ltm": 0.0369,
+      "flag": "flag: non-filing source (price, NTM EPS consensus); ebitda_ntm MISSING (no free EBITDA consensus); EBITDA is reported operating income + D&A, unadjusted"
+    },
+    {
+      "peer": "Wolters Kluwer",
+      "ticker": "WKL.AS",
+      "ccy": "EUR",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); RELX EBITDA put on the same window; forward EPS = Dec FY",
+      "price": 78.84,
+      "market_cap_m": 17537.0,
+      "ev_m": 21591.0,
+      "ebitda_ltm_m": 1947.0,
+      "ev_ebitda_ltm": 11.089368258859784,
+      "ev_ebitda_ltm_csv": 11.09,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 13.14,
+      "pe_ntm_csv": 12.99,
+      "price_in_eps_units": 78.84,
+      "eps_dec2026_calendarised": 5.6047,
+      "eps_dec2027_calendarised": 6.19534,
+      "pe_dec2026_calendarised": 14.066765393330597,
+      "pe_dec2027_calendarised": 12.725693827941647,
+      "fcf_yield_ltm": 0.0712,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report)"
+    },
+    {
+      "peer": "Experian",
+      "ticker": "EXPN.L",
+      "ccy": "USD",
+      "fy_end_month": 3,
+      "ltm_end": "2026-03-31",
+      "calendarised": "LTM to Mar 2026 (its fiscal year): 3 months earlier than the common window (FLAG); forward EPS calendarised to Dec",
+      "price": 2728.0,
+      "market_cap_m": 31617.0,
+      "ev_m": 36881.0,
+      "ebitda_ltm_m": 2540.0,
+      "ev_ebitda_ltm": 14.52007874015748,
+      "ev_ebitda_ltm_csv": 14.52,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 21.05,
+      "pe_ntm_csv": 16.75,
+      "price_in_eps_units": 36.088712,
+      "eps_dec2026_calendarised": null,
+      "eps_dec2027_calendarised": 2.209915,
+      "pe_dec2026_calendarised": null,
+      "pe_dec2027_calendarised": 16.330362027498794,
+      "fcf_yield_ltm": 0.0288,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); Experian fiscal year ends 31 March: LTM per Yahoo is to its latest reported quarter/half"
+    },
+    {
+      "peer": "London Stock Exchange Group",
+      "ticker": "LSEG.L",
+      "ccy": "GBP",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); RELX EBITDA put on the same window; forward EPS = Dec FY",
+      "price": 8350.0,
+      "market_cap_m": 40098.0,
+      "ev_m": 49403.0,
+      "ebitda_ltm_m": 3144.0,
+      "ev_ebitda_ltm": 15.713422391857506,
+      "ev_ebitda_ltm_csv": 15.71,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 28.36,
+      "pe_ntm_csv": 15.62,
+      "price_in_eps_units": 83.5,
+      "eps_dec2026_calendarised": 4.78507,
+      "eps_dec2027_calendarised": 5.49796,
+      "pe_dec2026_calendarised": 17.45011044770505,
+      "pe_dec2027_calendarised": 15.18745134559,
+      "fcf_yield_ltm": 0.0429,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); P/E LTM uses REPORTED net income (after acquired-intangible amortisation / impairments) while NTM EPS consensus is ADJUSTED: prefer P/E NTM"
+    }
+  ],
+  "optional_peers_shown_separately": [
+    {
+      "peer": "Informa",
+      "ticker": "INF.L",
+      "ccy": "GBP",
+      "fy_end_month": 12,
+      "ltm_end": "2026-06-30",
+      "calendarised": "LTM to Jun 2026 (common window); RELX EBITDA put on the same window; forward EPS = Dec FY",
+      "price": 881.4,
+      "market_cap_m": 11975.0,
+      "ev_m": 15079.0,
+      "ebitda_ltm_m": 1110.0,
+      "ev_ebitda_ltm": 13.584684684684685,
+      "ev_ebitda_ltm_csv": 13.58,
+      "ev_ebitda_ntm": null,
+      "pe_ltm": 54.16,
+      "pe_ntm_csv": 13.71,
+      "price_in_eps_units": 8.814,
+      "eps_dec2026_calendarised": 0.55983,
+      "eps_dec2027_calendarised": 0.66568,
+      "pe_dec2026_calendarised": 15.744065162638657,
+      "pe_dec2027_calendarised": 13.240596082201657,
+      "fcf_yield_ltm": 0.0753,
+      "flag": "flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); P/E LTM uses REPORTED net income (after acquired-intangible amortisation / impairments) while NTM EPS consensus is ADJUSTED: prefer P/E NTM; OPTIONAL (exhibitions and academic publishing): show separately, not in the median",
+      "note": "exhibitions and academic publishing (brief optional_peers): not in any median"
+    }
+  ],
+  "legs": {
+    "ev_ebitda_ltm_x_calendarised_ebitda (PRIMARY)": {
+      "peers_used": 7,
+      "median_multiple": 15.713422391857506,
+      "low_multiple": 11.089368258859784,
+      "high_multiple": 20.724578313253012,
+      "relx_metric_mgbp": 3901.997195,
+      "implied_ev_mgbp": {
+        "low": 43270.68384039291,
+        "implied_value": 61313.73009687818,
+        "high": 80867.24644587109
+      },
+      "value_per_share_pence": {
+        "low": 1955.0618738132264,
+        "implied_value": 2989.785735897144,
+        "high": 4111.131303953798
+      },
+      "value_per_share_gbp": {
+        "low": 19.550618738132265,
+        "implied_value": 29.89785735897144,
+        "high": 41.11131303953798
+      },
+      "upside_vs_price": {
+        "low": -0.2944561985517047,
+        "implied_value": 0.07895551638294629,
+        "high": 0.48362732008437326
+      }
+    },
+    "ev_ebitda_ltm_x_actual_ltm_ebitda": {
+      "peers_used": 7,
+      "median_multiple": 15.713422391857506,
+      "low_multiple": 11.089368258859784,
+      "high_multiple": 20.724578313253012,
+      "relx_metric_mgbp": 3930.0,
+      "implied_ev_mgbp": {
+        "low": 43581.21725731895,
+        "implied_value": 61753.75,
+        "high": 81447.59277108434
+      },
+      "value_per_share_pence": {
+        "low": 1972.8701935337583,
+        "implied_value": 3015.019783800133,
+        "high": 4144.412723423364
+      },
+      "value_per_share_gbp": {
+        "low": 19.728701935337583,
+        "implied_value": 30.150197838001333,
+        "high": 41.44412723423364
+      },
+      "upside_vs_price": {
+        "low": -0.2880295223624113,
+        "implied_value": 0.08806199343202215,
+        "high": 0.49563793699868786
+      }
+    },
+    "ev_ebitda_ltm_ex_experian_x_calendarised": {
+      "peers_used": 6,
+      "median_multiple": 16.044069303229506,
+      "low_multiple": 11.089368258859784,
+      "high_multiple": 20.724578313253012,
+      "relx_metric_mgbp": 3901.997195,
+      "implied_ev_mgbp": {
+        "low": 43270.68384039291,
+        "implied_value": 62603.91341758714,
+        "high": 80867.24644587109
+      },
+      "value_per_share_pence": {
+        "low": 1955.0618738132264,
+        "implied_value": 3063.774542965706,
+        "high": 4111.131303953798
+      },
+      "value_per_share_gbp": {
+        "low": 19.550618738132265,
+        "implied_value": 30.63774542965706,
+        "high": 41.11131303953798
+      },
+      "upside_vs_price": {
+        "low": -0.2944561985517047,
+        "implied_value": 0.10565663766355327,
+        "high": 0.48362732008437326
+      }
+    },
+    "ev_ebitda_ltm_x_fy25_reported_basis_ebitda": {
+      "peers_used": 7,
+      "median_multiple": 15.713422391857506,
+      "low_multiple": 11.089368258859784,
+      "high_multiple": 20.724578313253012,
+      "relx_metric_mgbp": 3779.0,
+      "implied_ev_mgbp": {
+        "low": 41906.722650231124,
+        "implied_value": 59381.02321882951,
+        "high": 78318.18144578314
+      },
+      "value_per_share_pence": {
+        "low": 1876.842089284907,
+        "implied_value": 2878.9497996199275,
+        "high": 3964.9487611558534
+      },
+      "value_per_share_gbp": {
+        "low": 18.76842089284907,
+        "implied_value": 28.789497996199277,
+        "high": 39.649487611558534
+      },
+      "upside_vs_price": {
+        "low": -0.3226841972988427,
+        "implied_value": 0.03895698290145355,
+        "high": 0.43087288385270783
+      }
+    },
+    "ev_ebitda_ltm_x_calendarised_dcf_dates_bridge_low_bound": {
+      "peers_used": 7,
+      "median_multiple": 15.713422391857506,
+      "low_multiple": 11.089368258859784,
+      "high_multiple": 20.724578313253012,
+      "relx_metric_mgbp": 3901.997195,
+      "implied_ev_mgbp": {
+        "low": 43270.68384039291,
+        "implied_value": 61313.73009687818,
+        "high": 80867.24644587109
+      },
+      "value_per_share_pence": {
+        "low": 1892.4957351753121,
+        "implied_value": 2927.2195972592294,
+        "high": 4048.565165315884
+      },
+      "value_per_share_gbp": {
+        "low": 18.92495735175312,
+        "implied_value": 29.272195972592296,
+        "high": 40.48565165315884
+      },
+      "upside_vs_price": {
+        "low": -0.3170351009832869,
+        "implied_value": 0.05637661395136395,
+        "high": 0.4610484176527909
+      }
+    },
+    "fcf_yield_ltm": {
+      "median_yield": 0.0461,
+      "low_yield": 0.0288,
+      "high_yield": 0.0712,
+      "relx_fcf_fy25_mgbp": 2311.0,
+      "value_per_share_pence": {
+        "low": 1861.3779028648523,
+        "implied_value": 2874.83962438129,
+        "high": 4601.739815415885
+      },
+      "note": "Secondary. RELX FCF is FY25 (Dec 2025), half a year before the peers' LTM; RELX's operating cash flow is after interest and tax (IFRS), peers' bases differ (Yahoo for four). Equity comes directly, no bridge."
+    },
+    "pe_dec2027_calendarised": {
+      "status": "MULTIPLE ONLY: no RELX consensus EPS in the data folder (MISSING). Not estimated.",
+      "median_core": 20.29911460697398,
+      "range_core": [
+        12.725693827941647,
+        24.573264999258775
+      ]
+    },
+    "pe_dec2026_calendarised": {
+      "status": "MULTIPLE ONLY (Experian excluded: its FY to Mar 2026 EPS consensus is not in the CSV).",
+      "median_core_ex_experian": 22.94091257432709
+    },
+    "ev_ebitda_ntm": {
+      "status": "MISSING: no NTM EBITDA consensus for any peer (data/notes.md, Peers)."
+    }
+  },
+  "relx_own_multiples": {
+    "market_cap_mgbp": 48319.44348517,
+    "market_implied_ev_mgbp": 57498.64348517,
+    "market_ev_ebitda_calendarised_ltm": 14.735695750588565,
+    "market_ev_ebitda_actual_ltm": 14.630698087829517,
+    "market_fcf_yield_fy25": 0.04782753759797094,
+    "note": "What the market pays for RELX on the same bridge as the primary comps leg (net debt 30 Jun 2026 + cash paid out since, minorities 24, investments 131)."
+  },
+  "comps_range_pence_primary": {
+    "low": 1955.0618738132264,
+    "implied_value": 2989.785735897144,
+    "high": 4111.131303953798
+  },
+  "dcf_value_pence": 1621.4814712148755,
+  "dcf_vs_comps_median": -0.4576596403727513,
+  "flags": [
+    "Peers' LTM is to 30 Jun 2026 (Experian 31 Mar 2026); RELX's EBITDA is put on the June window rather than the peers on December, because the peers' H2 2025 figures are not in peers.csv (MISSING).",
+    "Peer EBITDA is reported operating income + D&A (unadjusted, after acquisition costs); RELX's is adjusted EBITDA. FY25 reported-basis RELX EBITDA is 3,779 vs adjusted 3,846 (-1.7%); variant shown.",
+    "Three of seven core peers (WKL, EXPN, LSEG) and Informa are Yahoo-only figures, not checked to annual reports.",
+    "Experian: LTM ends March 2026; its EPS is in USD and its price in pence, so the price is converted to USD at the Data agent's 1.3229 USD/GBP before the forward P/E.",
+    "TRI: LTM still includes Global Print (51% sale to KKR pending). SPGI: EV includes the redeemable minority.",
+    "EV/EBITDA NTM MISSING (no consensus). Forward P/E is a multiple only: RELX consensus EPS MISSING.",
+    "US peers' EBITDA does not add back operating-lease cost, IFRS peers' and RELX's do (RELX lease depreciation 37 in FY25): a small mismatch, not adjusted."
+  ]
+}
