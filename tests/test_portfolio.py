@@ -61,7 +61,9 @@ def test_scorecard_relative_return_and_verdicts():
 def test_config_reads_the_published_calls():
     cfg = update.load_config()
     calls = {c["name"]: c["call"] for c in cfg["calls"]}
-    assert calls == {"DGE": "HOLD", "KO": "SELL", "ULVR": "HOLD", "RELX": "SELL"}
+    assert calls == {"DGE": "HOLD", "KO": "SELL", "ULVR": "SELL", "RELX": "SELL"}
+    ulvr = next(c for c in cfg["calls"] if c["name"] == "ULVR")
+    assert ulvr["published_call"] == "HOLD"  # the memo still says HOLD; the re-rating is the PM's, recorded with a date
     assert sum(leg["weight"] for leg in cfg["benchmark"].values()) == pytest.approx(1.0)
     assert cfg["start_date"] == "2026-10-15"
 
@@ -89,15 +91,21 @@ def test_compute_end_to_end_on_made_up_prices():
     res = update.compute(cfg, _fake(cfg), "2026-10-19")
     last = res["daily"][-1]
     # FTSE +2%, S&P +4%, RELX 2576/2800 = -8%, KO 91.80/90 = +2%, FX flat
-    assert last["fund_gbp"] == pytest.approx(85_000 * 1.02 + 35_000 * 1.04 - 10_000 * 0.92 - 10_000 * 1.02)
+    # three SELL bets: RELX and Unilever (PM re-rated) into the FTSE leg, KO into the S&P leg
+    assert last["fund_gbp"] == pytest.approx(95_000 * 1.02 + 35_000 * 1.04 - 10_000 * 0.92 - 10_000 * 1.02 - 10_000 * 1.0)
     assert last["benchmark_gbp"] == pytest.approx(102_500)
     score = {s["name"]: s for s in res["scorecard"]}
     assert score["RELX"]["verdict"] == "working"
     assert score["KO"]["relative"] == pytest.approx(1.02 / 1.04 - 1)
-    # Unilever at 4,900p vs 4,258.5p fair value is below -10%: flagged, but the call is not changed
-    assert score["ULVR"]["band_now"] == "SELL" and score["ULVR"]["band_flag"]
-    assert score["ULVR"]["call"] == "HOLD"
-    assert "FLAG: now in SELL band" in update.report(cfg, res)
+    # Unilever at 4,900p vs 4,258.5p fair value is in the SELL band, matching the PM's re-rating: no flag
+    assert score["ULVR"]["band_now"] == "SELL" and not score["ULVR"]["band_flag"]
+    assert "PM re-rating: ULVR HOLD -> SELL" in update.report(cfg, res)
+    # Diageo at 1,760p vs 1,780.2p stays HOLD; a fall to 1,500p would be flagged as a BUY-band crossing
+    data = _fake(cfg)
+    data["DGE.L"] = _frame([1740, 1600, 1500], ["2026-10-15", "2026-10-16", "2026-10-19"])
+    score = {s["name"]: s for s in update.compute(cfg, data, "2026-10-19")["scorecard"]}
+    assert score["DGE"]["band_now"] == "BUY" and score["DGE"]["band_flag"]
+    assert "FLAG: now in BUY band" in update.report(cfg, update.compute(cfg, data, "2026-10-19"))
 
 
 def test_missing_start_price_stops_the_run():

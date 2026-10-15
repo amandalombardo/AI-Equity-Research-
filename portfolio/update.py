@@ -32,7 +32,9 @@ def load_config(path: Path = CONFIG) -> dict:
         # the published call and fair value come from the final run, the band thresholds from the brief
         val = json.loads((ROOT / call["run"] / "valuation" / "valuation.json").read_text())["base"]["rating"]
         brief = yaml.safe_load((ROOT / call["brief"]).read_text())
-        call["call"] = val["rating"]
+        call["published_call"] = val["rating"]
+        # a PM re-rating (e.g. Unilever HOLD -> SELL on 15 Oct 2026) replaces the published call; fair value is unchanged
+        call["call"] = call.get("pm_rerating", {}).get("call", val["rating"])
         call["fair_value"] = val["fair_value"]
         call["memo_price"] = val["share_price"]
         call["buy_at"] = brief["rating"]["buy_if_upside_at_least"]
@@ -111,7 +113,7 @@ def compute(cfg: dict, data: dict[str, pd.DataFrame], as_of: str) -> dict:
         rel = pf.relative_return(growth[c["name"]], growth[c["home_leg"]])
         band = rating(c["fair_value"], latest["close"], c["buy_at"], c["sell_at"])
         scorecard.append({
-            "name": c["name"], "call": c["call"], "fair_value": c["fair_value"],
+            "name": c["name"], "call": c["call"], "published_call": c["published_call"], "fair_value": c["fair_value"],
             "unit": "USD" if c["currency"] == "USD" else "GBp",
             "start_price": df.loc[start, "close"], "latest_price": latest["close"],
             "latest_date": latest.name.date().isoformat(),
@@ -173,7 +175,11 @@ def report(cfg: dict, res: dict) -> str:
         flag = f"**FLAG: now in {s['band_now']} band; PM to decide whether to re-run**" if s["band_flag"] else "ok"
         lines.append(f"| {s['name']} | {s['call']} | {_price(s['fair_value'], s['unit'])} | {_price(s['start_price'], s['unit'])} | "
                      f"{_price(s['latest_price'], s['unit'])} ({s['latest_date']}) | {_pct(s['upside_now'])} | {s['band_now']} | {flag} |")
-    lines += ["", "Calls stay as published until the PM re-runs a company (design choice 4).", "",
+    rerated = [f"{c['name']} {c['published_call']} -> {c['call']} ({c['pm_rerating']['date']}: {c['pm_rerating']['reason']})"
+               for c in cfg["calls"] if "pm_rerating" in c]
+    lines += ["", "Calls stay as published unless the PM re-rates them (design choice 4)."]
+    lines += [f"PM re-rating: {r}" for r in rerated]
+    lines += ["",
               "## Positions (GBP)", "", "| Position | Start | Now | Profit/loss |", "|---|---|---|---|"]
     for p in res["positions"]:
         name = labels.get(p["name"], f"{p['name']} short")

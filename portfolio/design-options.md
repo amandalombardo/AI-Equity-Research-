@@ -5,6 +5,8 @@ Student project, not investment advice. Each choice below has options, my recomm
 
 **Decision (Amanda, 15 Oct 2026 13:22 UTC): all recommended options.** They are set in `portfolio/portfolio.yaml`.
 
+**Update (Amanda, 15 Oct 2026 13:45 UTC): Unilever re-rated SELL before the start** (choice 4, option C), because at 4,925.5p its 4,258.5p fair value is 13.5% below the price. Fair value unchanged; the memo still shows the published HOLD.
+
 ## The problem to solve first
 
 The desk has **no BUY calls**: two HOLDs (Diageo, Unilever) and two SELLs (Coca-Cola, RELX).

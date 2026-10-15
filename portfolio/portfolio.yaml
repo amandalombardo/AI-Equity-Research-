@@ -31,7 +31,15 @@ bet_size: 0.10
 calls:
   - {name: DGE,  ticker: "DGE.L",  currency: GBP, home_leg: ftse100, brief: briefs/DGE.yaml,  run: runs/DGE/2026-10-12}
   - {name: KO,   ticker: "KO",     currency: USD, home_leg: sp500,   brief: briefs/KO.yaml,   run: runs/KO/2026-10-13}
-  - {name: ULVR, ticker: "ULVR.L", currency: GBP, home_leg: ftse100, brief: briefs/ULVR.yaml, run: runs/ULVR/2026-10-14}
+  - name: ULVR
+    ticker: "ULVR.L"
+    currency: GBP
+    home_leg: ftse100
+    brief: briefs/ULVR.yaml
+    run: runs/ULVR/2026-10-14
+    # Published HOLD (borderline) at 4,710.5p. Re-rated SELL by the PM before the start: at 4,925.5p
+    # (Yahoo, 15 Oct 2026 intraday) the 4,258.5p fair value is 13.5% below the price, past the -10% SELL line.
+    pm_rerating: {call: SELL, date: "2026-10-15", reason: "PM decision (Amanda, 15 Oct 2026 13:45 UTC): price rise put it past the -10% SELL line; fair value unchanged at 4,258.5p"}
   - {name: RELX, ticker: "REL.L",  currency: GBP, home_leg: ftse100, brief: briefs/RELX.yaml, run: runs/RELX/2026-10-14}
 
 # Known gaps, disclosed in every update:
