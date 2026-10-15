@@ -1,4 +1,33 @@
-# Editor agent notes: Diageo (DGE), run 2026-10-12 (Phase 4 rewrite 2026-10-13)
+# Editor agent notes: Diageo (DGE), run 2026-10-12 (re-run 15 Oct 2026 after the evidence audit)
+
+## Re-run 15 Oct 2026 (evidence audit)
+**What changed.** Rewrote memo.md after the PM's decisions on the evidence audit (docs/audit-2026-10-15/DGE.md, summary.md): ERP 5.0% (no source) -> 4.2% (Damodaran implied ERP, 1 Oct 2026) and shares 2,222m -> 2,224m. New numbers come only from the re-run outputs: valuation/valuation.json, sanity_checks.json, comps.json, the top section of valuation/notes.md, bear/challenges.md, bear/notes.md and data/phase4_evidence.json.
+- Header: **HOLD | Fair value 1,808.8p (GBp) | Share price 1,673p (12 Oct 2026) | Upside +8.1% | Bear case 1,298.3p**, with "Desk rating: HOLD (PM confirmed; re-run 15 Oct 2026 after evidence audit)". Was 1,627.3p, -2.7%. SELL line 1,506p (303p below), BUY line 1,924p (115p above).
+- Valuation: WACC 7.92% (cost of equity 9.25%), EV USD 66,356m, minorities USD 1,703m, equity USD 51,923m (30 June) / 53,236m (12 Oct), USD 23.94 per share; sensitivity grid rebuilt from valuation.json (WACC 6.92-8.92%, whole pence). Football chart rebuilt (unit GBp): WACC range 1,636-2,014p, terminal growth 1,736-1,996p, new bar for ERP 5.5% to 5.0% (1,525.7-1,625.5p), single changes 1,599-2,107p, bear 1,298.3p, comps 1,334-3,163p.
+- Audit disclosures added: ERP source and that it was seen only in search summaries (PM to confirm on Damodaran's site); Kroll 5.0% gives 1,625.5p (below the price); price implies ERP about 4.78% (valuation notes; the brief asked for "about 4.8%", I used the agent's 4.78% to avoid a new rounding) and WACC 8.30%; terminal value 76.7% of EV (above the 75% flag); price is the 12 Oct cum-dividend close, the 30c (about 22.6p) dividend went ex on 15 Oct; FX date (2 Oct) and risk-free date (8 Oct) now in the body; leverage "about 2.6x after disposals" now called a floor (before tax and still counting EABL's EBITDA); unsourced FY30-31 3% growth (2% = 1,778.8p); open MISSING list.
+- Bear section: all challenges with the 15 Oct values; the PM's 13 Oct responses kept in substance (lightly shortened), labelled as written against the old values. "PM to respond" on the new ERP part of challenge 5 and on new challenge 7 (data inputs: gross proceeds, dilution). Added "What flips the rating" (discount rate only alone; stacks S3 1,439.4p and S4 1,449.8p reach SELL; business bear S5 1,609.6p HOLD).
+- Removed the Phase 4 "PM view" paragraph: its year-end-convention value (1,545p) and market-implied WACC comparison were 13 Oct numbers with no 15 Oct equivalent for the year-end case.
+- Sources: added FRED DGS20, the ERP sources (Damodaran, Kroll, Fernandez; secondhand) and the audit folder.
+
+**Checks run.** `python -m desk.memo_check runs/DGE/2026-10-12`: "All memo numbers trace to agent outputs." PDF rebuilt with `python -m desk.memo_pdf runs/DGE/2026-10-12/editor/memo.md`: 3 pages = 2 body pages + Sources page (pypdf; page images checked; a sensitivity caption was added so the Fundamentals heading is not stranded at the foot of page 1). Body is about 1,260 words (above the ~900 target, because of the audit disclosures the PM asked for). pytest not run (no code changed; Valuation agent reports pytest is not installed here).
+
+**FLAGs.**
+1. The whole move from -2.7% to +8.1% is the ERP decision (+183.5p), on a figure seen only in search summaries. If Damodaran's page does not confirm 4.2%, the memo must be re-run before it is published.
+2. The fair value is now nearer BUY (115p) than SELL (303p); beta 0.72 (own regression) gives BUY at 2,107p.
+3. Terminal value is 76.7% of EV (flag) and the exit multiple (10.0x) is now above the market's c.9.75x.
+4. The PM's bear responses were written on 13 Oct against the old values; challenges 2, 3 and 6 no longer flip to SELL, so the responses are stronger than needed, but she may want to reword them. ERP and data-input responses are "PM to respond".
+5. memo_check matches numbers anywhere in the run folder; I checked the key figures by hand against valuation.json, sanity_checks.json and bear/challenges.md.
+6. The price (1,673p) is cum-dividend; any update after 15 Oct must use an ex-dividend price and deduct the dividend in the roll-forward.
+
+**Missing.** Peer EV/EBITDA and FCF yield, Constellation Brands EPS, calendarised peers, Moet Hennessy fair value, USL net cash, split of the USD 1,328m other minorities, tax on the disposals, UK or global implied ERP, Damodaran page not reached.
+
+**Confidence.** High that the memo matches the agent outputs. Medium-low on the rating until the 4.2% ERP is confirmed at source.
+
+**History:** ... 1,545p HOLD -> 1,627.3p HOLD (mid-year, 13 Oct) -> **1,808.8p HOLD (ERP 4.2%, 2,224m shares, 15 Oct 2026)**.
+
+---
+**Everything below is superseded 15 Oct 2026 (ERP 5.0%, 2,222m shares); kept for the record.**
+
 
 ## Phase 4 rewrite (13 Oct 2026): mid-year discounting, PM responses, new layout
 - Rewrote memo.md after the PM's Phase 4 decisions: mid-year discounting (1,544.8p -> **1,627.3p, HOLD, -2.7%**) and the PM's responses to the six bear challenges (from docs/phase4/bear-responses-draft.md, source-checked in docs/phase4/evidence-phase4.md; numbers updated to the mid-year base). Every "PM to respond" is gone. Added a one-paragraph PM view. Removed internal file names from the body.
