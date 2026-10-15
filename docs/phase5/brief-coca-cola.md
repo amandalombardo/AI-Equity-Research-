@@ -1,4 +1,6 @@
-# AI Equity Research Desk: Brief v1.1 (FINAL)
+# AI Equity Research Desk: Brief v1.2 (FINAL)
+
+> **v1.2, 15 Oct 2026 (evidence audit, docs/audit-2026-10-15/KO.md).** briefs/KO.yaml governs where this document differs. Superseded below: margin 31.2% is 33.2% (ex-CCBA); IRS liability USD 14.9bn (Note 12) is USD 14.0bn at 31 Dec 2025 (Note 9); capex is FY25 4.405% of sales, not a 5-year average; bear margin 30.0% is 31.9% (PM bear responses). New: equity risk premium 4.2% (Damodaran implied, PM decision 15 Oct 2026; was 5.0% with no source); listed stakes not grown in the roll-forward.
 **Company:** The Coca-Cola Company (NYSE: KO, S&P 500)
 **Portfolio manager:** Amanda
 **Status:** v1.1, signed off by Amanda (PM) on 13 October 2026 (v1.1: FY26 growth corrected to +6.0%, same day). Any change needs PM approval and a version bump.

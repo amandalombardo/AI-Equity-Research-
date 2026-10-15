@@ -70,7 +70,12 @@ dcf:
     # Economics; Bloomberg rates page; 3.50% on 9 Oct per thetrading.tools). FLAG: aggregator, the Bundesbank and ECB
     # daily series are blocked here. Evidence: docs/phase5/ulvr-evidence-audit.md.
     risk_free: null
-    equity_risk_premium: 0.050
+    # Equity risk premium (PM decision 15 Oct 2026, evidence audit): 4.2% = Damodaran's implied ERP for the S&P 500,
+    # 4.20% at 1 Oct 2026 (4.23% at 1 Jan 2026), the premium the market is pricing over today's 10-year yield, so it
+    # pairs with the spot risk-free rate used here. Same for all four companies. FLAG: seen in search summaries only
+    # (pages.stern.nyu.edu blocked here); PM to confirm on Damodaran's home page. Was 5.0% with no source.
+    # Evidence: docs/audit-2026-10-15/erp-evidence.md.
+    equity_risk_premium: 0.042
     # Risk agent. PM rule (sign-off, same as Diageo): BOTTOM-UP beta from Damodaran's GLOBAL Household Products industry,
     # unlevered beta corrected for cash 0.7741 (588 firms, file dated 5 Jan 2026; uploaded by the PM 14 Oct 2026, saved at
     # /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls, sheet "Industry Averages"), relevered at Unilever's market
@@ -88,7 +93,9 @@ dcf:
     # Bear line: 38% of Hindustan Unilever at market. Evidence: docs/phase5/ulvr-minorities-evidence.md.
     minority_interests_meur: null
     minorities_method: proportionate
-    pension_deficit_meur: 0         # FY25: a net SURPLUS of EUR 3.5bn (20-F); not added (same rule as Diageo: 0 if surplus)
+    # Pension (PM decision 15 Oct 2026, evidence audit): plans IN DEFICIT (EUR 944m, 20-F p.131) after 26% tax relief, not
+    # netted against the EUR 3.5bn surplus, which cannot normally pay another plan's deficit. Data agent: with source.
+    pension_deficit_meur: null
     # Stakes and investments (EUR m), all ADDED because their income is outside operating profit:
     # - Listed (item E, agreed 13 Oct 2026): 19.85% of The Magnum Ice Cream Company = 121,604,413 shares (TMICC 424(b)(4),
     #   13 Apr 2026) at the run-date MICC.AS price. Evidence: docs/phase5/ulvr-stake-tax-check.md.

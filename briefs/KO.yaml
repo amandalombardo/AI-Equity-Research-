@@ -63,7 +63,12 @@ dcf:
   valuation_basis: balance_sheet_date
   wacc:
     risk_free: null                 # Data agent: US 10-year Treasury yield on the valuation date (FRED DGS10)
-    equity_risk_premium: 0.050
+    # Equity risk premium (PM decision 15 Oct 2026, evidence audit): 4.2% = Damodaran's implied ERP for the S&P 500,
+    # 4.20% at 1 Oct 2026 (4.23% at 1 Jan 2026), the premium the market is pricing over today's 10-year yield, so it
+    # pairs with the spot risk-free rate used here. Same for all four companies. FLAG: seen in search summaries only
+    # (pages.stern.nyu.edu blocked here); PM to confirm on Damodaran's home page. Was 5.0% with no source.
+    # Evidence: docs/audit-2026-10-15/erp-evidence.md.
+    equity_risk_premium: 0.042
     beta: null                      # Risk agent. PM rule (same as Diageo): industry BOTTOM-UP beta (Damodaran US
                                     # soft beverage unlevered beta, relevered at Coca-Cola's market D/E), with
                                     # Coca-Cola's own regressions vs the S&P 500 as the cross-check.
@@ -90,6 +95,9 @@ dcf:
   # NOT added: the 23.7% tax rate already charges 2026 onwards (PM decision 2026-10-13, mistakes log row 17).
     # The $6.0bn deposit already paid for 2007-09 is not refunded in the base case. Bull case: a win refunds it.
     contingent_liabilities_musd: null
+    # Bridge items already priced on the run date (evidence audit 15 Oct 2026, mistakes log row 24): the listed stakes are
+    # at 13 Oct 2026 market prices, so the roll-forward must not grow them at the cost of equity. Data agent: with source.
+    priced_at_valuation_date_musd: null
   shares_outstanding_m: null        # Data agent: shares issued less treasury shares (7,040m - 2,738m at 31 Dec 2025)
 
 scenarios:
@@ -99,6 +107,7 @@ scenarios:
     wacc_shift: 0.01
     # The bear agent must also test the 30.0% margin (FY24) and a WIN in the IRS case is the bull case, not the bear.
     # PM decision 2026-10-13 (bear responses): bear margin 31.9% (FY24 ex-CCBA, like-for-like with the base); no tax on stake gains; beta 0.6091 kept.
+    bear_agent_margin: 0.319   # the Bear agent's stacked case uses this (evidence audit 15 Oct 2026: it was only in a comment, so the memo's bear case missed it)
 
 comps:
   peers:
