@@ -250,3 +250,7 @@ Peer EV/EBITDA and FCF yield; Constellation Brands EPS; calendarised peer figure
 
 ## Savings schedule used (from the brief, PM assumption) (superseded 15 Oct 2026)
 c.USD 1,000m in total: USD 850m from the operating framework (c.40% in FY27, the rest in FY28) and USD 150m from the supply chain (c.25% in FY27). Cumulative run-rate (USD m): 377.5, 962.5, 1,000, 1,000, 1,000, of which 46% reaches operating profit. Source: Diageo Capital Markets Day 6-K, 6 Aug 2026.
+
+
+## Source check, 15 Oct 2026 (mistakes log row 33)
+Beta 0.9601 -> 0.9526 (Damodaran's exact 0.7250, see risk/notes.md). Re-ran desk.valuation_run, run_bridge.py, run_sanity.py and run_steps_2026-10-15.py (new step 5). Results: WACC 7.90% (was 7.92%), cost of equity 9.22%, **fair value 1,780.2p GBp (was 1,772.1p, +8.1p), HOLD, upside +6.4%**; engine bear 1,298.8p; TV 76.4% of EV; ERP SELL above 5.48%, BUY below 3.65%; at ERP 5.5% 1,502.9p (still SELL, 2.8p below the 1,505.7p line). run_sanity.py's RONIC search now starts at 5% (the SELL point moved just below 7%: 6.97%). Tables above show the superseded values.

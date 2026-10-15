@@ -42,3 +42,7 @@ No 100x day-on-day jump in DGE.L, so there is no pence/pound mix-up in the serie
 
 ## Confidence
 High on the calculations. Low on beta as a measure of Diageo's risk.
+
+
+## Source check, 15 Oct 2026 (mistakes log row 33)
+The industry beta was typed as 0.73 (0.69 before the cash correction), rounded from a search snippet. Damodaran's own file (betaGlobal.xls, 5 Jan 2026, uploaded by the PM; sheet "Industry Averages", Beverage (Alcoholic), 217 firms) gives **0.7250** (0.6884 before the cash correction). risk/fix_beta_2026-10-15.py relevers 0.7250 at Diageo's current market D/E 0.4146 (debt weight 0.29311, after the 15 Oct diluted share count) and tax 24.3%: **beta 0.9526** (was 0.9601). No prices re-downloaded; the regressions above are unchanged. The tables above still show the superseded 0.96.

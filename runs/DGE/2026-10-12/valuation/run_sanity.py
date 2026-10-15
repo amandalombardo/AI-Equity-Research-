@@ -73,7 +73,7 @@ thr = {
     # Share of the c.USD 1bn savings that reaches operating profit
     "sell_if_flow_through_below": solve(lambda x: pence(flow_through=x), 0.0, 1.0, sell_line),
     # Return on new invested capital in the terminal year (sets terminal capex)
-    "sell_if_terminal_ronic_below": solve(lambda x: pence(brief_=with_brief(["dcf", "terminal_ronic"], x)), 0.07, 0.30, sell_line),
+    "sell_if_terminal_ronic_below": solve(lambda x: pence(brief_=with_brief(["dcf", "terminal_ronic"], x)), 0.05, 0.30, sell_line),
     # Outside shareholders' share of operating profit (proportionate minorities)
     "sell_if_minority_share_above": solve(lambda x: pence(v_=with_v("minority_share_of_operating_profit", x)), 0.0, 0.2, sell_line),
 }
