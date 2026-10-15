@@ -129,6 +129,40 @@ def compute(cfg: dict, data: dict[str, pd.DataFrame], as_of: str) -> dict:
             "positions": valued, "daily": daily, "scorecard": scorecard, "price_dates": price_dates}
 
 
+def compare_closes(rows: list[dict], tolerance: float = 0.0005) -> list[dict]:
+    """Cross-check: does the Yahoo close match the exchange's own close for the same day?
+    rows: {"ticker", "date", "yahoo", "exchange"} (exchange None = the exchange had no close for that day).
+    A gap above 0.05% is flagged; the PM decides which price to trust."""
+    out = []
+    for r in rows:
+        if r["exchange"] is None:
+            out.append({**r, "diff": None, "status": "not checked: exchange gave no close for this date"})
+            continue
+        diff = r["yahoo"] / r["exchange"] - 1  # percentage gap between the two sources
+        out.append({**r, "diff": diff, "status": "match" if abs(diff) <= tolerance else "FLAG: prices differ"})
+    return out
+
+
+def exchange_check(cfg: dict, res: dict, data: dict[str, pd.DataFrame]) -> list[dict]:
+    """Fetch each stock's (and the FTSE ETF's) official close from its exchange for the date used in the report."""
+    stocks = [c["ticker"] for c in cfg["calls"]] + [cfg["benchmark"]["ftse100"]["ticker"]]
+    rows = []
+    for t in stocks:
+        day = res["price_dates"][t]
+        yahoo = float(data[t].loc[pd.Timestamp(day), "close"])
+        try:
+            exchange = data_sources.exchange_closes(t).get(day)
+        except Exception as e:  # report the failure, never fill the gap
+            rows.append({"ticker": t, "date": day, "yahoo": yahoo, "exchange": None, "error": str(e)})
+            continue
+        rows.append({"ticker": t, "date": day, "yahoo": yahoo, "exchange": exchange})
+    checked = compare_closes(rows)
+    for r in checked:
+        if r.get("error"):
+            r["status"] = f"not checked: exchange site failed ({r['error'][:80]})"
+    return checked
+
+
 def _pct(x: float) -> str:
     return f"{x * 100:+.2f}%"
 
@@ -189,6 +223,13 @@ def report(cfg: dict, res: dict) -> str:
               "Latest close used per instrument:", ""]
     lines += [f"- {t}: {day}" + (" (FLAG: no close on the update date; last available close used)" if day < res["as_of"] else "")
               for t, day in res["price_dates"].items()]
+    if res.get("exchange_check"):
+        lines += ["", "Cross-check of actual closes against the exchange's own data (London Stock Exchange, NYSE):", "",
+                  "| Ticker | Date | Yahoo close | Exchange close | Gap | Result |", "|---|---|---|---|---|---|"]
+        for r in res["exchange_check"]:
+            ex = "n/a" if r["exchange"] is None else f"{r['exchange']:,.2f}"
+            gap = "n/a" if r["diff"] is None else _pct(r["diff"])
+            lines.append(f"| {r['ticker']} | {r['date']} | {r['yahoo']:,.2f} | {ex} | {gap} | {r['status']} |")
     lines += ["", "Fair values and calls: each company's final runs/<TICKER>/<date>/valuation/valuation.json. "
               "Band thresholds: briefs/<TICKER>.yaml.", "", "## Missing / not charged", ""]
     lines += [f"- {m}" for m in cfg["missing"]]
@@ -202,7 +243,9 @@ def main() -> None:
     ap.add_argument("--out")
     args = ap.parse_args()
     cfg = load_config()
-    res = compute(cfg, fetch(cfg), args.as_of)
+    data = fetch(cfg)
+    res = compute(cfg, data, args.as_of)
+    res["exchange_check"] = exchange_check(cfg, res, data)
     out = Path(args.out or ROOT / "runs" / "portfolio" / res["as_of"])
     out.mkdir(parents=True, exist_ok=True)
     (out / "report.md").write_text(report(cfg, res))

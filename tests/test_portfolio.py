@@ -123,3 +123,13 @@ def test_a_market_holiday_keeps_the_last_close():
     res = update.compute(cfg, data, "2026-10-19")
     assert res["daily"][-1]["sp500_tr_usd"] == pytest.approx(0.03)
     assert res["price_dates"]["^SP500TR"] == "2026-10-16"
+
+
+def test_exchange_cross_check_flags_a_gap_and_never_fills_a_missing_close():
+    rows = [{"ticker": "ULVR.L", "date": "2026-10-15", "yahoo": 4915.5, "exchange": 4915.5},
+            {"ticker": "KO", "date": "2026-10-15", "yahoo": 92.20, "exchange": 91.50},
+            {"ticker": "CUKX.L", "date": "2026-10-14", "yahoo": 22140.0, "exchange": None}]
+    out = {r["ticker"]: r for r in update.compare_closes(rows)}
+    assert out["ULVR.L"]["status"] == "match"
+    assert out["KO"]["status"].startswith("FLAG")  # 0.77% apart
+    assert out["CUKX.L"]["diff"] is None and out["CUKX.L"]["status"].startswith("not checked")
