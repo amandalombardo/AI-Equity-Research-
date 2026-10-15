@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="493" height="572" preserveAspectRatio="xMinYMin meet" viewBox="0 0 493 572" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="493" height="572"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-572)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="493" height="572" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="4" y="502" width="122" height="58" rx="4" ry="4" style="stroke: rgb(29%,29%,29%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="11" y="546" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,1092) scale(1,-1)">Public sources</text>
+			<text x="11" y="534" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,1068) scale(1,-1)">SEC filings (20-F, 10-K, 6-K)</text>
+			<text x="11" y="524" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,1048) scale(1,-1)">Yahoo Finance prices</text>
+			<text x="11" y="514" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,1028) scale(1,-1)">FRED rates and FX</text>
+			<rect x="150" y="502" width="193" height="58" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<text x="157" y="546" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,1092) scale(1,-1)">Portfolio manager (Amanda)</text>
+			<text x="157" y="534" style="font-family: Helvetica; font-size: 7px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,1068) scale(1,-1)">Sets every assumption in briefs/&lt;TICKER&gt;.yaml,</text>
+			<text x="157" y="524" style="font-family: Helvetica; font-size: 7px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,1048) scale(1,-1)">each with its source. Rules on bear</text>
+			<text x="157" y="514" style="font-family: Helvetica; font-size: 7px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,1028) scale(1,-1)">challenges. Approves every change.</text>
+			<rect x="150" y="426" width="193" height="50" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(90%,93%,97%); fill-rule: evenodd;"/>
+			<text x="157" y="462" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,924) scale(1,-1)">1  Data agent</text>
+			<text x="157" y="450" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,900) scale(1,-1)">Downloads filings, prices, rates and FX</text>
+			<text x="157" y="440" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,880) scale(1,-1)">inputs.yaml, financials.csv: a source on every number</text>
+			<rect x="150" y="356" width="193" height="50" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(90%,93%,97%); fill-rule: evenodd;"/>
+			<text x="157" y="392" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,784) scale(1,-1)">2  Risk agent</text>
+			<text x="157" y="380" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,760) scale(1,-1)">Industry beta, volatility, drawdown, leverage</text>
+			<text x="157" y="370" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,740) scale(1,-1)">risk.json; adds beta to inputs.yaml</text>
+			<polyline points="246.5 426, 246.5 406" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="246.5 406, 243.75 411, 249.25 411" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<rect x="150" y="286" width="193" height="50" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(90%,93%,97%); fill-rule: evenodd;"/>
+			<text x="157" y="322" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,644) scale(1,-1)">3  Fundamentals agent</text>
+			<text x="157" y="310" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,620) scale(1,-1)">Growth, margins, ROIC, cash conversion</text>
+			<text x="157" y="300" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,600) scale(1,-1)">ratios.csv, commentary.md</text>
+			<polyline points="246.5 356, 246.5 336" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="246.5 336, 243.75 341, 249.25 341" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<rect x="150" y="216" width="193" height="50" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(90%,93%,97%); fill-rule: evenodd;"/>
+			<text x="157" y="252" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,504) scale(1,-1)">4  Valuation agent</text>
+			<text x="157" y="240" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,480) scale(1,-1)">DCF and comparables on the PM's assumptions</text>
+			<text x="157" y="230" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,460) scale(1,-1)">valuation.json, dcf.xlsx (live formulas)</text>
+			<polyline points="246.5 286, 246.5 266" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="246.5 266, 243.75 271, 249.25 271" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<rect x="150" y="146" width="193" height="50" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(90%,93%,97%); fill-rule: evenodd;"/>
+			<text x="157" y="182" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,364) scale(1,-1)">5  Bear case agent</text>
+			<text x="157" y="170" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,340) scale(1,-1)">Argues against; prices each challenge per share</text>
+			<text x="157" y="160" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,320) scale(1,-1)">challenges.md</text>
+			<polyline points="246.5 216, 246.5 196" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="246.5 196, 243.75 201, 249.25 201" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<rect x="150" y="76" width="193" height="50" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(90%,93%,97%); fill-rule: evenodd;"/>
+			<text x="157" y="112" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,224) scale(1,-1)">6  Editor agent</text>
+			<text x="157" y="100" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,200) scale(1,-1)">Writes the memo using only the agents' numbers</text>
+			<text x="157" y="90" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,180) scale(1,-1)">memo.pdf, traced by memo_check</text>
+			<polyline points="246.5 146, 246.5 126" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="246.5 126, 243.75 131, 249.25 131" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<polyline points="246.5 502, 246.5 476" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="246.5 476, 243.75 481, 249.25 481" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<polyline points="65 502, 65 451, 150 451" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="150 451, 145 448.25, 145 453.75" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<rect x="4" y="140" width="122" height="272" rx="4" ry="4" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(100%,95%,87%); fill-rule: evenodd;"/>
+			<text x="11" y="398" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(71%,47%,12%); stroke:none;" transform="translate(0,796) scale(1,-1)">desk/ Python engine</text>
+			<text x="11" y="386" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,772) scale(1,-1)">DCF, WACC, terminal value</text>
+			<text x="11" y="376" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,752) scale(1,-1)">EV-to-equity bridge</text>
+			<text x="11" y="366" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,732) scale(1,-1)">beta, volatility, ratios</text>
+			<text x="11" y="356" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,712) scale(1,-1)"></text>
+			<text x="11" y="346" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,692) scale(1,-1)">Agents call these</text>
+			<text x="11" y="336" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,672) scale(1,-1)">functions and never do</text>
+			<text x="11" y="326" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,652) scale(1,-1)">arithmetic in their heads.</text>
+			<text x="11" y="316" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,632) scale(1,-1)"></text>
+			<text x="11" y="306" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,612) scale(1,-1)">Each formula is tested</text>
+			<text x="11" y="296" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,592) scale(1,-1)">against a hand</text>
+			<text x="11" y="286" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,572) scale(1,-1)">calculation (pytest).</text>
+			<polyline points="150 381, 126 381" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="126 381, 131 383.75, 131 378.25" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(71%,47%,12%); fill-rule: evenodd;"/>
+			<polyline points="150 311, 126 311" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="126 311, 131 313.75, 131 308.25" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(71%,47%,12%); fill-rule: evenodd;"/>
+			<polyline points="150 241, 126 241" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="126 241, 131 243.75, 131 238.25" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(71%,47%,12%); fill-rule: evenodd;"/>
+			<polyline points="150 171, 126 171" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="126 171, 131 173.75, 131 168.25" style="stroke: rgb(71%,47%,12%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(71%,47%,12%); fill-rule: evenodd;"/>
+			<rect x="372" y="406" width="117" height="70" rx="4" ry="4" style="stroke: rgb(77%,15%,15%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(99%,92%,91%); fill-rule: evenodd;"/>
+			<text x="379" y="462" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(77%,15%,15%); stroke:none;" transform="translate(0,924) scale(1,-1)">STOP rule</text>
+			<text x="379" y="450" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,900) scale(1,-1)">A number with no source is</text>
+			<text x="379" y="440" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,880) scale(1,-1)">written as MISSING and the</text>
+			<text x="379" y="430" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,860) scale(1,-1)">run stops. The PM decides</text>
+			<text x="379" y="420" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,840) scale(1,-1)">what happens next.</text>
+			<polyline points="343 171, 357 171, 357 531, 343 531" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd; stroke-dasharray: 3, 2;"/>
+			<polygon points="343 531, 348 533.75, 348 528.25" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<rect x="372" y="174" width="117" height="82" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(100%,100%,100%); fill-rule: evenodd; stroke-dasharray: 3, 2;"/>
+			<text x="379" y="242" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,484) scale(1,-1)">Review loop</text>
+			<text x="379" y="230" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,460) scale(1,-1)">The PM accepts or rejects</text>
+			<text x="379" y="220" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,440) scale(1,-1)">each bear challenge. A</text>
+			<text x="379" y="210" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,420) scale(1,-1)">change goes into the brief,</text>
+			<text x="379" y="200" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,400) scale(1,-1)">then the desk re-runs.</text>
+			<text x="379" y="190" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,380) scale(1,-1)">Every company re-runs when</text>
+			<text x="379" y="180" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,360) scale(1,-1)">the engine changes.</text>
+			<rect x="150" y="10" width="193" height="46" rx="4" ry="4" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="157" y="42" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(12%,21%,39%); stroke:none;" transform="translate(0,84) scale(1,-1)">Published output</text>
+			<text x="157" y="30" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,60) scale(1,-1)">Memo: two pages plus a sources page</text>
+			<text x="157" y="20" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,40) scale(1,-1)">DCF in Excel with live formulas</text>
+			<polyline points="246.5 76, 246.5 56" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="246.5 56, 243.75 61, 249.25 61" style="stroke: rgb(12%,21%,39%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,21%,39%); fill-rule: evenodd;"/>
+			<rect x="372" y="10" width="117" height="86" rx="4" ry="4" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 0.9; fill: rgb(90%,96%,91%); fill-rule: evenodd;"/>
+			<text x="379" y="82" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(18%,49%,19%); stroke:none;" transform="translate(0,164) scale(1,-1)">Independent checks</text>
+			<text x="379" y="70" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,140) scale(1,-1)">Automated tests</text>
+			<text x="379" y="60" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,120) scale(1,-1)">Codex blind maths audit</text>
+			<text x="379" y="50" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,100) scale(1,-1)">PM's own Excel model</text>
+			<text x="379" y="40" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,80) scale(1,-1)">Evidence audit of every</text>
+			<text x="379" y="30" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,60) scale(1,-1)">input against its source</text>
+			<polyline points="372 33, 343 33" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polygon points="343 33, 348 35.75, 348 30.25" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(18%,49%,19%); fill-rule: evenodd;"/>
+		</g>
+	</g>
+</svg>
