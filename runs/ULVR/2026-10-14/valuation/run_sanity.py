@@ -55,9 +55,19 @@ def jv_value(ke, g):
 
 
 KE0 = dcf.cost_of_equity(v0["risk_free"], v0["beta"], ERP)
-JV0 = jv_value(KE0, G0)
-ASSOC_EX_JV = v0["associates"] - JV0          # TMICC + associates at book + other investments + Magnum net balance
+JV0 = jv_value(KE0, G0)                       # JV value consistent with this run's cost of equity
 TMICC = 121_604_413 * mkt["MICC.AS"]["close"] / 1e6   # listed stake: shares (TMICC 424(b)(4)) x MICC.AS close, EUR m
+# Re-run 15 Oct 2026: the non-JV parts of `associates` are taken from its components (inputs.yaml source), not
+# back-solved from this run's Ke, because inputs.yaml's JV component may have been valued at an older Ke.
+# TMICC (rounded 1,935.2 as in inputs.yaml) + associates at book 15 + other investments 902 + Magnum net balance 500
+ASSOC_EX_JV = 1935.2 + 15.0 + 902.0 + 500.0
+JV_IN = v0["associates"] - ASSOC_EX_JV        # JV value actually inside inputs.yaml (what the engine uses)
+JV_CHECK = {"jv_in_inputs_meur": JV_IN, "jv_at_this_run_cost_of_equity_meur": JV0, "cost_of_equity": KE0,
+            "ke_implied_by_jv_in_inputs": JV_DIV * (1 + G0) / JV_IN + G0,     # Gordon growth solved for Ke
+            "consistent": abs(JV_IN - JV0) < 1.0}
+# MKC dividends the new shares miss before closing (PM decision 15 Oct 2026), already deducted in inputs.yaml:
+# what the Foods consideration is short of shares x MKC price. Kept constant when the MKC price moves.
+MKC_LEAK = (15_700 + 499.691175 * mkt["MKC"]["close"]) / mkt["fred"]["USD_per_EUR"] - v0["disposal_proceeds"]
 
 
 def run(v=None, brief=None, wacc_shift=0.0, growth=None):
@@ -124,7 +134,8 @@ for label, x, rate in [("all_at_cost_of_equity", v0["disposal_proceeds"], KE0),
     p = pv(x, rate, t_close)
     timing[label] = {"rate": rate, "present_value_meur": p, "reduction_meur": x - p, "reduction_pence": pence(x - p)}
 timing["note"] = ("Today's market value of the McCormick shares already is the present value of receiving them at closing, "
-                  "less any McCormick dividends paid before closing (not in the data folder: MISSING). So the cash-only line "
+                  "less McCormick dividends paid before closing (now deducted in inputs.yaml: 3 quarters, EUR 642.9m; "
+                  "2 quarters would be EUR 428.6m, about +8p). So the cash-only line "
                   "is the most defensible size; the cost-of-equity line is an upper bound.")
 timing["per_1pt_of_discount_rate_pence"] = pence(v0["disposal_proceeds"] - pv(v0["disposal_proceeds"], 0.01, t_close))
 timing["foods_interim_cash_flows"] = ("MISSING (inputs.yaml foods_perimeter_interim_cash_flows_meur: null). Data agent "
@@ -185,9 +196,10 @@ parts_meur = {
     "less_minorities_proportionate": -mi * f,
     "less_net_debt_31dec2025": -v0["net_debt"] * f,
     "less_restructuring_cash": -v0["restructuring_cash"] * f,
+    "less_pension_plans_in_deficit_after_tax": -v0["pension_deficit"] * f,   # PM decision 15 Oct 2026
     "foods_consideration": v0["disposal_proceeds"],
     "tmicc_stake": PRICED - v0["disposal_proceeds"],   # the input's TMICC figure (1,935.2, rounded), not grown
-    "joint_ventures_gordon": JV0 * f,
+    "joint_ventures_gordon": JV_IN * f,      # the JV value the engine actually uses (inputs.yaml)
     "other_associates_investments_magnum_balance": (ASSOC_EX_JV - (PRICED - v0["disposal_proceeds"])) * f,
     "less_dividends_ex_since_31dec": -v0["dividends_ex_before_valuation_meur"],
     "less_buybacks_since_31dec": -v0["buybacks_after_balance_sheet_meur"]}
@@ -195,7 +207,7 @@ parts_p = {k: pence(x) for k, x in parts_meur.items()}
 assert abs(sum(parts_p.values()) - B) < 1e-6
 dcf_net = parts_p["dcf_remaining_business_ev"] + parts_p["less_minorities_proportionate"]
 non_op = parts_p["foods_consideration"] + parts_p["tmicc_stake"] + parts_p["joint_ventures_gordon"] + parts_p["other_associates_investments_magnum_balance"]
-claims = parts_p["less_net_debt_31dec2025"] + parts_p["less_restructuring_cash"] + parts_p["less_dividends_ex_since_31dec"] + parts_p["less_buybacks_since_31dec"]
+claims = parts_p["less_net_debt_31dec2025"] + parts_p["less_restructuring_cash"] + parts_p["less_pension_plans_in_deficit_after_tax"] + parts_p["less_dividends_ex_since_31dec"] + parts_p["less_buybacks_since_31dec"]
 decomp = {"pence": parts_p, "subtotals_pence": {
     "dcf_remaining_business_after_minorities": dcf_net, "foods_consideration": parts_p["foods_consideration"],
     "other_non_operating_assets": non_op - parts_p["foods_consideration"], "all_non_operating_assets": non_op,
@@ -257,7 +269,7 @@ def by_margin(mg):
 
 def by_mkc_price(px):  # McCormick share price (USD) -> Foods consideration at today's value
     v = copy.deepcopy(v0)
-    v["disposal_proceeds"] = (15_700 + 499.691175 * px) / usd_per_eur
+    v["disposal_proceeds"] = (15_700 + 499.691175 * px) / usd_per_eur - MKC_LEAK   # less MKC dividends before closing
     v["priced_at_valuation_date_meur"] = v["disposal_proceeds"] + TMICC   # still priced today, so not grown
     return ps(run(v))
 
@@ -278,6 +290,45 @@ for label, fn, lo, hi, now in [("beta_jv_consistent", by_beta, 0.2, 1.2, v0["bet
         if label.startswith("wacc") and x is not None:
             out[name]["wacc_level"] = w0 + x
     flips[label] = out
+
+# ---- ERP and risk-free breakevens (re-run 15 Oct 2026). Two versions: JV held as in inputs.yaml (what the engine
+# does) and JV recomputed at the new cost of equity (consistent with the PM's Gordon growth formula).
+SPREAD = brief0["dcf"]["wacc"]["credit_spread"]
+
+
+def by_erp(erp, recompute_jv):
+    b = copy.deepcopy(brief0)
+    b["dcf"]["wacc"]["equity_risk_premium"] = erp
+    v = copy.deepcopy(v0)
+    if recompute_jv:
+        v["associates"] = ASSOC_EX_JV + jv_value(dcf.cost_of_equity(v["risk_free"], v["beta"], erp), G0)
+    return ps(run(v, b))
+
+
+def by_rf(rf, recompute_jv):
+    v = copy.deepcopy(v0)
+    v["risk_free"] = rf
+    v["pre_tax_cost_of_debt"] = rf + SPREAD      # PM rule: cost of debt = risk-free + credit spread
+    if recompute_jv:
+        v["associates"] = ASSOC_EX_JV + jv_value(dcf.cost_of_equity(rf, v["beta"], ERP), G0)
+    return ps(run(v))
+
+
+for label, fn, lo, hi, now in [("erp", by_erp, 0.0, 0.08, ERP), ("risk_free", by_rf, 0.0, 0.07, v0["risk_free"])]:
+    for jv in (False, True):
+        out = {"base_value": now}
+        for name, tgt in (("sell_to_hold", hold_floor), ("hold_to_buy", buy_floor)):
+            x = solve(lambda z: fn(z, jv), lo, hi, tgt)
+            out[name] = {"parameter": x, "value_check_pence": fn(x, jv) if x is not None else None,
+                         "status": "found" if x is not None else f"not reached in [{lo}, {hi}]"}
+        flips[f"{label}_{'jv_recomputed' if jv else 'jv_as_inputs'}"] = out
+
+# market-implied WACC: the WACC at which the DCF value equals today's price (JV held as in inputs.yaml)
+x_mkt = solve(by_wacc_shift, -0.03, 0.02, price)
+market_implied = {"wacc": w0 + x_mkt, "shift_vs_base": x_mkt, "value_check_pence": by_wacc_shift(x_mkt),
+                  "note": "WACC that makes the DCF value equal the 4,710.5p price, all else unchanged"}
+base_jv_consistent = summary(run(with_beta(v0["beta"])))
+
 # extra non-operating value (or less tax/claims) needed, in today's euros
 flips["extra_value_today_meur"] = {
     "sell_to_hold": (hold_floor - B) / pence(1.0), "hold_to_buy": (buy_floor - B) / pence(1.0),
@@ -303,7 +354,9 @@ out = {"units": "value per share in pence (GBp) unless labelled; money in EUR m"
        "rating_thresholds_pence": {"hold_if_at_least": hold_floor, "buy_if_at_least": buy_floor},
        "checks": checks, "a_foods_consideration_timing": timing, "roll_forward_of_run_date_values_flag": roll_flag,
        "b_tax_on_foods_cash": tax, "c_beta_sensitivity": beta_sens, "d_value_decomposition": decomp,
-       "e_flip_points": flips,
+       "e_flip_points": flips, "market_implied_wacc": market_implied,
+       "jv_consistency_check": JV_CHECK, "base_with_jv_recomputed_at_this_ke": base_jv_consistent,
+       "mkc_dividend_leak_meur": MKC_LEAK,
        "sensitivity_grid_centred_pence": {"wacc": waccs, "terminal_growth": growths, "grid": grid,
                                           "note": "valuation.json's grid is now centred on 1.6% too (commit 3414aec; growth 1.1-2.6%); this copy is the same centre."},
        "bear_jv_consistency": bear_note}

@@ -21,3 +21,19 @@ for k in ("disposal_proceeds", "priced_at_valuation_date_meur"):
                          f" Form 425 0000217410-26-000027) / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = {leak:.1f}; {old} - {leak:.1f}. FLAG: if closing comes before the July ex-date, 2 quarters (+c.8p)")
 p.write_text(yaml.safe_dump(inp, sort_keys=False, allow_unicode=True, width=200))
 print(inp["pension_deficit"]["value"], round(leak, 1), inp["disposal_proceeds"]["value"], inp["priced_at_valuation_date_meur"]["value"])
+
+# Joint ventures inside `associates` are valued as a growing perpetuity (Gordon growth) on FY25 JV dividends at the run's
+# cost of equity (PM decision 10). The ERP change lowers the cost of equity, so the JV value is recomputed with the same rule.
+# Cost of equity (CAPM) = risk-free + beta x ERP; JV value = dividend x (1 + g) / (Ke - g)
+rf, beta, erp, g, jv_div = 0.0345, 0.8844, 0.042, 0.016, 229.0
+ke_old = rf + beta * 0.050
+ke_new = rf + beta * erp
+jv_old = jv_div * (1 + g) / (ke_old - g)
+jv_new = jv_div * (1 + g) / (ke_new - g)
+a = inp["associates"]
+if "JV value recomputed" not in a["source"]:
+    a["value"] = round(a["value"] - jv_old + jv_new, 1)
+    a["source"] += (f" JV value recomputed 15 Oct 2026 at the new cost of equity {ke_new:.4%} (ERP 4.2%): 229 x 1.016 / ({ke_new:.4%} - 1.6%)"
+                    f" = {jv_new:.1f} (was {jv_old:.1f} at {ke_old:.4%})")
+    p.write_text(yaml.safe_dump(inp, sort_keys=False, allow_unicode=True, width=200))
+print(a["value"], round(jv_old, 1), round(jv_new, 1))
