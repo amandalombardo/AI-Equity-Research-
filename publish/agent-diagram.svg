@@ -106,7 +106,7 @@
 			<text x="379" y="82" style="font-family: Helvetica-Bold; font-size: 8.6px;fill: rgb(18%,49%,19%); stroke:none;" transform="translate(0,164) scale(1,-1)">Independent checks</text>
 			<text x="379" y="70" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,140) scale(1,-1)">Automated tests</text>
 			<text x="379" y="60" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,120) scale(1,-1)">Codex blind maths audit</text>
-			<text x="379" y="50" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,100) scale(1,-1)">PM's own Excel model</text>
+			<text x="379" y="50" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,100) scale(1,-1)">Excel DCF = Python test</text>
 			<text x="379" y="40" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,80) scale(1,-1)">Evidence audit of every</text>
 			<text x="379" y="30" style="font-family: Helvetica; font-size: 7px;fill: rgb(29%,29%,29%); stroke:none;" transform="translate(0,60) scale(1,-1)">input against its source</text>
 			<polyline points="372 33, 343 33" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>

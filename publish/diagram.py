@@ -114,7 +114,7 @@ def drawing() -> Drawing:
          ["Memo: two pages plus a sources page", "DCF in Excel with live formulas"])
     _arrow(d, [(AGENT_X + AGENT_W / 2, out_top - AGENT_GAP), (AGENT_X + AGENT_W / 2, out_top)])
     _box(d, 372, out_top - 40, 117, 86, CHECK_FILL, CHECK_LINE, "Independent checks",
-         ["Automated tests", "Codex blind maths audit", "PM's own Excel model", "Evidence audit of every",
+         ["Automated tests", "Codex blind maths audit", "Excel DCF = Python test", "Evidence audit of every",
           "input against its source"], title_colour=CHECK_LINE)
     _arrow(d, [(372, out_top + 23), (AGENT_X + AGENT_W, out_top + 23)], colour=CHECK_LINE)
     return d
