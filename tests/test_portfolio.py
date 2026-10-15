@@ -56,6 +56,7 @@ def test_scorecard_relative_return_and_verdicts():
     assert pf.call_verdict("SELL", -0.05) == "working"
     assert pf.call_verdict("SELL", 0.05) == "not working"
     assert pf.call_verdict("HOLD", 0.05) == "no bet (HOLD)"
+    assert pf.call_verdict("SELL", 0.0) == "level with index"  # start day: no move yet, not "not working"
 
 
 def test_config_reads_the_published_calls():

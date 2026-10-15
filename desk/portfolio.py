@@ -84,6 +84,8 @@ def relative_return(stock_growth: float, index_growth: float) -> float:
 
 def call_verdict(call: str, rel: float) -> str:
     """Scorecard: a SELL is working when the stock lags its home index. A HOLD has no active bet."""
+    if call in ("SELL", "BUY") and rel == 0:
+        return "level with index"
     if call == "SELL":
         return "working" if rel < 0 else "not working"
     if call == "BUY":

@@ -376,7 +376,14 @@ def exchange_closes(ticker: str) -> dict[str, float]:
         r = requests.get("https://www.nyse.com/api/nyseservice/v1/quotes", params={"symbol": ticker},
                          headers=YAHOO_HEADERS, timeout=60)
         r.raise_for_status()
-        return {h["date"].replace("/", "-"): float(h["close"]) for h in r.json()["quoteHistory"]["historyList"]}
+        d = r.json()
+        out = {h["date"].replace("/", "-"): float(h["close"]) for h in d["quoteHistory"]["historyList"]}
+        # the history adds today's close only the next day; the closing auction print (4:00 PM ET or later) is today's close
+        q = d.get("quote", {})
+        stamp = pd.to_datetime(q.get("time", ""), format="%A, %B %d, %Y %I:%M:%S %p ET", errors="coerce")
+        if q.get("last") and not pd.isna(stamp) and stamp.hour >= 16:
+            out.setdefault(stamp.date().isoformat(), float(q["last"]))
+        return out
     return {}
 
 
