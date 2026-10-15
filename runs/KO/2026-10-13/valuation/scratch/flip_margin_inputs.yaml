@@ -4,8 +4,8 @@ base_sales:
     and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from
     this environment, PM asked to verify. FLAG: CCBA figure is calendar 2024. PM decision 2026-10-13'
 base_margin:
-  value: 0.7054632474440337
-  source: 'SCRATCH SCENARIO ONLY, not the base: margin 0.7054632474440337'
+  value: 0.6599809531646967
+  source: 'SCRATCH SCENARIO ONLY, not the base: margin 0.6599809531646967'
 tax_rate:
   value: 0.237
   source: 'PM decision (IRS case assumed lost): 19.9% underlying effective tax rate, FY26 guidance (KO Q2 2026 results 8-K ex.99.1 (accession 0001628280-26-049922, https://www.sec.gov/Archives/edgar/data/21344/000162828026049922/a2026q2earningsreleaseex-9.htm),
@@ -92,3 +92,7 @@ beta:
   source: 'Risk agent, bottom-up: unlevered beta 0.5755 from Damodaran, Betas by Sector (US), betas.xls ''Industry Averages'' updated 2026-01-05 (https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls;
     file supplied by the PM 2026-10-13, saved as data/damodaran_betas_us_jan2026.xls), row ''Beverage (Soft)'', 27 firms, unlevered beta corrected for cash; relevered (Hamada) at KO market D/E 0.0766, tax
     23.7%. See risk/beta_evidence.json'
+priced_at_valuation_date_musd:
+  value: 39539.5
+  source: 'Listed equity stakes at run-date (13 Oct 2026) market value, the 39,539.5 inside ''associates'' (data/associates_rollforward_check.csv, Yahoo/FRED). Added by the evidence audit 15 Oct 2026: KO
+    was valued before the desk learned to keep run-date values out of the roll-forward (mistakes log row 24)'
