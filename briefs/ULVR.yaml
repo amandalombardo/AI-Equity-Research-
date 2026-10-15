@@ -28,10 +28,12 @@ base_year:                   # FY25, the latest audited year (20-F accession 000
 dcf:
   currency: EUR
   forecast_years: [2026, 2027, 2028, 2029, 2030]
-  # Revenue growth in EUROS, ex-perimeter (decision 2, agreed 13 Oct 2026). FY26 +0.5% = H1 2026 reported turnover change
-  # (USG 4.8% less 4.9% currency, H1 2026 6-K 0000217410-26-000057). FY27-30 1.6% = low end of the 4-6% USG range less
-  # the FY17-25 average currency drag of 2.4 points. Evidence: docs/phase5/ulvr-growth-evidence.md.
-  organic_growth: [0.005, 0.016, 0.016, 0.016, 0.016]
+  # Revenue growth in EUROS, ex-perimeter (decision 2, agreed 13 Oct 2026; FY26 changed by PM decision 15 Oct 2026, evidence
+  # audit finding 3). FY26 +2.0% = H1 2026 reported turnover change of the three businesses the DCF values (Beauty &
+  # Wellbeing +0.3%, Personal Care +4.2%, Home Care +1.5%; H1 2026 6-K 0000217410-26-000057, key figures). Was +0.5%, the
+  # whole Group INCLUDING Foods (-4.0%), which the DCF leaves out (same mix-up as mistakes log row 16). FY27-30 1.6% = low
+  # end of the 4-6% USG range less the FY17-25 average currency drag of 2.4 points. Evidence: docs/phase5/ulvr-growth-evidence.md.
+  organic_growth: [0.020, 0.016, 0.016, 0.016, 0.016]
   savings:                           # no savings programme modelled: margin held flat instead
     cumulative_meur: [0.0, 0.0, 0.0, 0.0, 0.0]
     flow_through: 0.0
@@ -130,7 +132,7 @@ dcf:
 
 scenarios:
   bear:
-    organic_growth: [0.005, 0.002, 0.002, 0.002, 0.002]   # FY26 as base; then 0.2%, the FY17-25 record excluding FY22
+    organic_growth: [0.020, 0.002, 0.002, 0.002, 0.002]   # FY26 as base (+2.0%, PM decision 15 Oct 2026); then 0.2%, the FY17-25 record excluding FY22
     # The engine's bear line moves growth and WACC only. The Bear agent also tests a 16.2% margin (the c.17.3% 2023 level
     # less 1.1% restructuring, decision 3).
     bear_agent_margin: 0.162
