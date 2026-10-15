@@ -98,3 +98,7 @@ No sourced number for GLP-1 / moderation effects, Moet Hennessy fair value, the 
 
 ## Confidence
 High on the impacts (engine output; base reproduces valuation.json; flip thresholds match sanity_checks.json). Medium on the minorities challenge (upper bound, inconsistent-method caveat). Medium on terminal growth evidence (secondhand IWSR) and flow-through history (one item via search summary).
+
+
+## Source check, 15 Oct 2026 (mistakes log row 33)
+Re-ran run_challenges.py after the beta fix (0.9601 -> 0.9526). Every challenge value rose by 5-8p; challenges that set beta themselves (0.72, 1.00, S4, S5) are unchanged. No rating changed. challenges.json is current; the tables in challenges.md show the pre-fix values.

@@ -105,19 +105,20 @@
   },
   "peer_median_5y_weekly": 0.7349018409987316,
   "bottom_up": {
-    "industry_unlevered_beta_cash_corrected": 0.73,
-    "industry_unlevered_beta": 0.69,
-    "diageo_market_debt_to_equity": 0.4163302882232136,
+    "industry_unlevered_beta_cash_corrected": 0.725044343989413,
+    "industry_unlevered_beta": 0.688411077891109,
+    "diageo_market_debt_to_equity": 0.4146472577062909,
     "tax_rate": 0.243,
-    "relevered_beta": 0.9600682805750301,
-    "relevered_beta_without_cash_correction": 0.9074617994476312,
-    "source": "Damodaran Online, Betas by Sector (Global), data as of January 2026, Beverage (Alcoholic): https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/BetasGlobal.html"
+    "relevered_beta": 0.9526270442450677,
+    "relevered_beta_without_cash_correction": 0.9044950364670994,
+    "source": "Damodaran, Betas by Sector (Global), file betaGlobal.xls dated 5 Jan 2026 (uploaded by the PM 14 Oct 2026, /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls), sheet Industry Averages, Beverage (Alcoholic), 217 firms. Source check 15 Oct 2026: was 0.73 / 0.69 rounded from a search snippet (mistakes log row 33)",
+    "previous_relevered_beta": 0.9601
   },
   "range_of_precise_own_estimates": [
     0.5962052424794859,
     0.7661925394545503
   ],
   "verdict_on_0.48": "Not justifiable. It came from the noisiest estimate available (5y monthly, standard error 0.25) via a median of peer betas that are also unadjusted for leverage. Every precise estimate of Diageo's own beta is 0.60-0.77, and the industry bottom-up beta at Diageo's leverage is 0.96.",
-  "recommended_beta": 0.9600682805750301,
+  "recommended_beta": 0.9526270442450677,
   "recommendation_reason": "Bottom-up beta: the standard method when a company's own regression is unreliable. It averages 217 firms, so it is far less noisy than any single regression, and it reflects Diageo's own debt, which is about twice the industry average. Diageo's best own regression (5y weekly, 0.72) is the cross-check."
 }

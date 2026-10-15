@@ -83,3 +83,7 @@ High that the memo matches the agent outputs. Medium-low on the rating (39p head
 
 ## History
 2,475p BUY (first run) -> 2,141p BUY (cost of debt fixed) -> 1,448p SELL (beta 0.96) -> 1,524p HOLD (Phase 3) -> 1,544.8p HOLD (proportionate minorities, 13 Oct 2026).
+
+
+## Source check, 15 Oct 2026 (mistakes log row 33)
+Memo updated for beta 0.9526 (was 0.9601): fair value 1,780.2p (was 1,772.1p), bear 1,298.8p, all bear-case values, sensitivity grid and flip points re-taken from valuation.json, steps_2026-10-15.json, sanity_checks.json and bear/challenges.json. memo_check passes. Rating unchanged: HOLD.

@@ -34,18 +34,25 @@
    "change_pence": -29.844325770937985,
    "wacc": 0.07920563333200001,
    "rating": "HOLD"
+  },
+  {
+   "step": "5. Beta 0.9601 -> 0.9526: Damodaran's exact 0.7250, not a rounded 0.73 (source check 15 Oct, mistakes row 33)",
+   "pence": 1780.2093473567006,
+   "change_pence": 8.066197147112007,
+   "wacc": 0.07898296298200001,
+   "rating": "HOLD"
   }
  ],
- "final_pence": 1772.1431502095886,
- "sell_if_erp_above": 0.05442068494841425,
- "buy_if_erp_below": 0.03621189531714557,
- "market_implied_erp": 0.04624396334401362,
- "value_at_erp_5pct_pence": 1592.5978309159505,
- "value_at_erp_5_5pct_pence": 1494.87781080783,
+ "final_pence": 1780.2093473567006,
+ "sell_if_erp_above": 0.054849149295583155,
+ "buy_if_erp_below": 0.03649699841905464,
+ "market_implied_erp": 0.04660805081522934,
+ "value_at_erp_5pct_pence": 1600.663288780915,
+ "value_at_erp_5_5pct_pence": 1502.8919916857467,
  "sell_line_pence": 1505.7,
  "buy_line_pence": 1923.9499999999998,
- "total_change_since_13_oct_pence": 144.88700354521643,
- "change_since_morning_rerun_pence": -36.62420254599533,
- "upside_at_erp_5pct": -0.04805867847223522,
- "upside_at_erp_5_5pct": -0.1064687323324387
+ "total_change_since_13_oct_pence": 152.95320069232844,
+ "change_since_morning_rerun_pence": -28.558005398883324,
+ "upside_at_erp_5pct": -0.043237723382597126,
+ "upside_at_erp_5_5pct": -0.10167842696608087
 }
