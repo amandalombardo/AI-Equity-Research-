@@ -106,7 +106,7 @@ def cover_markdown(headers: list[dict]) -> str:
 - Four inputs could only be seen second-hand and are disclosed in the memos: the 4.2% equity risk premium (Damodaran implied), the UK gilt and German Bund yields, and EABL's sales.
 - Unilever is a borderline HOLD: it is 19.1p above the SELL line, and its memo shows the inputs that would flip it.
 
-Code, agent outputs and evidence files: github.com/amandalombardo/AI-Equity-Research-
+Code, agent outputs and evidence files: github.com/amandalombardo/AIEquityResearch
 """
 
 
