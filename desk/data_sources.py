@@ -10,7 +10,8 @@ Sources (all free):
 - FRED for the 10-year government bond yield in the reporting currency (US Treasury DGS10, or German Bund IRLTLT01DEM156N for euro reporters) and, for London prices only, the FX rate (DEXUSUK, with DEXUSEU for euro reporters)
 
 Network hosts needed: data.sec.gov, www.sec.gov, query1.finance.yahoo.com,
-query2.finance.yahoo.com, fc.yahoo.com, fred.stlouisfed.org.
+query2.finance.yahoo.com, fc.yahoo.com, fred.stlouisfed.org,
+api.londonstockexchange.com and www.nyse.com (closing-price cross-check only).
 
 If a download fails, functions raise. The Data agent must report the failure and never
 replace missing data with estimates.
@@ -358,6 +359,25 @@ def daily_closes(ticker: str, years: int = 2) -> pd.DataFrame:
         raise RuntimeError(f"no price data for {ticker}")
     df.attrs["currency"] = res["meta"].get("currency")
     return df[~df.index.duplicated(keep="last")]
+
+
+def exchange_closes(ticker: str) -> dict[str, float]:
+    """Official closing prices straight from the listing exchange, to cross-check Yahoo: {date: close}.
+    London (".L" tickers, in pence) gives the latest close from the London Stock Exchange's own data feed;
+    NYSE gives several years of daily closes from nyse.com. Other tickers (indices, FX) return {}.
+    Network hosts needed: api.londonstockexchange.com, www.nyse.com."""
+    if ticker.endswith(".L"):
+        r = requests.get(f"https://api.londonstockexchange.com/api/gw/lse/instruments/alldata/{ticker[:-2]}",
+                         headers=YAHOO_HEADERS, timeout=60)
+        r.raise_for_status()
+        d = r.json()
+        return {d["lastclosedate"][:10]: float(d["lastclose"])}
+    if ticker.isalpha():
+        r = requests.get("https://www.nyse.com/api/nyseservice/v1/quotes", params={"symbol": ticker},
+                         headers=YAHOO_HEADERS, timeout=60)
+        r.raise_for_status()
+        return {h["date"].replace("/", "-"): float(h["close"]) for h in r.json()["quoteHistory"]["historyList"]}
+    return {}
 
 
 def fred_series(series_id: str) -> pd.Series:
