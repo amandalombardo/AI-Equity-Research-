@@ -1,6 +1,6 @@
 # Codex audit spec: maths audit of the equity research desk (Phase 3)
 
-Paste everything below the line into Codex, with the repository `AI-Equity-Research-` and the branch **`main`** selected.
+Paste everything below the line into Codex, with the repository `ai-equity-research-desk` and the branch **`main`** selected.
 
 ---
 
