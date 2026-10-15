@@ -1,4 +1,5 @@
-"""Bear agent (Phase 3 re-run; refreshed 2026-10-13 for proportionate minorities): re-run the engine with ONE change at a time (desk.valuation_run.build), record the impact.
+"""Bear agent (Phase 3 re-run; refreshed 2026-10-13 for proportionate minorities; re-run 2026-10-15 after the evidence
+audit: ERP 4.2%, 2,224m shares, plus audit lines A1-A5 and stacked cases S1-S3): re-run the engine with ONE change at a time (desk.valuation_run.build), record the impact.
 
 Run from the repo root:  PYTHONPATH=. python runs/DGE/2026-10-12/bear/run_challenges.py
 The brief values at the 30 June balance sheet date and rolls equity forward, so inputs are loaded with ROLL_FORWARD.
@@ -26,6 +27,7 @@ _published = json.loads((RUN / "valuation/valuation.json").read_text())["base"][
 if abs(base - _published) > 0.05:
     raise SystemExit(f"Base {base:.2f}p does not match valuation.json {_published:.2f}p: STOP")
 SELL_BELOW = v["share_price_gbp_pence"] * (1 - brief["rating"]["sell_if_downside_at_least"])  # SELL threshold, pence
+BUY_ABOVE = v["share_price_gbp_pence"] * (1 + brief["rating"]["buy_if_upside_at_least"])    # BUY threshold, pence
 
 
 def run(cid, name, inputs=None, brief_changes=None, **kw):
@@ -42,7 +44,8 @@ def run(cid, name, inputs=None, brief_changes=None, **kw):
     px = r["equity"]["per_share_gbp_pence"]
     return {"id": cid, "challenge": name, "value_pence": px, "impact_pence": px - base,  # value impact vs base, pence/share
             "wacc": r["wacc"]["wacc_used"], "terminal_capex_pct_sales": r["inputs"].terminal_capex_pct_sales,
-            "rating": r["rating"]["rating"], "upside": r["rating"]["upside"], "flips_to_sell": px < SELL_BELOW}
+            "rating": r["rating"]["rating"], "upside": r["rating"]["upside"], "flips_to_sell": px < SELL_BELOW,
+            "brief_changes": brief_changes or {}, "input_changes": inputs or {}}
 
 
 # Minorities at market for USL (listed), book for the rest (USD m). Market value of the outside stake
@@ -57,8 +60,11 @@ MIXED_MINORITIES = USL_MINORITY_MARKET + OTHER_MINORITIES_BOOK                  
 
 
 def solve(fn, lo, hi, tol=1e-6):
-    """Bisection: the input at which value per share crosses the SELL line (fn(x) = value - SELL line)."""
+    """Bisection: the input at which value per share crosses a rating line (fn(x) = value - line).
+    Returns None if the line is not crossed anywhere in [lo, hi] (no flip in the tested range)."""
     flo = fn(lo)
+    if (flo > 0) == (fn(hi) > 0):
+        return None
     for _ in range(200):
         mid = (lo + hi) / 2
         fm = fn(mid)
@@ -76,6 +82,12 @@ def _value(brief_changes=None, inputs=None):
 
 
 bear = brief["scenarios"]["bear"]
+# Evidence-audit inputs (docs/audit-2026-10-15/DGE.md and erp-evidence.md)
+GROWTH_FY30_31_2PCT = [0.000, 0.015, 0.025, 0.020, 0.020]  # brief path with FY30-31 cut from 3% to 2% (audit finding 2)
+DISPOSAL_TAX_ILLUSTRATIVE = 300.0  # USD m: tax and costs on EABL + RCB proceeds; ILLUSTRATIVE, no sourced figure (audit finding 5)
+DILUTED_SHARES_M = 2231.0          # 2,224m basic + 7m dilutive (20-F FY26, audit finding 8), ordinary shares
+RF_9_OCT = 0.0524                  # FRED DGS10, 9 Oct 2026 (audit finding 9)
+RF_20Y_KROLL = 0.0560              # FRED DGS20, 13 Oct 2026: Kroll pairs its 5.0% ERP with the 20-year (erp-evidence.md 2b)
 res = [
     run("1", "Risk: beta 0.72 (Diageo's own 5y weekly regression) instead of bottom-up 0.96 [case FOR the stock]", {"beta": 0.72}),
     run("1b", "Risk: beta 1.00 (volatility 2.5x the index; Risk agent FLAG 1)", {"beta": 1.00}),
@@ -94,19 +106,61 @@ res = [
         % (USL_MINORITY_MARKET, MIXED_MINORITIES),
         {"minority_interests": MIXED_MINORITIES}, brief_changes={"dcf.bridge.minorities_method": "book"}),
     run("8'", "Check: old book method (USD 2,083m, incl. EABL's 35%)", brief_changes={"dcf.bridge.minorities_method": "book"}),
+    # ---- Evidence-audit lines (docs/audit-2026-10-15/DGE.md), added 15 Oct 2026 ----
+    run("A1", "Audit/Fundamentals: organic growth FY30-31 2% instead of 3% (3% unsourced; IWSR volumes falling)",
+        brief_changes={"dcf.organic_growth": GROWTH_FY30_31_2PCT}),
+    run("A2", "Audit/Data: disposal proceeds net of an illustrative USD 300m tax and costs (brief asks for NET; input is gross)",
+        {"disposal_proceeds": v["disposal_proceeds"] - DISPOSAL_TAX_ILLUSTRATIVE}),
+    run("A2'", "Check: disposal proceeds less USD 100m (per-USD-100m sensitivity)",
+        {"disposal_proceeds": v["disposal_proceeds"] - 100.0}),
+    run("A3", "Audit/Data: diluted shares 2,231m (2,224m + 7m dilutive options, 20-F FY26)", {"shares_outstanding_m": DILUTED_SHARES_M}),
+    run("A4a", "Audit/Valuation: ERP 5.0% (Kroll recommended US ERP; old desk figure) with the 10-year risk-free",
+        brief_changes={"dcf.wacc.equity_risk_premium": 0.050}),
+    run("A4b", "Audit/Valuation: ERP 5.0% with Kroll's own pairing, the 20-year Treasury 5.60% (13 Oct 2026, FRED DGS20)",
+        {"risk_free": RF_20Y_KROLL}, brief_changes={"dcf.wacc.equity_risk_premium": 0.050}),
+    run("A4c", "Audit/Valuation: ERP 5.5% (Fernandez 2025 survey, US 5.5% / UK 5.4%)",
+        brief_changes={"dcf.wacc.equity_risk_premium": 0.055}),
+    run("A5", "Audit: terminal growth 1.5% (= challenge 4; listed again as an audit line)", brief_changes={"dcf.terminal_growth": 0.015}),
+    # ---- Stacked cases: several changes AT ONCE (not additive sums: one engine run each) ----
+    run("S1", "Stack: audit's sourced small corrections (diluted 2,231m + risk-free 5.24% (9 Oct) + USD 300m disposal tax)",
+        {"shares_outstanding_m": DILUTED_SHARES_M, "risk_free": RF_9_OCT, "disposal_proceeds": v["disposal_proceeds"] - DISPOSAL_TAX_ILLUSTRATIVE}),
+    run("S2", "Stack: audit bear lines A1 + A2 + A3 + A4a (ERP 5.0%) + A5 (g 1.5%)",
+        {"shares_outstanding_m": DILUTED_SHARES_M, "disposal_proceeds": v["disposal_proceeds"] - DISPOSAL_TAX_ILLUSTRATIVE},
+        brief_changes={"dcf.organic_growth": GROWTH_FY30_31_2PCT, "dcf.wacc.equity_risk_premium": 0.050, "dcf.terminal_growth": 0.015}),
+    run("S3", "Stack: S2 with ERP 5.5% (Fernandez survey) instead of 5.0%",
+        {"shares_outstanding_m": DILUTED_SHARES_M, "disposal_proceeds": v["disposal_proceeds"] - DISPOSAL_TAX_ILLUSTRATIVE},
+        brief_changes={"dcf.organic_growth": GROWTH_FY30_31_2PCT, "dcf.wacc.equity_risk_premium": 0.055, "dcf.terminal_growth": 0.015}),
+    run("S4", "Stack: S2 + flow-through 33% (2017 'two thirds reinvested') + beta 1.00",
+        {"shares_outstanding_m": DILUTED_SHARES_M, "disposal_proceeds": v["disposal_proceeds"] - DISPOSAL_TAX_ILLUSTRATIVE, "beta": 1.00},
+        brief_changes={"dcf.organic_growth": GROWTH_FY30_31_2PCT, "dcf.wacc.equity_risk_premium": 0.050, "dcf.terminal_growth": 0.015,
+                       "dcf.savings.flow_through": 0.33}),
+    run("S5", "Stack: S4 but ERP kept at 4.2% (business bear only: A1 + A2 + A3 + A5 + flow-through 33% + beta 1.00)",
+        {"shares_outstanding_m": DILUTED_SHARES_M, "disposal_proceeds": v["disposal_proceeds"] - DISPOSAL_TAX_ILLUSTRATIVE, "beta": 1.00},
+        brief_changes={"dcf.organic_growth": GROWTH_FY30_31_2PCT, "dcf.terminal_growth": 0.015, "dcf.savings.flow_through": 0.33}),
     run("B", "Engine bear scenario (no growth, 25% flow-through, WACC +1pt): combined, NOT a single change",
         growth=bear["organic_growth"], flow_through=bear["flow_through"], wacc_shift=bear["wacc_shift"]),
 ]
 # SELL-flip thresholds re-solved here with the engine (cross-check of valuation/sanity_checks.json)
+# None = the rating line is not crossed anywhere in the tested range.
 flips = {
     "flow_through": solve(lambda x: _value({"dcf.savings.flow_through": x}) - SELL_BELOW, 0.0, 0.46),
-    "beta": solve(lambda x: _value(inputs={"beta": x}) - SELL_BELOW, 0.96, 1.2),
-    "terminal_ronic": solve(lambda x: _value({"dcf.terminal_ronic": x}) - SELL_BELOW, 0.09, 0.134),
+    "beta": solve(lambda x: _value(inputs={"beta": x}) - SELL_BELOW, 0.96, 1.6),
+    "terminal_ronic": solve(lambda x: _value({"dcf.terminal_ronic": x}) - SELL_BELOW, base_wacc + 1e-4, 0.134),
     "mixed_minorities_musd": solve(lambda x: _value({"dcf.bridge.minorities_method": "book"}, {"minority_interests": x})
-                                   - SELL_BELOW, 0.0, 10000.0, tol=0.01),
+                                   - SELL_BELOW, 0.0, 20000.0, tol=0.01),
+    "erp": solve(lambda x: _value({"dcf.wacc.equity_risk_premium": x}) - SELL_BELOW, 0.042, 0.08),
+    "terminal_growth": solve(lambda x: _value({"dcf.terminal_growth": x}) - SELL_BELOW, 0.0, 0.02),
+    "disposal_tax_musd": solve(lambda x: _value(inputs={"disposal_proceeds": v["disposal_proceeds"] - x}) - SELL_BELOW,
+                               0.0, v["disposal_proceeds"], tol=0.01),
 }
-out = {"base_value_pence": base, "base_wacc": base_wacc, "share_price_pence": v["share_price_gbp_pence"],
+buy_flips = {
+    "beta": solve(lambda x: _value(inputs={"beta": x}) - BUY_ABOVE, 0.5, 0.96),
+    "erp": solve(lambda x: _value({"dcf.wacc.equity_risk_premium": x}) - BUY_ABOVE, 0.02, 0.042),
+}
+out = {"run": "re-run 2026-10-15 (evidence audit: ERP 4.2%, 2,224m shares)",
+       "base_value_pence": base, "base_wacc": base_wacc, "share_price_pence": v["share_price_gbp_pence"],
        "sell_threshold_pence": SELL_BELOW, "headroom_to_sell_pence": base - SELL_BELOW,
+       "buy_threshold_pence": BUY_ABOVE, "gap_to_buy_pence": BUY_ABOVE - base,
        "base_minorities_deducted_musd": base_run["equity"]["minorities_deducted"],
        "usl_minority_market_musd": USL_MINORITY_MARKET, "mixed_minorities_musd": MIXED_MINORITIES,
        # EV / operating profit multiples on the minorities' slice (USD m). Minorities' operating profit ex-EABL
@@ -116,14 +170,18 @@ out = {"base_value_pence": base, "base_wacc": base_wacc, "share_price_pence": v[
        "usl_market_stake_over_all_minorities_op_profit_x": USL_MINORITY_MARKET / (v["minority_share_of_operating_profit"] * 5432.8),
        "sell_if": {"flow_through_below": flips["flow_through"], "beta_above": flips["beta"],
                    "terminal_ronic_below": flips["terminal_ronic"],
-                   "minorities_book_basis_above_musd": flips["mixed_minorities_musd"]},
+                   "minorities_book_basis_above_musd": flips["mixed_minorities_musd"], "erp_above": flips["erp"],
+                   "terminal_growth_below": flips["terminal_growth"], "disposal_tax_above_musd": flips["disposal_tax_musd"],
+                   "_note": "null = no SELL flip in the tested range (flow-through 0-46%, terminal RONIC WACC-13.4%, terminal growth 0-2%, disposal tax 0 to all proceeds)"},
+       "buy_if": {"beta_below": buy_flips["beta"], "erp_below": buy_flips["erp"]},
        "retired": {"6 (old)": "Deducting the 30c FY26 final dividend: retired. It goes ex on 15 Oct 2026, after the 12 Oct "
                    "valuation date, so the 1,673p price is cum-dividend (data/notes.md, Phase 3 additions)."},
        "challenges": res}
 (Path(__file__).parent / "challenges.json").write_text(json.dumps(out, indent=2))
 print(f"base {base:.1f}p  wacc {base_wacc:.4f}  SELL below {SELL_BELOW:.1f}p  headroom {base - SELL_BELOW:.1f}p")
 print(f"minorities base {base_run['equity']['minorities_deducted']:.1f}  USL mkt {USL_MINORITY_MARKET:.1f}  mixed {MIXED_MINORITIES:.1f} (USD m)")
-print("SELL flips:", {k: round(x, 5) for k, x in flips.items()})
+print("SELL flips:", {k: (None if x is None else round(x, 5)) for k, x in flips.items()})
+print("BUY flips:", {k: (None if x is None else round(x, 5)) for k, x in buy_flips.items()})
 for r in res:
     tc = r["terminal_capex_pct_sales"]
     print(f"{r['id']:4s} {r['challenge'][:70]:70s} {r['value_pence']:8.1f} {r['impact_pence']:+7.1f} "

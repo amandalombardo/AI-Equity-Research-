@@ -45,12 +45,12 @@ dcf:
   nwc_pct_sales: null
   terminal_growth: 0.02
   terminal_capex_pct_sales: null
-  terminal_ronic: 0.09601
+  terminal_ronic: 0.089224
   mid_year_convention: true
   valuation_basis: balance_sheet_date
   wacc:
     risk_free: null
-    equity_risk_premium: 0.05
+    equity_risk_premium: 0.042
     beta: null
     pre_tax_cost_of_debt: null
     credit_spread: 0.007
@@ -76,7 +76,7 @@ scenarios:
     - 0.03
     flow_through: 0.0
     wacc_shift: 0.01
-    bear_agent_margin: 0.331
+    bear_agent_margin: 0.324
 comps:
   peers:
   - name: Thomson Reuters

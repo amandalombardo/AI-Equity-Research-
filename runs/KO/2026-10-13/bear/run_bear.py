@@ -1,5 +1,11 @@
 """Bear agent: one-change-at-a-time value impacts for KO (run 2026-10-13). Values per share in US DOLLARS.
 
+Re-run 15 Oct 2026 (evidence audit, docs/audit-2026-10-15/KO.md): the brief now has ERP 4.2% and
+scenarios.bear.bear_agent_margin 0.319; inputs.yaml has priced_at_valuation_date_musd (listed stakes not grown in the
+roll-forward). Scenarios that move the LISTED stakes now move priced_at_valuation_date_musd by the same amount, so the
+run-date market value is not grown again. Added: the stacked bear case at the PM's 31.9% margin and the audit stress lines
+(ERP 5.0% Kroll, 5.5% Fernandez, FY26 growth 5.0%). Results from 13 Oct are kept in bear_runs_2026-10-13_superseded.json.
+
 Never edits briefs/KO.yaml or inputs.yaml. Each scenario writes a scratch copy of both files to bear/scratch/<name>/
 and runs the desk engine on it exactly as the Valuation agent did:
     python -m desk.valuation_run <brief> <inputs> <out_dir>
@@ -46,8 +52,11 @@ def run(name, brief=None, raw=None):
     env = {**os.environ, "PYTHONPATH": str(ROOT)}
     subprocess.run([sys.executable, "-m", "desk.valuation_run", str(bp), str(ip), str(d)], check=True, cwd=ROOT,
                    env=env, capture_output=True)
-    out = json.loads((d / "valuation.json").read_text())["base"]
-    return {"value_per_share_usd": out["equity"]["per_share_usd"], "rating": out["rating"]["rating"],
+    full = json.loads((d / "valuation.json").read_text())
+    out = full["base"]
+    return {"bear_block_value_per_share_usd": full["bear"]["equity"]["per_share_usd"],
+            "bear_block_rating": full["bear"]["rating"]["rating"], "bear_block_wacc": full["bear"]["wacc"]["wacc_used"],
+            "value_per_share_usd": out["equity"]["per_share_usd"], "rating": out["rating"]["rating"],
             "upside": out["rating"]["upside"], "wacc": out["wacc"]["wacc_used"],
             "enterprise_value_musd": out["enterprise_value_musd"], "tv_share_of_ev": out["tv_share_of_ev"],
             "implied_exit_ev_ebitda": out["implied_exit_ev_ebitda"]}
@@ -68,6 +77,10 @@ ccba_rev, ccba_ebit = 3632.3, 266.2          # USD m, EUR 3,357m / EUR 246m x 1.
 fy24_comp_oi, fy24_comp_rev = 14085.0, 46897.0  # Q4 2024 8-K reconciliation (data/financials.csv)
 fy24_margin_ex_ccba = fundamentals.margin(fy24_comp_oi - ccba_ebit, fy24_comp_rev - ccba_rev)
 res["fy24_margin_ex_ccba"] = fy24_margin_ex_ccba
+# (c) the PM's bear margin exactly as decided on 13 Oct 2026 (brief scenarios.bear.bear_agent_margin = 0.319), one change
+BEAR_M = BRIEF0["scenarios"]["bear"]["bear_agent_margin"]
+res["c1_margin_pm_bear_319"] = run("c1_margin_319", raw=set_input(RAW0, "base_margin", BEAR_M,
+                                   "PM bear margin 31.9% (briefs/KO.yaml scenarios.bear.bear_agent_margin, decision 13 Oct 2026)"))
 res["c1_margin_fy24_ex_ccba"] = run("c1_margin_fy24_ex_ccba", raw=set_input(RAW0, "base_margin", fy24_margin_ex_ccba,
                                     "FY24 comparable margin ex-CCBA (14,085-266.2)/(46,897-3,632.3)"))
 
@@ -133,15 +146,23 @@ listed_dec25 = 34286.0      # FY25 10-K fair value of listed equity-method stake
 listed_book = 13999.0       # FY25 10-K book value of the same stakes
 monster_run = 17774.9       # data/associates_rollforward_check.csv
 res["monster_share_of_listed"] = monster_run / listed_run
-res["c4_stakes_at_31dec25_fair_value"] = run("c4_stakes_dec25", raw=set_input(RAW0, "associates",
-                                             v("associates") - (listed_run - listed_dec25), "listed at 31 Dec 2025 fair value 34,286"))
-res["c4_monster_minus_30pct"] = run("c4_monster_m30", raw=set_input(RAW0, "associates", v("associates") - 0.30 * monster_run,
-                                    "Monster stake -30%"))
+
+
+def listed_cut(cut, note):
+    """Lower the LISTED stakes by `cut` (USD m): both inside associates and in the not-grown run-date part
+    (priced_at_valuation_date_musd), because the listed stakes are priced at the run date (mistakes log row 24)."""
+    r = set_input(RAW0, "associates", v("associates") - cut, note)
+    return set_input(r, "priced_at_valuation_date_musd", v("priced_at_valuation_date_musd") - cut, note)
+
+
+res["c4_stakes_at_31dec25_fair_value"] = run("c4_stakes_dec25", raw=listed_cut(listed_run - listed_dec25,
+                                             "listed at 31 Dec 2025 fair value 34,286"))
+res["c4_monster_minus_30pct"] = run("c4_monster_m30", raw=listed_cut(0.30 * monster_run, "Monster stake -30%"))
 # tax leakage: realising market value above book would trigger tax on the gain; 21% = US federal statutory rate
 # (FY25 10-K tax rate reconciliation). Book is used as a proxy for tax basis (not disclosed): FLAG.
 tax_leak = 0.21 * (listed_run - listed_book)
 res["c4_tax_leakage_musd"] = tax_leak
-res["c4_stakes_after_tax_on_gain"] = run("c4_stakes_tax", raw=set_input(RAW0, "associates", v("associates") - tax_leak,
+res["c4_stakes_after_tax_on_gain"] = run("c4_stakes_tax", raw=listed_cut(tax_leak,
                                          "listed stakes net of 21% tax on gain over book"))
 
 # ---------- Challenge 5: beta stability (Risk) ----------
@@ -163,6 +184,37 @@ gen_brief = copy.deepcopy(BRIEF0)
 gen_brief["dcf"]["terminal_growth"] = 0.03
 gen_brief["dcf"]["terminal_ronic"] = 0.314
 res["harsh_all_generous_together"] = run("harsh_all", brief=gen_brief, raw=gen_raw)
+# Re-run 15 Oct 2026: with ERP 4.2% the four-together case crosses the HOLD line, so test which of the four it needs.
+# Leave-one-out: all generous changes except one (each reverts to the base input).
+irs_win_raw = set_input(set_input(set_input(RAW0, "contingent_liabilities", 0.0, "IRS win"), "associates",
+              v("associates") + 6000.0, "deposit refunded"), "tax_rate", 0.199, "19.9%")
+res["generous_without_beta"] = run("gen_wo_beta", brief=gen_brief, raw=irs_win_raw)
+res["generous_without_irs_win"] = run("gen_wo_irs", brief=gen_brief, raw=set_input(RAW0, "beta", 0.3457, "5y weekly regression"))
+gb = copy.deepcopy(gen_brief); gb["dcf"]["terminal_growth"] = BRIEF0["dcf"]["terminal_growth"]
+res["generous_without_tg3"] = run("gen_wo_tg3", brief=gb, raw=gen_raw)
+gb = copy.deepcopy(gen_brief); gb["dcf"]["terminal_ronic"] = BRIEF0["dcf"]["terminal_ronic"]
+res["generous_without_ronic"] = run("gen_wo_ronic", brief=gb, raw=gen_raw)
+
+# ---------- Stacked bear case (PM decisions 13 Oct 2026 + brief bear scenario) ----------
+# Brief scenarios.bear (1% growth FY27-30, WACC +1 point) PLUS the PM's bear margin 31.9%. The engine's bear block already
+# applies the growth path and WACC shift; the margin goes in through base_margin. PM decisions: no tax on stake gains,
+# beta 0.6091 kept, so neither is stacked. We read the "bear" block of valuation.json.
+res["stacked_bear_pm_319"] = run("stacked_bear_319", raw=set_input(RAW0, "base_margin", BEAR_M,
+                                 "stacked bear: PM bear margin 31.9% (briefs/KO.yaml scenarios.bear.bear_agent_margin)"))
+# information only: the stacked bear plus the audit's FY26 5.0% (non-CCBA disposals), not a PM decision
+b = copy.deepcopy(BRIEF0)
+b["scenarios"]["bear"]["organic_growth"] = [0.050] + list(BRIEF0["scenarios"]["bear"]["organic_growth"][1:])
+res["stacked_bear_319_fy26_5p0"] = run("stacked_bear_319_fy26_5", brief=b, raw=set_input(RAW0, "base_margin", BEAR_M,
+                                       "stacked bear 31.9% + FY26 5.0%"))
+
+# ---------- Audit stress lines (evidence audit 15 Oct 2026), one change each ----------
+for label, erp in (("kroll_5p0", 0.050), ("fernandez_5p5", 0.055)):
+    b = copy.deepcopy(BRIEF0)
+    b["dcf"]["wacc"]["equity_risk_premium"] = erp   # Kroll US 5.0% / Fernandez 2025 survey US 5.5% (erp-evidence.md 2b, 2c)
+    res[f"audit_erp_{label}"] = run(f"audit_erp_{label}", brief=b)
+b = copy.deepcopy(BRIEF0)
+b["dcf"]["organic_growth"] = [0.050, 0.030, 0.030, 0.030, 0.030]  # audit finding 3: c.1 point of the 2-3% disposal headwind is not CCBA
+res["audit_fy26_5p0"] = run("audit_fy26_5p0", brief=b)
 
 # market-implied yields at $90.12 (plain ratios, for the memo)
 mcap = v("shares_outstanding_m") * v("share_price_usd")
@@ -174,6 +226,8 @@ res["market"] = {"market_cap_musd": mcap, "fcf_yield_on_fy26_guidance": guided_f
 val0 = json.loads((RUN / "valuation" / "valuation.json").read_text())
 res["derived"] = {
     "brief_bear_minus_base_usd": val0["bear"]["equity"]["per_share_usd"] - base_ps,
+    "engine_bear_valuation_json_usd": val0["bear"]["equity"]["per_share_usd"],
+    "stacked_bear_minus_base_usd": res["stacked_bear_pm_319"]["bear_block_value_per_share_usd"] - base_ps,
     "beta_2024_relevered": 0.70 * relever,
     "investee_dividend_yield_on_listed_market_value": fy25_div_from_equity_investees / listed_run,  # dividend yield
 }
@@ -183,6 +237,7 @@ for k, r in res.items():
 (HERE / "bear_runs.json").write_text(json.dumps(res, indent=2, default=float))
 for k, r in res.items():
     if isinstance(r, dict) and "value_per_share_usd" in r:
-        print(f"{k:40s} ${r['value_per_share_usd']:7.2f}  impact {r['impact_vs_base_usd']:+7.2f}  {r['rating']}  WACC {r['wacc']:.4f}")
+        print(f"{k:40s} USD {r['value_per_share_usd']:7.2f}  impact {r['impact_vs_base_usd']:+7.2f}  {r['rating']}  WACC {r['wacc']:.4f}"
+              f"  | bear block USD {r['bear_block_value_per_share_usd']:.2f} {r['bear_block_rating']}")
     else:
         print(k, json.dumps(r, default=float)[:600])

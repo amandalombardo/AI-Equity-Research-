@@ -50,7 +50,7 @@ dcf:
   valuation_basis: balance_sheet_date
   wacc:
     risk_free: null
-    equity_risk_premium: 0.05
+    equity_risk_premium: 0.042
     beta: null
     pre_tax_cost_of_debt: null
     credit_spread: 0.0069
@@ -65,6 +65,7 @@ dcf:
     disposal_proceeds_musd: null
     restructuring_cash_musd: null
     contingent_liabilities_musd: null
+    priced_at_valuation_date_musd: null
   shares_outstanding_m: null
 scenarios:
   bear:
@@ -76,6 +77,7 @@ scenarios:
     - 0.01
     flow_through: 0.0
     wacc_shift: 0.01
+    bear_agent_margin: 0.319
 comps:
   peers:
   - name: PepsiCo

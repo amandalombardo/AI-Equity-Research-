@@ -3,15 +3,15 @@
   "reporting_currency": "GBP",
   "base": {
     "wacc": {
-      "cost_of_equity": 0.103145,
+      "cost_of_equity": 0.0953618,
       "after_tax_cost_of_debt": 0.047478,
       "equity_weight": 0.87182,
       "debt_weight": 0.12818,
-      "wacc": 0.09600960394000001,
-      "wacc_used": 0.09600960394000001
+      "wacc": 0.089224054516,
+      "wacc_used": 0.089224054516
     },
-    "enterprise_value_mgbp": 34211.72335626162,
-    "tv_share_of_ev": 0.6931616576178372,
+    "enterprise_value_mgbp": 37433.54694210006,
+    "tv_share_of_ev": 0.7153145386250376,
     "terminal_year": {
       "sales": 12246.534207337503,
       "nopat": 3129.381379069367,
@@ -24,19 +24,19 @@
       "reinvestment_rate": 0.12987012987012989,
       "implied_ronic": 0.154
     },
-    "implied_exit_ev_ebitda": 7.816978435363539,
+    "implied_exit_ev_ebitda": 8.583222104422846,
     "equity": {
-      "enterprise_value": 34211.72335626162,
+      "enterprise_value": 37433.54694210006,
       "minorities_deducted": 24.0,
-      "equity_value_balance_sheet_date": 27214.723356261617,
-      "equity_value": 26117.445516365224,
-      "per_share_gbp": 14.97770593075228,
-      "per_share_gbp_pence": 1497.7705930752281
+      "equity_value_balance_sheet_date": 30436.54694210006,
+      "equity_value": 29415.008983070344,
+      "per_share_gbp": 16.868776627591814,
+      "per_share_gbp_pence": 1686.8776627591815
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.4594837268,
-      "fair_value": 1497.7705930752281,
+      "upside": -0.3912386637,
+      "fair_value": 1686.8776627591815,
       "share_price": 2771.0
     },
     "forecast": [
@@ -46,7 +46,7 @@
         "ebit": 3269.5187000000005,
         "ebit_margin": 0.331,
         "ufcf": 2368.2223054000006,
-        "pv": 2262.118166093523
+        "pv": 2269.153395743922
       },
       {
         "year": 2027,
@@ -54,7 +54,7 @@
         "ebit": 3432.9946350000005,
         "ebit_margin": 0.331,
         "ufcf": 2516.4142066700006,
-        "pv": 2193.1108766834254
+        "pv": 2213.6364264628355
       },
       {
         "year": 2028,
@@ -62,7 +62,7 @@
         "ebit": 3604.6443667500007,
         "ebit_margin": 0.331,
         "ufcf": 2642.2349170035004,
-        "pv": 2101.0458414228083
+        "pv": 2133.921150702823
       },
       {
         "year": 2029,
@@ -70,7 +70,7 @@
         "ebit": 3784.876585087501,
         "ebit_margin": 0.331,
         "ufcf": 2774.346662853676,
-        "pv": 2012.845622486644
+        "pv": 2057.0765022570035
       },
       {
         "year": 2030,
@@ -78,21 +78,21 @@
         "ebit": 3974.1204143418763,
         "ebit_margin": 0.331,
         "ufcf": 2913.0639959963596,
-        "pv": 1928.347977986037
+        "pv": 1982.9991069464816
       }
     ]
   },
   "bear": {
     "wacc": {
-      "cost_of_equity": 0.103145,
+      "cost_of_equity": 0.0953618,
       "after_tax_cost_of_debt": 0.047478,
       "equity_weight": 0.87182,
       "debt_weight": 0.12818,
-      "wacc": 0.09600960394000001,
-      "wacc_used": 0.10600960394
+      "wacc": 0.089224054516,
+      "wacc_used": 0.099224054516
     },
-    "enterprise_value_mgbp": 28442.77553853032,
-    "tv_share_of_ev": 0.6549381830537222,
+    "enterprise_value_mgbp": 30750.006592514357,
+    "tv_share_of_ev": 0.6761514597184967,
     "terminal_year": {
       "sales": 11339.787139987742,
       "nopat": 2897.678487455348,
@@ -105,19 +105,19 @@
       "reinvestment_rate": 0.12987012987012989,
       "implied_ronic": 0.154
     },
-    "implied_exit_ev_ebitda": 6.90812894911121,
+    "implied_exit_ev_ebitda": 7.4998109918687215,
     "equity": {
-      "enterprise_value": 28442.77553853032,
+      "enterprise_value": 30750.006592514357,
       "minorities_deducted": 24.0,
-      "equity_value_balance_sheet_date": 21445.77553853032,
-      "equity_value": 19887.248056932363,
-      "per_share_gbp": 11.404842521142232,
-      "per_share_gbp_pence": 1140.4842521142232
+      "equity_value_balance_sheet_date": 23753.006592514357,
+      "equity_value": 22237.027718978687,
+      "per_share_gbp": 12.752382760410253,
+      "per_share_gbp_pence": 1275.2382760410253
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.5884214175,
-      "fair_value": 1140.4842521142232,
+      "upside": -0.5397913114,
+      "fair_value": 1275.2382760410253,
       "share_price": 2771.0
     },
     "forecast": [
@@ -127,7 +127,7 @@
         "ebit": 3269.5187000000005,
         "ebit_margin": 0.331,
         "ufcf": 2368.2223054000006,
-        "pv": 2251.868460088294
+        "pv": 2258.808199044617
       },
       {
         "year": 2027,
@@ -135,7 +135,7 @@
         "ebit": 3367.6042610000004,
         "ebit_margin": 0.331,
         "ufcf": 2439.2689745620005,
-        "pv": 2097.1106449965055
+        "pv": 2116.558890298639
       },
       {
         "year": 2028,
@@ -143,7 +143,7 @@
         "ebit": 3468.6323888300003,
         "ebit_margin": 0.331,
         "ufcf": 2512.4470437988602,
-        "pv": 1952.9884339626221
+        "pv": 1983.2677860816098
       },
       {
         "year": 2029,
@@ -151,7 +151,7 @@
         "ebit": 3572.691360494901,
         "ebit_margin": 0.331,
         "ufcf": 2587.8204551128265,
-        "pv": 1818.7709038109103
+        "pv": 1858.3707400430844
       },
       {
         "year": 2030,
@@ -159,7 +159,7 @@
         "ebit": 3679.872101309748,
         "ebit_margin": 0.331,
         "ufcf": 2665.4550687662118,
-        "pv": 1693.777363462085
+        "pv": 1741.3391331644261
       }
     ]
   },
@@ -176,11 +176,11 @@
   },
   "sensitivity_value_per_share_pence": {
     "wacc": [
-      0.08600960394000001,
-      0.09100960394,
-      0.09600960394000001,
-      0.10100960394000001,
-      0.10600960394
+      0.07922405451600001,
+      0.084224054516,
+      0.089224054516,
+      0.09422405451600001,
+      0.099224054516
     ],
     "terminal_growth": [
       0.015,
@@ -190,34 +190,34 @@
     ],
     "grid": [
       [
-        1734.8179677531075,
-        1806.1135500674702,
-        1888.397539108362,
-        1984.6127534158773
+        1965.2603089525428,
+        2061.9755849503563,
+        2175.724261727407,
+        2311.69691153949
       ],
       [
-        1583.8663221739864,
-        1641.1132039609079,
-        1706.4010670657065,
-        1781.7068907175333
+        1783.0400370112723,
+        1859.8561801886617,
+        1948.9228331551833,
+        2053.6288543884475
       ],
       [
-        1451.5338323668025,
-        1497.7705930752281,
-        1549.9435897461028,
-        1609.4017706251648
+        1625.3531834776552,
+        1686.8776627591815,
+        1757.3315364318514,
+        1838.9764010202834
       ],
       [
-        1334.5737719862543,
-        1372.0768779217174,
-        1413.9876000750903,
-        1461.2369990297334
+        1487.555179505883,
+        1537.1524971897766,
+        1593.3235732062847,
+        1657.6037571332633
       ],
       [
-        1230.4528884765912,
-        1260.9553568293143,
-        1294.739193028059,
-        1332.4519536332996
+        1366.104344597283,
+        1406.279395095616,
+        1451.327128729787,
+        1502.3033959198372
       ]
     ]
   },
@@ -248,7 +248,7 @@
   },
   "sources": {
     "base_sales": "GBP m, FY25 revenue 9,590 (RELX FY2025 results 6-K ex 99.1 (accession 0000929869-26-000008, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000008/relx-20260201xex99d1.htm) p.26; RELX Annual Report 2025 (20-F ex 15.2, accession 0001104659-26-017277, filed 19 Feb 2026, https://www.sec.gov/Archives/edgar/data/929869/000110465926017277/relx-20251231xex15d2.htm) p.186; XBRL ifrs-full:RevenueFromContractsWithCustomers). The DCF base is FY25 revenue INCLUDING print (399); the margin decision (35.0%) is on H1 2026 adjusted margin EX print, applied to this base (PM decision, brief dcf.base_margin comment).",
-    "base_margin": "BEAR SCRATCH (bear/run_bear.py): brief bear_agent_margin. Base value was 0.35; base source: PM decision 14 Oct 2026, briefs/RELX.yaml dcf.base_margin: H1 2026 adjusted operating margin without print (1,727 - 78) / (4,871 - 157) = 35.0% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.1-9). Data agent check: FY25 adjusted margin 3,342 / 9,590 = 34.85% incl. print (AR25 p.186).",
+    "base_margin": "BEAR SCRATCH (bear/run_bear.py): old bear_agent_margin, FY23 group incl. print. Base value was 0.35; base source: PM decision 14 Oct 2026, briefs/RELX.yaml dcf.base_margin: H1 2026 adjusted operating margin without print (1,727 - 78) / (4,871 - 157) = 35.0% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.1-9). Data agent check: FY25 adjusted margin 3,342 / 9,590 = 34.85% incl. print (AR25 p.186).",
     "tax_rate": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.tax_rate: H1 2026 effective tax rate 22.8%, 'best estimate of the annual tax rate expected for the full financial year' (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.28, note 7).",
     "da_pct_sales": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.da_pct_sales: H1 2026 (internally developed 193 + PP&E 12 + pre-publication 42) / revenue 4,871 = 5.07% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.10 and p.25); lease depreciation (18) excluded because leases are not in net debt.",
     "capex_pct_sales": "PM decision 14 Oct 2026, briefs/RELX.yaml dcf.capex_pct_sales: H1 2026 (capex 292 incl. capitalised development 280 + pre-publication spend 54) / 4,871 = 7.10% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054, 23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.10, quote re-checked: 'Capital expenditure was GBP 292m ... excludes pre-publication costs of GBP 54m').",

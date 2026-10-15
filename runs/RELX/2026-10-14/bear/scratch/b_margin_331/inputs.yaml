@@ -6,8 +6,8 @@ base_sales:
     margin EX print, applied to this base (PM decision, brief dcf.base_margin comment).
 base_margin:
   value: 0.331
-  source: 'BEAR SCRATCH (bear/run_bear.py): brief bear_agent_margin. Base value was 0.35; base source: PM decision 14 Oct 2026, briefs/RELX.yaml dcf.base_margin:
-    H1 2026 adjusted operating margin without print (1,727 - 78) / (4,871 - 157) = 35.0% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054,
+  source: 'BEAR SCRATCH (bear/run_bear.py): old bear_agent_margin, FY23 group incl. print. Base value was 0.35; base source: PM decision 14 Oct 2026, briefs/RELX.yaml
+    dcf.base_margin: H1 2026 adjusted operating margin without print (1,727 - 78) / (4,871 - 157) = 35.0% (RELX H1 2026 interim results 6-K ex 99.1 (accession 0000929869-26-000054,
     23 Jul 2026, https://www.sec.gov/Archives/edgar/data/929869/000092986926000054/relx-20260723xex99d1.htm) p.1-9). Data agent check: FY25 adjusted margin 3,342
     / 9,590 = 34.85% incl. print (AR25 p.186).'
 tax_rate:

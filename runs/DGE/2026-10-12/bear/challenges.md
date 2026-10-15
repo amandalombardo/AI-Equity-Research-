@@ -1,11 +1,84 @@
-# Bear case: Diageo (DGE), run 2026-10-12 (Phase 4 re-run, 13 Oct 2026: mid-year discounting)
+# Bear case: Diageo (DGE), run 2026-10-12 (re-run 15 Oct 2026 after the evidence audit)
+
+## Re-run 15 Oct 2026 (evidence audit)
+**Base case: 1,808.8p (GBp; USD 23.94 per share), +8.1% vs 1,673p (GBp, 12 Oct 2026 close, cum-dividend), HOLD**, WACC 7.92%. What changed (PM decisions, `valuation/notes.md` top section): equity risk premium (ERP) 5.0% (no source) -> **4.2%** (Damodaran implied, seen secondhand) and shares 2,222m -> **2,224m**. Was 1,627.3p (GBp), -2.7%, HOLD. **SELL below 1,505.7p (GBp): 303p of headroom (was 122p). BUY above 1,923.95p (GBp): 115p away (was 297p).** The engine bear scenario (no growth, 25% flow-through, WACC +1 point) gives **1,298.3p (GBp), -22.4%, SELL** (was 1,179.9p).
+
+Method unchanged: one change at a time to an in-memory copy of `briefs/DGE.yaml` or `inputs.yaml`, re-run through `desk.valuation_run.build` (`run_challenges.py`, results in `challenges.json`). The script stops if its base does not reproduce `valuation/valuation.json`: it does (1,808.8p). Stacks (S rows) are one engine run with several changes at once, not sums of single impacts.
+
+### Every single change, old vs new (pence per ordinary share, GBp)
+| # | Change | 13 Oct value (ERP 5.0%) | **15 Oct value** | Impact vs 1,808.8p | Rating | PM response (Phase 4, 13 Oct 2026) |
+|---|---|---|---|---|---|---|
+| 1 | Flow-through 40% | 1,607.5p | **1,787.3p** | -21.5p | HOLD | 46% is the low end of FY27-29 profit guidance; we will check it against FY27 interim margins. |
+| 1 | Flow-through 33% (2017 "two thirds reinvested") | 1,584.4p | **1,762.2p** | -46.5p | HOLD | (same) |
+| 1 | Flow-through 25% (FY22-24 record) | 1,558.0p | **1,733.6p** | -75.2p | HOLD | (same) |
+| 1 | Supply-chain savings phased 25/50/75/100% | 1,626.5p | **1,808.0p** | -0.8p | HOLD | (not addressed; immaterial) |
+| 2 | Terminal RONIC 10.8% (capex 7.07% of sales) | 1,561.8p | **1,735.9p** | -72.9p | HOLD | 13.4% is Diageo's lowest ROIC in four years, not a recovery; FY26 capex (6.1% of sales) is already close to the 6.21% the rule implies. |
+| 2 | Terminal RONIC = WACC (7.92%; capex 8.68%) | 1,468.3p SELL | **1,599.0p** | **-209.7p** | **HOLD** (was SELL) | (same) |
+| 3 | Zero organic growth FY27-31 | 1,490.7p SELL | **1,656.8p** | **-151.9p** | **HOLD** (was SELL) | The path is already the low end of guidance (0% in FY27); five years of zero growth means North America never recovers, which is the bear scenario, not the base. |
+| 4 | Terminal growth 1.5% | 1,571.6p | **1,735.9p** | -72.8p | HOLD | With 2.35% breakeven inflation, 2% nominal already means a small real decline; the IWSR figures are secondhand. |
+| 5 | Credit spread 2.0% (cost of debt 7.22%) | 1,559.3p | **1,728.3p** | -80.4p | HOLD | Our 1% spread is already about the BBB average (1.02%, vs 0.69% for A-rated) for an A-band company. |
+| 5 | Beta 1.00 | 1,584.5p | **1,766.0p** | -42.8p | HOLD | (same) |
+| 6 | USL minority at market + others at book (USD 5,778m) | 1,480.0p SELL | **1,666.8p** | **-142.0p** | **HOLD** (was SELL) | An upper bound: it prices USL's minority at market but Diageo's own 57.21% at the DCF multiple, and the USD 1,328m still includes EABL's 35%. |
+| check | Old book minorities (USD 2,083m) | 1,609.1p | 1,795.5p | -13.2p | HOLD | |
+| for | Beta 0.72 (own 5y weekly regression) | 1,929.6p BUY | **2,107.2p** | +298.5p | **BUY** (+26.0%) | R-squared 0.15 (95% range 0.51 to 0.93): too weak to override the industry beta. |
+| for | Restructuring cash after tax relief (USD 850m -> 643m) | 1,634.5p | 1,816.0p | +7.2p | HOLD | Would add 7p; tax relief not confirmed. |
+
+**No single business challenge now flips the rating to SELL** (on 13 Oct three did: RONIC = WACC, zero growth, USL at market). Every value rose by about 10-11% because of the lower discount rate, not because anything about Diageo changed. The PM's Phase 4 responses are kept as given; they were written against the 13 Oct numbers.
+
+### New lines from the evidence audit (docs/audit-2026-10-15/DGE.md), one change each
+| # | Change (agent challenged) | Evidence | **Value** | Impact | Rating |
+|---|---|---|---|---|---|
+| A1 | Organic growth FY30-31 2% instead of 3% (Fundamentals / brief) | Brief's 3% is unsourced ("industry long-run nominal growth"); the Data agent's own IWSR evidence (secondhand: spirits volumes about -2% by 2035) "challenges, rather than supports, the 3%" (audit finding 2) | **1,778.8p** | -30.0p | HOLD |
+| A2 | Disposal proceeds net of an **illustrative** USD 300m of tax and costs (Data) | Brief asks for "net proceeds"; the input (USD 3,318.3m) is gross (20-F p.85; RCB press). No sourced tax figure exists, so USD 300m is illustrative | **1,798.3p** | -10.5p | HOLD |
+| A2' | Per USD 100m of tax (sensitivity) | as above | 1,805.3p | -3.5p per USD 100m | HOLD; no amount of tax up to the full USD 3,318m flips it |
+| A3 | Diluted shares 2,231m (Data) | 20-F FY26: 2,224m basic + 7m dilutive (audit finding 8). Debt weight left at 0.29376 | **1,803.1p** | -5.7p | HOLD |
+| A4a | ERP 5.0% (Kroll recommended US ERP) with the 10-year risk-free 5.22% (Valuation / PM) | Kroll, reaffirmed 2026 (secondhand, erp-evidence.md 2b). This is the old desk figure, now with a source | **1,625.5p** | **-183.3p** | HOLD (-2.8%) |
+| A4b | ERP 5.0% with **Kroll's own pairing**: 20-year Treasury 5.60% (Valuation / PM) | Kroll pairs 5.0% with the spot 20-year yield (FRED DGS20, 13 Oct 2026, via erp-evidence.md). Cost of debt kept at 6.22% (10-year + 1%) | **1,545.7p** | **-263.1p** | HOLD (-7.6%) |
+| A4c | ERP 5.5% (Fernandez 2025 survey: US 5.5%, UK 5.4%) (Valuation / PM) | erp-evidence.md section 1 (secondhand); survey answers were given against lower risk-free rates (about 4.1%) | **1,525.7p** | **-283.0p** | HOLD (-8.8%, 20p above SELL) |
+| A5 | Terminal growth 1.5% (Valuation / Data) | = challenge 4 | **1,735.9p** | -72.8p | HOLD |
+
+**Rating flip points (engine bisection, one input at a time; matches `valuation/notes.md`):**
+| Input | Used | SELL if (13 Oct) | **SELL if (15 Oct)** | **BUY if (15 Oct)** |
+|---|---|---|---|---|
+| ERP | 4.2% | above 5.62% | **above 5.61%** | **below 3.76%** |
+| Beta | 0.96 | above 1.078 | **above 1.282** | **below 0.860** |
+| Savings flow-through | 46% | below 9.1% | **none (0% stays HOLD)** | |
+| Terminal RONIC | 13.4% | below 9.26% | **none (even RONIC = WACC 7.92% gives 1,599.0p)** | |
+| Terminal growth | 2.0% | not solved | **none down to 0%** (the RONIC rule cuts reinvestment as growth falls) | |
+| Minorities (book basis, USD m) | USD 1,703m proportionate | above USD 5,041m | **above USD 10,403m** (USL at market + others = USD 5,778m) | |
+| Disposal tax (USD m) | 0 | not solved | **none, up to the full USD 3,318m** | |
+
+The market price (1,673p GBp) implies an ERP of about 4.78% (valuation notes), which sits between Damodaran's 4.2% and Kroll's 5.0%.
+
+### Stacked bear cases (one engine run each, GBp)
+| # | Changes together | **Value** | Impact | Rating |
+|---|---|---|---|---|
+| S1 | Audit's sourced small corrections: diluted 2,231m + risk-free 5.24% (FRED DGS10, 9 Oct) + USD 300m disposal tax | **1,787.5p** | -21.3p | HOLD (+6.8%) |
+| S5 | **Business bear, ERP kept at 4.2%:** FY30-31 growth 2% + USD 300m disposal tax + diluted 2,231m + terminal growth 1.5% + flow-through 33% + beta 1.00 | **1,609.6p** | -199.2p | HOLD (-3.8%) |
+| S2 | Audit bear lines: A1 + A2 + A3 + **ERP 5.0%** + terminal growth 1.5% | **1,528.8p** | -280.0p | HOLD (-8.6%, 23p above SELL) |
+| S4 | S2 + flow-through 33% + beta 1.00 | **1,449.8p** | -359.0p | **SELL** (-13.3%) |
+| S3 | S2 with **ERP 5.5%** (Fernandez) | **1,439.4p** | -369.4p | **SELL** (-14.0%) |
+| B | Engine bear scenario (brief 5b: no growth, 25% flow-through, WACC +1 point) | **1,298.3p** | -510.5p | **SELL** (-22.4%) (was 1,179.9p) |
+
+**What flips the rating now.** Nothing on its own except a discount-rate move: ERP above 5.61% or beta above 1.28 (SELL); ERP below 3.76% or beta below 0.86 (BUY). Getting to SELL takes a stack: the audit's own bear lines plus the Fernandez ERP (S3), or plus Diageo's 2017 reinvestment rule and beta 1.00 (S4). Without an ERP change, even a broad business bear (S5) leaves the stock at 1,609.6p (GBp): still HOLD, but 3.8% **below** the price.
+
+## Challenges (claim, evidence, value impact; 15 Oct values)
+1. **Savings flow-through (Valuation agent / PM, 46%).** History says most savings are reinvested (2017 "two thirds reinvested"; FY23 GBP 450m of savings for +15bps of margin). 33% costs **-46.5p (GBp)**, 25% **-75.2p**. Evidence below.
+2. **Terminal returns (Valuation agent / PM, RONIC 13.4%).** ROIC 18.4% -> 13.4% over FY23-26. RONIC 10.8% costs **-72.9p**; RONIC = WACC **-209.7p**.
+3. **No recovery (Fundamentals agent / brief growth path).** Both 2023-26 incentive targets missed. Zero growth costs **-151.9p**; just trimming the unsourced FY30-31 3% to 2% costs **-30.0p** (A1).
+4. **Terminal growth 2% vs falling spirits volumes (Data agent's industry check).** 1.5% costs **-72.8p**.
+5. **Cost of capital (Risk agent beta; PM ERP and credit spread).** This is now the main challenge. The +181.5p (GBp) of the re-run is a discount-rate decision, made on a figure seen only in search summaries. Kroll's 5.0% (also secondhand, but a named published figure) gives 1,625.5p (-183.3p), 2.8% below the price; Kroll's own pairing with the 20-year gives 1,545.7p (-263.1p); the survey 5.5% gives 1,525.7p (-283.0p). Beta 1.00 costs -42.8p; a 2% spread -80.4p. Leverage is 3.14x vs a 2.5-3.0x target (20-F p.186).
+6. **Minorities (Valuation agent / PM method).** USL at market costs **-142.0p** (upper bound; see counter-argument below).
+7. **Data inputs (audit).** Gross disposal proceeds (-3.5p per USD 100m of tax) and diluted shares (-5.7p): small, all one way.
+
+## Phase 4 re-run, 13 Oct 2026 (SUPERSEDED 15 Oct 2026: ERP 5.0%, 2,222m shares; kept for the record)
 
 **Base case: 1,627p (1,627.3p GBp; USD 21.54 per share), -2.7% vs 1,673p, HOLD** at a WACC of 8.46% (beta 0.96, terminal RONIC 13.4%, flow-through 46%, valued at 30 June 2026 with **mid-year discounting** (PM decision 13 Oct 2026; was end-of-year, 1,545p) and rolled forward to 12 Oct, restructuring cash USD 850m deducted, minorities proportionate: 2.566% x EV = USD 1,562m). **SELL starts at 1,506p (1,505.7p GBp), 122p below the base** (was 39p).
 The engine's bear scenario (no organic growth, 25% flow-through, WACC +1 point) gives **1,180p GBp (-29.5%, SELL)**: three changes combined, shown for reference.
 
 Method unchanged: one change at a time to an in-memory copy of the brief or `inputs.yaml`, re-run through `desk.valuation_run.build` (`run_challenges.py`, results in `challenges.json`; the script stops if its base does not reproduce `valuation/valuation.json`: it does, 1,627.3p). SELL-flip thresholds (engine bisection, matching `valuation/sanity_checks.json`): **flow-through below 9.1%, beta above 1.078, terminal RONIC below 9.26%, minorities above USD 5,041m (book basis) / share above 8.28%.**
 
-## Results of every single change (GBp, vs 1,627.3p)
+### Results of every single change (GBp, vs 1,627.3p) (SUPERSEDED)
 | # | Change | Value | Impact | Rating |
 |---|---|---|---|---|
 | 1 | Flow-through 40% | 1,607.5p | -19.8p | HOLD |
@@ -25,7 +98,8 @@ Method unchanged: one change at a time to an in-memory copy of the brief or `inp
 
 **Three of the eleven single bear changes now flip the rating to SELL** (RONIC = WACC, zero growth, USL at market); before mid-year discounting it was nine. The evidence for each challenge is unchanged and kept below; only the values moved (every value rises by about 5% because all cash flows, including the terminal value, are discounted half a year less).
 
-## Evidence for each challenge (unchanged from Phase 3; the values quoted inside were end-of-year values and are superseded by the table above)
+
+## Evidence for each challenge (unchanged from Phase 3; the values quoted inside are Phase 3 end-of-year values, SUPERSEDED by the 15 Oct table at the top)
 
 ## 1. Savings flow-through: the record says most savings get reinvested (challenges the Valuation agent / PM assumption, 46%)
 **Claim:** 46% is the flow-through that delivers the *low end* of management's FY27-29 guidance; it assumes Diageo hits guidance. Its own history keeps far less.
@@ -101,4 +175,8 @@ Pattern: guidance has been met only at the low end or missed. The base case alre
 ## Which single challenges flip HOLD to SELL (SELL below 1,505.7p GBp)
 Terminal RONIC = WACC; zero organic growth; USL minority at market (an upper bound). The other eight do not. On the other side, beta 0.72 (Diageo's own best regression) reaches BUY by 6p.
 
-**Strongest reason not to buy:** the base case already assumes the low end of guidance is delivered by a management team that missed both of its 2023-26 incentive targets, and the case for a BUY rests on a beta (0.72) with an R-squared of 0.15.
+
+## Not quantified, update 15 Oct 2026
+Moet Hennessy at book (USD 5,107m, "sensitive" impairment headroom), GLP-1 / moderation, USL net cash and the split of the USD 1,328m other minorities: still no sourced number. Disposal tax is now tested (A2) but only at an illustrative USD 300m. The UK or global implied ERP (our benchmark is the FTSE 100) was not checked.
+
+**Strongest reason not to buy:** the move from -2.7% to +8.1% came entirely from cutting the equity risk premium to a figure seen only in search summaries, not from anything Diageo did; at Kroll's published 5.0% the value is 1,625.5p (GBp), below the 1,673p price, and the market itself is pricing an ERP of about 4.8%.
