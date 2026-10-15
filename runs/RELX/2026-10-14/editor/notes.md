@@ -1,5 +1,40 @@
 # Editor agent notes: RELX PLC (RELX / REL.L), run 2026-10-14
 
+## Update 15 Oct 2026 (evidence audit re-run)
+
+**Why.** Evidence audit of 15 Oct 2026 (`docs/audit-2026-10-15/RELX.md`, `summary.md`). PM decision: equity risk premium 4.2% (Damodaran implied ERP, 1 Oct 2026; was 5.0% with no source); bear margin 32.4% (decision 14). The Valuation and Bear agents re-ran; I read the new top sections of `valuation/notes.md`, `bear/notes.md`, `bear/challenges.md`, `valuation/valuation.json`, `valuation/sanity_checks.json` and `bear/bear_results.json`. I wrote only in `editor/`; no commit.
+
+**What changed in memo.md** (pence GBp per share, GBP m totals):
+- Header: "Desk rating: SELL (PM confirmed 15 Oct 2026; re-run 15 Oct 2026 after evidence audit)". Fair value 1,821p (was 1,621p), price 2,771p (13 Oct 2026 close), upside -34.3% (was -41.5%), engine bear 1,386p (was 1,244p).
+- WACC build: cost of equity 9.54% (gilt 5.45% + 0.9729 x 4.2%), WACC 8.92% (was 9.60%), now inside the 6-9% range (0.08 pt below the top). Bridge: EV GBP 39,616.5m, equity GBP 32,619.5m at 31 Dec 2025, GBP 31,759.4m at 13 Oct 2026. TV 71.5% of EV; exit 8.6x (FLAG, below every peer).
+- Flip points: HOLD needs WACC 7.38%, beta 0.535 or gilt 3.80%; market-implied WACC 6.93%; cash-flow flips 44.5% margin, 12.4% growth, 4.89% terminal growth. Margin worth 71p a point (was 65p).
+- Sensitivity grid: from valuation.json, WACC 7.92-9.92% x g 1.5-3.0%, 1,482p to 2,482p, all SELL.
+- Football (`unit: GBp`): markers price 2,771 then DCF 1,821. Bars: WACC 8.42-9.42% 1,663-2,004; g 1.5-3.0% 1,756-1,982; new bar ERP 5.5% to 5.0% (audit) 1,514-1,621; single bear changes 1,586 (beta 1.195) to 1,810 (BBB); AI case 1,432; engine bear 1,386; stacked bear 1,002-1,040; lower beta 0.75 to 0.38 2,117-2,844; comps 1,955-4,111 (unchanged).
+- Beta-0.38 scenario is now one value: 2,844p HOLD (+2.6%), from the unrounded 0.3783 (audit C5 closed).
+- Bear table: values at ERP 4.2% from challenges.md; the PM response column is the 15 Oct memo wording, kept word for word (full drafted text in `docs/phase5/relx-bear-responses.md`, decision 14); new column "Still holds?" from the Bear agent's check in challenges.md. Only the challenge labels with numbers were updated (B1 6.93%, B4 8.6x). Two generous stacks now reach HOLD at the 5.45% gilt only with a lower beta (0.75: 2,586p; 0.66: 2,546p); with 0.973 the best is 2,409p. PM view kept, plus "Its gilt trigger is now 3.80% (was 3.11%)".
+- Audit disclosures added: ERP seen only in search summaries (PM to confirm on Damodaran's site); 5.45% gilt from aggregator sites only (Bank of England blocked); 0.70% spread is a US-dollar index added to a sterling gilt; industry growth forecast MISSING; Employee Benefit Trust shares in the count (+5.6p if excluded); GBP 366m interim dividend is RELX's expected cost; buybacks after 25 Sep not yet filed. Sources appendix adds the ERP source and the audit.
+- To keep two pages I shortened the Fundamentals and Risks bullets (fewer year-by-year figures; same sources) and dropped the per-share value decomposition line and the Bear agent's conclusion sentence.
+
+**Checks run.**
+- `python -m desk.memo_check runs/RELX/2026-10-14`: "All memo numbers trace to agent outputs." (passed on every iteration).
+- `python -m desk.memo_pdf runs/RELX/2026-10-14/editor/memo.md`: memo.pdf is 3 pages (2 memo pages + Sources page). Rendered to PNG and checked: no overflow; header box wraps the long desk-rating text onto five lines, readable.
+- Key numbers checked by hand against valuation.json (1,821.32p, -34.27%, WACC 8.9224%, Ke 9.536%, grid), sanity_checks.json (flip points, TV share, exit multiple, comps gap) and challenges.md (bear values).
+
+**FLAGs.**
+1. **+5.6p (EBT shares) comes from the audit report** (`docs/audit-2026-10-15/RELX.md`), not from an agent output in the run folder. The memo attributes it to the audit. memo_check passes it only because 5.6 appears elsewhere in the run folder (it matches any number anywhere, audit C10). Valuation agent could add it to its notes for clean tracing.
+2. **ERP 4.2% unconfirmed at source** (search summaries only) and the gilt 5.45% is aggregator-only: the rating still rests on the discount rate; WACC is 0.08 pt below the desk's 9% ceiling.
+3. **Beta is now the closest flip:** HOLD needs 0.535 vs the Blume-adjusted 0.58 (2,400p, SELL).
+4. **The PM's responses were written at ERP 5.0%.** The memo keeps her wording and shows the Bear agent's check that each still holds; the PM may want to re-confirm B3 (beta margin of safety shrank).
+5. **Chart:** the ERP bar label slightly touches the DCF marker line; readable.
+
+**Missing (unchanged upstream):** primary-source gilt for 13 Oct 2026; independent industry growth forecast; peer NTM EBITDA and RELX forward EPS; UK breakeven inflation; UK 20-year gilt (Kroll pairing); sourced AI price-cut estimate.
+
+**Confidence.** High that the memo matches the re-run agent outputs. Rating SELL (PM confirmed); moderate conviction, conditional on the discount rate.
+
+---
+
+*Everything below is the 14 Oct 2026 first version (ERP 5.0%); its numbers are superseded by the section above.*
+
 ## What I did
 - Read CLAUDE.md, briefs/RELX.yaml and every agent output in this run (data, risk, fundamentals, valuation, bear). The memo follows the layout of runs/ULVR/2026-10-14/editor/memo.md.
 - **Header:** SELL from valuation.json, PM review pending, no override. Fair value 1,621p; price 2,771p (13 Oct 2026 close); upside -41.5%; engine bear 1,244p; HOLD from 2,494p, BUY from 3,187p (sanity_checks.json).
