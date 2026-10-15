@@ -7,7 +7,7 @@ Beiersdorf,BEI.DE,EUR,12,2026-06-30,LTM to Jun 2026 (common window); Unilever EB
 L'Oreal,OR.PA,EUR,12,2026-06-30,LTM to Jun 2026 (common window); Unilever EBITDA put on the same window,387.15,206215.0,218879.0,10350.0,21.1477,,32.7,26.42,14.9293,25.9322,0.031,yes,"flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report)"
 Henkel,HEN3.DE,EUR,12,2026-06-30,LTM to Jun 2026 (common window); Unilever EBITDA put on the same window,75.72,29003.0,31358.0,3254.0,9.6368,,15.16,13.05,5.8816,12.8739,0.0483,yes,"flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); Henkel has two share lines (ordinary HEN.DE + preferred HEN3.DE): market cap uses both; P/E NTM uses the preferred price"
 "(optional, shown separately) Hindustan Unilever",HINDUNILVR.NS,INR,3,2026-06-30,LTM to Jun 2026 (common window); Unilever EBITDA put on the same window,1875.5,4406658.0,4351508.0,148477.0,29.3076,,41.66,36.97,51.8121,36.1981,,no,"fcf MISSING (Yahoo gives no FCF); flag: non-filing source (all figures Yahoo Finance; EBITDA, debt, cash, FCF are Yahoo LTM figures, not checked to the annual report); OPTIONAL: Unilever's 61.9%-owned subsidiary, show separately, not in the median"
-MEDIAN all_7,,,,,,,,,,11.8916,,,,,19.9857,0.0483,,implied value per share (pence) low/median/high: 3114 / 3858 / 6488
-MEDIAN ex_KMB,,,,,,,,,,14.2433,,,,,20.6391,0.0455,,implied value per share (pence) low/median/high: 3114 / 4527 / 6488
-MEDIAN ex_CL,,,,,,,,,,11.8696,,,,,17.2855,0.0455,,implied value per share (pence) low/median/high: 3114 / 3852 / 6488
-MEDIAN ex_KMB_and_CL,,,,,,,,,,11.8916,,,,,19.9857,0.0426,,implied value per share (pence) low/median/high: 3114 / 3858 / 6488
+MEDIAN all_7,,,,,,,,,,11.8916,,,,,19.9857,0.0483,,implied value per share (pence) low/median/high: 3152 / 3902 / 6552
+MEDIAN ex_KMB,,,,,,,,,,14.2433,,,,,20.6391,0.0455,,implied value per share (pence) low/median/high: 3152 / 4575 / 6552
+MEDIAN ex_CL,,,,,,,,,,11.8696,,,,,17.2855,0.0455,,implied value per share (pence) low/median/high: 3152 / 3896 / 6552
+MEDIAN ex_KMB_and_CL,,,,,,,,,,11.8916,,,,,19.9857,0.0426,,implied value per share (pence) low/median/high: 3152 / 3902 / 6552

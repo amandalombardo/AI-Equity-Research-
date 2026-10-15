@@ -6,12 +6,12 @@
   "method": "- EV/EBITDA LTM: median of the 7 core peers, with and without the distorted peers (KMB: pending Kenvue deal;\n  CL: Q4 2025 Filorga impairment in LTM). Hindustan Unilever shown separately (brief optional_peers).\n- The multiple is applied to the EBITDA of the business that REMAINS after the Foods sale (ex-perimeter), then\n  the SAME non-operating items as the DCF are added/deducted (Foods consideration, stakes/JVs/investments, minorities\n  proportionate, net debt, restructuring), so the comps value and the DCF value per share are comparable.\n- Calendarisation: every peer's LTM ends 30 Jun 2026 (PG's own fiscal year ends then). To compare like with like,\n  Unilever's ex-perimeter EBITDA is put on the same 12 months to June 2026 with desk.comps.calendarise (6/12 FY25 +\n  6/12 FY26). Restating the peers onto December 2025 instead would need their H2 2025 figures, which are not in\n  data/peers.csv (MISSING). Forward P/E is calendarised onto Unilever's December year end (FY27 = Dec 2027).",
   "ulvr_ebitda_meur": {
     "fy25_pm_basis": 8080.008999999999,
-    "fy26_pm_basis_engine": 8120.4090449999985,
+    "fy26_pm_basis_engine": 8241.60918,
     "fy25_underlying": 8518.878,
-    "fy26_underlying": 8561.472389999999,
+    "fy26_underlying": 8689.255560000001,
     "calendarised_ltm_jun2026": {
-      "pm_basis_after_restructuring": 8100.209022499999,
-      "underlying_before_restructuring": 8540.175195
+      "pm_basis_after_restructuring": 8160.809089999999,
+      "underlying_before_restructuring": 8604.066780000001
     }
   },
   "bridge_primary": {
@@ -21,7 +21,7 @@
     ],
     "q2_2026_dividend_deducted_meur": 1004.8,
     "minority_share_of_ev": 0.10684,
-    "associates_meur": 7061.8,
+    "associates_meur": 7533.5,
     "disposal_proceeds_meur": 33312.4,
     "restructuring_cash_meur": 500.0,
     "roll_forward_at_cost_of_equity": "none (a market multiple already prices the company today)"
@@ -226,26 +226,26 @@
       "median_multiple": 11.891643454038997,
       "low_multiple": 9.270886075949367,
       "high_multiple": 21.147729468599035,
-      "ulvr_ebitda_meur": 8100.209022499999,
+      "ulvr_ebitda_meur": 8160.809089999999,
       "implied_ev_meur": {
-        "low": 75096.11503897468,
-        "implied_value": 96324.79759875973,
-        "high": 171301.02904693503
+        "low": 75657.93136096201,
+        "implied_value": 97045.43199476042,
+        "high": 172582.58288020384
       },
       "value_per_share_pence": {
-        "low": 3113.765297868054,
-        "implied_value": 3858.428760818274,
-        "high": 6488.458202914787
+        "low": 3151.998446474442,
+        "implied_value": 3902.232957775911,
+        "high": 6551.9384306113
       },
       "value_per_share_eur": {
-        "low": 36.80157341686454,
-        "implied_value": 45.60274642800406,
-        "high": 76.6870486610915
+        "low": 37.25345077138425,
+        "implied_value": 46.12046796963953,
+        "high": 77.4373210922513
       },
       "upside_vs_price": {
-        "low": -0.3389735064498346,
-        "implied_value": -0.18088764232708332,
-        "high": 0.37744574947771725
+        "low": -0.33085692676479306,
+        "implied_value": -0.17158837537927796,
+        "high": 0.39092207421957315
       }
     },
     "ev_ebitda_ltm_ex_KMB": {
@@ -261,26 +261,26 @@
       "median_multiple": 14.243294225709914,
       "low_multiple": 9.270886075949367,
       "high_multiple": 21.147729468599035,
-      "ulvr_ebitda_meur": 8100.209022499999,
+      "ulvr_ebitda_meur": 8160.809089999999,
       "implied_ev_meur": {
-        "low": 75096.11503897468,
-        "implied_value": 115373.66039721758,
-        "high": 171301.02904693503
+        "low": 75657.93136096201,
+        "implied_value": 116236.80498871795,
+        "high": 172582.58288020384
       },
       "value_per_share_pence": {
-        "low": 3113.765297868054,
-        "implied_value": 4526.628122545735,
-        "high": 6488.458202914787
+        "low": 3151.998446474442,
+        "implied_value": 4575.431317222032,
+        "high": 6551.9384306113
       },
       "value_per_share_eur": {
-        "low": 36.80157341686454,
-        "implied_value": 53.500190684497035,
-        "high": 76.6870486610915
+        "low": 37.25345077138425,
+        "implied_value": 54.07699535024591,
+        "high": 77.4373210922513
       },
       "upside_vs_price": {
-        "low": -0.3389735064498346,
-        "implied_value": -0.03903447138398575,
-        "high": 0.37744574947771725
+        "low": -0.33085692676479306,
+        "implied_value": -0.02867395876827683,
+        "high": 0.39092207421957315
       }
     },
     "ev_ebitda_ltm_ex_CL": {
@@ -296,26 +296,26 @@
       "median_multiple": 11.869563622666302,
       "low_multiple": 9.270886075949367,
       "high_multiple": 21.147729468599035,
-      "ulvr_ebitda_meur": 8100.209022499999,
+      "ulvr_ebitda_meur": 8160.809089999999,
       "implied_ev_meur": {
-        "low": 75096.11503897468,
-        "implied_value": 96145.94634945935,
-        "high": 171301.02904693503
+        "low": 75657.93136096201,
+        "implied_value": 96865.24270618847,
+        "high": 172582.58288020384
       },
       "value_per_share_pence": {
-        "low": 3113.765297868054,
-        "implied_value": 3852.154985218592,
-        "high": 6488.458202914787
+        "low": 3151.998446474442,
+        "implied_value": 3895.9122461991733,
+        "high": 6551.9384306113
       },
       "value_per_share_eur": {
-        "low": 36.80157341686454,
-        "implied_value": 45.528596711745514,
-        "high": 76.6870486610915
+        "low": 37.25345077138425,
+        "implied_value": 46.04576351734911,
+        "high": 77.4373210922513
       },
       "upside_vs_price": {
-        "low": -0.3389735064498346,
-        "implied_value": -0.18221951274416892,
-        "high": 0.37744574947771725
+        "low": -0.33085692676479306,
+        "implied_value": -0.17293020991419739,
+        "high": 0.39092207421957315
       }
     },
     "ev_ebitda_ltm_ex_KMB_and_CL": {
@@ -330,26 +330,26 @@
       "median_multiple": 11.891643454038997,
       "low_multiple": 9.270886075949367,
       "high_multiple": 21.147729468599035,
-      "ulvr_ebitda_meur": 8100.209022499999,
+      "ulvr_ebitda_meur": 8160.809089999999,
       "implied_ev_meur": {
-        "low": 75096.11503897468,
-        "implied_value": 96324.79759875973,
-        "high": 171301.02904693503
+        "low": 75657.93136096201,
+        "implied_value": 97045.43199476042,
+        "high": 172582.58288020384
       },
       "value_per_share_pence": {
-        "low": 3113.765297868054,
-        "implied_value": 3858.428760818274,
-        "high": 6488.458202914787
+        "low": 3151.998446474442,
+        "implied_value": 3902.232957775911,
+        "high": 6551.9384306113
       },
       "value_per_share_eur": {
-        "low": 36.80157341686454,
-        "implied_value": 45.60274642800406,
-        "high": 76.6870486610915
+        "low": 37.25345077138425,
+        "implied_value": 46.12046796963953,
+        "high": 77.4373210922513
       },
       "upside_vs_price": {
-        "low": -0.3389735064498346,
-        "implied_value": -0.18088764232708332,
-        "high": 0.37744574947771725
+        "low": -0.33085692676479306,
+        "implied_value": -0.17158837537927796,
+        "high": 0.39092207421957315
       }
     },
     "ev_ebitda_ltm_all_7_x_underlying_ebitda": {
@@ -357,26 +357,26 @@
       "median_multiple": 11.891643454038997,
       "low_multiple": 9.270886075949367,
       "high_multiple": 21.147729468599035,
-      "ulvr_ebitda_meur": 8540.175195,
+      "ulvr_ebitda_meur": 8604.066780000001,
       "implied_ev_meur": {
-        "low": 79174.99130149366,
-        "implied_value": 101556.71845396796,
-        "high": 180605.3146383
+        "low": 79767.32290724051,
+        "implied_value": 102316.4944025014,
+        "high": 181956.47659320003
       },
       "value_per_share_pence": {
-        "low": 3256.8448372619296,
-        "implied_value": 4041.955001363287,
-        "high": 6814.835570385953
+        "low": 3296.1484063625358,
+        "implied_value": 4087.1322125893407,
+        "high": 6880.757524023649
       },
       "value_per_share_eur": {
-        "low": 38.492629636503224,
-        "implied_value": 47.77184196643878,
-        "high": 80.54450081357614
+        "low": 38.95715828443669,
+        "implied_value": 48.30579115549396,
+        "high": 81.32363198901889
       },
       "upside_vs_price": {
-        "low": -0.3085989094019893,
-        "implied_value": -0.14192654678626748,
-        "high": 0.4467329519978671
+        "low": -0.300255088342525,
+        "implied_value": -0.13233580032070036,
+        "high": 0.4607276348633158
       }
     },
     "ev_ebitda_ltm_all_7_dcf_dates_bridge_low_bound": {
@@ -384,26 +384,26 @@
       "median_multiple": 11.891643454038997,
       "low_multiple": 9.270886075949367,
       "high_multiple": 21.147729468599035,
-      "ulvr_ebitda_meur": 8100.209022499999,
+      "ulvr_ebitda_meur": 8160.809089999999,
       "implied_ev_meur": {
-        "low": 75096.11503897468,
-        "implied_value": 96324.79759875973,
-        "high": 171301.02904693503
+        "low": 75657.93136096201,
+        "implied_value": 97045.43199476042,
+        "high": 172582.58288020384
       },
       "value_per_share_pence": {
-        "low": 3088.0013995161557,
-        "implied_value": 3832.6648624663762,
-        "high": 6462.69430456289
+        "low": 3126.2345481225443,
+        "implied_value": 3876.469059424013,
+        "high": 6526.174532259402
       },
       "value_per_share_eur": {
-        "low": 36.497070056463166,
-        "implied_value": 45.298243067602684,
-        "high": 76.38254530069013
+        "low": 36.948947410982875,
+        "implied_value": 45.81596460923815,
+        "high": 77.13281773184993
       },
       "upside_vs_price": {
-        "low": -0.3444429679405253,
-        "implied_value": -0.18635710381777382,
-        "high": 0.37197628798702675
+        "low": -0.33632638825548367,
+        "implied_value": -0.17705783686996857,
+        "high": 0.38545261272888287
       }
     },
     "pe_fy27_dec_calendarised": {
@@ -442,18 +442,18 @@
   },
   "ulvr_own_multiples": {
     "market_cap_meur": 119938.68155330427,
-    "market_implied_ev_remaining_business_meur": 120615.43458428979,
-    "market_implied_ev_ebitda_ltm_pm_basis": 14.890410142411827,
-    "market_implied_ev_ebitda_ltm_underlying": 14.123297453535413,
+    "market_implied_ev_remaining_business_meur": 120087.30972424232,
+    "market_implied_ev_ebitda_ltm_pm_basis": 14.715123022715183,
+    "market_implied_ev_ebitda_ltm_underlying": 13.95704064075643,
     "note": "What the market pays for the business that remains, after taking out the Foods consideration and the stakes at the same values as the DCF (primary bridge)."
   },
   "comps_range_pence_primary": {
-    "low": 3113.765297868054,
-    "implied_value": 3858.428760818274,
-    "high": 6488.458202914787
+    "low": 3151.998446474442,
+    "implied_value": 3902.232957775911,
+    "high": 6551.9384306113
   },
-  "dcf_value_pence": 4180.186958877549,
-  "dcf_vs_comps_median": 0.08339099099785852,
+  "dcf_value_pence": 4258.548435547867,
+  "dcf_vs_comps_median": 0.09131066279934208,
   "flags": [
     "KMB: price reflects the pending Kenvue acquisition, LTM figures do not (11.9x). CL: LTM EBITDA depressed by the USD 919m Filorga impairment, so 20.8x is overstated. Medians with and without both are shown.",
     "Peer EBITDA is GAAP/Yahoo unadjusted (after restructuring); Unilever primary metric is after recurring restructuring (PM 17.7% margin) to match. Underlying variant shown.",

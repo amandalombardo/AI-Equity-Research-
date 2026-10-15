@@ -334,6 +334,55 @@ flips["extra_value_today_meur"] = {
     "sell_to_hold": (hold_floor - B) / pence(1.0), "hold_to_buy": (buy_floor - B) / pence(1.0),
     "note": "EUR m of value at today's date needed to reach each threshold (each EUR 1bn = 39.3p)."}
 
+# ---- FY26 growth breakeven (re-run 15 Oct 2026, PM decision 15 Oct: FY26 +2.0%). Only FY26 moves; FY27-30 and
+# terminal growth unchanged. Revenue growth -> sales -> EBIT -> free cash flow in the DCF (engine).
+def by_fy26_growth(g26):
+    b = copy.deepcopy(brief0)
+    b["dcf"]["organic_growth"] = [g26] + list(brief0["dcf"]["organic_growth"][1:])
+    return ps(run(None, b))
+
+
+out_g = {"base_value": brief0["dcf"]["organic_growth"][0]}
+for name, tgt in (("sell_to_hold", hold_floor), ("hold_to_buy", buy_floor)):
+    x = solve(by_fy26_growth, -0.10, 0.20, tgt)
+    out_g[name] = {"parameter": x, "value_check_pence": by_fy26_growth(x) if x is not None else None,
+                   "status": "found" if x is not None else "not reached in [-10%, 20%]"}
+flips["fy26_growth_only"] = out_g
+
+# ---- Step table, old run (14 Oct, 3,855p) -> final (15 Oct). Built backwards from today's inputs by undoing each PM
+# decision in memory (brief and inputs.yaml untouched). Old values: commit 44ea7e2 inputs.yaml / brief.
+OLD_ASSOC, OLD_ERP, OLD_G26 = 7061.8, 0.050, 0.005
+MKC_DIV_DEDUCTION = 642.9          # 499,691,175 MKC shares x USD 0.48 x 3 quarters / 1.1193 USD per EUR
+
+
+def state(erp, pension, mkc_div, assoc, g26):
+    b = copy.deepcopy(brief0)
+    b["dcf"]["wacc"]["equity_risk_premium"] = erp
+    b["dcf"]["organic_growth"] = [g26] + list(brief0["dcf"]["organic_growth"][1:])
+    v = copy.deepcopy(v0)
+    v["pension_deficit"] = pension
+    undo = MKC_DIV_DEDUCTION - mkc_div          # add back the dividend deduction when undoing that decision
+    v["disposal_proceeds"] = v0["disposal_proceeds"] + undo
+    v["priced_at_valuation_date_meur"] = v0["priced_at_valuation_date_meur"] + undo
+    v["associates"] = assoc
+    return ps(run(v, b))
+
+
+P_NOW, ASSOC_NOW, G26_NOW = v0["pension_deficit"], v0["associates"], brief0["dcf"]["organic_growth"][0]
+steps_spec = [("old run 14 Oct (ERP 5.0%)", (OLD_ERP, 0.0, 0.0, OLD_ASSOC, OLD_G26)),
+              ("ERP 5.0% -> 4.2%", (ERP, 0.0, 0.0, OLD_ASSOC, OLD_G26)),
+              ("pension deficit after tax EUR 698.6m deducted", (ERP, P_NOW, 0.0, OLD_ASSOC, OLD_G26)),
+              ("McCormick dividends before closing EUR 642.9m deducted", (ERP, P_NOW, MKC_DIV_DEDUCTION, OLD_ASSOC, OLD_G26)),
+              ("JV recomputed at Ke 7.164% (associates 7,061.8 -> 7,533.5)", (ERP, P_NOW, MKC_DIV_DEDUCTION, ASSOC_NOW, OLD_G26)),
+              ("FY26 growth +0.5% -> +2.0%", (ERP, P_NOW, MKC_DIV_DEDUCTION, ASSOC_NOW, G26_NOW))]
+steps, prev = [], None
+for label, args in steps_spec:
+    val = state(*args)
+    steps.append({"step": label, "value_pence": val, "change_pence": None if prev is None else val - prev,
+                  "upside": val / price - 1})
+    prev = val
+assert abs(steps[-1]["value_pence"] - B) < 1e-6      # the last step is the engine's base case
+
 # ================= sensitivity grid centred on the brief's 1.6% terminal growth (JV held at base, as the engine) ======
 waccs = [w0 + s for s in (-0.01, -0.005, 0.0, 0.005, 0.01)]
 growths = [G0 - 0.005, G0, G0 + 0.005]
@@ -359,6 +408,6 @@ out = {"units": "value per share in pence (GBp) unless labelled; money in EUR m"
        "mkc_dividend_leak_meur": MKC_LEAK,
        "sensitivity_grid_centred_pence": {"wacc": waccs, "terminal_growth": growths, "grid": grid,
                                           "note": "valuation.json's grid is now centred on 1.6% too (commit 3414aec; growth 1.1-2.6%); this copy is the same centre."},
-       "bear_jv_consistency": bear_note}
+       "bear_jv_consistency": bear_note, "step_table_old_to_final": steps}
 (HERE / "sanity_checks.json").write_text(json.dumps(out, indent=2, default=float))
 print(json.dumps(out, indent=1, default=float))
