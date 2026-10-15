@@ -20,10 +20,17 @@ Student portfolio project, not investment advice.
 |---|---|---|---|---|---|
 | Diageo plc (LSE: DGE) | HOLD | 1,780.2p | 1,673p (12 Oct 2026) | +6.4% | [memo](runs/DGE/2026-10-12/editor/memo.pdf) |
 | The Coca-Cola Company (NYSE: KO) | SELL | USD 50.25 | USD 90.12 (13 Oct 2026) | -44.2% | [memo](runs/KO/2026-10-13/editor/memo.pdf) |
-| Unilever PLC (LSE: ULVR) | HOLD (borderline) | 4,258.5p | 4,710.5p (13 Oct 2026) | -9.6% | [memo](runs/ULVR/2026-10-14/editor/memo.pdf) |
+| Unilever PLC (LSE: ULVR) | HOLD (borderline); **re-rated SELL by the PM on 15 Oct 2026** after the price rose to 4,925.5p (-13.5%) | 4,258.5p | 4,710.5p (13 Oct 2026) | -9.6% | [memo](runs/ULVR/2026-10-14/editor/memo.pdf) |
 | RELX PLC (LSE: REL.L) | SELL | 1,821p | 2,771p (13 Oct 2026) | -34.3% | [memo](runs/RELX/2026-10-14/editor/memo.pdf) |
 
 Desk rule: BUY at +15% or more upside, SELL at -10% or worse, HOLD in between. Pence (GBp) for London listings, US dollars for Coca-Cola. Every number in each memo traces to a filing, a data series or a file in this repository; the four inputs seen only second-hand are disclosed in the memos.
+
+## Paper portfolio (from 15 October 2026)
+
+The four calls are tested as a GBP 100,000 paper fund against a 75% FTSE 100 / 25% S&P 500 total-return benchmark.
+The fund starts fully in the benchmark; each SELL call (Coca-Cola, RELX, and Unilever after the PM re-rated it on 15 Oct) is a GBP 10,000 paper short of the stock with the same amount added to its home index, so **fund return minus benchmark return is exactly the value added by the calls**. HOLDs carry no bet. No rebalancing; calls stay as published, and any stock whose price crosses into a different rating band is flagged for the PM.
+The PM's design choices and the options she chose between: [portfolio/design-options.md](portfolio/design-options.md). Settings: [portfolio/portfolio.yaml](portfolio/portfolio.yaml).
+Update: `python -m portfolio.update` (after 21:00 UK time) writes `runs/portfolio/<date>/report.md`.
 
 ## How the desk works
 
