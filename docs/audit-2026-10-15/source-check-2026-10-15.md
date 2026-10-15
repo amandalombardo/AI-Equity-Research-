@@ -18,16 +18,16 @@ Reachable from here: SEC EDGAR, FRED, Yahoo Finance, and the Damodaran files Ama
 | RELX | Bear margin, FY23 without print | 32.4% | RELX Annual Report 2025 (20-F exhibit 15.2, SEC 0001104659-26-017277), segment note: (3,030 - 253) / (9,161 - 586) = 32.38% (GBP m) | Confirmed |
 | Unilever | McCormick one-month VWAP behind the USD 44.8bn headline | USD 57.84 | Unilever investor presentation, Form 425, 31 Mar 2026 (SEC 0000217410-26-000027), p.77 footnote | Confirmed (memo context only, not a model input) |
 | Unilever | Other fair-value investments | EUR 902m | Unilever 20-F FY25 (SEC 0000217410-26-000007): FVOCI 2,216 less TMICC 1,655 = 561; non-current FVTPL "Other" 341 | Confirmed |
+| Coca-Cola | CCBA 2024 revenue / EBIT; deal terms | EUR 3,357m / EUR 246m; USD 1.3bn for 41.52%; USD 3.4bn | Coca-Cola HBC CCBA presentation, 21 Oct 2025, slides 9 and 18 (PDF supplied by the PM) | Confirmed (see section 2 note on slide 13) |
 | Coca-Cola | FY26 organic revenue range behind FY27-30 growth of 3.0% | 4-5% | Q4 2025 earnings release, 8-K exhibit 99.1, 10 Feb 2026 (SEC 0001628280-26-006642): "organic revenue (non-GAAP) growth of 4% to 5%". Raised to "approx. 5%" in the Q2 2026 release (SEC 0001628280-26-049922) | Range confirmed. Management's phrase "in line with our long-term growth algorithm" is still seen only in press reports of the call |
 | Diageo | ROIC FY23 (memo: "18.4% to 13.4%") | 18.4% | Diageo 20-F FY24 (SEC 0000835403-24-000029): FY23 ROIC 18.4% on the restated basis (FY24 15.8%, "decreased 255bps") | Confirmed. The FY23 20-F originally reported 16.3% on the old basis, so the memo should say "restated" |
 
 ## 2. Still second-hand, but better corroborated
 
-**Coca-Cola: African bottler (CCBA), EUR 3,357m revenue and EUR 246m EBIT (2024).** Coca-Cola HBC's site is still blocked, and Coca-Cola's own filings give only CCBA's held-for-sale assets (USD 5,342m) and liabilities (USD 2,570m), not its revenue (10-K FY25, note 2). New from search readings of CCH's presentation:
-- The figures are CCBA's audited FY2024 accounts **excluding Ghana** (sold July 2025), converted at EUR 0.92425 per USD. That is the same rate the desk used (USD 1.0820 per EUR), so the desk's USD 3,632m and USD 266m match CCH's own conversion.
-- Sum check: CCH's 2024 revenue of EUR 10,754m plus 3,357 gives EUR 14.1bn, which matches CCH's stated pro forma. EBIT of EUR 1,192m plus 246 gives about EUR 1.4bn, which also matches.
-- One loose end: the CFO's call script reportedly says "more than EUR 3.4bn" of revenue, possibly including Ghana or rounded. Even if EUR 3.4bn were right, base revenue would move by about USD 47m (0.1%), worth a cent or two a share.
-- Status: **corroborated, not first-hand.** The quickest way to close it is for Amanda to open the [acquisition presentation](https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/results-reports-and-presentations/2025/q3/coca-cola-hbc-2025-q3-update-and-acquisition-of-ccba-presentation.pdf.downloadasset.pdf) and read the "CCBA at a glance" figures.
+**Coca-Cola: African bottler (CCBA), EUR 3,357m revenue and EUR 246m EBIT (2024): CONFIRMED first-hand** (15 Oct 2026, from the PDF Amanda downloaded and attached; the site blocks automated downloads). Coca-Cola HBC, "Q3 2025 update and acquisition of CCBA" presentation, 21 Oct 2025, saved at /mnt/project-files/equity-desk/phase5/data/cch-ccba-acquisition-presentation-21oct2025.pdf:
+- Slide 9 ("CCBA is a diversified African bottler", 2024 financial highlights): net sales revenue **EUR 3,357m**, EBIT **EUR 246m**, EBIT margin 7.3%. Footnote 2: "FY-December 2024 CCBA audited financials excluding Ghana (sale completed on 25 July 2025), converted in EUR using the average 2024 US$/EUR exchange rate of 0.92425". 0.92425 EUR per USD = USD 1.0820 per EUR, the rate the desk used, so the desk's USD 3,632m and USD 266m match.
+- Slide 18 (deal terms): 75% of CCBA for USD 2.6bn; **USD 3.4bn implied equity value**; Coca-Cola sells **41.52% for USD 1.3bn**; Gutsche Family Investments sells 33.48%; option over the remaining 25% held by Coca-Cola. All match the desk's inputs.
+- Inconsistency inside the deck: the pro forma table on slide 13 shows CCBA at EUR 3.43bn revenue and EUR 0.253bn EBIT (7.3%), with the same footnote. The desk keeps slide 9's exact figures. Using slide 13's instead would move Coca-Cola's value by about -USD 0.03 a share (USD 50.22 vs 50.25), still SELL.
 
 **Diageo: EABL FY26 sales KES 146.0bn and EBIT KES 32.1bn.** Diageo's 20-F does not give EABL's sales (only the held-for-sale balance sheet). Four independent Kenyan and trade press reports of EABL's results agree: sales KES 146.0bn (+13%), EBIT KES 32.1bn, margin 22%. Status: **corroborated, not first-hand** (eabl.com is blocked).
 
@@ -38,6 +38,6 @@ Reachable from here: SEC EDGAR, FRED, Yahoo Finance, and the Damodaran files Ama
 **All four: ERP 4.20% (Damodaran implied, 1 Oct 2026).** A fresh search reads the same 4.20% from Damodaran's home page. Still not seen directly (site blocked). Status unchanged.
 
 ## 3. Could not be reached at all
-- Coca-Cola HBC's slides and factsheet; Coca-Cola's own CCBA press release.
+- Coca-Cola's own CCBA press release (not needed now that CCH's presentation is confirmed).
 - EABL's annual report; United Spirits' share count (Diageo comps only).
 - Bank of England and Bundesbank daily yields; Damodaran's site.

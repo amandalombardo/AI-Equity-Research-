@@ -1,6 +1,6 @@
 base_sales:
   value: 44308.7
-  source: 'FY25 10-K net operating revenues 47,941 less CCBA 3632.3 (EUR 3,357m x 1.0820 USD/EUR, FRED DEXUSEU 2024 average). Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/2026-q1-trading-update/coca-cola-hbc-factsheet-ccba-acquisition-q1-2026.pdf.downloadasset.pdf
+  source: 'FY25 10-K net operating revenues 47,941 less CCBA 3632.3 (EUR 3,357m x 1.0820 USD/EUR, FRED DEXUSEU 2024 average); EUR 3,357m and EUR 246m VERIFIED 15 Oct 2026 on slide 9 of Coca-Cola HBC's 21 Oct 2025 CCBA presentation (PDF supplied by the PM): FY2024 audited, excluding Ghana, at 0.92425 EUR per USD). Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/2026-q1-trading-update/coca-cola-hbc-factsheet-ccba-acquisition-q1-2026.pdf.downloadasset.pdf
     and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from
     this environment, PM asked to verify. FLAG: CCBA figure is calendar 2024. PM decision 2026-10-13'
 base_margin:

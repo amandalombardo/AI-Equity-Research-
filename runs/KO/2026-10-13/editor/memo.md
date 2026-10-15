@@ -42,7 +42,7 @@ Bridge (USD m): EV 212,139 - net debt 29,686 - leases 1,722 - minorities 2,106 -
 
 **IRS case (PM decision: assume a loss).** The bridge deducts USD 14,000m of tax and interest for 2010-25 (10-K), and tax is 19.9% + 3.8 points = 23.7%. **But the 8th Circuit reversed the 3M Tax Court ruling on the same rule (1 Oct 2025);** KO's 10-K calls it "highly supportive". KO's own appeal (11th Circuit, heard 25 Jun 2026) is pending. KO loses: **USD 50.25**; halfway: **USD 53.96**; KO wins: **USD 57.66** (USD 6.0bn deposit refunded, 19.9% tax). All SELL.
 
-**CCBA (African bottler being sold).** The base removes CCBA (2024 revenue EUR 3,357m, EBIT EUR 246m) and adds the USD 1,300m sale price plus the retained 25% (USD 850m). The EUR figures are confirmed by two search readings of Coca-Cola HBC's own presentation; the PDF was not opened here (sourced, not verified).
+**CCBA (African bottler being sold).** The base removes CCBA (2024 revenue EUR 3,357m, EBIT EUR 246m) and adds the USD 1,300m sale price plus the retained 25% (USD 850m). The EUR figures are verified on slide 9 of Coca-Cola HBC's own presentation (FY2024 audited, excluding Ghana); slide 18 confirms USD 1.3bn for Coca-Cola's 41.52% and a USD 3.4bn equity value.
 
 ## Fundamentals
 - **Growth slowing:** organic 16% (FY21, FY22), 12% (FY23, FY24), 5% (FY25); reported 1.9% in FY25 after currency. Volume flat.
@@ -84,7 +84,7 @@ No single bear change leaves SELL. Stacked bear (FY26 5.0%, 1% growth FY27-30, W
 - Coca-Cola FY25 Form 10-K (SEC accession 0001628280-26-010047, filed 20 Feb 2026): balance sheet, Note 2 (held for sale), Note 10 (leases), Note 14 (pensions), Note 19, Note 20 (segments, pp.116-117), equity method investments note, IRS liability and the 3M 8th Circuit ruling (tax litigation note); 10-Ks FY22-FY24 (SEC EDGAR XBRL).
 - Coca-Cola results 8-Ks (exhibit 99.1): Q4 2025 (0001628280-26-006642, pp.26, 28), Q2 2026 (0001628280-26-049922, FY26 outlook and first-half free cash flow), Q4 2019-Q4 2024 for the guidance track record.
 - Coca-Cola 10-Qs: Q1 2026 (0001628280-26-028802) and Q2 2026 (0001628280-26-050503, Note 9: tax rate +3.8 points, USD 900m accrual).
-- Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet and presentation on coca-colahellenic.com; read via two web-search summaries, PDF not opened, PM to verify).
+- Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (presentation, slides 9, 13 and 18; PDF supplied by the PM and verified 15 Oct 2026. Slide 13's pro forma table shows EUR 3.43bn / EUR 0.253bn instead, about -USD 0.03 a share).
 - Damodaran implied equity risk premium, 1 Oct 2026 (search summaries only; docs/audit-2026-10-15/erp-evidence.md). Kroll and Fernandez ERP figures from the same pack.
 - FRED: DGS10 (2026-10-08), ICE BofA single-A spread BAMLC0A3CA (2026-10-08), DEXUSEU (2024 average).
 - Yahoo Finance: KO, S&P 500, peer and listed-stake prices (13 Oct 2026), dividend dates; Damodaran, Betas by Sector (US), January 2026 (file supplied by the PM).
