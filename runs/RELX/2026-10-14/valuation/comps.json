@@ -403,8 +403,8 @@
     "implied_value": 2989.785735897144,
     "high": 4111.131303953798
   },
-  "dcf_value_pence": 1621.4814712148755,
-  "dcf_vs_comps_median": -0.4576596403727513,
+  "dcf_value_pence": 1821.3247384974075,
+  "dcf_vs_comps_median": -0.3908176373211296,
   "flags": [
     "Peers' LTM is to 30 Jun 2026 (Experian 31 Mar 2026); RELX's EBITDA is put on the June window rather than the peers on December, because the peers' H2 2025 figures are not in peers.csv (MISSING).",
     "Peer EBITDA is reported operating income + D&A (unadjusted, after acquisition costs); RELX's is adjusted EBITDA. FY25 reported-basis RELX EBITDA is 3,779 vs adjusted 3,846 (-1.7%); variant shown.",

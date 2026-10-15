@@ -1,0 +1,185 @@
+base_sales:
+  value: 39803.0
+  source: 'EUR m, ex the Foods sale perimeter (decision 1): FY25 turnover 50,503 (Unilever FY25 results 6-K (accession 0001654954-26-001155, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/217410/000165495426001155/a6773s.htm),
+    UOP reconciliation; = 20-F XBRL ifrs-full:Revenue) less perimeter FY25 sales 10,700 (Unilever Foods/McCormick investor presentation, Form 425 (accession 0000217410-26-000027,
+    31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm), slide 25, ''EUR 10.7bn'', preliminary carve-out).
+    Perimeter rounded to EUR 0.1bn.'
+base_margin:
+  value: 0.177
+  source: 'PM decision 3 (briefs/ULVR.yaml dcf.base_margin): ex-perimeter underlying margin 18.80% (UOP 10,084 - perimeter UOP 2,600 = 7,484; Unilever FY25 results
+    6-K (accession 0001654954-26-001155, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/217410/000165495426001155/a6773s.htm); Unilever Foods/McCormick investor
+    presentation, Form 425 (accession 0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm)
+    slide 25) less FY23-25 average restructuring 1.12% of turnover (425/51,680, 710/52,479, 599/50,503; 20-F XBRL ifrs-full:ExpenseOfRestructuringActivities, FY25
+    20-F p.137-138 note 2) = 17.68%, rounded by the PM to 17.7%. H1 2026 6-K guides FY26 restructuring ''around 1.0% of turnover''.'
+tax_rate:
+  value: 0.26
+  source: 'PM decision 9 (briefs/ULVR.yaml dcf.tax_rate): H1 2026 underlying ETR 26.0% and FY26 guide ''around 26%'' (Unilever H1 2026 results 6-K (accession 0000217410-26-000057,
+    28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm), finance costs and tax); FY25 underlying ETR 25.7% (Unilever FY25
+    Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.43; Unilever
+    FY25 results 6-K (accession 0001654954-26-001155, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/217410/000165495426001155/a6773s.htm)) helped by one-off
+    tax settlements.'
+da_pct_sales:
+  value: 0.026
+  source: 'PM decision (sign-off G): FY25 depreciation and amortisation 1,310 / turnover 50,503 = 2.594% (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007,
+    filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm); XBRL ifrs-full:DepreciationAndAmortisationExpense, p.137
+    note 2 segment table).'
+capex_pct_sales:
+  value: 0.0315
+  source: 'PM decision 14 Oct 2026 (decision 10, docs/phase5/ulvr-run-flags.md item A; briefs/ULVR.yaml comments): FY25 (purchase of PP&E 1,417 + purchase of intangible
+    assets 174) / turnover 50,503 = 3.150%. Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
+    p.132 cash flow statement; XBRL ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities, PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities,
+    Revenue. Consistent with D&A 2.6% (1,310), which includes amortisation of those intangibles. Brief capex_pct_sales 0.0315. Was 0.028 (PP&E only).'
+nwc_pct_sales:
+  value: -0.11979
+  source: 'PM decision 14 Oct 2026 (decision 10, docs/phase5/ulvr-run-flags.md item D; briefs/ULVR.yaml comments): FY25 (inventories 4,043 + (trade and other current
+    receivables 7,346 - EUR 2,100m due from TMICC) - (trade payables and other current liabilities 16,939 - EUR 1,600m due to TMICC)) / turnover 50,503 = -11.98%.
+    Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
+    p.131 balance sheet; note 13 p.159 (''include EUR 2.1 billion due from TMICC'': TSA receivables and working capital subsidies recoverable on TSA exit); note 14
+    p.160 (''include EUR 1.6 billion due to TMICC''); XBRL ifrs-full:Inventories, TradeAndOtherCurrentReceivables, TradeAndOtherCurrentPayables. Both temporary Magnum
+    transition balances removed; the net EUR 500m is in associates. Amounts as disclosed, rounded to EUR 0.1bn. Was -0.07821.'
+risk_free:
+  value: 0.0345
+  source: 'PM decision 14 Oct 2026 (decision 11; briefs/ULVR.yaml wacc.risk_free comment; docs/phase5/ulvr-evidence-audit.md): German 10-year Bund yield on the run
+    date, 3.45% on 14 Oct 2026 (Trading Economics https://tradingeconomics.com/germany/government-bond-yield; also Bloomberg rates page https://www.bloomberg.com/markets/rates-bonds);
+    cross-check 3.50% on 9 Oct 2026 (https://www.thetrading.tools/germany-10-year-yield). Replaces FRED IRLTLT01DEM156N (OECD monthly average, latest Aug 2026 = 3.18%,
+    two months old). FLAG: data aggregator, not a primary source; the Bundesbank and ECB daily series (and these aggregator pages) are blocked from the Data agent''s
+    environment, so the Data agent could not re-check the 3.45% figure itself (PM-supplied, from the evidence audit).'
+pre_tax_cost_of_debt:
+  value: 0.0377
+  source: 'Historic, reference only: FY25 interest on bank loans 52 + bonds and other loans 967 + leases 79 = 1,098 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007,
+    filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.148 note 5) / average gross debt 29,126 (bank loans +
+    bonds + leases, 31 Dec 2024 30,655 and 31 Dec 2025 27,597; Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
+    p.164 note 15C). The engine uses risk-free + credit_spread 0.70% (brief) = 4.15% (3.45% Bund on 14 Oct 2026, PM decision 11). H1 2026 6-K: net finance costs 2.5%
+    of average net debt.'
+debt_weight:
+  value: 0.16135
+  source: 'Market values: net debt 23,076 (31 Dec 2025) / (net debt + market cap EUR 119,939 = 2,154.328m shares x 4710.5p (Yahoo ULVR.L close 2026-10-13) x 1.18190
+    EUR per GBP (FRED DEXUSUK/DEXUSEU 2026-10-09)). With 30 Jun 2026 net debt 25,961: 17.79%.'
+net_debt:
+  value: 23076.0
+  source: 'Unilever''s definition at 31 Dec 2025 (Unilever FY25 results 6-K (accession 0001654954-26-001155, 12 Feb 2026, https://www.sec.gov/Archives/edgar/data/217410/000165495426001155/a6773s.htm),
+    net debt reconciliation; Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
+    p.164 note 15C): total financial liabilities 28,278 (bank 233 + bonds 26,038 + LEASES 1,326 + derivatives 452 + other 229) - cash 3,941 - other current financial
+    assets 1,121 - non-current financial asset derivatives 140 = 23,076. Lease liabilities ARE INSIDE. TMICC stake is non-current FVOCI, NOT inside. Does NOT reflect
+    the EUR 1,507m share buyback of H1 2026 (see notes.md FLAG).'
+lease_liabilities:
+  value: 0.0
+  source: '0 because the EUR 1,326m of lease liabilities is already inside net debt (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026,
+    https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.164 note 15C; p.171 note 16B ''Less: lease liabilities (1,326)'').'
+minority_interests:
+  value: 2057.0
+  source: 'Book value at 31 Dec 2025, of which Hindustan Unilever 1,569 (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
+    p.131 balance sheet, p.162-163 note 15B; XBRL ifrs-full:NoncontrollingInterests). Reference only: brief minorities_method = proportionate (Fundamentals agent
+    supplies minority_share_of_operating_profit).'
+pension_deficit:
+  value: 698.6
+  source: 'PM decision 15 Oct 2026 (evidence audit): plans in deficit 944 (funded in deficit 100 + unfunded 844, Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007,
+    filed 12 Mar 2026) p.131) x (1 - 26% tax, briefs/ULVR.yaml tax_rate) = 698.6. The net surplus (3,518) is not offset against them; surpluses are not added (brief
+    rule)'
+associates:
+  value: 7533.5
+  source: 'PM decision 14 Oct 2026 (decision 10, docs/phase5/ulvr-run-flags.md item B, C, D; E agreed 13 Oct; briefs/ULVR.yaml comments): sum of (1) TMICC 19.85%:
+    121,604,413 shares (TMICC resale prospectus, Form 424(b)(4) (accession 0001104659-26-042683, 13 Apr 2026)) x EUR 15.914 (Yahoo MICC.AS close 2026-10-13) = 1,935.2;
+    (2) joint ventures by Gordon growth: FY25 dividends received from JVs and associates EUR 229m (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed
+    12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.158 note 11: JVs ''Dividends received/reductions (229)'', associates
+    nil; the p.132 cash-flow line is 243 because it also includes dividends from other non-current investments, which are valued in (4)) x (1 + 1.6%) / (cost of equity
+    7.8720% - 1.6%) = 3,709.6, cost of equity = risk-free 3.45% (inputs.yaml) + beta 0.8844 (inputs.yaml, Risk agent) x ERP 5.0% (brief); (3) associates at book 15
+    (Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
+    p.158 note 11); (4) other fair-value financial investments 902 = equity investments FVOCI excl. TMICC 561 (2,216 - 1,655) + non-current FVTPL ''Other'' 341 (Unilever
+    FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.174
+    note 17A); amortised-cost assets 368 (incl. judicial deposits 175) excluded; (5) net Magnum transition balance owed to Unilever 2,100 - 1,600 = 500 (Unilever
+    FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) notes
+    13-14, p.159-160). Was 2,044.2 (TMICC + JVs/associates at book 109). If the run''s cost of equity changes, the JV value must be recomputed. JV value recomputed
+    15 Oct 2026 at the new cost of equity 7.1645% (ERP 4.2%): 229 x 1.016 / (7.1645% - 1.6%) = 4181.2 (was 3709.6 at 7.8720%)'
+disposal_proceeds:
+  value: 31855.7
+  source: 'BEAR SCRATCH (bear/run_bear.py): whole consideration at WACC: discount 1,456.7 over 0.7096 years at 6.50%. Base value was 33312.4; base source: Foods consideration
+    at run-date market value (decision 1): cash USD 15,700m + new McCormick shares 499,691,175 (= existing 269,064,479 [voting 14,522,864 + non-voting 254,541,615,
+    McCormick 10-Q for the quarter to 31 Aug 2026 (accession 0000063754-26-000329, filed 1 Oct 2026, https://www.sec.gov/Archives/edgar/data/63754/000006375426000329/mkc-20260831.htm)
+    cover] x 65/35; 55.1% to Unilever shareholders + 9.9% to Unilever, 10-Q note 2) x USD 44.64 (Yahoo MKC close 2026-10-13) = USD 22,306.2m; total USD 38,006.2m
+    / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = EUR 33,955.3m. Yahoo EURUSD=X 1.1160 (2026-10-12) would give 34,055.1. Tax on the cash: MISSING, NOT deducted
+    (PM decision 5; CFO: ''premature to start making estimates'', Unilever investor call transcript 31 Mar 2026, Form 425 (accession 0000217410-26-000032)). Received
+    at closing (expected mid-2027): timing FLAG in notes.md. LESS McCormick dividends the new shares miss before closing (PM decision 15 Oct 2026): 499,691,175 shares
+    x USD 0.48 a quarter (McCormick 10-Q to 31 Aug 2026, accession 0000063754-26-000329) x 3 quarters (ex-dates Jan, Apr, Jul 2027; closing expected mid-2027, Form
+    425 0000217410-26-000027) / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = 642.9; 33955.3 - 642.9. FLAG: if closing comes before the July ex-date, 2 quarters
+    (+c.8p)'
+restructuring_cash:
+  value: 500.0
+  source: 'Brief (decision 3): ''c.EUR 500m one-off restructuring to offset stranded costs ... to be incurred over 2027-2029'' (Unilever Foods/McCormick investor
+    presentation, Form 425 (accession 0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm),
+    slide 19).'
+shares_outstanding_m:
+  value: 2154.327621
+  source: 'Unilever 6-K Total Voting Rights 1 Sep 2026 (accession 0001654954-26-008017): position at 31 Aug 2026: issued 2,185,205,247 - treasury 30,703,780 - group-held
+    173,846 = 2,154,327,621 shares with voting rights. No later Total Voting Rights 6-K on EDGAR at the run date (latest Unilever filing 25 Sep 2026). Ordinary shares;
+    1 UL ADR = 1 share.'
+fx_eur_per_gbp:
+  value: 1.1818994014115964
+  source: 'FRED DEXUSUK / DEXUSEU (EUR per GBP, noon buying rates New York), 2026-10-09 (USD per GBP 1.3229 / USD per EUR 1.1193); Yahoo EURGBP=X 2026-10-12: 1.18373.'
+share_price_gbp_pence:
+  value: 4710.5
+  source: 'Yahoo Finance ULVR.L close 2026-10-13 (pence, GBp), last completed close before the run date. desk.data_sources wrote 4737.0p dated 2026-10-14, which was
+    an INTRADAY price (London open): not used.'
+stub_years:
+  value: 0.7863
+  source: 287 days from the 31 Dec 2025 balance sheet to the run date 2026-10-14 / 365.
+dividends_ex_before_valuation_meur:
+  value: 3038.8
+  source: 'Dividends that went ex between 31 Dec 2025 and 2026-10-14: Q4 2025 EUR 0.4664 (ex 26 Feb 2026; Unilever FY25 results 6-K (accession 0001654954-26-001155,
+    12 Feb 2026, https://www.sec.gov/Archives/edgar/data/217410/000165495426001155/a6773s.htm) note 9) and Q1 2026 EUR 0.4664 (ex 14 May 2026; Unilever H1 2026 results
+    6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm): ''in line with the Q1 2026
+    dividend'') = 2,034 booked in the H1 2026 equity statement (Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm));
+    + Q2 2026 EUR 0.4664 (ex 6 Aug 2026, Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm)
+    note 10) x 2,154,327,344 voting shares (Unilever 6-K Total Voting Rights 3 Aug 2026 (accession 0001654954-26-007194): position at 31 Jul 2026) = 1,004.8. Q3 2026
+    goes ex 12 Nov 2026 (after the run date). EXCLUDES the EUR 1,507m H1 2026 buyback (FLAG in notes.md).'
+buybacks_after_balance_sheet_meur:
+  value: 1507.0
+  source: 'Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm)
+    cash flow ''Repurchase of shares (1,507)''; 30,703,780 shares now in treasury (Unilever 6-K Total Voting Rights 1 Sep 2026 (accession 0001654954-26-008017): position
+    at 31 Aug 2026). Cash left after 31 Dec 2025 while shares_outstanding_m is post-buyback: Deducted in the equity roll-forward (engine change 14 Oct 2026, mistakes
+    row 22).'
+tmicc_payable_meur:
+  value: 1600.0
+  source: 'Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm)
+    p.160 note 14: EUR 1.6bn due to TMICC inside trade payables. Possible debt-like item: FLAG.'
+hul_market_value_meur:
+  value: 40700.7
+  source: 'Bear line: Hindustan Unilever 2,349.6m shares (Yahoo HINDUNILVR.NS sharesOutstanding: flag non-filing source) x INR 1875.5 (Yahoo close 2026-10-13) / 108.270
+    INR per EUR (FRED DEXINUS x DEXUSEU 2026-10-09). Outside holders 38.1% (Unilever 61.90%, Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12
+    Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000007/ul-20251231.htm) p.194 related undertakings) = EUR 15,507.0m.'
+foods_perimeter_interim_cash_flows_meur:
+  value: null
+  source: 'MISSING: no cash-flow disclosure for the perimeter between 1 Jan 2026 and closing (not in Unilever H1 2026 results 6-K (accession 0000217410-26-000057,
+    28 Jul 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm), Unilever Foods/McCormick investor presentation, Form 425 (accession
+    0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm), or McCormick filings; no S-4
+    yet). Indicators only: perimeter FY25 UOP 2,600 (Unilever Foods/McCormick investor presentation, Form 425 (accession 0000217410-26-000027, 31 Mar 2026, https://www.sec.gov/Archives/edgar/data/217410/000021741026000027/apollo-425formxinvestorp.htm));
+    H1 2026 Foods business group (wider than the perimeter) turnover EUR 6.3bn, UOM 23.3% (Unilever H1 2026 results 6-K (accession 0000217410-26-000057, 28 Jul 2026,
+    https://www.sec.gov/Archives/edgar/data/217410/000021741026000057/ul-20260630.htm), business group review).'
+beta:
+  value: 0.8844
+  source: 'Risk agent, bottom-up: Damodaran GLOBAL Household Products unlevered beta corrected for cash 0.7741 (588 firms, betaGlobal.xls dated 2026-01-05, sheet
+    ''Industry Averages'', PM upload 14 Oct 2026) relevered (Hamada) at Unilever''s market D/E 0.1924 = net debt EUR 23,076m (31 Dec 2025, FY25 results 6-K 0001654954-26-001155)
+    / market cap EUR 119,938.7m (2,154.328m shares x 4,710.5p / 100 x 1.18190 EUR per GBP) and tax 26.0% (brief). Cross-checks in risk/beta_evidence.json and risk/risk.json
+    (not used).'
+minority_share_of_operating_profit:
+  value: 0.10684
+  source: 'Fundamentals agent (fundamentals/run_fundamentals.py, ratios.csv). Outside shareholders'' share of the operating profit of the business that REMAINS after
+    the Foods sale = FY24 minorities'' share of Group underlying net profit x Group UOP FY25 / (Group UOP FY25 - Foods perimeter UOP FY25) = 0.07929 x 10,084 / 7,484
+    = 10.68%. FY24 share = underlying NCI profit 587 (reported NCI continuing 609 less NCI share of non-underlying items +22) / (underlying profit to shareholders
+    6,816 + 587 = 7,403). Sources: Unilever FY25 Form 20-F (SEC accession 0000217410-26-000007, filed 12 Mar 2026) p.128 income statement (NCI continuing 609), p.42
+    non-underlying items (NCI +22), p.43 underlying EPS reconciliation (6,816), p.137 note 2 (UOP 10,084); Foods perimeter UOP EUR 2.6bn, Form 425 investor presentation
+    (accession 0000217410-26-000027) slide 25; the perimeter excludes India Foods (Form 425 call transcript), so all of Hindustan Unilever stays. HUL check: HUL minorities
+    446 / HUL profit 1,167 = 38.2% in FY24 (20-F p.162 note 15B) vs 38.1% outside holding (Unilever 61.90%, p.194); HUL alone = 446 / 7,403 = 6.0% of Group underlying
+    profit; other minorities (e.g. PT Unilever Indonesia, 85% owned, p.183) the rest. FY24 used because FY25 HUL figures are distorted by HUL''s ice cream demerger
+    (539 / 940 = 57%; EUR 199m non-cash dividend). Cross-checks: FY25 10.39%, H1 2026 9.46%. Assumptions (FLAG): minorities'' share of operating profit = their share
+    of net profit (HUL has net cash, so this slightly OVERstates); no minority profit leaves with the perimeter (minority holders of Indonesia etc. Foods do leave:
+    slight OVERstatement).'
+priced_at_valuation_date_meur:
+  value: 33790.9
+  source: 'BEAR SCRATCH (bear/run_bear.py): consideration priced today. Base value was 35247.6; base source: Bridge items already at run-date market prices (not grown
+    in the roll-forward; mistakes log row 24): TMICC stake 1,935.2 (inputs.yaml `associates` component (1): 121,604,413 shares x EUR 15.914, Yahoo MICC.AS close 2026-10-13)
+    + Foods consideration 33,955.3 (inputs.yaml `disposal_proceeds`: USD 15,700m cash + 499,691,175 McCormick shares x USD 44.64, Yahoo MKC close 2026-10-13, at FRED
+    DEXUSEU) = 35,890.5. Excluded (balance-sheet-date values): JVs by Gordon growth on FY25 dividends, associates at book 15, fair-value investments 902 (31 Dec 2025),
+    Magnum transition balance 500. LESS McCormick dividends the new shares miss before closing (PM decision 15 Oct 2026): 499,691,175 shares x USD 0.48 a quarter
+    (McCormick 10-Q to 31 Aug 2026, accession 0000063754-26-000329) x 3 quarters (ex-dates Jan, Apr, Jul 2027; closing expected mid-2027, Form 425 0000217410-26-000027)
+    / 1.1193 USD per EUR (FRED DEXUSEU 2026-10-09) = 642.9; 35890.5 - 642.9. FLAG: if closing comes before the July ex-date, 2 quarters (+c.8p)'

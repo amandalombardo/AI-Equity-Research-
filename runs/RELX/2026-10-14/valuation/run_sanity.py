@@ -215,13 +215,29 @@ beta_diff = {"run_beta": v0["beta"], "card_beta": 0.974,
              "card_rating": card["rating"]["rating"], "card_upside": card["rating"]["upside"],
              "note": "Only beta changes (debt weight, net debt and shares as in inputs.yaml)."}
 # regression and other betas from the Risk agent, for context
+# Re-run 15 Oct 2026: UNROUNDED betas read from the Risk agent's risk.json (the Bear agent used these; the first run used
+# 2-decimal roundings, which is why beta 0.38 gave 2,668p here but 2,673p in the memo at ERP 5.0%).
+risk = json.loads((RUN / "risk" / "risk.json").read_text())
+reg = risk["own_regressions_vs_ftse100"]
+BETAS = {"bottom_up_base": v0["beta"], "card_0.974": 0.974,
+         "peer_median_raw": risk["peer_median_beta_5y_monthly_core7"],
+         "own_5y_weekly": reg["5y_weekly"]["beta"], "own_2y_weekly": reg["2y_weekly"]["beta"],
+         "own_blume_5y_monthly": risk["blume_adjusted_5y_monthly"], "own_5y_monthly": reg["5y_monthly"]["beta"]}
 beta_table = {}
-for k, b in {"bottom_up_base": v0["beta"], "card_0.974": 0.974, "peer_median_raw": 0.75, "own_5y_weekly": 0.66,
-             "own_2y_weekly": 0.67, "own_blume_5y_monthly": 0.58, "own_5y_monthly": 0.38}.items():
+for k, b in BETAS.items():
     r = run(with_v(beta=b))
     beta_table[k] = {"beta": b, "cost_of_equity": r["wacc"]["cost_of_equity"], "wacc": r["wacc"]["wacc"],
                      "value_pence": ps(r), "upside": r["rating"]["upside"], "rating": r["rating"]["rating"],
                      "tv_share": r["dcf"]["tv_share_of_ev"], "exit_ev_ebitda": r["dcf"]["implied_exit_ev_ebitda"]}
+
+# ================= ERP change (PM decision 15 Oct 2026): the same model at the old 5.0% ERP, for the old-vs-new table =========
+r_old = run(brief=erp_brief(0.050))
+erp_change = {"old_erp": 0.050, "new_erp": ERP, "old_value_pence": ps(r_old), "new_value_pence": B,
+              "old_wacc": r_old["wacc"]["wacc"], "new_wacc": W0, "old_cost_of_equity": r_old["wacc"]["cost_of_equity"],
+              "new_cost_of_equity": KE0, "old_rating": r_old["rating"]["rating"], "new_rating": base["rating"]["rating"],
+              # beta 0.38 scenario at the OLD ERP, rounded vs unrounded beta (explains 2,668p vs 2,673p)
+              "beta_5y_monthly_at_old_erp_unrounded_pence": ps(run(with_v(beta=BETAS["own_5y_monthly"]), brief=erp_brief(0.050))),
+              "beta_0.38_rounded_at_old_erp_pence": ps(run(with_v(beta=0.38), brief=erp_brief(0.050)))}
 
 # ================= where the value per share comes from =================
 f = dcf.roll_forward(1.0, KE0, v0["stub_years"])   # growth factor at Ke from 31 Dec 2025 to 13 Oct 2026
@@ -239,7 +255,7 @@ out = {"units": "value per share in pence (GBp) unless labelled; money in GBP m"
        "base_value_pence": B, "price_pence": price, "upside": base["rating"]["upside"], "rating": base["rating"]["rating"],
        "rating_thresholds_pence": {"hold_if_at_least": hold_floor, "buy_if_at_least": buy_floor},
        "excel_check": excel, "checks": checks, "flip_points": flips, "value_per_1pt_pence": per_point,
-       "beta_card_vs_run": beta_diff, "beta_table": beta_table, "value_decomposition": decomp,
+       "beta_card_vs_run": beta_diff, "beta_table": beta_table, "erp_change": erp_change, "value_decomposition": decomp,
        "bear_engine": {"value_pence": bear["equity"]["per_share_gbp_pence"], "rating": bear["rating"]["rating"],
                        "upside": bear["rating"]["upside"], "wacc": bear["wacc"]["wacc_used"]},
        "terminal": {"tv_mgbp": d["terminal_value"], "pv_tv_mgbp": d["pv_terminal_value"],

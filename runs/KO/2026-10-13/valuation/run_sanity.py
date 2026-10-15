@@ -120,6 +120,27 @@ raw_win = set_input(raw_win, "associates", raw0["associates"]["value"] + 6000.0,
 raw_win = set_input(raw_win, "tax_rate", 0.199, "IRS case won: FY26 underlying rate 19.9% without the 3.8-point uplift")
 sc_win = run_copy("scenario_irs_win", brief0, raw_win)
 
+# ---- scenario 3: IRS case HALFWAY (re-run 15 Oct 2026): every IRS lever at the midpoint of lose and win ----
+# Evidence audit 15 Oct 2026 (docs/audit-2026-10-15/KO.md finding 5): the 8th Circuit reversed the 3M Tax Court decision
+# on 1 Oct 2025 (same blocked-income rule); KO's FY25 10-K calls it "highly supportive". Halfway = a 50/50 view.
+raw_half = set_input(raw0, "contingent_liabilities", raw0["contingent_liabilities"]["value"] / 2,
+                     "IRS halfway: half of the USD 14,000m liability")
+raw_half = set_input(raw_half, "associates", raw0["associates"]["value"] + 3000.0,
+                     "base associates + half of the USD 6,000m 2007-09 deposit refunded")
+raw_half = set_input(raw_half, "tax_rate", (0.237 + 0.199) / 2, "IRS halfway: midpoint of 23.7% (lost) and 19.9% (won)")
+sc_half = run_copy("scenario_irs_half", brief0, raw_half)
+
+# ---- market-implied WACC: the WACC at which the DCF value equals today's share price ----
+mkt_shift = solve(by_wacc_shift, -0.04, 0.0, price)
+
+# ---- information only: the engine's bear case with the PM's bear margin 31.9% (brief scenarios.bear.bear_agent_margin,
+# which is meant for the Bear agent's stacked case, not the engine) ----
+bear_cfg = brief0["scenarios"]["bear"]
+b_bear = copy.deepcopy(brief0)
+b_bear["dcf"]["organic_growth"] = bear_cfg["organic_growth"]  # bear growth path (flow_through is 0 in both)
+sc_bear_m = run_copy("scenario_bear_margin", b_bear, set_input(raw0, "base_margin", bear_cfg["bear_agent_margin"],
+                     "PM bear margin 31.9% (FY24 ex-CCBA)"), wacc_shift=bear_cfg["wacc_shift"])
+
 d = base["dcf"]
 comps = json.loads((HERE / "comps.json").read_text())
 peer_ev_ebitda = [p["ev_ebitda_ltm"] for p in comps["peers"]]
@@ -143,7 +164,15 @@ out = {
         "beta_damodaran_2022_26_average": {"unlevered": avg_unlevered, "relever_factor": factor, "beta": beta_avg, **summary(sc_beta)},
         "irs_case_won": {"contingent_liabilities_musd": 0.0, "associates_musd": raw_win["associates"]["value"],
                          "tax_rate": 0.199, "note": "beta left at 0.6091 (relevered at 23.7%); USD 385m interest receivable not added",
-                         **summary(sc_win)}},
+                         **summary(sc_win)},
+        "irs_case_halfway": {"contingent_liabilities_musd": raw_half["contingent_liabilities"]["value"],
+                             "associates_musd": raw_half["associates"]["value"], "tax_rate": raw_half["tax_rate"]["value"],
+                             "note": "midpoint of lost and won on every IRS lever", **summary(sc_half)},
+        "irs_probability_50_50_usd": (base_ps + sc_win["equity"]["per_share_usd"]) / 2,  # expected value, 50% lose / 50% win
+        "bear_engine_with_pm_bear_margin_0_319": {"note": "information only; Bear agent owns the stacked bear case",
+                                                  **summary(sc_bear_m)}},
+    "market_implied_wacc": {"wacc_shift": mkt_shift, "wacc_level": (w0 + mkt_shift) if mkt_shift is not None else None,
+                            "share_price_usd": price},
 }
 (HERE / "sanity_checks.json").write_text(json.dumps(out, indent=2, default=float))
 print(json.dumps(out, indent=1, default=float))

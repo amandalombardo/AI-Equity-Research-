@@ -1,5 +1,7 @@
 # RELX PLC: brief v1.0 (agreed 14 Oct 2026)
 
+> **15 Oct 2026, evidence audit (docs/audit-2026-10-15/RELX.md):** equity risk premium 4.2% (Damodaran implied ERP, PM decision 15 Oct 2026; was 5.0% with no source). Beta in the run is 0.9729 (net debt without leases, as the bridge); the card's 0.974 included leases (-1.3p).
+
 PM: Amanda. Every input was agreed on a decision card after an evidence file; the engine reads them from briefs/RELX.yaml.
 RELX reports in pounds (GBP); REL.L is priced in pence (GBp), so no exchange rate is needed. Facts and page references:
 relx-facts.md; primary-source checks: relx-verification.md; audit: relx-evidence-audit.md.

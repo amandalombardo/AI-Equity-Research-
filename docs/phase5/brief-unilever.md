@@ -1,4 +1,6 @@
-# AI Equity Research Desk: Brief v0.1 (DRAFT)
+# AI Equity Research Desk: Brief v1.0 (agreed)
+
+> **v1.0, 15 Oct 2026.** Every item was agreed by the PM on decision cards on 13-14 Oct 2026 (decisions table: docs/phase5/ulvr-*.md); briefs/ULVR.yaml governs where this draft differs. Superseded below: McCormick USD 44.44 (run used USD 44.64, 13 Oct close), EUR 33.8bn and 1,327p (run: EUR 33,955m before the dividend deduction); risk-free 3.18% (FRED August average) is the German Bund 3.45% on the price date (decision 11). Evidence audit 15 Oct 2026 (docs/audit-2026-10-15/ULVR.md): equity risk premium 4.2% (was 5.0% with no source); pension plans in deficit deducted after tax (EUR 698.6m); McCormick dividends before closing deducted (EUR 642.9m).
 **Company:** Unilever PLC (LSE: ULVR, FTSE 100; NYSE ADR: UL, 1 ADR = 1 share)
 **Portfolio manager:** Amanda
 **Status:** v0.1 draft for PM review, 13 October 2026. Nothing below is agreed until the PM signs it off.

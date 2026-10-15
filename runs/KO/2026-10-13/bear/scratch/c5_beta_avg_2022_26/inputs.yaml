@@ -93,3 +93,7 @@ dividends_ex_before_valuation_musd:
 beta:
   value: 0.8684173345685366
   source: 'BEAR SCRATCH SCENARIO ONLY, not the base: Damodaran soft-beverage unlevered 0.8204851316412943 x 1.0584'
+priced_at_valuation_date_musd:
+  value: 39539.5
+  source: 'Listed equity stakes at run-date (13 Oct 2026) market value, the 39,539.5 inside ''associates'' (data/associates_rollforward_check.csv, Yahoo/FRED). Added by the evidence audit 15 Oct 2026: KO
+    was valued before the desk learned to keep run-date values out of the roll-forward (mistakes log row 24)'

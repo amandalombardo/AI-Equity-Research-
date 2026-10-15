@@ -1,65 +1,65 @@
 [
  {
   "step": "Previous run (old terminal year, capex 7.1%, flow-through 50%, stub, no restructuring)",
-  "pence": 1526.273188518236,
+  "pence": 1698.455111857053,
   "change_pence": null,
-  "ev_musd": 58844.210015361445,
-  "tv_share": 0.7493115226392981,
+  "ev_musd": 64109.67889415552,
+  "tv_share": 0.7668185068015657,
   "term_capex_pct": null,
   "minorities_deducted_musd": 2083.0
  },
  {
   "step": "1. Terminal-year fix (steady state, NWC at g)",
-  "pence": 1554.1273860513031,
-  "change_pence": 27.85419753306701,
-  "ev_musd": 59663.289099600544,
-  "tv_share": 0.7527530641896327,
+  "pence": 1698.4551118570525,
+  "change_pence": -4.547473508864641e-13,
+  "ev_musd": 64109.67889415551,
+  "tv_share": 0.7668185068015656,
   "term_capex_pct": null,
   "minorities_deducted_musd": 2083.0
  },
  {
   "step": "2. Terminal capex from RONIC 13.4%",
-  "pence": 1622.0518511122482,
-  "change_pence": 67.92446506094507,
-  "ev_musd": 61660.672387110506,
-  "tv_share": 0.7607621707782742,
-  "term_capex_pct": 0.062338147729539765,
+  "pence": 1771.9060184129698,
+  "change_pence": 73.4509065559173,
+  "ev_musd": 66278.32087656793,
+  "tv_share": 0.7744482591698173,
+  "term_capex_pct": 0.0623926455856391,
   "minorities_deducted_musd": 2083.0
  },
  {
   "step": "3. Flow-through 46%",
-  "pence": 1608.6768009682128,
-  "change_pence": -13.375050144035413,
-  "ev_musd": 61267.36635807761,
-  "tv_share": 0.7609316182152921,
-  "term_capex_pct": 0.062116881116912624,
+  "pence": 1757.4251456503494,
+  "change_pence": -14.480872762620493,
+  "ev_musd": 65850.77232628442,
+  "tv_share": 0.7745899274359023,
+  "term_capex_pct": 0.062167019144524,
   "minorities_deducted_musd": 2083.0
  },
  {
   "step": "4. Value at 30 June + roll forward at Ke",
-  "pence": 1638.747610448949,
-  "change_pence": 30.070809480736216,
-  "ev_musd": 60870.3204449613,
-  "tv_share": 0.7485438514532287,
-  "term_capex_pct": 0.062116881116912624,
+  "pence": 1787.638543621927,
+  "change_pence": 30.213397971577706,
+  "ev_musd": 65441.11466706427,
+  "tv_share": 0.7628515338026985,
+  "term_capex_pct": 0.062167019144524,
   "minorities_deducted_musd": 2083.0
  },
  {
   "step": "5. Restructuring cash 850 deducted",
-  "pence": 1609.0523188168359,
-  "change_pence": -29.69529163211314,
-  "ev_musd": 60870.3204449613,
-  "tv_share": 0.7485438514532287,
-  "term_capex_pct": 0.062116881116912624,
+  "pence": 1758.1214582200953,
+  "change_pence": -29.517085401831764,
+  "ev_musd": 65441.11466706427,
+  "tv_share": 0.7628515338026985,
+  "term_capex_pct": 0.062167019144524,
   "minorities_deducted_musd": 2083.0
  },
  {
   "step": "6. Minorities: book 2,083 -> proportionate (PM decision 2026-10-13)",
-  "pence": 1627.2561466643722,
-  "change_pence": 18.20382784753633,
-  "ev_musd": 60870.3204449613,
-  "tv_share": 0.7485438514532287,
-  "term_capex_pct": 0.062116881116912624,
-  "minorities_deducted_musd": 1561.9324226177068
+  "pence": 1772.1431502095886,
+  "change_pence": 14.02169198949332,
+  "ev_musd": 65441.11466706427,
+  "tv_share": 0.7628515338026985,
+  "term_capex_pct": 0.062167019144524,
+  "minorities_deducted_musd": 1679.2190023568692
  }
 ]

@@ -7,7 +7,7 @@ Whatever is in the depreciation and amortisation (D&A) we add back must have its
 - amortisation of capitalised development (software and products), £352m, matched by capitalised development spend of £504m;
 - PP&E depreciation £26m, matched by PP&E capex £21m;
 - **pre-publication cost amortisation £89m**: its spending (£102m) is **not** in RELX's capex line, so we add it;
-- **lease (right-of-use) depreciation £37m**: lease liabilities are already in net debt, so we leave this out of the D&A add-back and treat it as a running cost.
+- **lease (right-of-use) depreciation £37m**: we leave this out of the D&A add-back and treat it as a running cost, so lease liabilities are taken OUT of net debt (bridge: lease_liabilities_mgbp 0); counting both would deduct leases twice. (Wording corrected by the evidence audit, 15 Oct 2026.)
 
 Amortisation of acquired intangibles (£248m) is not in adjusted profit, so it is not added back either.
 

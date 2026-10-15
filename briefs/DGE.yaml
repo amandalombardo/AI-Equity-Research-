@@ -22,7 +22,9 @@ base_year:                   # FY26. Data agent confirms every number against th
 dcf:
   currency: USD                     # agreed 2026-10-12. Convert to GBp only at the end.
   forecast_years: [2027, 2028, 2029, 2030, 2031]
-  organic_growth: [0.000, 0.015, 0.025, 0.030, 0.030]   # low end of management guidance (agreed 2026-10-12, brief 5a)
+  # FY27-29 = low end of management guidance (agreed 2026-10-12, brief 5a). FY30-31 2.0% (PM decision 15 Oct 2026, evidence
+  # audit): the earlier 3.0% had no source and the desk's own IWSR evidence (docs/phase3) points lower; 2.0% = the terminal rate.
+  organic_growth: [0.000, 0.015, 0.025, 0.020, 0.020]
   savings:
     # c.$1bn total: $850m operating framework (c.40% in FY27, the rest in FY28) + $150m supply chain (c.25% in FY27).
     # Source: Diageo Capital Markets Day, 6 Aug 2026. Values are the CUMULATIVE run-rate reached in each year (USD m).
@@ -45,7 +47,7 @@ dcf:
   #     value driver formula (reinvestment = g / RONIC x NOPAT).
   # PM decision: new investment earns Diageo's latest (and lowest in 4 years) published ROIC, 13.4% FY26
   # (20-F FY26 KPI table; FY23 18.4%, FY24 15.8%, FY25 13.7%). Gives capex of c.6.2% of sales.
-  # Evidence: docs/phase3/terminal-capex-evidence.md. Main risk: if returns fall to c.10.8%, capex 7.1% -> SELL.
+  # Evidence: docs/phase3/terminal-capex-evidence.md. Main risk: lower returns on new investment; the RONIC at which the rating changes is in the latest valuation notes (the old "10.8% -> SELL" was out of date, evidence audit 15 Oct 2026).
   terminal_capex_pct_sales: null
   terminal_ronic: 0.134
   # Cash timing (PM decision 2026-10-13, Phase 4): mid-year. Diageo's free cash flow arrives through the year, not on
@@ -59,7 +61,12 @@ dcf:
   valuation_basis: balance_sheet_date
   wacc:
     risk_free: null                 # Data agent: US 10-year Treasury yield on the valuation date
-    equity_risk_premium: 0.050
+    # Equity risk premium (PM decision 15 Oct 2026, evidence audit): 4.2% = Damodaran's implied ERP for the S&P 500,
+    # 4.20% at 1 Oct 2026 (4.23% at 1 Jan 2026), the premium the market is pricing over today's 10-year yield, so it
+    # pairs with the spot risk-free rate used here. Same for all four companies. FLAG: seen in search summaries only
+    # (pages.stern.nyu.edu blocked here); PM to confirm on Damodaran's home page. Was 5.0% with no source.
+    # Evidence: docs/audit-2026-10-15/erp-evidence.md.
+    equity_risk_premium: 0.042
     beta: null                      # Risk agent. PM rule (agreed 2026-10-12): use the industry BOTTOM-UP beta
                                     # (Damodaran global alcoholic beverages unlevered beta, relevered at Diageo's market D/E),
                                     # with Diageo's own regressions (and their confidence intervals) as the cross-check.

@@ -92,3 +92,6 @@ beta:
   source: 'Risk agent, bottom-up: unlevered beta 0.5755 from Damodaran, Betas by Sector (US), betas.xls ''Industry Averages'' updated 2026-01-05 (https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls;
     file supplied by the PM 2026-10-13, saved as data/damodaran_betas_us_jan2026.xls), row ''Beverage (Soft)'', 27 firms, unlevered beta corrected for cash; relevered (Hamada) at KO market D/E 0.0766, tax
     23.7%. See risk/beta_evidence.json'
+priced_at_valuation_date_musd:
+  value: 34175.995
+  source: 'BEAR SCRATCH SCENARIO ONLY, not the base: listed stakes net of 21% tax on gain over book'

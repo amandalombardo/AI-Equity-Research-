@@ -1,166 +1,167 @@
 {
   "price_currency": "USD",
+  "reporting_currency": "USD",
   "base": {
     "wacc": {
-      "cost_of_equity": 0.08265499999999999,
+      "cost_of_equity": 0.0777822,
       "after_tax_cost_of_debt": 0.0450933,
       "equity_weight": 0.92888,
       "debt_weight": 0.07112,
-      "wacc": 0.07998361189599999,
-      "wacc_used": 0.07998361189599999
+      "wacc": 0.075457365432,
+      "wacc_used": 0.075457365432
     },
-    "enterprise_value_musd": 198455.03691449304,
-    "tv_share_of_ev": 0.7512648686514287,
+    "enterprise_value_musd": 212139.08075352863,
+    "tv_share_of_ev": 0.7673600561216202,
     "terminal_year": {
-      "sales": 53919.26258507033,
-      "nopat": 13654.909285237958,
-      "da": 1446.1146225315863,
-      "capex": 2566.0199642191983,
-      "capex_pct_sales": 0.04759004187363834,
-      "delta_nwc": -108.43057981813348,
-      "ufcf": 12643.43452336848,
-      "reinvestment": 1011.4747618694785,
-      "reinvestment_rate": 0.07407407407407408,
-      "implied_ronic": 0.26999999999999996
+      "sales": 53410.590296531955,
+      "nopat": 13526.089386320624,
+      "da": 1432.472031752987,
+      "capex": 2541.8122287076976,
+      "capex_pct_sales": 0.04759004187363835,
+      "delta_nwc": -107.40764981984967,
+      "ufcf": 12524.156839185764,
+      "reinvestment": 1001.9325471348609,
+      "reinvestment_rate": 0.07407407407407407,
+      "implied_ronic": 0.27
     },
-    "implied_exit_ev_ebitda": 11.115294680555383,
+    "implied_exit_ev_ebitda": 12.022488212961296,
     "equity": {
-      "enterprise_value": 198455.03691449304,
+      "enterprise_value": 212139.08075352863,
       "minorities_deducted": 2106.0,
-      "equity_value_balance_sheet_date": 197966.53691449304,
-      "equity_value": 203836.6603777846,
-      "per_share_usd": 47.38183644299968,
+      "equity_value_balance_sheet_date": 211650.58075352863,
+      "equity_value": 215214.41120936352,
+      "per_share_usd": 50.02659488827604,
       "per_share_gbp": null,
       "per_share_gbp_pence": null
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.4742361851,
-      "fair_value": 47.38183644299968,
+      "upside": -0.4448891105,
+      "fair_value": 50.02659488827604,
       "share_price": 90.12000274658203
     },
     "forecast": [
       {
         "year": 2026,
-        "sales": 46967.222,
-        "ebit": 15588.89065402,
+        "sales": 46524.135,
+        "ebit": 15441.82564785,
         "ebit_margin": 0.33191,
-        "ufcf": 11357.73635027726,
-        "pv": 10929.069818793894
+        "ufcf": 11207.71713685955,
+        "pv": 10807.383494574053
       },
       {
         "year": 2027,
-        "sales": 48376.23866,
-        "ebit": 16056.5573736406,
+        "sales": 47919.85905000001,
+        "ebit": 15905.0804172855,
         "ebit_margin": 0.33191,
-        "ufcf": 11562.139432625578,
-        "pv": 10301.784347685038
+        "ufcf": 11453.062645525337,
+        "pv": 10269.08713287921
       },
       {
         "year": 2028,
-        "sales": 49827.5258198,
-        "ebit": 16538.254094849817,
+        "sales": 49357.45482150001,
+        "ebit": 16382.232829804068,
         "ebit_margin": 0.33191,
-        "ufcf": 11909.003615604344,
-        "pv": 9824.998973352373
+        "ufcf": 11796.6545248911,
+        "pv": 9835.0339928323
       },
       {
         "year": 2029,
-        "sales": 51322.351594394,
-        "ebit": 17034.401717695313,
+        "sales": 50838.178466145015,
+        "ebit": 16873.69981469819,
         "ebit_margin": 0.33191,
-        "ufcf": 12266.273724072478,
-        "pv": 9370.280095997843
+        "ufcf": 12150.554160637832,
+        "pv": 9419.32738407358
       },
       {
         "year": 2030,
-        "sales": 52862.02214222582,
-        "ebit": 17545.43376922617,
-        "ebit_margin": 0.3319099999999999,
-        "ufcf": 12634.261935794648,
-        "pv": 8936.606437882856
+        "sales": 52363.323820129364,
+        "ebit": 17379.910809139135,
+        "ebit_margin": 0.33191,
+        "ufcf": 12515.070785456965,
+        "pv": 9021.191836552842
       }
     ]
   },
   "bear": {
     "wacc": {
-      "cost_of_equity": 0.08265499999999999,
+      "cost_of_equity": 0.0777822,
       "after_tax_cost_of_debt": 0.0450933,
       "equity_weight": 0.92888,
       "debt_weight": 0.07112,
-      "wacc": 0.07998361189599999,
-      "wacc_used": 0.08998361189599999
+      "wacc": 0.075457365432,
+      "wacc_used": 0.085457365432
     },
-    "enterprise_value_musd": 159609.21018654617,
-    "tv_share_of_ev": 0.7101621167490283,
+    "enterprise_value_musd": 168544.29262463865,
+    "tv_share_of_ev": 0.725696547669004,
     "terminal_year": {
-      "sales": 49851.76514279543,
-      "nopat": 12624.826418200013,
-      "da": 1337.0243411297736,
-      "capex": 2372.4475906204193,
+      "sales": 49381.46547163699,
+      "nopat": 12505.724282179259,
+      "da": 1324.4109039493042,
+      "capex": 2350.0660095768308,
       "capex_pct_sales": 0.04759004187363835,
-      "delta_nwc": -100.25092221657066,
-      "ufcf": 11689.654090925938,
-      "reinvestment": 935.1723272740751,
+      "delta_nwc": -99.30515879943326,
+      "ufcf": 11579.374335351165,
+      "reinvestment": 926.3499468280934,
       "reinvestment_rate": 0.07407407407407408,
       "implied_ronic": 0.26999999999999996
     },
-    "implied_exit_ev_ebitda": 9.527023601167054,
+    "implied_exit_ev_ebitda": 10.185798310516203,
     "equity": {
-      "enterprise_value": 159609.21018654617,
+      "enterprise_value": 168544.29262463865,
       "minorities_deducted": 2106.0,
-      "equity_value_balance_sheet_date": 159120.71018654617,
-      "equity_value": 162496.76050693862,
-      "per_share_usd": 37.77237575707546,
+      "equity_value_balance_sheet_date": 168055.79262463865,
+      "equity_value": 168984.33950998593,
+      "per_share_usd": 39.28041364713759,
       "per_share_gbp": null,
       "per_share_gbp_pence": null
     },
     "rating": {
       "rating": "SELL",
-      "upside": -0.5808657944,
-      "fair_value": 37.77237575707546,
+      "upside": -0.5641321299,
+      "fair_value": 39.28041364713759,
       "share_price": 90.12000274658203
     },
     "forecast": [
       {
         "year": 2026,
-        "sales": 46967.222,
-        "ebit": 15588.89065402,
+        "sales": 46524.135,
+        "ebit": 15441.82564785,
         "ebit_margin": 0.33191,
-        "ufcf": 11357.73635027726,
-        "pv": 10878.820198515992
+        "ufcf": 11207.71713685955,
+        "pv": 10757.485679722284
       },
       {
         "year": 2027,
-        "sales": 47436.89422,
-        "ebit": 15744.7795605602,
+        "sales": 46989.376350000006,
+        "ebit": 15596.243904328501,
         "ebit_margin": 0.33191,
-        "ufcf": 11244.098700180033,
-        "pv": 9880.858881243006
+        "ufcf": 11138.022297348147,
+        "pv": 9848.927218096884
       },
       {
         "year": 2028,
-        "sales": 47911.263162200004,
-        "ebit": 15902.227356165802,
+        "sales": 47459.27011350001,
+        "ebit": 15752.206343371787,
         "ebit_margin": 0.33191,
-        "ufcf": 11356.539687181834,
-        "pv": 9155.79588641342
+        "ufcf": 11249.402520321628,
+        "pv": 9164.262740360042
       },
       {
         "year": 2029,
-        "sales": 48390.37579382201,
-        "ebit": 16061.249629727461,
+        "sales": 47933.86281463501,
+        "ebit": 15909.728406805505,
         "ebit_margin": 0.33191,
-        "ufcf": 11470.105084053652,
-        "pv": 8483.938422883262
+        "ufcf": 11361.896545524845,
+        "pv": 8527.193847065468
       },
       {
         "year": 2030,
-        "sales": 48874.27955176023,
-        "ebit": 16221.862126024736,
+        "sales": 48413.20144278136,
+        "ebit": 16068.825690873562,
         "ebit_margin": 0.33191,
-        "ufcf": 11584.806134894188,
-        "pv": 7861.3822387723
+        "ufcf": 11475.515510980094,
+        "pv": 7934.411852379347
       }
     ]
   },
@@ -177,11 +178,11 @@
   },
   "sensitivity_value_per_share_usd": {
     "wacc": [
-      0.069983611896,
-      0.07498361189599999,
-      0.07998361189599999,
-      0.084983611896,
-      0.08998361189599999
+      0.06545736543200001,
+      0.070457365432,
+      0.075457365432,
+      0.08045736543200001,
+      0.085457365432
     ],
     "terminal_growth": [
       0.015,
@@ -191,34 +192,34 @@
     ],
     "grid": [
       [
-        53.36192565054837,
-        56.92952265390001,
-        61.28015244622659,
-        66.70757267666642
+        56.864600431496626,
+        61.2340183278115,
+        66.67219344017327,
+        73.63125632158234
       ],
       [
-        48.86203931581068,
-        51.7217861329258,
-        55.144808208465236,
-        59.318932364692614
+        51.62930185579793,
+        55.075255320233765,
+        59.26946913861953,
+        64.4893688227107
       ],
       [
-        45.05473186577852,
-        47.38183644299968,
-        50.12428774305709,
-        53.406730636663795
+        47.260083319113036,
+        50.02659488827604,
+        53.332745654814794,
+        57.35660550649584
       ],
       [
-        41.791552831137544,
-        43.70937182245149,
-        45.93983171552852,
-        48.568223624661364
+        43.55847018737262,
+        45.81261877996009,
+        48.46552695268471,
+        51.635738225424106
       ],
       [
-        38.96364736410725,
-        40.56133276008714,
-        42.39847383015245,
-        44.53495084822721
+        40.38232695123176,
+        42.24206044811909,
+        44.40248173529531,
+        46.944920259610306
       ]
     ]
   },
@@ -245,6 +246,7 @@
     "stub_years": 0.78356,
     "dividends_ex_before_valuation_musd": 6840.2,
     "beta": 0.6091,
+    "priced_at_valuation_date_musd": 39539.5,
     "pre_tax_cost_of_debt_historic": 0.03675
   },
   "sources": {
@@ -270,6 +272,7 @@
     "stub_years": "286 days from 31 Dec 2025 balance sheet to run date 2026-10-13 / 365",
     "dividends_ex_before_valuation_musd": "3 quarterly dividends of $0.53 = $1.59/share went ex between 1 Jan and 13 Oct 2026 x 4,302m shares. Q1: declared Feb 2026 (KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) 'increased our regular quarterly dividend to $0.53'), booked Q1 (KO Q1 2026 10-Q (accession 0001628280-26-028802, https://www.sec.gov/Archives/edgar/data/21344/000162828026028802/ko-20260403.htm) equity statement, $2,280m); Q2: record 15 Jun 2026 (KO Q1 2026 10-Q (accession 0001628280-26-028802, https://www.sec.gov/Archives/edgar/data/21344/000162828026028802/ko-20260403.htm)); Q3: record 15 Sep 2026, payable 1 Oct 2026 (KO Q2 2026 10-Q (accession 0001628280-26-050503, https://www.sec.gov/Archives/edgar/data/21344/000162828026050503/ko-20260703.htm)). Ex-dates 13 Mar, 15 Jun, 15 Sep 2026 (Yahoo KO dividend events, non-filing cross-check). Q4 dividend not yet ex.",
     "beta": "Risk agent, bottom-up: unlevered beta 0.5755 from Damodaran, Betas by Sector (US), betas.xls 'Industry Averages' updated 2026-01-05 (https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls; file supplied by the PM 2026-10-13, saved as data/damodaran_betas_us_jan2026.xls), row 'Beverage (Soft)', 27 firms, unlevered beta corrected for cash; relevered (Hamada) at KO market D/E 0.0766, tax 23.7%. See risk/beta_evidence.json",
+    "priced_at_valuation_date_musd": "Listed equity stakes at run-date (13 Oct 2026) market value, the 39,539.5 inside 'associates' (data/associates_rollforward_check.csv, Yahoo/FRED). Added by the evidence audit 15 Oct 2026: KO was valued before the desk learned to keep run-date values out of the roll-forward (mistakes log row 24)",
     "pre_tax_cost_of_debt_historic": "Historic, reference only: FY25 interest expense 1,654 / average gross debt ((44,522 at 31 Dec 2024 + 45,492 at 31 Dec 2025)/2); KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm). Engine uses risk-free + credit_spread 0.69% (brief)."
   }
 }

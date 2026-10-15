@@ -1,0 +1,278 @@
+{
+  "price_currency": "USD",
+  "reporting_currency": "USD",
+  "base": {
+    "wacc": {
+      "cost_of_equity": 0.0667194,
+      "after_tax_cost_of_debt": 0.0450933,
+      "equity_weight": 0.92888,
+      "debt_weight": 0.07112,
+      "wacc": 0.065181351768,
+      "wacc_used": 0.065181351768
+    },
+    "enterprise_value_musd": 314801.34362326015,
+    "tv_share_of_ev": 0.839542918495939,
+    "terminal_year": {
+      "sales": 53934.223534733246,
+      "nopat": 13658.698105794356,
+      "da": 1446.5158752015457,
+      "capex": 2912.598506535876,
+      "capex_pct_sales": 0.054002789243089475,
+      "delta_nwc": -161.11147472977413,
+      "ufcf": 12353.726949189799,
+      "reinvestment": 1304.9711566045562,
+      "reinvestment_rate": 0.09554140127388534,
+      "implied_ronic": 0.314
+    },
+    "implied_exit_ev_ebitda": 18.693497840171784,
+    "equity": {
+      "enterprise_value": 314801.34362326015,
+      "minorities_deducted": 2106.0,
+      "equity_value_balance_sheet_date": 315212.84362326015,
+      "equity_value": 322683.1312451401,
+      "per_share_usd": 75.00770135870296,
+      "per_share_gbp": null,
+      "per_share_gbp_pence": null
+    },
+    "rating": {
+      "rating": "SELL",
+      "upside": -0.1676908669,
+      "fair_value": 75.00770135870296,
+      "share_price": 90.12000274658203
+    },
+    "forecast": [
+      {
+        "year": 2026,
+        "sales": 46524.135,
+        "ebit": 15441.82564785,
+        "ebit_margin": 0.33191,
+        "ufcf": 11207.71713685955,
+        "pv": 10859.388844548985
+      },
+      {
+        "year": 2027,
+        "sales": 47919.85905000001,
+        "ebit": 15905.0804172855,
+        "ebit_margin": 0.33191,
+        "ufcf": 11453.062645525337,
+        "pv": 10418.046806583301
+      },
+      {
+        "year": 2028,
+        "sales": 49357.45482150001,
+        "ebit": 16382.232829804068,
+        "ebit_margin": 0.33191,
+        "ufcf": 11796.6545248911,
+        "pv": 10073.954254803704
+      },
+      {
+        "year": 2029,
+        "sales": 50838.178466145015,
+        "ebit": 16873.69981469819,
+        "ebit_margin": 0.33191,
+        "ufcf": 12150.554160637832,
+        "pv": 9741.226566936537
+      },
+      {
+        "year": 2030,
+        "sales": 52363.323820129364,
+        "ebit": 17379.910809139135,
+        "ebit_margin": 0.33191,
+        "ufcf": 12515.070785456965,
+        "pv": 9419.488378472806
+      }
+    ]
+  },
+  "bear": {
+    "wacc": {
+      "cost_of_equity": 0.0667194,
+      "after_tax_cost_of_debt": 0.0450933,
+      "equity_weight": 0.92888,
+      "debt_weight": 0.07112,
+      "wacc": 0.065181351768,
+      "wacc_used": 0.07518135176799999
+    },
+    "enterprise_value_musd": 229716.08154728104,
+    "tv_share_of_ev": 0.7941750148372553,
+    "terminal_year": {
+      "sales": 49865.597486064806,
+      "nopat": 12628.329422200624,
+      "da": 1337.3953245762582,
+      "capex": 2692.8813515206903,
+      "capex_pct_sales": 0.05400278924308948,
+      "delta_nwc": -148.9577381991499,
+      "ufcf": 11421.801133455343,
+      "reinvestment": 1206.5282887452822,
+      "reinvestment_rate": 0.09554140127388533,
+      "implied_ronic": 0.31400000000000006
+    },
+    "implied_exit_ev_ebitda": 14.55606124107216,
+    "equity": {
+      "enterprise_value": 229716.08154728104,
+      "minorities_deducted": 2106.0,
+      "equity_value_balance_sheet_date": 230127.58154728104,
+      "equity_value": 233181.0054501693,
+      "per_share_usd": 54.202930137184865,
+      "per_share_gbp": null,
+      "per_share_gbp_pence": null
+    },
+    "rating": {
+      "rating": "SELL",
+      "upside": -0.3985471762,
+      "fair_value": 54.202930137184865,
+      "share_price": 90.12000274658203
+    },
+    "forecast": [
+      {
+        "year": 2026,
+        "sales": 46524.135,
+        "ebit": 15441.82564785,
+        "ebit_margin": 0.33191,
+        "ufcf": 11207.71713685955,
+        "pv": 10808.770606661248
+      },
+      {
+        "year": 2027,
+        "sales": 46989.376350000006,
+        "ebit": 15596.243904328501,
+        "ebit_margin": 0.33191,
+        "ufcf": 11138.022297348147,
+        "pv": 9990.460294018218
+      },
+      {
+        "year": 2028,
+        "sales": 47459.27011350001,
+        "ebit": 15752.206343371787,
+        "ebit_margin": 0.33191,
+        "ufcf": 11249.402520321628,
+        "pv": 9384.802740826994
+      },
+      {
+        "year": 2029,
+        "sales": 47933.86281463501,
+        "ebit": 15909.728406805505,
+        "ebit_margin": 0.33191,
+        "ufcf": 11361.896545524845,
+        "pv": 8815.862321876044
+      },
+      {
+        "year": 2030,
+        "sales": 48413.20144278136,
+        "ebit": 16068.825690873562,
+        "ebit_margin": 0.33191,
+        "ufcf": 11475.515510980094,
+        "pv": 8281.413112730486
+      }
+    ]
+  },
+  "bridge_musd": {
+    "net_debt": 29686.0,
+    "lease_liabilities": 1722.0,
+    "minority_interests": 2106.0,
+    "pension_deficit": 0.0,
+    "associates": 46625.5,
+    "disposal_proceeds": 1300.0,
+    "restructuring_cash": 0.0,
+    "contingent_liabilities": 14000.0,
+    "minority_share_of_ev": null
+  },
+  "sensitivity_value_per_share_usd": {
+    "wacc": [
+      0.055181351767999993,
+      0.060181351768,
+      0.065181351768,
+      0.070181351768,
+      0.07518135176799999
+    ],
+    "terminal_growth": [
+      0.024999999999999998,
+      0.03,
+      0.034999999999999996,
+      0.04
+    ],
+    "grid": [
+      [
+        90.26265237066968,
+        104.87301232101431,
+        126.70281625139226,
+        162.88526688020457
+      ],
+      [
+        77.36884385798963,
+        87.4677215327075,
+        101.56129540048474,
+        122.61866503327876
+      ],
+      [
+        67.68291920983279,
+        75.00770135870296,
+        84.74653080035812,
+        98.33740457822118
+      ],
+      [
+        60.13989629779271,
+        65.64688968049904,
+        72.70838349927703,
+        82.09695768097413
+      ],
+      [
+        54.09924572651168,
+        58.35640185841835,
+        63.66377035274479,
+        70.46912210641906
+      ]
+    ]
+  },
+  "inputs": {
+    "base_sales": 44308.7,
+    "base_margin": 0.33191,
+    "tax_rate": 0.237,
+    "da_pct_sales": 0.02682,
+    "capex_pct_sales": 0.04405,
+    "nwc_pct_sales": -0.10256,
+    "risk_free": 0.052199999999999996,
+    "pre_tax_cost_of_debt": 0.0591,
+    "debt_weight": 0.07112,
+    "net_debt": 29686.0,
+    "lease_liabilities": 1722.0,
+    "minority_interests": 2106.0,
+    "pension_deficit": 0.0,
+    "associates": 46625.5,
+    "disposal_proceeds": 1300.0,
+    "restructuring_cash": 0.0,
+    "contingent_liabilities": 14000.0,
+    "shares_outstanding_m": 4302.0,
+    "share_price_usd": 90.12000274658203,
+    "stub_years": 0.78356,
+    "dividends_ex_before_valuation_musd": 6840.2,
+    "beta": 0.3457,
+    "priced_at_valuation_date_musd": 39539.5,
+    "pre_tax_cost_of_debt_historic": 0.03675
+  },
+  "sources": {
+    "base_sales": "FY25 10-K net operating revenues 47,941 less CCBA 3632.3 (EUR 3,357m x 1.0820 USD/EUR, FRED DEXUSEU 2024 average). Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/2026-q1-trading-update/coca-cola-hbc-factsheet-ccba-acquisition-q1-2026.pdf.downloadasset.pdf and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from this environment, PM asked to verify. FLAG: CCBA figure is calendar 2024. PM decision 2026-10-13",
+    "base_margin": "(comparable operating income 15,013 - CCBA EBIT 266.2) / (comparable revenues 48,062 - CCBA 3632.3); Q4 2025 8-K 0001628280-26-006642 + Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/2026-q1-trading-update/coca-cola-hbc-factsheet-ccba-acquisition-q1-2026.pdf.downloadasset.pdf and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from this environment, PM asked to verify. PM rule: held flat. PM decision 2026-10-13",
+    "tax_rate": "PM decision (IRS case assumed lost): 19.9% underlying effective tax rate, FY26 guidance (KO Q2 2026 results 8-K ex.99.1 (accession 0001628280-26-049922, https://www.sec.gov/Archives/edgar/data/21344/000162828026049922/a2026q2earningsreleaseex-9.htm), outlook table) + 3.8 points if the Tax Court methodology keeps applying (KO Q2 2026 10-Q (accession 0001628280-26-050503, https://www.sec.gov/Archives/edgar/data/21344/000162828026050503/ko-20260703.htm) Note 9 Commitments and Contingencies (brief says note 12): 'would increase the Company's effective tax rate by approximately 3.8%')",
+    "da_pct_sales": "FY21-FY25 depreciation & amortisation / net operating revenues, pooled over 5 years (XBRL us-gaap:DepreciationDepletionAndAmortization and us-gaap:Revenues, 10-Ks FY22-FY25; financials_raw.csv)",
+    "capex_pct_sales": "FY25 purchases of property, plant and equipment 2,112 / net operating revenues 47,941, KO FY25 10-K (accession 0001628280-26-010047; XBRL us-gaap:PaymentsToAcquirePropertyPlantAndEquipment, us-gaap:Revenues). PM decision 2026-10-13 (evidence audit): latest actual instead of the 5-year average (3.99%), which included Covid-era 2021; FY26 guidance capex c.$2.2bn (Q2 2026 8-K 0001628280-26-049922)",
+    "nwc_pct_sales": "FY25 (inventories 4,425 + trade receivables 3,038 + prepaid & other current 2,433 - accounts payable & accrued 14,813 = -4,917) / net operating revenues 47,941; KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) balance sheet. Negative = suppliers fund KO. FY24 cross-check ex-fairlife liability 6,126: -4,291 = -9.12% of sales.",
+    "risk_free": "FRED DGS10 (US 10-year Treasury, constant maturity), 2026-10-08",
+    "pre_tax_cost_of_debt": "risk-free 5.22% + credit spread 0.69% (PM rule, briefs)",
+    "debt_weight": "net debt 29,686 / (net debt + market cap 387,696 = 4,302m shares x $90.12 Yahoo KO close 2026-10-13)",
+    "net_debt": "KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) balance sheet at 31 Dec 2025: loans and notes payable 1,551 + current maturities of LTD 1,822 + LTD 42,119 - cash 10,270 - short-term investments 3,602 - marketable securities 1,934. No finance-lease liability is disclosed separately (none inside or outside). EXCLUDES CCBA debt 1,435 and cash 178 (in held-for-sale).",
+    "lease_liabilities": "KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) Note 10: total operating lease liabilities 1,722 (current 321 in payables, noncurrent 1,401 in other noncurrent liabilities); NOT in net debt, so deducted separately.",
+    "minority_interests": "KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) balance sheet: equity attributable to noncontrolling interests 2,106 (book; includes the 40% India bottling NCI sold July 2025 and the outside shareholders of CCBA - see FLAG) FLAG (PM informed 2026-10-13): includes CCBA's outside shareholder (Gutsche 33.5%), not disclosed; full amount deducted (conservative, up to c.USD 1.1bn too much).",
+    "pension_deficit": "KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) Note 14: pension plans net ASSET 295, other postretirement net liability 112 = net surplus 183; brief rule 0 if in surplus. Gross accrued liability of deficit plans 863 (MD&A) - see notes.",
+    "associates": "Listed stakes at run-date market value 39539.5 (data/associates_rollforward_check.csv: 31 Dec 2025 fair values from FY25 10-K x price and FX change to 13 Oct 2026, Yahoo/FRED) + unlisted equity-method investments at book 6,236 (FY25 10-K: 20,235 - listed book 13,999) + retained 25% of CCBA at deal value 850 (0.25 x USD 3.4bn, Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/2026-q1-trading-update/coca-cola-hbc-factsheet-ccba-acquisition-q1-2026.pdf.downloadasset.pdf and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from this environment, PM asked to verify). PM rule: listed stakes at run-date market value",
+    "disposal_proceeds": "KO's 41.5% of CCBA sold for USD 1.3bn, not yet received (Q2 2026 10-Q: not closed). Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (factsheet https://www.coca-colahellenic.com/content/dam/cch/us/documents/investors-and-financial/2026-q1-trading-update/coca-cola-hbc-factsheet-ccba-acquisition-q1-2026.pdf.downloadasset.pdf and acquisition presentation): CCBA 2024 net sales revenue EUR 3,357m, EBIT EUR 246m; KO sells 41.5% for USD 1.3bn, keeps 25%; 100% equity value USD 3.4bn. Seen via web search; page not reachable from this environment, PM asked to verify. PM decision 2026-10-13",
+    "restructuring_cash": "KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) Note 19: productivity and reinvestment program (2012-2017) 'substantially completed' at 31 Dec 2025 (FY25 charge 97); no new programme announced in the Q1/Q2 2026 10-Qs.",
+    "contingent_liabilities": "Potential IRS tax and interest 2010-2025 at 31 Dec 2025, KO FY25 10-K (accession 0001628280-26-010047; XBRL ko:IncrementalTaxAndInterestLiability = 14,000m). PM decision 2026-10-13: assume KO loses; H1 2026 accrual (USD 900m, Q2 2026 10-Q) excluded because the 23.7% tax rate already charges 2026 onwards (mistakes log row 17)",
+    "shares_outstanding_m": "KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) XBRL: 7,040m issued (us-gaap:CommonStockSharesIssued) - 2,738m treasury (us-gaap:TreasuryStockCommonShares) at 31 Dec 2025. Check: Q2 2026 10-Q cover 4,302,549,243 at 27 Jul 2026.",
+    "share_price_usd": "Yahoo Finance KO close (US dollars), 2026-10-13",
+    "stub_years": "286 days from 31 Dec 2025 balance sheet to run date 2026-10-13 / 365",
+    "dividends_ex_before_valuation_musd": "3 quarterly dividends of $0.53 = $1.59/share went ex between 1 Jan and 13 Oct 2026 x 4,302m shares. Q1: declared Feb 2026 (KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm) 'increased our regular quarterly dividend to $0.53'), booked Q1 (KO Q1 2026 10-Q (accession 0001628280-26-028802, https://www.sec.gov/Archives/edgar/data/21344/000162828026028802/ko-20260403.htm) equity statement, $2,280m); Q2: record 15 Jun 2026 (KO Q1 2026 10-Q (accession 0001628280-26-028802, https://www.sec.gov/Archives/edgar/data/21344/000162828026028802/ko-20260403.htm)); Q3: record 15 Sep 2026, payable 1 Oct 2026 (KO Q2 2026 10-Q (accession 0001628280-26-050503, https://www.sec.gov/Archives/edgar/data/21344/000162828026050503/ko-20260703.htm)). Ex-dates 13 Mar, 15 Jun, 15 Sep 2026 (Yahoo KO dividend events, non-filing cross-check). Q4 dividend not yet ex.",
+    "beta": "BEAR SCRATCH SCENARIO ONLY, not the base: 5y weekly regression",
+    "priced_at_valuation_date_musd": "Listed equity stakes at run-date (13 Oct 2026) market value, the 39,539.5 inside 'associates' (data/associates_rollforward_check.csv, Yahoo/FRED). Added by the evidence audit 15 Oct 2026: KO was valued before the desk learned to keep run-date values out of the roll-forward (mistakes log row 24)",
+    "pre_tax_cost_of_debt_historic": "Historic, reference only: FY25 interest expense 1,654 / average gross debt ((44,522 at 31 Dec 2024 + 45,492 at 31 Dec 2025)/2); KO FY25 10-K (accession 0001628280-26-010047, filed 2026-02-20, https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm). Engine uses risk-free + credit_spread 0.69% (brief)."
+  }
+}

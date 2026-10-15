@@ -1,17 +1,47 @@
-# Bear case: The Coca-Cola Company (KO), run 2026-10-13
+# Bear case: The Coca-Cola Company (KO), run 2026-10-13, final re-run 15 Oct 2026 (evidence audit and PM bear responses)
 
-All values per share are in **US dollars (USD)**. Totals are **USD m**. The share price is $90.12 (Yahoo, 13 Oct 2026). Every "impact" comes from the desk engine: `python -m desk.valuation_run` run on a scratch copy of the brief and `inputs.yaml` with **one change**. The script is `bear/run_bear.py`, the results are in `bear/bear_runs.json`, and each copy is in `bear/scratch/<name>/`. The brief and `inputs.yaml` were not edited.
+All values per share are in **US dollars (USD)**. Totals are **USD m**. The share price is USD 90.12 (Yahoo, 13 Oct 2026). Every "impact" comes from the desk engine: `python -m desk.valuation_run` run on a scratch copy of the brief and `inputs.yaml` with **one change**. The script is `bear/run_bear.py`, the results are in `bear/bear_runs.json`, and each copy is in `bear/scratch/<name>/`. The brief and `inputs.yaml` were not edited.
 
-**Starting point** (`valuation/valuation.json`):
-- **Base:** $47.60, SELL (-47.2%).
-- **Brief bear case:** $37.99, SELL (-57.8%). This is the base plus 1% growth in FY27-30 plus 1 point on the WACC (9.0%).
-- **Rating lines:** HOLD needs at least $81.11, BUY at least $103.64.
+**Final re-run 15 Oct 2026.** This file replaces the 13 Oct version and the 15 Oct morning version. What changed (PM decisions of 15 Oct 2026, `docs/audit-2026-10-15/KO.md` and `docs/audit-2026-10-15/bear-responses-2026-10-15.md`, PM decision "Accept all"):
+- equity risk premium **4.2%** (Damodaran implied; was 5.0%, unsourced), so WACC 8.00% -> **7.55%**;
+- the listed stakes (USD 39,539.5m, already at 13 Oct 2026 prices) are **no longer grown** in the roll-forward;
+- the PM's bear margin **31.9%** (`briefs/KO.yaml` scenarios.bear.bear_agent_margin) is used in the **stacked bear case**;
+- **FY26 growth +5.0% instead of +6.0%, in the base and the bear** (bear response K1 accepted: about 1 point of the disposal headwind is not CCBA).
 
-The base is already a SELL, so the most useful question is not "can it get worse?" but "**is the SELL just a harsh base case?**" Section B answers that.
+Every figure below is final. Earlier figures are shown as "(morning: USD x)" or "(13 Oct: USD x)" where it helps; the 13 Oct results are kept in `bear/bear_runs_2026-10-13_superseded.json`. Scenarios that move the listed stakes (challenge 4) also move the not-grown run-date amount by the same figure, so the change is not grown again.
+
+**Starting point** (`valuation/valuation.json`, final 15 Oct 2026):
+- **Base:** USD 50.25, SELL (-44.2%) (morning: USD 50.76; 13 Oct: USD 47.60).
+- **Engine bear case:** USD 39.50, SELL (-56.2%): FY26 +5.0% as the base, then 1% growth in FY27-30, plus 1 point on the WACC (8.55%). It keeps the 33.2% base margin (morning: USD 39.91).
+- **Stacked bear case (the reference bear figure for the memo):** engine bear case **plus the PM's 31.9% bear margin = USD 37.86, SELL (-58.0%)**, USD 12.39 below the base (morning: USD 38.25).
+- **Rating lines:** HOLD needs at least USD 81.11, BUY at least USD 103.64.
+
+The base is already a SELL, so the most useful question is still "**is the SELL just a harsh base case?**" Section B answers it: **stacking the most generous assumptions reaches HOLD (USD 83.41), though not BUY, and still below the price.**
 
 ---
 
 ## A. Challenges
+
+### Summary table (USD per share, one change each vs the USD 50.25 base)
+
+| # | challenge (agent challenged) | test | value | impact (final) | impact (morning, superseded) | PM response |
+|---|---|---|---|---|---|---|
+| 1 | Peak margin (Fundamentals) | 30.0% (FY24, includes CCBA) | USD 45.15 | **-USD 5.09** | -USD 5.14 | 30.0% includes CCBA but is applied to ex-CCBA sales |
+| 1 | | 31.94% (FY24 ex-CCBA, like-for-like) | USD 48.25 | -USD 2.00 | -USD 2.02 | |
+| 1 | | 31.9% (PM bear margin, as decided) | USD 48.19 | **-USD 2.06** | -USD 2.08 | **PM decision 13 Oct, kept 15 Oct 2026 (K4): bear margin 31.9%** |
+| 2 | Currency drag (Valuation, growth path) | FY27-30 growth 1% | USD 46.70 | **-USD 3.54** | -USD 3.58 | **PM decision 15 Oct 2026 (K4): kept as a stress test**; the growth evidence calls 1% too punitive |
+| 2 | | FY26 growth 4.5% (vs the new 5.0%) | USD 49.99 | -USD 0.25 | -USD 0.76 (vs 6.0%) | stress test |
+| 2 | | FY26 growth 5.0% instead of 6.0% (non-CCBA disposals) | now the base | -USD 0.51 (USD 50.76 -> USD 50.25) | -USD 0.51 | **PM decision 15 Oct 2026 (K1): accepted, now in base and bear** |
+| 3 | IRS and cash (Data) | add the USD 900m H1 2026 accrual | USD 50.03 | -USD 0.22 | -USD 0.22 | **PM decision 15 Oct 2026 (K4): kept.** Loss already in base; model FY26 cash (USD 11,208m) reconciles to guidance (USD 12,400m) |
+| 4 | Stakes at market (Data, bridge) | listed stakes at 31 Dec 2025 fair value | USD 49.03 | -USD 1.22 | -USD 1.22 | Small |
+| 4 | | Monster stake -30% | USD 49.01 | -USD 1.24 | -USD 1.24 | |
+| 4 | | 21% tax on the gain over book | USD 49.00 | -USD 1.25 | -USD 1.25 | **PM decision 13 Oct, kept 15 Oct 2026 (K4): no tax deducted** (tax basis not disclosed) |
+| 5 | Beta at a low (Risk) | 0.868 (2022-26 average) | USD 42.66 | **-USD 7.59** (WACC 8.56%) | -USD 7.66 | **PM decision 13 Oct, kept 15 Oct 2026 (K4): keep 0.6091**, the current industry beta (as for Diageo) |
+| 5 | | 0.741 (2024 level) | USD 46.08 | -USD 4.17 (WACC 8.06%) | -USD 4.21 | |
+| audit | ERP (Valuation / PM brief) | ERP 5.0% (Kroll US recommended) | USD 46.54 | **-USD 3.71** (WACC 8.00%) | -USD 3.74 | **PM decision 15 Oct 2026 (K2): keep 4.2%**, once confirmed on Damodaran's site; SELL at every ERP |
+| audit | | ERP 5.5% (Fernandez 2025 survey, US) | USD 44.49 | **-USD 5.76** (WACC 8.28%) | -USD 5.81 | as above |
+
+No single change leaves SELL. Each one is also SELL when applied inside the engine bear case (`bear_block_*` fields in `bear_runs.json`; those use the 33.2% margin, except the margin runs).
 
 ### 1. Margin: the 33.2% base margin assumes the best year ever is the new normal (challenges the Fundamentals agent and brief item B)
 
@@ -19,138 +49,173 @@ The base is already a SELL, so the most useful question is not "can it get worse
 - **Evidence:**
   - **The margin has only just reached this level.** Comparable operating margin was 28.7%, 28.7%, 29.1%, 30.0% and 31.2% in FY21 to FY25 (`fundamentals/ratios.csv`; Q4 results 8-Ks 0000021344-22-000004 through 0001628280-26-006642).
   - **Part of the rise is mix, not efficiency.** It comes from selling low-margin bottlers (Fundamentals FLAG 9; brief section 5B).
-  - **"Comparable" leaves out impairments that recur every year.** Each year since FY24 has had a large one: FY24 $886m (North America $760m) and FY25 $1,045m (North America $960m). On a reported basis FY25 was 28.7% against 31.2% comparable (Q4 2025 8-K 0001628280-26-006642 p.28; `fundamentals/commentary.md` FLAG 1). Repeated brand write-downs are real capital lost on acquisitions, not "one-offs".
+  - **"Comparable" leaves out impairments that recur every year.** FY24 USD 886m (North America USD 760m) and FY25 USD 1,045m (North America USD 960m). On a reported basis FY25 was 28.7% against 31.2% comparable (Q4 2025 8-K 0001628280-26-006642 p.28; `fundamentals/commentary.md` FLAG 1).
 - **Value impact (USD per share):**
 
   | test | margin | value | impact |
   |---|---|---|---|
-  | Brief's literal bear: FY24 comparable margin (Q4 2024 8-K 0000021344-25-000005) | 30.0% | **$42.82** | **-$4.79** |
-  | Like-for-like: FY24 margin **ex-CCBA**, (14,085 - 266.2) / (46,897 - 3,632.3) | 31.94% | $45.73 | -$1.88 |
+  | Brief's literal bear: FY24 comparable margin (Q4 2024 8-K 0000021344-25-000005) | 30.0% | USD 45.15 | -USD 5.09 |
+  | Like-for-like: FY24 margin **ex-CCBA**, (14,085 - 266.2) / (46,897 - 3,632.3) USD m | 31.94% | USD 48.25 | -USD 2.00 |
+  | **PM bear margin** (brief scenarios.bear.bear_agent_margin) | 31.9% | **USD 48.19** | **-USD 2.06** |
+  | Inside the stacked bear case (1% growth, WACC +1 point) | 31.9% | **USD 37.86** | -USD 12.39 vs base |
 
-  Scratch runs: `scratch/c1_margin_300`, `scratch/c1_margin_fy24_ex_ccba`.
-- **Honesty note:** The 30.0% includes CCBA, a bottler with a 7.3% margin, but the base sales exclude CCBA. So -$4.79 mixes two bases and overstates the bear case. The fair bear figure is the like-for-like **-$1.88**. Recent trading also argues against the bear: the Q2 2026 comparable margin was 35.6% against 34.7% a year earlier (Q2 2026 8-K 0001628280-26-049922).
+  Scratch runs: `scratch/c1_margin_300`, `c1_margin_fy24_ex_ccba`, `c1_margin_319`, `stacked_bear_319`.
+- **Honesty note:** the 30.0% mixes a CCBA-inclusive margin with ex-CCBA sales, so -USD 5.09 overstates the bear case; the PM chose 31.9%. Recent trading argues against the bear: the Q2 2026 comparable margin was 35.6% against 34.7% a year earlier (Q2 2026 8-K 0001628280-26-049922).
 
 ### 2. Currency: dollar growth of 3% a year assumes currencies stop falling, and management has repeatedly got currency wrong (challenges the Valuation agent's growth path, brief item A)
 
-- **Claim:** FY27-30 growth of 3.0% in USD assumes only a 1-point currency drag. Over 2020-25 the average drag was 3.2 points. FY26's +6.0% is also flattered by a currency tailwind and a one-off FIFA World Cup boost.
+- **Claim:** FY27-30 growth of 3.0% in USD assumes only a 1-point currency drag. Over 2020-25 the average drag was 3.2 points. FY26's growth is flattered by a currency tailwind and a one-off FIFA World Cup boost. (The audit's point that FY26 +6.0% left out about 1 point of non-CCBA disposals was **accepted by the PM on 15 Oct 2026**: FY26 is now +5.0%.)
 - **Evidence:**
   - **The drag history.** Currency took 2, +1 (a tailwind), 7, 4, 5 and 2 points in 2020-25 (`docs/phase5/ko-growth-evidence.md`, from the Q4 8-Ks).
-  - **Management under-forecast the headwind in 3 of 5 years.** The guided figures are in the track-record table below. FY21 guided a +2-3% tailwind and delivered +1%. FY22 guided -2-3% and delivered -7%. FY23 guided -2-3% and delivered -4%. FY24 guided -2-3% and delivered -5%. FY25 guided -3-4% and delivered -2%.
-  - **The FY26 tailwind is already shrinking.** It was cut from 1-2% to about 1% in July (Q2 2026 8-K 0001628280-26-049922).
-  - **The Q2 2026 volume growth of 5% coincided with the World Cup.** The company ran its campaign "at unprecedented scale across more than 180 markets" (same 8-K), which makes FY27 a tough year to grow against.
-  - **FY25 unit case volume was flat** ("was Even for the Full Year", Q4 2025 8-K 0001628280-26-006642), so growth was all price and mix.
-  - **The FY25 10-K risk factors name the long-term pressures:** "the effects or perceived effects of the usage of weight-loss drugs on consumption patterns" and "potential new or increased taxes on sweetened beverages" (10-K 0001628280-26-010047, Item 1A).
-  - **No independent industry forecast** could be obtained (`data/notes.md`, MISSING).
+  - **Management under-forecast the headwind in 3 of 5 years** (track-record table, section C).
+  - **The FY26 tailwind is already shrinking**: cut from 1-2% to about 1% in July (Q2 2026 8-K 0001628280-26-049922).
+  - **Non-CCBA disposals:** H1 2026 already shows a -1 point acquisitions-and-divestitures effect while CCBA is still consolidated, and the Q3 guide is about -1% before CCBA closes (Q2 2026 8-K revenue bridge; FY25 10-K names Nigeria finished goods, India territories and Ghana). Source: `docs/audit-2026-10-15/KO.md` finding 3. Now in the base.
+  - **FY25 unit case volume was flat** (Q4 2025 8-K 0001628280-26-006642), so growth was all price and mix.
+  - **The FY25 10-K risk factors name the long-term pressures:** "the effects or perceived effects of the usage of weight-loss drugs on consumption patterns" and "potential new or increased taxes on sweetened beverages" (10-K 0001628280-26-010047, Item 1A). No sourced quantification of GLP-1 or sugar-tax effects exists (MISSING); the 1% growth run is the nearest proxy.
+  - **No independent industry forecast** could be obtained, and the "4-5% long-term algorithm" is not in a primary source (audit finding 8).
 - **Value impact (USD per share):**
 
   | test | value | impact |
   |---|---|---|
-  | FY27-30 growth 1.0% (full 3.2-point average drag), FY26 unchanged | **$44.31** | **-$3.30** |
-  | FY26 growth 4.5% instead of 6.0% (World Cup and currency tailwind fade) | $46.89 | -$0.71 |
+  | FY27-30 growth 1.0% (full 3.2-point average drag), FY26 unchanged at 5.0% | USD 46.70 | **-USD 3.54** |
+  | FY26 growth 4.5% (World Cup and currency tailwind fade) | USD 49.99 | -USD 0.25 |
+  | Reference: FY26 back at the pre-decision 6.0% | USD 50.76 | +USD 0.51 |
 
-  Scratch runs: `scratch/c2_growth_1pct`, `scratch/c2_fy26_4p5`.
-- **Honesty note:** The growth evidence paper calls 1% "too punitive". It removes the Argentina currency fall but not the Argentina price rises that went with it. The -$3.30 is a stress test, not a forecast.
+  Scratch runs: `scratch/c2_growth_1pct`, `c2_fy26_4p5`, `ref_fy26_6p0_pre_decision`.
+- **Honesty note:** the growth evidence paper calls 1% "too punitive" (it removes the Argentina currency fall but not the Argentina price rises). The 4.5% and 1% runs are stress tests, not forecasts.
 
-### 3. IRS case and FY26 cash: the market's "$12.4bn of free cash flow" is not the cash shareholders keep (challenges the Data agent's cash and tax inputs)
+### 3. IRS case and FY26 cash: the market's "USD 12.4bn of free cash flow" is not the cash shareholders keep (challenges the Data agent's cash and tax inputs)
 
-- **Claim:** The headline FY26 FCF guidance of about $12.4bn (Q2 2026 8-K 0001628280-26-049922) excludes the IRS case. It also includes dividends from stakes that the DCF values separately. On a like-for-like basis KO's cash yield is far below the risk-free rate, and a loss in the IRS case would lift leverage sharply.
-- **Evidence: the FY26 cash reconciliation (USD m, script `run_bear.py`, inputs sourced as shown)**
+- **Claim:** The FY26 FCF guidance of about USD 12.4bn (Q2 2026 8-K 0001628280-26-049922) excludes the IRS case and includes dividends from stakes the DCF values separately. On a like-for-like basis KO's cash yield is well below the risk-free rate, and a loss would lift leverage sharply.
+- **Evidence: the FY26 cash reconciliation (USD m; the FY26 5.0% growth lowers the model's FY26 cash flow)**
 
   | item | USD m | source |
   |---|---|---|
-  | Model FY26 unlevered FCF (ex-CCBA, 23.7% tax) | 11,358 | `valuation.json` |
-  | + Extra tax from the IRS case that guidance leaves out (EBIT 15,589 x 3.8 points) | +592 | guidance tax 19.9% "does not include the impact of ongoing tax litigation" (Q2 2026 8-K); +3.8 points (Q2 2026 10-Q 0001628280-26-050503 Note 9) |
-  | + Dividends from equity investees (in KO's cash flow; the DCF values the stakes in the bridge instead) | +993 | FY25 10-K 0001628280-26-010047, equity method note (FY25 actual used as proxy) |
-  | + Stock-based compensation (non-cash, added back in KO's cash from operations) | +279 | FY25 10-K cash flow statement |
-  | - Net interest after tax (KO's FCF is after interest; the DCF is before) | -751 | interest paid 1,724 (FY25 10-K) - interest income 786 (XBRL), x (1 - 19.9%) |
-  | - Guided capex $2.2bn vs model capex 2,069 | -131 | Q2 2026 8-K |
-  | **Residual** (CCBA's part-year cash flow, other items) | **+60** | |
+  | Model FY26 unlevered FCF (ex-CCBA, 23.7% tax) | 11,208 | `valuation.json` |
+  | + Extra tax from the IRS case that guidance leaves out (EBIT 15,442 x 3.8 points) | +587 | Q2 2026 8-K (19.9% "does not include the impact of ongoing tax litigation"); Q2 2026 10-Q 0001628280-26-050503 Note 9 |
+  | + Dividends from equity investees (FY25 actual as proxy) | +993 | FY25 10-K 0001628280-26-010047, equity method note |
+  | + Stock-based compensation (FY25) | +279 | FY25 10-K cash flow statement |
+  | - Net interest after tax | -751 | interest paid 1,724 (FY25 10-K) - interest income 786 (XBRL), x (1 - 19.9%) |
+  | - Guided capex USD 2.2bn vs model capex 2,049 | -151 | Q2 2026 8-K |
+  | **Residual** (CCBA part-year cash flow, other items) | **+235** | |
   | **KO guidance** | **12,400** | Q2 2026 8-K |
 
-  - **What the reconciliation shows:** the 1,042 gap between guidance and the model is almost entirely a difference of basis. There is no hidden cash and no double count. The model's FY26 cash is consistent with guidance, so the Data inputs pass this test.
-  - **What it means for a buyer:** the market's headline FCF yield is 3.20% ($12.4bn / $387.7bn market cap). That is already 2.0 points below the 10-year Treasury at 5.22% (FRED DGS10). It is even lower once the IRS tax is taken out.
-  - **The IRS track record:**
-    - KO has said since 2020 that it "will ultimately prevail" (Q4 2020 8-K 0000021344-21-000003). It has lost at the Tax Court twice.
-    - The potential liability has risen from about $12bn (December 2020, same 8-K) to $14bn (December 2025, 10-K XBRL `ko:IncrementalTaxAndInterestLiability`), after the $6.0bn already paid for 2007-09.
-    - The expected rise in the tax rate went from 3.5% (Q4 2020 8-K and FY25 10-K) to 3.8% (Q2 2026 10-Q).
-    - Interest "would continue to accrue until the time any such potential liability ... were to be paid" (FY25 10-K).
-  - **Leverage if the $14bn is paid in cash:** net debt / comparable EBITDA rises from 1.85x to **2.72x** (`desk.fundamentals.leverage`, net debt 29,686 + 14,000 over 16,063).
+  - The 1,192 gap is mostly a difference of basis; the residual of 235 (about 2% of guidance) is unexplained, so the Data inputs still pass this test (morning: gap 1,042, residual 60).
+  - **FCF yield:** USD 12.4bn / USD 387.7bn market cap = **3.20%**, about 2.0 points below the 10-year Treasury at 5.22% (FRED DGS10), before the IRS tax.
+  - **The IRS record:** KO has said since 2020 it "will ultimately prevail" (Q4 2020 8-K 0000021344-21-000003) and lost at the Tax Court twice. The potential liability rose from about USD 12bn (Dec 2020) to USD 14bn (Dec 2025, 10-K XBRL `ko:IncrementalTaxAndInterestLiability`), after USD 6.0bn already paid for 2007-09. The expected tax-rate uplift went from 3.5% to 3.8% (Q2 2026 10-Q). Interest keeps accruing until paid (FY25 10-K).
+  - **Balance (audit finding 5):** the 8th Circuit reversed the 3M Tax Court decision on 1 Oct 2025 on the same blocked-income rule; KO's FY25 10-K calls it "highly supportive". The 11th Circuit heard KO's appeal on 25 Jun 2026; the ruling is pending. So a win is a real possibility, not just management talk.
+  - **Leverage if the USD 14bn is paid in cash:** net debt / comparable EBITDA rises from 1.85x to **2.72x** (`desk.fundamentals.leverage`, net debt 29,686 + 14,000 over 16,063 USD m).
 - **Value impact (USD per share):**
 
   | test | value | impact |
   |---|---|---|
-  | The base already assumes a **loss**. For a buyer who prices in management's view of a **win** (no liability, $6.0bn deposit refunded, 19.9% tax), the difference is | $54.90 if it wins | **-$7.29** |
-  | of which: removing the $14bn liability alone | | +$3.46 |
-  | of which: the 19.9% tax rate alone | | +$2.35 |
-  | Bear add-on: also deduct the $900m H1 2026 accrual (Q2 2026 10-Q Note 9) | $47.38 | -$0.22 |
+  | Base assumes a **loss**. Value if KO **wins** (no liability, USD 6.0bn refunded, 19.9% tax) | USD 57.66 | +USD 7.42 vs base |
+  | of which: removing the USD 14bn liability alone | USD 53.70 | +USD 3.45 |
+  | of which: the 19.9% tax rate alone | USD 52.73 | +USD 2.49 |
+  | Bear add-on: also deduct the USD 900m H1 2026 accrual (Q2 2026 10-Q Note 9) | USD 50.03 | -USD 0.22 |
 
   Scratch runs: `scratch/c3_irs_win`, `c3_irs_liab_only`, `c3_irs_tax_only`, `c3_irs_plus900`.
-- **Honesty note:** The PM excluded the $900m because the 23.7% tax rate already charges 2026 (mistakes log row 17), so the -$0.22 is partly double-counted. A loss is already in the base case. **The IRS case is a reason the market price is too high, not a reason the desk value is too high.**
+- **Honesty note:** the PM excluded the USD 900m because the 23.7% tax rate already charges 2026 (mistakes log row 17), so the -USD 0.22 is partly double-counted. A loss is already in the base. **The IRS case is a reason the market price is too high, not a reason the desk value is too high**, and the 3M ruling makes a win more plausible than the 13 Oct version implied.
 
-### 4. Equity stakes at market: $46.6bn of value depends on other companies' share prices, Monster most of all (challenges the Data agent's bridge input and the brief's stakes rule, item D)
+### 4. Equity stakes at market: USD 46.6bn of value depends on other companies' share prices, Monster most of all (challenges the Data agent's bridge input and the brief's stakes rule, item D)
 
-- **Claim:** The bridge adds the listed stakes at their 13 Oct 2026 market value: 39,540 of the 46,626 total. That figure is after a +15% rally in 2026. It is 45% Monster, a stock on about 40x earnings. It is also before any tax KO would pay if it sold.
-- **Evidence:**
-  - **Monster:** 17,775 of 39,540 (`data/associates_rollforward_check.csv`). MNST's LTM P/E is 40.1x and EV/EBITDA 29.1x (`data/peers.csv`).
-  - **Book vs market:** listed stakes were 34,286 at fair value vs 13,999 at book on 31 Dec 2025 (FY25 10-K, equity method note).
-  - **Tax on the gain:** a 21% US statutory tax on the gain over book is 5,364 (book used as a stand-in for tax basis, which is not disclosed: FLAG).
-  - **Cash these stakes actually pay:** dividends from investees were $993m in FY25 (10-K), about 2.5% of their market value.
+- **Claim:** The bridge adds the listed stakes at their 13 Oct 2026 market value: USD 39,540m of the USD 46,626m total, after a +15% rally in 2026. 45% is Monster, a stock on about 40x earnings. It is before any tax KO would pay if it sold.
+- **Evidence:** Monster USD 17,775m of USD 39,540m (`data/associates_rollforward_check.csv`); MNST LTM P/E 40.1x, EV/EBITDA 29.1x (`data/peers.csv`); listed stakes USD 34,286m fair value vs USD 13,999m book at 31 Dec 2025 (FY25 10-K equity method note); 21% tax on the gain over book = USD 5,364m (book as a stand-in for tax basis, not disclosed: FLAG); investee dividends USD 993m in FY25, about 2.5% of market value.
 - **Value impact (USD per share):**
 
   | test | value | impact |
   |---|---|---|
-  | Listed stakes back at 31 Dec 2025 fair value (the 2026 rally reverses) | $46.30 | -$1.30 |
-  | Monster stake falls 30% (stress, not a forecast) | $46.29 | -$1.32 |
-  | Stakes after a 21% tax on the gain over book | $46.28 | **-$1.33** |
+  | Listed stakes back at 31 Dec 2025 fair value (the 2026 rally reverses) | USD 49.03 | -USD 1.22 |
+  | Monster stake falls 30% (stress, not a forecast) | USD 49.01 | -USD 1.24 |
+  | Stakes after a 21% tax on the gain over book | USD 49.00 | -USD 1.25 |
 
   Scratch runs: `scratch/c4_stakes_dec25`, `c4_monster_m30`, `c4_stakes_tax`.
-- **Honesty note:** This lever is small, about $1.3 a share each. Adding the stakes is correct, because their income is outside operating income. They are not where the SELL comes from.
+- **Honesty note:** about USD 1.2 a share each. Adding the stakes is correct. They are not where the SELL comes from. PM decision (13 Oct, kept 15 Oct): no tax deducted.
 
 ### 5. Beta: 0.61 is the soft-drinks industry's beta at a cyclical low (challenges the Risk agent)
 
-- **Claim:** The 0.6091 beta uses the industry's unlevered beta in January 2026 (0.575). That number has more than halved in two years. If it reverts to its own 5-year average, the WACC rises from 8.0% to 9.2%.
-- **Evidence:** I read Damodaran's file (`data/damodaran_betas_us_jan2026.xls`, sheet "Industry Averages", row "Beverage (Soft)", 27 firms, unlevered beta corrected for cash) with a small reader. The year columns give 1.116 (2022), 1.201 (2023), 0.700 (2024), 0.510 (2025), 0.575 (current) and an **average of 0.8205** (2022-26). That confirms the 0.820485 the Valuation agent used, which had been recorded only as "given by the lead agent". Relevering at KO's market D/E (x1.0584, `risk/beta_evidence.json`) gives 0.868.
+- **Claim:** The 0.6091 beta uses the industry's January 2026 unlevered beta (0.575), which has more than halved in two years. If it reverts to its 5-year average, the WACC rises from 7.55% to 8.56%.
+- **Evidence:** Damodaran `data/damodaran_betas_us_jan2026.xls`, "Industry Averages", "Beverage (Soft)", 27 firms, unlevered beta corrected for cash: 1.116 (2022), 1.201 (2023), 0.700 (2024), 0.510 (2025), 0.575 (current), **average 0.8205**. Relevered at KO's market D/E (x1.0584, `risk/beta_evidence.json`): 0.868. The audit verified this series (`docs/audit-2026-10-15/KO.md`, beta row).
 - **Value impact (USD per share):**
 
   | test | WACC | value | impact |
   |---|---|---|---|
-  | Beta 0.868 (2022-26 average) | 9.20% | **$40.01** | **-$7.60** |
-  | Beta 0.741 (2024 level) | 8.61% | $43.40 | -$4.21 |
+  | Beta 0.868 (2022-26 average) | 8.56% | **USD 42.66** | **-USD 7.59** |
+  | Beta 0.741 (2024 level) | 8.06% | USD 46.08 | -USD 4.17 |
 
-  Scratch runs: `scratch/c5_beta_avg_2022_26`, `scratch/c5_beta_y2024`.
-- **Honesty note:** KO's own regressions point the other way: 0.13 (2-year weekly), 0.30 (5-year monthly), 0.35 (5-year weekly), all with R-squared of 1-12% (`risk/risk.json`). At 9.2% the WACC is above the desk's 6-9% sanity range.
+  Scratch runs: `scratch/c5_beta_avg_2022_26`, `c5_beta_y2024`.
+- **Honesty note:** KO's own regressions point the other way: 0.13 (2-year weekly), 0.30 (5-year monthly), 0.35 (5-year weekly), R-squared 1-12% (`risk/risk.json`). With the lower ERP, the 8.56% WACC is **inside** the desk's 6-9% range (it was 9.20%, outside, on 13 Oct). PM decision (13 Oct, kept 15 Oct): keep 0.6091.
+
+### Audit stress lines: the equity risk premium (challenges the PM brief / Valuation agent's WACC)
+
+- **Claim:** The 4.2% ERP is the lowest of the sourced estimates and was seen only in search summaries (Damodaran's site is blocked here). The two other published US figures are higher.
+- **Evidence (`docs/audit-2026-10-15/erp-evidence.md`, all secondhand):** Kroll recommended US ERP **5.0%** (from 2 Sep 2025, reaffirmed 2026; Kroll pairs it with the 20-year Treasury, 5.60% on 13 Oct 2026, FRED DGS20). Fernandez et al. 2025 survey (SSRN 5260463), US average ERP used **5.5%** (with a 4.1% risk-free rate).
+- **Value impact (USD per share, one change each, risk-free kept at the 10-year 5.22%):**
+
+  | test | WACC | value | impact | engine bear at that ERP |
+  |---|---|---|---|---|
+  | ERP 5.0% (Kroll) | 8.00% | USD 46.54 | -USD 3.71 | USD 37.02 (33.2% margin) |
+  | ERP 5.5% (Fernandez) | 8.28% | USD 44.49 | -USD 5.76 | USD 35.63 (33.2% margin) |
+
+  Scratch runs: `scratch/audit_erp_kroll_5p0`, `audit_erp_fernandez_5p5`.
+- **Honesty note:** Kroll's 5.0% on Kroll's own 20-year risk-free would be harsher still; that two-change case was not run. Survey ERPs were given with lower risk-free rates, so pairing 5.5% with a 5.22% yield overstates the cost of equity. The rating is SELL at every one of them. **PM decision 15 Oct 2026 (K2):** keep 4.2%, once confirmed on Damodaran's site; the choice does not change the rating.
+
+### Stacked bear case (the figure for the memo)
+
+| case | value | upside | rating | WACC |
+|---|---|---|---|---|
+| Engine bear (brief scenarios.bear: FY26 5.0%, 1% growth FY27-30, WACC +1 point, 33.2% margin) | USD 39.50 | -56.2% | SELL | 8.55% |
+| **Stacked bear: engine bear + PM bear margin 31.9%** (PM decisions: no stake tax, beta 0.6091 kept, so neither is stacked) | **USD 37.86** | **-58.0%** | **SELL** | 8.55% |
+| Superseded: stacked bear at the pre-decision FY26 6.0% (morning re-run) | USD 38.25 | -57.6% | SELL | 8.55% |
+| Superseded: memo bear 13 Oct (ERP 5.0%, margin missed) | USD 37.99 | -57.8% | SELL | 9.00% |
+
+The stacked bear matches the Valuation agent's information-only run (USD 37.86, `valuation/sanity_checks.json`). Scratch runs: `scratch/stacked_bear_319`, `ref_stacked_bear_319_fy26_6p0`. The FY26 decision takes USD 0.39 off the stacked bear (USD 38.25 -> USD 37.86), as the audit measured.
 
 ---
 
 ## B. Is the SELL just a harsh base case? (assumptions most likely too harsh)
 
-Each test is one change, using the engine (`bear_runs.json`, the `harsh_*` keys):
+Each test is one change, using the engine (`bear_runs.json`, the `harsh_*` and `generous_*` keys):
 
-| desk assumption that may be too harsh | generous alternative (source) | value | impact |
+| desk assumption that may be too harsh | generous alternative (source) | value | impact | morning (superseded) |
+|---|---|---|---|---|
+| Beta 0.61 (industry bottom-up) | 0.35, KO 5-year weekly regression (`risk/risk.json`) | USD 61.40 | **+USD 11.15** | USD 62.01 |
+| IRS case lost | Win: liability 0, USD 6.0bn refunded, 19.9% tax | USD 57.66 | +USD 7.42 | USD 58.20 |
+| Terminal growth 2.0% | 3.0%, the FY27-30 rate | USD 57.58 | +USD 7.33 | USD 58.16 |
+| Terminal RONIC 27.0% | 31.4%, IRS deposit removed from capital (ko-roic-evidence.md option 3) | USD 50.70 | +USD 0.45 | USD 51.21 |
+| **All four together (the generous stack)** | | **USD 83.41 (-7.4%)** | **+USD 33.16: HOLD** | USD 84.19 |
+
+**Which of the four does HOLD need? (all four, leaving one out)**
+
+| left out | value | upside | rating |
 |---|---|---|---|
-| Beta 0.61 (industry bottom-up) | 0.35, KO 5-year weekly regression (`risk/risk.json`) | $59.24 | **+$11.64** |
-| IRS case lost | Win: liability 0, $6.0bn refunded, 19.9% tax | $54.90 | +$7.29 |
-| Terminal growth 2.0% | 3.0%, the FY27-30 rate | $53.63 | +$6.02 |
-| Terminal RONIC 27.0% | 31.4%, IRS deposit removed from capital (ko-roic-evidence.md option 3) | $48.02 | +$0.41 |
-| **All four together** | | **$79.45** | **+$31.85, still SELL** (HOLD needs $81.11) |
+| beta 0.35 | USD 66.17 | -26.6% | SELL |
+| IRS win | USD 75.01 | -16.8% | SELL |
+| terminal growth 3% | USD 69.85 | -22.5% | SELL |
+| RONIC 31.4% | USD 82.25 | -8.7% | HOLD |
 
-Not run, but each is likely a little harsh too:
-- **Capex of 4.41% of sales includes CCBA**, a capital-heavy bottler, applied to ex-CCBA sales.
-- **Minorities over-deducted** by up to about $0.26 a share (CCBA's outside owner, `docs/phase5/ko-ccba-evidence.md`).
-- **No margin expansion is allowed**, although Q2 2026 reached 35.6%.
+So HOLD needs **all three** big generous assumptions at once (KO's own regression beta, an IRS win and 3% perpetual growth). None of the combinations reaches BUY (USD 103.64). The generous stack is USD 2.30 above the HOLD line (USD 1.14 without the RONIC change).
 
-One input is slightly **generous**: D&A uses the 2.68% average against FY25's 2.19%. Using FY25 changes the value by -$0.25.
+Not run, but each is likely a little harsh too: capex of 4.41% of sales includes CCBA; minorities over-deducted by up to about USD 0.26 a share (CCBA's outside owner); no margin expansion allowed although Q2 2026 reached 35.6%. One input is slightly **generous**: D&A uses the 2.68% average against FY25's 2.19% (USD 50.00, -USD 0.25).
 
-**Conclusion:** the bear case is not just the base case: it is $9.61 lower ($37.99 vs $47.60). More importantly, the SELL does not depend on it. Even stacking the four most generous assumptions the evidence allows, the engine gives $79.45, below the HOLD line. The desk's biggest single harshness is the beta. Even the regression beta alone ($59.24) leaves KO 34% below the price.
+**Conclusion:** the stacked bear case is USD 12.39 below the base (USD 37.86 vs USD 50.25). The SELL is robust to every single change, bear or generous. **It is not true that "every generous assumption stacked stays SELL":** with the 4.2% ERP, regression beta + IRS win + 3% terminal growth gives USD 82.25-83.41, just above the HOLD line of USD 81.11. That combination needs a 0.35 beta with an R-squared of a few percent, a court win that is still pending, and perpetual growth at the FY27-30 rate. Even then the value is 7.4% below the price. **PM decision 15 Oct 2026 (K3):** the old wording is withdrawn; the rating stays SELL.
+
+### PM responses of 15 Oct 2026 (decided; `docs/audit-2026-10-15/bear-responses-2026-10-15.md`, PM decision "Accept all")
+| # | point | PM decision 15 Oct 2026 | effect in this re-run |
+|---|---|---|---|
+| K1 | FY26 growth 5.0% instead of 6.0% (about 1 point of the disposal headwind is not CCBA) | **Accept 5.0%** (it rests on KO's own reported H1 figures) | In base and bear: base USD 50.76 -> USD 50.25; stacked bear USD 38.25 -> USD 37.86 |
+| K2 | ERP source (4.2% seen secondhand) | **Keep 4.2%**, once confirmed on Damodaran's site; the choice does not change the rating | 0. SELL at ERP 5.0% (USD 46.54) and 5.5% (USD 44.49) |
+| K3 | Old conclusion "even stacking every generous assumption stays SELL" | **Reject the old wording. Keep SELL** | 0. Generous stack USD 83.41, HOLD, still 7.4% below the price |
+| K4 | 13 Oct responses to challenges 1-5 (margin 31.9%, 1% growth as a stress test, IRS loss in the base, no tax on stake gains, beta 0.6091) | **Keep all of them** | 0. All five changes stay SELL |
 
 ---
 
-## C. Management's guidance track record (Q4 results 8-Ks, exhibit 99.1)
+## C. Management's guidance track record (Q4 results 8-Ks, exhibit 99.1; unchanged by the re-run)
 
 | FY | Guided in (accession) | Organic growth guided / actual | Comparable EPS growth guided / actual | Currency on revenue guided / actual | FCF guided / actual (USD bn) |
 |---|---|---|---|---|---|
-| 2019 | 0000021344-19-000010 | c.4% / **6%** | -1% to +1% / **+1%** ($2.11) | -3% to -4% / not checked | CFO at least 8.0 / **10.5** |
-| 2020 | 0000021344-20-000002 | c.5% / **-9%** (Covid) | c.$2.25 / **$1.95** | 0 to -1% / -2% | c.8.0 / **8.7** |
+| 2019 | 0000021344-19-000010 | c.4% / **6%** | -1% to +1% / **+1%** (USD 2.11) | -3% to -4% / not checked | CFO at least 8.0 / **10.5** |
+| 2020 | 0000021344-20-000002 | c.5% / **-9%** (Covid) | c.USD 2.25 / **USD 1.95** | 0 to -1% / -2% | c.8.0 / **8.7** |
 | 2021 | 0000021344-21-000003 | high single digit / **16%** | high single to low double digit / **+19%** | +2 to +3% / **+1%** | at least 8.5 / **11.3** |
 | 2022 | 0000021344-22-000004 | 7-8% / **16%** | 5-6% / **+7%** | -2 to -3% / **-7%** | c.10.5 / **9.5 (miss)** |
 | 2023 | 0000021344-23-000005 | 7-8% / **12%** | 4-5% / **+8%** | -2 to -3% / **-4%** | c.9.5 / **9.7** |
@@ -161,11 +226,11 @@ One input is slightly **generous**: D&A uses the 2.68% average against FY25's 2.
 Outcomes come from the following year's Q4 8-K headline (FY25 outcome: 0001628280-26-006642). Currency actuals are from ko-growth-evidence.md. FY19 currency actual was not checked.
 
 **Reading:**
-1. **EPS guidance is conservative.** It was met or beaten every year except Covid-hit 2020. This is a point *against* the bear: management sandbags.
-2. **The organic beats in FY21-24 were inflation-driven.** Argentina pricing produced more than half of Q4 2024 price/mix (Q4 2024 8-K). Currency then took most of it back, and management under-called that headwind in FY21-24.
+1. **EPS guidance is conservative**, met or beaten every year except Covid-hit 2020. This is a point *against* the bear.
+2. **The organic beats in FY21-24 were inflation-driven** (Argentina pricing was more than half of Q4 2024 price/mix, Q4 2024 8-K), and currency took most of it back; management under-called that headwind in FY21-24.
 3. **FY25 was the first year organic growth landed only at the low end** of guidance (5% vs 5-6%), with flat volume.
-4. **On the IRS, management's confidence has been wrong at every court stage so far.** The liability estimate has only gone up.
+4. **On the IRS, management's confidence has been wrong at both Tax Court stages and the liability estimate has only gone up**, but the 3M appeal ruling (8th Circuit, Oct 2025) is the first outside evidence on its side.
 
 ---
 
-**Strongest reason not to buy:** At $90.12 the market is paying about 30x earnings for a 3.2% free-cash-flow yield, about 2 points below a 5.22% risk-free Treasury, before any IRS payment. Even if every generous assumption the evidence allows is stacked together (regression beta, an IRS win, 3% perpetual growth, a 31% return on new capital), the engine still values KO at $79.45, below the HOLD line.
+**Strongest reason not to buy:** At USD 90.12 the market is pricing KO at a 5.11% WACC (desk 7.55%) and a 3.2% free-cash-flow yield, about 2 points below a 5.22% risk-free Treasury, before any IRS payment; the stacked bear case is USD 37.86, and even KO's own regression beta, an IRS win and 3% perpetual growth all together only reach USD 83.41, still below the price and far below BUY.

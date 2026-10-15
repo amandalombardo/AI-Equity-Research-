@@ -17,6 +17,7 @@ associates: {value: 40000, source: test fixture}
 disposal_proceeds: {value: 0, source: test fixture}
 restructuring_cash: {value: 0, source: test fixture}
 contingent_liabilities: {value: 14900, source: test fixture}
+priced_at_valuation_date_musd: {value: 0, source: test fixture (the KO brief now lists run-date-priced stakes; 0 keeps the expected values)}
 shares_outstanding_m: {value: 4300, source: test fixture}
 share_price_usd: {value: 90, source: test fixture}
 stub_years: {value: 0.78, source: test fixture}

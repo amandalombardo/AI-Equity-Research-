@@ -7,6 +7,11 @@ exactly as the Valuation agent did. The value per share (pence, GBp) is read bac
 The brief and the run's inputs.yaml are never edited. Money in GBP m; values per share in pence (GBp).
 Run from the repo root:  PYTHONPATH=. python runs/RELX/2026-10-14/bear/run_bear.py
 
+Re-run 15 Oct 2026 (evidence audit, docs/audit-2026-10-15/RELX.md): the brief now has ERP 4.2% (Damodaran implied, PM
+decision 15 Oct 2026) and bear_agent_margin 32.4% (PM bear responses, decision 14). Everything below reads those from the
+brief. Added: the audit stress lines (ERP 5.0% Kroll, ERP 5.5% Fernandez survey, gilt 5.30% press, gilt 5.21% = US 10y)
+and the stacked bear at the old 5.0% ERP. The 14 Oct results are kept in bear/scratch/bear_results_erp5_2026-10-14.json.
+
 Downloaded evidence (SEC companyfacts, past results releases, FRED series) sits in bear/scratch/downloads/ and is
 read as data only.
 """
@@ -34,7 +39,8 @@ SAN = json.loads((RUN / "valuation" / "sanity_checks.json").read_text())
 PRICE = V["share_price_gbp_pence"]                                        # 2,771p, REL.L close 13 Oct 2026
 HOLD_FLOOR = PRICE * (1 - BRIEF0["rating"]["sell_if_downside_at_least"])   # value (p) where SELL turns HOLD
 BUY_FLOOR = PRICE * (1 + BRIEF0["rating"]["buy_if_upside_at_least"])      # value (p) where HOLD turns BUY
-ERP = BRIEF0["dcf"]["wacc"]["equity_risk_premium"]
+ERP = BRIEF0["dcf"]["wacc"]["equity_risk_premium"]                         # 4.2% (Damodaran implied, PM 15 Oct 2026)
+BEAR_MARGIN = BRIEF0["scenarios"]["bear"]["bear_agent_margin"]            # 32.4% (PM bear responses, 15 Oct 2026)
 
 
 def fred_last(series, date="2026-10-13"):
@@ -51,6 +57,12 @@ def fred_last(series, date="2026-10-13"):
 # (AR25 p.186), print revenue 586 and print adj. OP 253 (AR25 p.145; Fundamentals FLAG 1, ratios.csv)
 FY23_REV, FY23_AOP, FY23_PRINT_REV, FY23_PRINT_AOP = 9161.0, 3030.0, 586.0, 253.0
 MARGIN_FY23_EX_PRINT = (FY23_AOP - FY23_PRINT_AOP) / (FY23_REV - FY23_PRINT_REV)   # operating margin = profit / revenue
+assert abs(round(MARGIN_FY23_EX_PRINT, 3) - BEAR_MARGIN) < 1e-9, "brief bear margin should be FY23 ex print"
+MARGIN_OLD_LABEL = 0.331       # the brief's bear margin until 15 Oct 2026: FY23 GROUP incl. print (AR25 p.186)
+# Audit stress lines (docs/audit-2026-10-15/erp-evidence.md section 2b-2c; RELX.md finding V1). All secondhand except FRED.
+ERP_KROLL = 0.050              # Kroll recommended US ERP, effective 2 Sep 2025, reaffirmed 2026 (pairs with the 20y UST)
+ERP_FERNANDEZ = 0.055          # Fernandez et al. 2025 survey, US 5.5% (UK 5.4%), SSRN 5260463
+RF_PRESS = 0.0530              # press reports of the 10y gilt at about 5.30-5.35% in mid-Sep 2026 (audit V1)
 # Acquisition cash spend FY21-25, SEC XBRL ifrs-full:CashFlowsUsedInObtainingControlOfSubsidiariesOrOtherBusinesses...
 # (20-F accessions 0001558370-24-001468 (FY21 as re-presented), 0001558370-25-001178 (FY22), 0001104659-26-017277 (FY23-25))
 ACQ = {2021: 254.0, 2022: 394.0, 2023: 124.0, 2024: 170.0, 2025: 260.0}
@@ -186,9 +198,9 @@ def rf(r, why):
 # ======================= BEAR LINES, ONE AT A TIME (vs base 1,621p) =======================
 record("b_growth_3", "Growth 3.0% every year (brief bear growth), WACC unchanged", run("b_growth_3", change_brief=g_all(0.03)),
        evidence="brief scenarios.bear; growth evidence 'AI pressure halves Legal and STM growth'")
-record("b_margin_331", "Margin 33.1% (brief bear_agent_margin, FY23 GROUP incl. print)",
-       run("b_margin_331", margin(0.331, "brief bear_agent_margin")), evidence="AR25 p.186")
-record("b_margin_324", f"Margin {MARGIN_FY23_EX_PRINT:.2%} (FY23 WITHOUT print, like-for-like with the 35.0% base)",
+record("b_margin_331", "Margin 33.1% (old brief label until 15 Oct 2026, FY23 GROUP incl. print)",
+       run("b_margin_331", margin(MARGIN_OLD_LABEL, "old bear_agent_margin, FY23 group incl. print")), evidence="AR25 p.186")
+record("b_margin_324", f"Margin {BEAR_MARGIN:.1%} (brief bear_agent_margin: FY23 WITHOUT print, like-for-like with the 35.0% base)",
        run("b_margin_324", margin(round(MARGIN_FY23_EX_PRINT, 5), "FY23 ex print (3,030-253)/(9,161-586), AR25 p.145, p.186")),
        evidence="AR25 p.145 note 1 restatement; Fundamentals FLAG 1; mistakes log row 26")
 record("b_tax_25", "Tax 25.0% (weighted statutory)", run("b_tax_25", tax(0.25)), evidence="AR25 p.159")
@@ -199,6 +211,22 @@ record("b_acq_27", f"Acquisitions {ACQ_PCT_BRIEF:.1%} of revenue, FY26-30", run(
        evidence="SEC XBRL CashFlowsUsedInObtainingControl FY21-25")
 record("b_bbb", f"Cost of debt at the BBB spread ({BBB:.2%})", run("b_bbb", change_brief=spread(BBB)),
        evidence="FRED BAMLC0A4CBBB 13 Oct 2026; Fitch BBB+ (FWP25)")
+# ---- audit stress lines (15 Oct 2026): sourced alternatives to the 4.2% ERP and the 5.45% gilt ----
+def erp(e):
+    return lambda b: b["dcf"]["wacc"].__setitem__("equity_risk_premium", e)
+
+
+record("a_erp_kroll", "ERP 5.0% (Kroll recommended US ERP; the desk's old figure)", run("a_erp_kroll", change_brief=erp(ERP_KROLL)),
+       evidence="erp-evidence.md 2b (secondhand: Kroll Jan 2026 executive summary; BVWire)")
+record("a_erp_fernandez", "ERP 5.5% (Fernandez 2025 survey, US; UK 5.4%)", run("a_erp_fernandez", change_brief=erp(ERP_FERNANDEZ)),
+       evidence="erp-evidence.md 2c (secondhand: SSRN 5260463)")
+record("a_rf_press", "Gilt 5.30% (press, mid-Sep 2026)", run("a_rf_press", rf(RF_PRESS, "audit V1: press 5.30-5.35% mid-Sep 2026")),
+       side="generous", evidence="docs/audit-2026-10-15/RELX.md V1 (secondhand)")
+record("a_rf_us10y", f"Gilt {US10Y:.2%} (US 10y on 13 Oct, FRED DGS10, as a proxy)",
+       run("a_rf_us10y", rf(US10Y, "audit V1: US 10y FRED DGS10 13 Oct 2026")), side="generous", evidence="FRED DGS10")
+record("a_erp_kroll_bbb", "ERP 5.0% (Kroll) + BBB spread 1.03%", run("a_erp_kroll_bbb", change_brief=chain(erp(ERP_KROLL), spread(BBB))),
+       evidence="Kroll + FRED BAMLC0A4CBBB")
+
 # engine bear (growth 3% + WACC +1 pt), as the Valuation agent ran it
 results["b_engine_bear"] = {"side": "bear", "label": "Engine bear: growth 3% + WACC +1 pt", "value_pence": BEAR,
                             "impact_vs_reference_pence": BEAR - BASE, "reference_pence": BASE,
@@ -230,7 +258,7 @@ results["ai_inputs"] = {"weighted_underlying_now": mix_now, "weighted_underlying
                         "base_fy27_30": 0.05, "implied_fy27_30": 0.05 - AI_DRAG,
                         "stm_legal_share_of_revenue_ex_print": (SEG_REV["STM"] + SEG_REV["Legal"]) / w}
 ai_brief = chain(g_all(0.03), tg(0.015))
-record("ai_case", f"AI case: growth 3%, margin {MARGIN_FY23_EX_PRINT:.1%} (FY23 ex print), terminal growth 1.5%, base WACC",
+record("ai_case", f"AI case: growth 3%, margin {BEAR_MARGIN:.1%} (FY23 ex print), terminal growth 1.5%, base WACC",
        run("ai_case", margin(round(MARGIN_FY23_EX_PRINT, 5), "AI case: FY23 ex-print margin"), ai_brief),
        evidence="H126 p.15-16 principal risks (AI, IP circumvention 'may impact demand for and pricing'); 3 Feb 2026 -14.4%")
 
@@ -242,20 +270,23 @@ results["price_risk"] = {"vol_1y": vol1y, "one_sd_down_1y_pence": PRICE * (1 - v
                          "max_drawdown": dd, "low_close_pence": RISK["max_drawdown_5y_gbp_pence"]["trough_price"]}
 
 # ======================= STACKED BEAR =======================
-def bear_wacc(tax_rate, credit_spread):
+def bear_wacc(tax_rate, credit_spread, erp_used=ERP):
     """WACC the engine bear uses: desk.dcf.wacc at the changed tax and spread, plus the brief's +1 point shift."""
-    return dcf.wacc(dcf.WaccInputs(V["risk_free"], ERP, V["beta"], V["risk_free"] + credit_spread, tax_rate,
+    return dcf.wacc(dcf.WaccInputs(V["risk_free"], erp_used, V["beta"], V["risk_free"] + credit_spread, tax_rate,
                                    V["debt_weight"]))["wacc"] + BRIEF0["scenarios"]["bear"]["wacc_shift"]
 
 
 W_STACK = bear_wacc(0.25, BBB)
 
 
-def stack(m, with_ai_terminal=True):
+def stack(m, with_ai_terminal=True, erp_used=None):
+    w_ronic = W_STACK if erp_used is None else bear_wacc(0.25, BBB, erp_used)
     def fb(b):
         tg(0.015)(b)
-        ronic(round(W_STACK, 6))(b)
+        ronic(round(w_ronic, 6))(b)
         spread(BBB)(b)
+        if erp_used is not None:
+            erp(erp_used)(b)
     def fi(i):
         margin(m, "stacked bear margin")(i)
         tax(0.25)(i)
@@ -269,7 +300,12 @@ record("s_stack_324", "STACK: engine bear (3% growth, WACC +1) + margin 32.4% + 
        "acquisitions 2.7% + BBB", s324, case="bear")
 fi, fb = stack(0.331)
 s331 = run("s_stack_331", fi, fb)
-record("s_stack_331", "STACK as above with the brief's 33.1% margin", s331, case="bear")
+record("s_stack_331", "STACK as above with the old 33.1% margin label", s331, case="bear")
+fi, fb = stack(round(MARGIN_FY23_EX_PRINT, 5), erp_used=ERP_KROLL)
+record("s_stack_324_erp50", "STACK (margin 32.4%) at the Kroll 5.0% ERP (reproduces the 14 Oct stack)",
+       run("s_stack_324_erp50", fi, fb), case="bear")
+fi, fb = stack(round(MARGIN_FY23_EX_PRINT, 5), erp_used=ERP_FERNANDEZ)
+record("s_stack_324_erp55", "STACK (margin 32.4%) at the Fernandez 5.5% ERP", run("s_stack_324_erp55", fi, fb), case="bear")
 # the stack without the +1 point WACC shift (only the cash-flow and terminal lines): read the 'bear' run's base side is
 # not right because growth differs, so run the stack with growth 3% inside the base case
 fi, fb = stack(round(MARGIN_FY23_EX_PRINT, 5))
@@ -277,7 +313,9 @@ W_NOSHIFT = W_STACK - BRIEF0["scenarios"]["bear"]["wacc_shift"]
 s_noshift = run("s_stack_324_no_wacc_shift", fi,
                 chain(fb, g_all(0.03), ronic(round(W_NOSHIFT, 6))))
 record("s_stack_324_no_shift", "STACK without the +1 pt WACC shift (growth 3% in the base case, RONIC = that WACC)", s_noshift)
-results["stack_inputs"] = {"wacc_stack_bear": W_STACK, "wacc_stack_no_shift": W_NOSHIFT,
+results["stack_inputs"] = {"erp": ERP, "bear_margin_brief": BEAR_MARGIN, "wacc_stack_bear": W_STACK,
+                           "wacc_stack_bear_erp50": bear_wacc(0.25, BBB, ERP_KROLL),
+                           "wacc_stack_bear_erp55": bear_wacc(0.25, BBB, ERP_FERNANDEZ), "wacc_stack_no_shift": W_NOSHIFT,
                            "margin_fy23_ex_print": MARGIN_FY23_EX_PRINT, "acq_pct_brief": ACQ_PCT_BRIEF,
                            "acq_pct_pooled": ACQ_PCT_POOLED, "acq_pct_simple": ACQ_PCT_SIMPLE, "bbb_spread": BBB}
 
@@ -331,15 +369,16 @@ def wacc_at_beta(bv):
                                    V["tax_rate"], V["debt_weight"]))["wacc"]
 
 
+W_MKT = SAN["flip_points"]["market_implied_wacc"]["wacc"]   # WACC at which the DCF = 2,771p (Valuation agent)
 lo, hi = 0.0, 1.0
 for _ in range(60):
     mid = (lo + hi) / 2
-    lo, hi = (mid, hi) if wacc_at_beta(mid) < 0.0695 else (lo, mid)
+    lo, hi = (mid, hi) if wacc_at_beta(mid) < W_MKT else (lo, mid)
 BETA_MKT = (lo + hi) / 2
-results["market_implied"] = {"wacc": 0.0695, "beta_needed_at_gilt_5_45": BETA_MKT,
+results["market_implied"] = {"wacc": W_MKT, "beta_needed_at_gilt_5_45": BETA_MKT, "erp": ERP,
                              "flip_points": {k: SAN["flip_points"][k]["sell_to_hold"]["parameter"]
                                              for k in ("wacc_shift_added_to_wacc", "beta", "base_margin", "risk_free_gilt",
-                                                       "terminal_growth")}}
+                                                       "equity_risk_premium", "terminal_growth", "growth_fy27_30")}}
 
 # terminal growth that gives the lowest peer exit multiple (WKL 11.1x) at the base WACC (engine in-process)
 v_in, s_in = valuation_run.load_inputs(str(RUN / "inputs.yaml"), valuation_run.extra_required(BRIEF0))
@@ -358,7 +397,7 @@ for _ in range(60):
     mid = (lo + hi) / 2
     lo, hi = (mid, hi) if exit_at(mid) < PEER_LOW else (lo, mid)
 G_EXIT = (lo + hi) / 2
-record("g_exit_wkl", f"Terminal growth {G_EXIT:.2%} = what the 9.6% WACC needs for an 11.1x exit (WKL, lowest peer)",
+record("g_exit_wkl", f"Terminal growth {G_EXIT:.2%} = what the {WACC0:.2%} WACC needs for an 11.1x exit (WKL, lowest peer)",
        run("g_exit_wkl", change_brief=tg(round(G_EXIT, 6))), side="generous", evidence="sanity_checks.json peer_low; diagnostic")
 
 # ======================= STACKED GENEROUS =======================
@@ -398,7 +437,8 @@ fi, fb = strict(REG["5y_weekly"]["beta"], False)
 record("gs_strict_5yw_g5", "GENEROUS STACK, gilt 5.45% and growth 5%, beta 0.66 (own 5y weekly)",
        run("gs_strict_5yw_g5", fi, fb), side="generous")
 
-out = {"base_pence": BASE, "engine_bear_pence": BEAR, "share_price_pence": PRICE, "hold_floor_pence": HOLD_FLOOR,
+out = {"rerun": "15 Oct 2026 (evidence audit): ERP 4.2%, bear margin 32.4%; 14 Oct results in scratch/bear_results_erp5_2026-10-14.json",
+       "erp": ERP, "bear_agent_margin": BEAR_MARGIN, "base_pence": BASE, "engine_bear_pence": BEAR, "share_price_pence": PRICE, "hold_floor_pence": HOLD_FLOOR,
        "buy_floor_pence": BUY_FLOOR, "wacc_base": WACC0, "results": results}
 (HERE / "bear_results.json").write_text(json.dumps(out, indent=2, default=float))
 for k, r in results.items():

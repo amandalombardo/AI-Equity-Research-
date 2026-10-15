@@ -1,6 +1,6 @@
 {
   "units": "value per share in pence (GBp) unless labelled; money in EUR m",
-  "base_value_pence_recheck": 3855.285609786128,
+  "base_value_pence_recheck": 4258.548435547867,
   "price_pence": 4710.5,
   "rating_thresholds_pence": {
     "hold_if_at_least": 4239.45,
@@ -8,22 +8,22 @@
   },
   "checks": {
     "tv_share_of_ev": {
-      "value": 0.756799139291578,
+      "value": 0.7786901286294509,
       "threshold": 0.75,
       "flag": true
     },
     "implied_exit_ev_ebitda": {
-      "value": 10.852844911085038,
+      "value": 12.165990481790637,
       "peer_low": 9.270886075949367,
       "peer_high": 21.147729468599035,
       "peer_median_all_7": 11.891643454038997,
       "peer_median_ex_KMB_CL": 11.891643454038997,
-      "ulvr_market_implied_remaining_business": 14.70498646662474,
+      "ulvr_market_implied_remaining_business": 14.715123022715183,
       "within_peer_range": true,
       "within_range_ex_KMB_CL": true
     },
     "wacc": {
-      "value": 0.0709735865,
+      "value": 0.06503997002,
       "range": [
         0.06,
         0.09
@@ -31,32 +31,32 @@
       "flag": false
     },
     "dcf_vs_comps": {
-      "dcf_pence": 3855.285609786128,
-      "comps_median_pence": 3911.1151474632,
-      "comps_low_pence": 3166.4516845129797,
-      "comps_high_pence": 6541.144589559714,
-      "gap": -0.014274582969842742,
-      "comps_ex_KMB_pence": 4579.314509190662,
-      "comps_underlying_ebitda_pence": 4094.641388008214
+      "dcf_pence": 4258.548435547867,
+      "comps_median_pence": 3902.232957775911,
+      "comps_low_pence": 3151.998446474442,
+      "comps_high_pence": 6551.9384306113,
+      "gap": 0.09131066279934208,
+      "comps_ex_KMB_pence": 4575.431317222032,
+      "comps_underlying_ebitda_pence": 4087.1322125893407
     }
   },
   "a_foods_consideration_timing": {
     "years_run_date_to_closing": 0.7095890410958904,
     "closing_assumed": "2027-06-30",
-    "consideration_today_meur": 33955.3,
+    "consideration_today_meur": 33312.4,
     "cash_part_meur": 14026.623782721344,
-    "mccormick_shares_part_meur": 19928.67621727866,
+    "mccormick_shares_part_meur": 19285.776217278657,
     "all_at_cost_of_equity": {
-      "rate": 0.07872000000000001,
-      "present_value_meur": 32177.76659192202,
-      "reduction_meur": 1777.533408077983,
-      "reduction_pence": 69.81126530918301
+      "rate": 0.07164480000000001,
+      "present_value_meur": 31716.273996754862,
+      "reduction_meur": 1596.1260032451391,
+      "reduction_pence": 62.686628207971104
     },
     "all_at_wacc": {
-      "rate": 0.0709735865,
-      "present_value_meur": 32342.746006024576,
-      "reduction_meur": 1612.5539939754271,
-      "reduction_pence": 63.331824981295895
+      "rate": 0.06503997002,
+      "present_value_meur": 31855.716311371067,
+      "reduction_meur": 1456.6836886289348,
+      "reduction_pence": 57.21013793399965
     },
     "cash_only_at_cost_of_debt": {
       "rate": 0.0415,
@@ -64,23 +64,23 @@
       "reduction_meur": 398.9314173736584,
       "reduction_pence": 15.667726351514554
     },
-    "note": "Today's market value of the McCormick shares already is the present value of receiving them at closing, less any McCormick dividends paid before closing (not in the data folder: MISSING). So the cash-only line is the most defensible size; the cost-of-equity line is an upper bound.",
-    "per_1pt_of_discount_rate_pence": 9.382691411916872,
+    "note": "Today's market value of the McCormick shares already is the present value of receiving them at closing, less McCormick dividends paid before closing (now deducted in inputs.yaml: 3 quarters, EUR 642.9m; 2 quarters would be EUR 428.6m, about +8p). So the cash-only line is the most defensible size; the cost-of-equity line is an upper bound.",
+    "per_1pt_of_discount_rate_pence": 9.205042199313278,
     "foods_interim_cash_flows": "MISSING (inputs.yaml foods_perimeter_interim_cash_flows_meur: null). Data agent indicator only: about EUR 2.9bn (about 113p) before capex and working capital, if the economics to closing belong to Unilever. Offsets the timing reduction above."
   },
   "roll_forward_of_run_date_values_flag": {
     "status": "RESOLVED in desk/ (commit 3414aec, mistakes log row 24)",
-    "priced_at_valuation_date_meur_input": 35890.5,
-    "foods_plus_tmicc_recomputed_meur": 35890.512574671455,
+    "priced_at_valuation_date_meur_input": 35247.6,
+    "foods_plus_tmicc_recomputed_meur": 35247.61257467145,
     "input_matches": true,
-    "engine_equity_meur": 98163.22535806705,
-    "hand_built_equity_meur": 98163.22458607283,
-    "old_engine_value_same_inputs_pence": 3941.8231705503104,
-    "fix_effect_pence": -86.53756076418222
+    "engine_equity_meur": 108431.09748232622,
+    "hand_built_equity_meur": 108431.09677921247,
+    "old_engine_value_same_inputs_pence": 4335.952939836013,
+    "fix_effect_pence": -77.4045042881462
   },
   "b_tax_on_foods_cash": {
     "per_eur_1bn_pence_today": 39.2742352925275,
-    "per_eur_1bn_pence_through_engine_bridge": 41.685390354847186,
+    "per_eur_1bn_pence_through_engine_bridge": 41.47025727099208,
     "per_eur_1bn_pence_paid_at_closing_pv_at_cost_of_debt": 38.1572361775434,
     "bear_25pct_of_cash_meur": 3506.655945680336,
     "bear_25pct_of_cash_pence_today": 137.72123070059007,
@@ -89,173 +89,264 @@
   "c_beta_sensitivity": {
     "bottom_up_base": {
       "beta": 0.8844,
-      "jv_value_meur": 3709.5663265306116,
-      "associates_meur": 7061.8,
-      "value_per_share_pence": 3855.285609786128,
-      "value_per_share_eur": 45.56559754476966,
-      "upside": -0.1815549072,
-      "rating": "SELL",
-      "wacc": 0.0709735865,
-      "cost_of_equity": 0.07872000000000001,
-      "enterprise_value_meur": 91140.47461356071,
-      "tv_share_of_ev": 0.756799139291578,
-      "implied_exit_ev_ebitda": 10.852844911085038,
-      "value_if_jv_not_recomputed_pence": 3855.285609786128
+      "jv_value_meur": 4181.235263672436,
+      "associates_meur": 7533.435263672436,
+      "value_per_share_pence": 4258.545750915708,
+      "value_per_share_eur": 50.331726738911726,
+      "upside": -0.0959461308,
+      "rating": "HOLD",
+      "wacc": 0.06503997002,
+      "cost_of_equity": 0.07164480000000001,
+      "enterprise_value_meur": 103329.20088717934,
+      "tv_share_of_ev": 0.7786901286294509,
+      "implied_exit_ev_ebitda": 12.165990481790637,
+      "value_if_jv_not_recomputed_pence": 4258.548435547867
     },
     "own_5y_weekly": {
       "beta": 0.54,
-      "jv_value_meur": 5113.494505494506,
-      "associates_meur": 8465.728178963895,
-      "value_per_share_pence": 5027.369075851513,
-      "value_per_share_eur": 59.41844501424074,
-      "upside": 0.0672686712,
-      "rating": "HOLD",
-      "wacc": 0.0565320335,
-      "cost_of_equity": 0.061500000000000006,
-      "enterprise_value_meur": 122347.76789109899,
-      "tv_share_of_ev": 0.8128004805943316,
-      "implied_exit_ev_ebitda": 14.719710731775105,
-      "value_if_jv_not_recomputed_pence": 4969.581626799443
+      "jv_value_meur": 5649.927149101505,
+      "associates_meur": 9002.127149101505,
+      "value_per_share_pence": 5486.234491682802,
+      "value_per_share_eur": 64.84177261723558,
+      "upside": 0.1646819853,
+      "rating": "BUY",
+      "wacc": 0.052909065500000005,
+      "cost_of_equity": 0.05718000000000001,
+      "enterprise_value_meur": 136071.63719942534,
+      "tv_share_of_ev": 0.8272275018740102,
+      "implied_exit_ev_ebitda": 16.164587220194402,
+      "value_if_jv_not_recomputed_pence": 5425.977478568004
     },
     "own_5y_monthly": {
       "beta": 0.91,
-      "jv_value_meur": 3635.3749999999995,
-      "associates_meur": 6987.608673469388,
-      "value_per_share_pence": 3792.083381549509,
-      "value_per_share_eur": 44.81861078756227,
-      "upside": -0.1949722149,
+      "jv_value_meur": 4101.97461212976,
+      "associates_meur": 7454.17461212976,
+      "value_per_share_pence": 4190.957281067901,
+      "value_per_share_eur": 49.532899018357234,
+      "upside": -0.1102946012,
       "rating": "SELL",
-      "wacc": 0.07204705850000001,
-      "cost_of_equity": 0.08000000000000002,
-      "enterprise_value_meur": 89461.89257757473,
-      "tv_share_of_ev": 0.7528304510544619,
-      "implied_exit_ev_ebitda": 10.644979851897455,
-      "value_if_jv_not_recomputed_pence": 3795.178961127384
+      "wacc": 0.06594168650000001,
+      "cost_of_equity": 0.07272,
+      "enterprise_value_meur": 101529.65469590985,
+      "tv_share_of_ev": 0.7752252194158578,
+      "implied_exit_ev_ebitda": 11.946328814719104,
+      "value_if_jv_not_recomputed_pence": 4194.249520261408
     }
   },
   "d_value_decomposition": {
     "pence": {
-      "dcf_remaining_business_ev": 3799.2262613923117,
-      "less_minorities_proportionate": -405.9093337671546,
-      "less_net_debt_31dec2025": -961.932067828452,
-      "less_restructuring_cash": -20.842695177423554,
-      "foods_consideration": 1333.568441628359,
+      "dcf_remaining_business_ev": 4285.088544397404,
+      "less_minorities_proportionate": -457.81886008341866,
+      "less_net_debt_31dec2025": -956.9676567854253,
+      "less_restructuring_cash": -20.735128635496302,
+      "less_pension_plans_in_deficit_after_tax": -28.97112172951543,
+      "foods_consideration": 1308.319035758793,
       "tmicc_stake": 76.00350013809911,
-      "joint_ventures_gordon": 154.63472036862478,
-      "other_associates_investments_magnum_balance": 59.069601824534544,
+      "joint_ventures_gordon": 173.39958672720138,
+      "other_associates_investments_magnum_balance": 58.76335455299664,
       "less_dividends_ex_since_31dec": -119.34654620693257,
       "less_buybacks_since_31dec": -59.18627258583895
     },
     "subtotals_pence": {
-      "dcf_remaining_business_after_minorities": 3393.316927625157,
-      "foods_consideration": 1333.568441628359,
-      "other_non_operating_assets": 289.7078223312585,
-      "all_non_operating_assets": 1623.2762639596176,
-      "net_debt_restructuring_dividends_buybacks": -1161.307581798647,
-      "total_value_per_share": 3855.285609786128
+      "dcf_remaining_business_after_minorities": 3827.269684313985,
+      "foods_consideration": 1308.319035758793,
+      "other_non_operating_assets": 308.16644141829715,
+      "all_non_operating_assets": 1616.4854771770902,
+      "net_debt_restructuring_dividends_buybacks": -1185.2067259432085,
+      "total_value_per_share": 4258.548435547867
     },
     "share_of_value_per_share": {
-      "dcf_remaining_business_after_minorities": 0.8801726437625463,
-      "foods_consideration": 0.34590652330485544,
-      "other_non_operating_assets": 0.0751456186789051,
-      "net_debt_and_cash_paid_out": -0.301224785746307
+      "dcf_remaining_business_after_minorities": 0.8987263482472527,
+      "foods_consideration": 0.3072218281792247,
+      "other_non_operating_assets": 0.07236419782053065,
+      "net_debt_and_cash_paid_out": -0.27831237424700805
     },
-    "growth_factor_at_ke_for_31dec_items": 1.061392794649228
+    "growth_factor_at_ke_for_31dec_items": 1.0559150792398224
   },
   "e_flip_points": {
     "beta_jv_consistent": {
       "base_value": 0.8844,
       "sell_to_hold": {
-        "parameter": 0.7475155734457075,
-        "value_check_pence": 4239.449999597296,
+        "parameter": 0.8915394333191216,
+        "value_check_pence": 4239.450000545904,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.46219147583469744,
-        "value_check_pence": 5417.074999289858,
+        "parameter": 0.5548271250911057,
+        "value_check_pence": 5417.075000080959,
         "status": "found"
       }
     },
     "wacc_shift_added_to_wacc": {
       "base_value": 0.0,
       "sell_to_hold": {
-        "parameter": -0.005791860744357108,
-        "value_check_pence": 4239.450018474055,
+        "parameter": 0.0002550282329320914,
+        "value_check_pence": 4239.450007048655,
         "status": "found",
-        "wacc_level": 0.06518172575564289
+        "wacc_level": 0.0652949982529321
       },
       "hold_to_buy": {
-        "parameter": -0.017803947553038595,
-        "value_check_pence": 5417.0750466343,
+        "parameter": -0.011717867776751515,
+        "value_check_pence": 5417.075018971168,
         "status": "found",
-        "wacc_level": 0.05316963894696141
+        "wacc_level": 0.05332210224324849
       }
     },
     "terminal_growth": {
       "base_value": 0.016,
       "sell_to_hold": {
-        "parameter": 0.024977065700715874,
-        "value_check_pence": 4239.4500022579205,
+        "parameter": 0.015603956858446592,
+        "value_check_pence": 4239.4499808828095,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.04047975047237801,
-        "value_check_pence": 5417.07500507468,
+        "parameter": 0.03214758091761899,
+        "value_check_pence": 5417.074978264319,
         "status": "found"
       }
     },
     "long_run_growth_fy27_30_and_terminal": {
       "base_value": 0.016,
       "sell_to_hold": {
-        "parameter": 0.023042509257793428,
-        "value_check_pence": 4239.450015254103,
+        "parameter": 0.01569281309843064,
+        "value_check_pence": 4239.449995916368,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.03695836156606674,
-        "value_check_pence": 5417.074970711315,
+        "parameter": 0.029704559147357937,
+        "value_check_pence": 5417.0750179776405,
         "status": "found"
       }
     },
     "base_margin": {
       "base_value": 0.177,
       "sell_to_hold": {
-        "parameter": 0.196890099607408,
-        "value_check_pence": 4239.45000519309,
+        "parameter": 0.17612210657447575,
+        "value_check_pence": 4239.449999826389,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 0.25786159683018917,
-        "value_check_pence": 5417.074996016324,
+        "parameter": 0.230253725387156,
+        "value_check_pence": 5417.074996592032,
         "status": "found"
       }
     },
     "mkc_share_price_usd": {
       "base_value": 44.63999938964844,
       "sell_to_hold": {
-        "parameter": 66.55050421327724,
-        "value_check_pence": 4239.450000000496,
+        "parameter": 43.5507326267998,
+        "value_check_pence": 4239.4500000001435,
         "status": "found"
       },
       "hold_to_buy": {
-        "parameter": 133.7156719105351,
-        "value_check_pence": 5417.075000002652,
+        "parameter": 110.71590032405766,
+        "value_check_pence": 5417.075000002303,
+        "status": "found"
+      }
+    },
+    "erp_jv_as_inputs": {
+      "base_value": 0.042,
+      "sell_to_hold": {
+        "parameter": 0.042356543242931366,
+        "value_check_pence": 4239.44999679452,
+        "status": "found"
+      },
+      "hold_to_buy": {
+        "parameter": 0.025738723576068878,
+        "value_check_pence": 5417.074999659676,
+        "status": "found"
+      }
+    },
+    "erp_jv_recomputed": {
+      "base_value": 0.042,
+      "sell_to_hold": {
+        "parameter": 0.04233905047178269,
+        "value_check_pence": 4239.4499981482295,
+        "status": "found"
+      },
+      "hold_to_buy": {
+        "parameter": 0.026348642408847815,
+        "value_check_pence": 5417.074989944644,
+        "status": "found"
+      }
+    },
+    "risk_free_jv_as_inputs": {
+      "base_value": 0.0345,
+      "sell_to_hold": {
+        "parameter": 0.03477476354688405,
+        "value_check_pence": 4239.450008072596,
+        "status": "found"
+      },
+      "hold_to_buy": {
+        "parameter": 0.021956746019423004,
+        "value_check_pence": 5417.075009793012,
+        "status": "found"
+      }
+    },
+    "risk_free_jv_recomputed": {
+      "base_value": 0.0345,
+      "sell_to_hold": {
+        "parameter": 0.03476293083280324,
+        "value_check_pence": 4239.449998742934,
+        "status": "found"
+      },
+      "hold_to_buy": {
+        "parameter": 0.022353610284626485,
+        "value_check_pence": 5417.074993417868,
         "status": "found"
       }
     },
     "extra_value_today_meur": {
-      "sell_to_hold": 9781.58803990678,
-      "hold_to_buy": 39766.258428232846,
+      "sell_to_hold": -486.2840843523824,
+      "hold_to_buy": 29498.386303973686,
       "note": "EUR m of value at today's date needed to reach each threshold (each EUR 1bn = 39.3p)."
+    },
+    "fy26_growth_only": {
+      "base_value": 0.02,
+      "sell_to_hold": {
+        "parameter": 0.015127946529537438,
+        "value_check_pence": 4239.450000132509,
+        "status": "found"
+      },
+      "hold_to_buy": {
+        "parameter": null,
+        "value_check_pence": null,
+        "status": "not reached in [-10%, 20%]"
+      }
     }
   },
+  "market_implied_wacc": {
+    "wacc": 0.05969002556258824,
+    "shift_vs_base": -0.005349944457411765,
+    "value_check_pence": 4710.499975274651,
+    "note": "WACC that makes the DCF value equal the 4,710.5p price, all else unchanged"
+  },
+  "jv_consistency_check": {
+    "jv_in_inputs_meur": 4181.3,
+    "jv_at_this_run_cost_of_equity_meur": 4181.235263672436,
+    "cost_of_equity": 0.07164480000000001,
+    "ke_implied_by_jv_in_inputs": 0.07164393848803004,
+    "consistent": true
+  },
+  "base_with_jv_recomputed_at_this_ke": {
+    "value_per_share_pence": 4258.545750915708,
+    "value_per_share_eur": 50.331726738911726,
+    "upside": -0.0959461308,
+    "rating": "HOLD",
+    "wacc": 0.06503997002,
+    "cost_of_equity": 0.07164480000000001,
+    "enterprise_value_meur": 103329.20088717934,
+    "tv_share_of_ev": 0.7786901286294509,
+    "implied_exit_ev_ebitda": 12.165990481790637
+  },
+  "mkc_dividend_leak_meur": 642.9415054165147,
   "sensitivity_grid_centred_pence": {
     "wacc": [
-      0.0609735865,
-      0.0659735865,
-      0.0709735865,
-      0.07597358650000001,
-      0.0809735865
+      0.05503997002,
+      0.06003997002000001,
+      0.06503997002,
+      0.07003997002000001,
+      0.07503997002
     ],
     "terminal_growth": [
       0.011,
@@ -264,37 +355,75 @@
     ],
     "grid": [
       [
-        4328.897048250558,
-        4580.511549079339,
-        4893.952108643048
+        4849.630188803434,
+        5203.787399645144,
+        5660.625328841935
       ],
       [
-        3986.91497030623,
-        4181.682248454614,
-        4418.782677342135
+        4410.495782804145,
+        4677.5864176626055,
+        5011.930126088609
       ],
       [
-        3701.8975101313436,
-        3855.285609786128,
-        4038.5093610430295
+        4052.55498776688,
+        4258.548435547867,
+        4510.30795202297
       ],
       [
-        3460.6949259541507,
-        3583.2082956737972,
-        3727.2435787170066
+        3755.1808305639183,
+        3916.9312532247163,
+        4110.778596189513
       ],
       [
-        3253.915923464662,
-        3352.912482489282,
-        3467.7299355381706
+        3504.188197779122,
+        3633.0678458508323,
+        3785.0086972512954
       ]
     ],
     "note": "valuation.json's grid is now centred on 1.6% too (commit 3414aec; growth 1.1-2.6%); this copy is the same centre."
   },
   "bear_jv_consistency": {
-    "bear_value_pence": 3211.934541339094,
-    "jv_value_if_ke_plus_1pt_meur": 3199.449944994499,
-    "jv_reduction_pence_today": 20.03443079502201,
+    "bear_value_pence": 3475.6476417950935,
+    "jv_value_if_ke_plus_1pt_meur": 3544.286828507361,
+    "jv_reduction_pence_today": 25.01566271188037,
     "note": "If the bear's +1 pt applies to the cost of equity too, the JV value falls; the engine does not do this."
-  }
+  },
+  "step_table_old_to_final": [
+    {
+      "step": "old run 14 Oct (ERP 5.0%)",
+      "value_pence": 3855.285609786128,
+      "change_pence": null,
+      "upside": -0.18155490716778933
+    },
+    {
+      "step": "ERP 5.0% -> 4.2%",
+      "value_pence": 4234.407486476632,
+      "change_pence": 379.12187669050354,
+      "upside": -0.10107048371157379
+    },
+    {
+      "step": "pension deficit after tax EUR 698.6m deducted",
+      "value_pence": 4205.4363647471155,
+      "change_pence": -28.9711217295162,
+      "upside": -0.10722081206939482
+    },
+    {
+      "step": "McCormick dividends before closing EUR 642.9m deducted",
+      "value_pence": 4180.186958877549,
+      "change_pence": -25.249405869566544,
+      "upside": -0.11258105108214644
+    },
+    {
+      "step": "JV recomputed at Ke 7.164% (associates 7,061.8 -> 7,533.5)",
+      "value_pence": 4199.748479232277,
+      "change_pence": 19.56152035472769,
+      "upside": -0.10842830289092953
+    },
+    {
+      "step": "FY26 growth +0.5% -> +2.0%",
+      "value_pence": 4258.548435547867,
+      "change_pence": 58.79995631558995,
+      "upside": -0.09594556086448003
+    }
+  ]
 }
