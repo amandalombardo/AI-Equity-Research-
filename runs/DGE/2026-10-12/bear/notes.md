@@ -1,6 +1,50 @@
-# Bear agent notes: Diageo (DGE), run 2026-10-12 (Phase 4 re-run 2026-10-13: mid-year discounting)
+# Bear agent notes: Diageo (DGE), run 2026-10-12 (re-run 15 Oct 2026 after the evidence audit)
 
-## Phase 4 re-run (13 Oct 2026)
+## Re-run 15 Oct 2026 (evidence audit)
+**What I did.** Re-ran `run_challenges.py` against the updated brief (ERP 4.2%) and `inputs.yaml` (2,224m shares, debt weight 0.29376), using only `desk.valuation_run.build`. The base reproduces `valuation/valuation.json` exactly (1,808.8p GBp) and the engine bear scenario matches (1,298.3p GBp). Script changes: (a) the flip solver now returns "none" when a rating line is not crossed in the tested range (before, it would have returned a meaningless end point, because flow-through and RONIC no longer flip); (b) added BUY-flip solves (beta, ERP) and SELL-flip solves for ERP, terminal growth and disposal tax; (c) added audit lines A1-A5 and stacked cases S1-S5; (d) each result now records its changes. I did not edit `briefs/DGE.yaml`, `inputs.yaml` or `desk/`. Nothing committed.
+
+### Old vs new (pence per ordinary share, GBp)
+| | 13 Oct (ERP 5.0%, 2,222m) | **15 Oct (ERP 4.2%, 2,224m)** |
+|---|---|---|
+| Base / upside vs 1,673p / rating | 1,627.3p / -2.7% / HOLD | **1,808.8p / +8.1% / HOLD** |
+| WACC | 8.46% | **7.92%** |
+| Headroom to SELL (1,505.7p) / gap to BUY (1,923.95p) | 122p / 297p | **303p / 115p** |
+| Engine bear scenario | 1,179.9p SELL | **1,298.3p SELL (-22.4%)** |
+| Single bear changes that flip to SELL | 3 of 11 | **0 of 11** |
+| Zero organic growth FY27-31 | 1,490.7p SELL | 1,656.8p HOLD |
+| Terminal RONIC = WACC | 1,468.3p SELL | 1,599.0p HOLD |
+| USL minority at market (USD 5,778m) | 1,480.0p SELL | 1,666.8p HOLD |
+| Flow-through 25% / 33% | 1,558.0p / 1,584.4p | 1,733.6p / 1,762.2p |
+| Beta 1.00 / credit spread 2% / terminal growth 1.5% | 1,584.5p / 1,559.3p / 1,571.6p | 1,766.0p / 1,728.3p / 1,735.9p |
+| Beta 0.72 (bull) | 1,929.6p BUY | **2,107.2p BUY (+26.0%)** |
+| SELL if flow-through below / RONIC below / beta above | 9.1% / 9.26% / 1.078 | **none / none / 1.282** |
+| SELL if ERP above / BUY if ERP below / BUY if beta below | 5.62% / 3.77% / 0.724 | **5.61% / 3.76% / 0.860** |
+
+**Audit lines (one change each, vs 1,808.8p):** FY30-31 growth 2%: 1,778.8p (-30.0p); disposal proceeds net of an illustrative USD 300m tax: 1,798.3p (-10.5p; -3.5p per USD 100m; no tax amount flips it); diluted shares 2,231m: 1,803.1p (-5.7p); ERP 5.0% (Kroll): 1,625.5p (-183.3p); ERP 5.0% with Kroll's 20-year 5.60% risk-free: 1,545.7p (-263.1p); ERP 5.5% (Fernandez): 1,525.7p (-283.0p); terminal growth 1.5%: 1,735.9p (-72.8p). All HOLD.
+
+**Stacks (one engine run each):** S1 audit's small sourced corrections (2,231m + Rf 5.24% + USD 300m tax): 1,787.5p HOLD. S5 business bear with ERP 4.2% (growth 2% FY30-31, tax 300m, 2,231m shares, g 1.5%, flow-through 33%, beta 1.00): 1,609.6p HOLD (-3.8% vs price). S2 audit bear lines with ERP 5.0%: 1,528.8p HOLD (23p above SELL). S4 = S2 + flow-through 33% + beta 1.00: **1,449.8p SELL**. S3 = S2 with ERP 5.5%: **1,439.4p SELL**.
+
+**What flips the rating.** No single business challenge now reaches SELL. Single-input flips are discount-rate only: SELL if ERP > 5.61% or beta > 1.282; BUY if ERP < 3.76% or beta < 0.860 (beta 0.72, Diageo's own regression, gives BUY at 2,107.2p). SELL needs a stack that includes a higher ERP (S3) or a weaker business plus beta 1.00 (S4).
+
+**PM's Phase 4 bear responses** (13 Oct, from `editor/memo.md`) are kept, unchanged, in the main table of `challenges.md`; they were written against the 13 Oct values.
+
+### FLAGs (15 Oct)
+1. **The re-run's whole gain is a discount-rate decision.** +183.5p (GBp) of the +181.5p comes from ERP 5.0% -> 4.2%, and the 4.2% was seen only in search summaries (`briefs/DGE.yaml` FLAG). Kroll's 5.0% (also secondhand) puts the value below the price (1,625.5p). The price implies an ERP of about 4.78%. I disagree with treating the 4.2% as settled before it is confirmed at the source; the brief is not mine to change.
+2. **Kroll pairing.** If the desk ever reverts to 5.0% citing Kroll, Kroll pairs it with the 20-year yield (5.60%), which gives 1,545.7p, 40p above SELL. Cost of debt was left at 10-year + 1% in that test.
+3. **The A2 tax amount (USD 300m) is illustrative.** No sourced tax on the EABL and RCB disposals exists; only the per-USD-100m sensitivity (-3.5p) is a firm number.
+4. **A3 dilution:** I changed the share count only; the debt weight was left at 0.29376 (moving it would change the value by well under 1p, audit table A).
+5. Terminal value is 76.7% of EV (Valuation FLAG): the lower ERP pushes more of the value into the years after FY31, which is where challenges 2 and 4 bite.
+
+### Missing (15 Oct)
+Unchanged: Moet Hennessy fair value, GLP-1 / moderation volume effect, USL net cash, the split of the USD 1,328m other minorities, tax on the disposals. New: no UK or global implied ERP checked (the benchmark is the FTSE 100); Damodaran's page not reached.
+
+### Confidence (15 Oct)
+High on the impacts (engine output; base and bear reproduce `valuation.json`; flip points match `valuation/notes.md`). Medium-low on the ERP evidence on both sides (Damodaran, Kroll and Fernandez figures are all secondhand). `python -m pytest` not run by me (no code in `desk/` changed; the Valuation agent reports pytest is not installed here).
+
+---
+**Everything below this line is superseded 15 Oct 2026 and kept for the record.**
+
+## Phase 4 re-run (13 Oct 2026) (SUPERSEDED 15 Oct 2026: ERP 5.0%, 2,222m shares)
 - Re-ran `run_challenges.py` after the PM switched to mid-year discounting. Base **1,627.3p GBp, HOLD (-2.7%)**, 122p above SELL; engine bear scenario 1,179.9p (SELL).
 - **Only 3 of 11 single changes now flip to SELL**: terminal RONIC = WACC (1,468.3p), zero organic growth (1,490.7p), USL minority at market (1,480.0p, an upper bound). Flow-through 33% (1,584.4p) and 25% (1,558.0p), beta 1.00 (1,584.5p), credit spread 2% (1,559.3p), terminal growth 1.5% (1,571.6p) and RONIC 10.8% (1,561.8p) all stay HOLD.
 - **New: the bull case reaches BUY.** Beta 0.72 gives 1,929.6p (+15.3%), 6p above the BUY line (1,923.95p); BUY if beta is below 0.724.
@@ -8,7 +52,7 @@
 - `briefs/DGE.yaml` and `inputs.yaml` not changed by me.
 
 
-## Phase 3 notes (superseded values)
+## Phase 3 notes (superseded values; also SUPERSEDED by the 15 Oct re-run)
 ### What I did
 - Refreshed after the PM decision of 2026-10-13 (minorities valued proportionately: 2.566% x EV = USD 1,500m, replacing book USD 2,083m). New base **1,544.8p GBp, HOLD (-7.7%)**; SELL line 1,505.7p, **39p headroom** (was 18p); engine bear scenario 1,108.2p.
 - Fixed `run_challenges.py`: inputs are now loaded with `valuation_run.extra_required(brief)` (roll-forward input **and** `minority_share_of_operating_profit`) instead of the hard-coded roll-forward list, so the run STOPs if the minorities input is missing. The script also STOPs if its base does not reproduce `valuation/valuation.json` (it matches: 1,544.8p). Nothing hard-coded book minorities; the bridge follows the brief's `minorities_method`.
