@@ -1,0 +1,12 @@
+assumption,brief_value,record,record_value,verdict
+FY26 growth (GBP),0.03,H1 2026 reported revenue growth,0.02742,consistent (the brief's own rule)
+FY27-30 growth,0.05,FY21-25 average reported GBP growth,0.0634,"brief is below the 5-yr average, which is lifted by FY22 (+7pt FX, exhibitions recovery)"
+FY27-30 growth,0.05,FY25 print drag on group growth,-0.01155,print drag shrinks as print shrinks; constant-ccy growth should drift up towards underlying (7%): 5% is cautious
+"Base margin (ex print, held flat)",0.35,H1 2026 adjusted margin ex print,0.34981,matches the brief's computation
+"Base margin (ex print, held flat)",0.35,FY25 adjusted margin ex print,0.34349,FY23-FY25 ex-print margin rose each year; flat is cautious
+Bear margin 33.1% labelled 'FY23 level',0.331,FY23 adjusted margin ex print,0.32385,FLAG: 33.1% is the FY23 GROUP margin incl. print; on the brief's ex-print basis FY23 was lower
+Tax rate,0.228,FY25 adjusted ETR,0.225,consistent (H1 2026 22.8% vs FY24-25 22.5%)
+Capex incl. pre-publication,0.071,FY25 (capex + pre-publication) / revenue,0.06538,brief above FY25; H1 2026 is the highest period on record
+D&A (brief basis),0.0507,FY25 D&A on brief basis / revenue,0.0487,consistent; capex exceeds D&A by about 2% of revenue
+Terminal RONIC,0.154,FY25 RELX ROIC recomputed,0.15418,consistent with RELX's own measure; book ROIC is much higher (see roic_book_net_capital_employed)
+Terminal RONIC,0.154,FY25 book ROIC on net capital employed,0.24793,brief takes the cautious measure
