@@ -27,7 +27,7 @@ Comps, peer EV/EBITDA range | 1,955 | 4,111
 ## Valuation
 - **Growth (GBP):** base sales GBP 9,590m (FY25, incl. print 399); +3.0% in FY26, then 5.0% a year FY27-30 (constant-currency, already net of print run-off and disposals). Independent industry growth forecast: MISSING (sources blocked).
 - **Margin:** 35.0% flat (H1 2026, without print); savings flow-through none. Tax 22.8%; capex 7.10%, D&A 5.07%, working capital -15.5% of sales.
-- **WACC 8.92%:** UK gilt 5.45% (13 Oct 2026, aggregator sites only; Bank of England blocked here, FLAG), beta 0.9729 (Damodaran global Information Services 0.8737, relevered), ERP 4.2% (seen only in search summaries; PM to confirm on Damodaran's site, FLAG), cost of equity 9.54%; cost of debt 6.15% (gilt + 0.70% single-A spread, a US-dollar index added to a sterling gilt, FLAG), 4.75% after tax; debt weight 12.82%.
+- **WACC 8.92%:** UK gilt 5.45% (13 Oct 2026, aggregator sites only; Bank of England blocked here, FLAG), beta 0.9729 (Damodaran global Information Services 0.8737, relevered), ERP 4.2% (seen only in search summaries; PM decision 15 Oct 2026: keep, subject to confirming it on Damodaran's site, FLAG), cost of equity 9.54%; cost of debt 6.15% (gilt + 0.70% single-A spread, a US-dollar index added to a sterling gilt, FLAG), 4.75% after tax; debt weight 12.82%.
 - **Terminal:** growth 2.0%, RONIC 15.4%. Terminal value is 71.5% of EV; implied exit 8.6x EBITDA.
 
 Bridge (GBP m, 31 Dec 2025): EV 39,616.5 - net debt 7,104 (ex leases) - minorities 24 + investments 131 = 32,619.5; rolled forward at 9.54% to 13 Oct 2026, less dividends 1,217 and buybacks 2,056.2 = 31,759.4 = **GBP 18.21 = 1,821p**. Audit disclosures: Employee Benefit Trust shares are in the count (+5.6p if excluded, per the audit); the GBP 366m interim dividend is RELX's expected cost, not yet published cash; buybacks after 25 Sep 2026 are not yet filed (cash and shares both left out).
@@ -53,24 +53,22 @@ All SELL (top corner 12p short of HOLD). Comps at 15.7x EV/EBITDA on GBP 3,902m:
 - **Leverage:** net debt / adjusted EBITDA 1.87x (Dec 2025), 2.22x (Jun 2026, after GBP 1,750m of buybacks); no target; A3 / A- / BBB+. More debt slightly raises the DCF (+13p): a risk, not a value line.
 
 ## Bear case and our response
-Pence, impact vs 1,821p (ERP 4.2%). A: against buying; B: against the SELL. PM responses (decision 14, 15 Oct 2026, set at ERP 5.0%) unchanged.
+Pence, impact vs 1,821p (ERP 4.2%). A: against buying; B: against the SELL. **PM decision 15 Oct 2026:** all responses kept (bear-responses-2026-10-15.md, R1-R4). **PM view:** SELL on the desk's discount rate, moderate conviction; the call rests on today's gilt and a market-average beta; gilt trigger for HOLD 3.80%.
 
-| Challenge | Test at ERP 4.2%: value (impact) | PM response | Still holds? |
+| Challenge | Test at ERP 4.2%: value (impact) | PM response (PM decision 15 Oct 2026) | Still holds? |
 |---|---|---|---|
 | A1. Bear margin 33.1% incl. print | 32.4%: 1,636p (-185p) | Accepted: bear margin is now 32.4% (like-for-like) | Yes; SELL |
 | A2. AI caps Legal and STM pricing | Growth 3%: -160p; AI case: 1,432p (-389p) | Main risk, not a base change: Legal growth is speeding up and base growth is already below organic | Yes; AI case SELL |
 | A3. Reinvestment under-charged | RONIC = WACC -189p; acquisitions -73p; tax 25.0% -65p | Keep: RELX's own ROIC and tax estimate; growth is organic, so acquisitions stay out | Yes; all SELL |
-| A4. Discount rate, leverage, price path | Engine bear 1,386p; beta 1.195 -235p; ERP 5.0% / 5.5%: 1,621p / 1,514p | Keep: latest Damodaran beta; the bear's is an older average | Yes; all SELL |
+| A4. Discount rate, leverage, price path | Engine bear 1,386p; beta 1.195 -235p; ERP 5.0% / 5.5%: 1,621p / 1,514p | Keep latest Damodaran beta; keep ERP 4.2%, subject to confirming it on Damodaran's site | Yes; all SELL |
 | A5. Stacked bear | 1,002p (-819p) | Noted; SELL | Yes; SELL |
 | B1. Market-implied WACC 6.93% | Needs beta 0.429 | Rejected as a basis: needs a beta below every peer | Yes; below every peer (0.58) |
 | B2/B8. 2.0% terminal growth vs 5.45% gilt; other gilts | +48p to +174p; gilt 5.30% / 5.21%: +48p / +78p | Partly accepted: the mismatch is real but small; gilt on the run date per the desk rule | Yes; all SELL |
-| B3. Beta 0.973 vs regressions and peers | 0.75: 2,117p; 0.58: 2,400p; 0.38: 2,844p (HOLD) | Keep: regressions too noisy; peer figure not relevered | Yes, but HOLD now needs 0.535 (was 0.449) |
+| B3. Beta 0.973 vs regressions and peers | 0.75: 2,117p; 0.58: 2,400p; 0.38: 2,844p (HOLD) | Keep 0.973: HOLD would need 0.535; even 0.75 gives 2,117p SELL; lower-beta generous stacks reach HOLD (2,546p / 2,586p) | Yes; at 0.973 the best generous stack is 2,409p |
 | B4. Implied exit 8.6x below every peer | g 4.38% for 11.1x: 2,314p | Noted: a symptom of the discount rate | Yes; same reading |
 | B5. Flat margin vs rising record | 35.5%: +35p | Keep flat: no number from RELX; cautious and stated | Yes; SELL |
 | B6. 5% growth vs 7% underlying | 7% FY27-30: +169p | Keep: 7% leaves out print run-off and disposals | Yes; SELL |
 | B7. Comps 2,990p | +7.9% vs price, HOLD territory | Cross-check only: peers fell on the same AI fears | Yes; DCF now 39.1% below |
-
-Generous stacks at the 5.45% gilt reach HOLD only with a lower beta (0.75: 2,586p; 0.66: 2,546p); at beta 0.973 the best is 2,409p. **PM view (15 Oct 2026):** SELL on the desk's discount rate, moderate conviction; the call rests on today's gilt and a market-average beta. Its gilt trigger is now 3.80% (was 3.11%).
 
 ## Sources
 - RELX Annual Report 2025 (20-F ex 15.2, SEC accession 0001104659-26-017277, filed 19 Feb 2026): balance sheet p.141, notes 1-2 (pp.145-147), note 15 (p.167), note 20 (p.176), five-year summary p.186, p.199, pp.204-206; XBRL.
@@ -79,4 +77,4 @@ Generous stacks at the 5.45% gilt reach HOLD only with a lower beta (0.75: 2,586
 - Equity risk premium 4.2%: Damodaran implied ERP, 1 Oct 2026 (PM decision 15 Oct 2026; docs/audit-2026-10-15/erp-evidence.md; seen in search summaries only, stern.nyu.edu blocked). Alternatives: Kroll 5.0%, Fernandez et al. 2025 survey 5.5% (SSRN 5260463).
 - Evidence audit 15 Oct 2026: docs/audit-2026-10-15/RELX.md and summary.md (findings V1, V2, M2, M3, C2, C5; EBT impact +5.6p).
 - Yahoo Finance (non-filing): REL.L, ^FTSE and peer prices (to 13 Oct 2026). Peers: SEC EDGAR XBRL (TRI, VRSK, SPGI, MCO); Yahoo (Wolters Kluwer, Experian, LSEG, Informa). Thomson Reuters Q2 2026 6-K (0001193125-26-333835).
-- PM decisions: briefs/RELX.yaml, docs/phase5/brief-relx.md and docs/phase5/relx-*.md (bear responses: relx-bear-responses.md). Agent outputs: runs/RELX/2026-10-14/ (data, risk, fundamentals, valuation, bear; re-run sections of 15 Oct 2026).
+- PM decisions: briefs/RELX.yaml, docs/phase5/brief-relx.md and docs/phase5/relx-*.md (bear responses: relx-bear-responses.md); PM decision 15 Oct 2026 on bear responses: docs/audit-2026-10-15/bear-responses-2026-10-15.md (items R1-R4, "Accept all"). Agent outputs: runs/RELX/2026-10-14/ (data, risk, fundamentals, valuation, bear; re-run sections of 15 Oct 2026).
