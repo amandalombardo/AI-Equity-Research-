@@ -102,9 +102,9 @@ scenarios:
     organic_growth: [0.030, 0.030, 0.030, 0.030, 0.030]   # AI pressure halves Legal and STM growth (stress test)
     flow_through: 0.0
     wacc_shift: 0.01
-    # Also to be quantified by the Bear agent (agreed bear lines): margin 33.1% (FY23 level); tax 25.0% (statutory);
+    # Also to be quantified by the Bear agent (agreed bear lines): margin 32.4% (FY23 without print); tax 25.0% (statutory);
     # terminal growth 1.5%; RONIC = WACC; acquisitions at 2.7% of revenue; cost of debt at the BBB spread (1.03%).
-    bear_agent_margin: 0.331
+    bear_agent_margin: 0.324   # PM bear responses 15 Oct 2026: FY23 margin WITHOUT print (AR25 note 1 p.145), like-for-like with the base (was 0.331 incl. print, mistakes row 26)
 
 comps:
   peers:

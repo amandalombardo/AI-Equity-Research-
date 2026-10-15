@@ -60,20 +60,20 @@ Pence per share, impact vs 1,621p. A: against buying; B: against the SELL.
 
 | Challenge | Test: value (impact) | Response |
 |---|---|---|
-| A1. Bear margin 33.1% is a group figure incl. print | 33.1%: 1,498p (-124p); 32.4% like-for-like: 1,451p (-170p) | PM to respond |
-| A2. AI caps Legal and STM pricing | Growth 3%: 1,476p (-146p); g 1.5%: 1,573p (-49p); AI case: 1,274p (-347p) | PM to respond |
-| A3. Reinvestment under-charged | RONIC = WACC: 1,481p (-140p); acquisitions 2.7%: 1,549p (-73p); tax 25.0%: 1,561p (-60p) | PM to respond |
-| A4. Discount rate, leverage, price path | Engine bear: 1,244p (-378p); beta 1.195: 1,390p (-231p); BBB spread: 1,612p (-9p) | PM to respond |
-| A5. Stacked bear | 902p (-720p) to 938p (-684p) | PM to respond |
-| B1. Market-implied WACC 6.95% | Needs beta 0.365; beta 0.38 gives 2,673p (HOLD) | PM to respond |
-| B2/B8. 2.0% terminal growth vs a 5.45% gilt; other gilt readings | g 2.33%: 1,657p (+36p); g 2.50%: 1,677p (+55p); gilt 4.94%: 1,765p (+144p); 5.39%: 1,637p (+16p); 4.99% (stale): 1,750p (+128p) | PM to respond |
-| B3. Beta 0.973 vs regressions and peers | 0.75: 1,918p (+296p); 0.66: 2,067p (+445p); 0.58: 2,207p (+585p); 0.38: 2,673p (+1,051p, HOLD) | PM to respond |
-| B4. Implied exit 7.9x below every peer | RONIC 25.1%: 1,711p (+90p); g 5.46% for 11.1x: 2,256p (SELL) | PM to respond |
-| B5. Flat margin vs rising record | 35.5%: 1,654p (+33p); 38.6% (judgement): 1,856p (+234p) | PM to respond |
-| B6. 5% growth vs 7% underlying | 7% FY27-30: 1,775p (+154p) | PM to respond |
-| B7. Comps 2,990p | +7.9% vs price, HOLD territory | PM to respond |
+| A1. Bear margin 33.1% is a group figure incl. print | 33.1%: 1,498p (-124p); 32.4% like-for-like: 1,451p (-170p) | Accepted: bear margin is now 32.4% (like-for-like) |
+| A2. AI caps Legal and STM pricing | Growth 3%: 1,476p (-146p); g 1.5%: 1,573p (-49p); AI case: 1,274p (-347p) | Main risk, not a base change: Legal growth is speeding up and base growth is already below organic |
+| A3. Reinvestment under-charged | RONIC = WACC: 1,481p (-140p); acquisitions 2.7%: 1,549p (-73p); tax 25.0%: 1,561p (-60p) | Keep: RELX's own ROIC and tax estimate; growth is organic, so acquisitions stay out |
+| A4. Discount rate, leverage, price path | Engine bear: 1,244p (-378p); beta 1.195: 1,390p (-231p); BBB spread: 1,612p (-9p) | Keep: latest Damodaran beta; the bear's is an older average |
+| A5. Stacked bear | 902p (-720p) to 938p (-684p) | Noted; SELL |
+| B1. Market-implied WACC 6.95% | Needs beta 0.365; beta 0.38 gives 2,673p (HOLD) | Rejected as a basis: needs a beta below every peer |
+| B2/B8. 2.0% terminal growth vs a 5.45% gilt; other gilt readings | g 2.33%: 1,657p (+36p); g 2.50%: 1,677p (+55p); gilt 4.94%: 1,765p (+144p); 5.39%: 1,637p (+16p); 4.99% (stale): 1,750p (+128p) | Partly accepted: the mismatch is real but small; gilt on the run date per the desk rule |
+| B3. Beta 0.973 vs regressions and peers | 0.75: 1,918p (+296p); 0.66: 2,067p (+445p); 0.58: 2,207p (+585p); 0.38: 2,673p (+1,051p, HOLD) | Keep: regressions too noisy; peer figure not relevered |
+| B4. Implied exit 7.9x below every peer | RONIC 25.1%: 1,711p (+90p); g 5.46% for 11.1x: 2,256p (SELL) | Noted: a symptom of the discount rate |
+| B5. Flat margin vs rising record | 35.5%: 1,654p (+33p); 38.6% (judgement): 1,856p (+234p) | Keep flat: no number from RELX; cautious and stated |
+| B6. 5% growth vs 7% underlying | 7% FY27-30: 1,775p (+154p) | Keep: 7% leaves out print run-off and disposals |
+| B7. Comps 2,990p | +7.9% vs price, HOLD territory | Cross-check only: peers fell on the same AI fears |
 
-Generous stack: 2,548p (HOLD) only with beta 0.75 AND the stale 4.99% gilt; with the run-date gilt it is 2,336p (SELL), with beta 0.973 2,127p (SELL). **Bear agent's conclusion:** the SELL is robust to every cash-flow and terminal assumption but not to the discount rate; present it as "SELL on the desk's discount rate", with the flip points beside it. **PM view:** PM to respond.
+Generous stack: 2,548p (HOLD) only with beta 0.75 AND the stale 4.99% gilt; with the run-date gilt it is 2,336p (SELL), with beta 0.973 2,127p (SELL). **Bear agent's conclusion:** the SELL is robust to every cash-flow and terminal assumption but not to the discount rate; present it as "SELL on the desk's discount rate", with the flip points beside it. **PM view (15 Oct 2026):** SELL on the desk's discount rate, moderate conviction; the call rests on today's gilt and a market-average beta.
 
 ## Sources
 - RELX Annual Report 2025 (20-F ex 15.2, SEC accession 0001104659-26-017277, filed 19 Feb 2026): balance sheet p.141, notes 1-2 (pp.145-147), note 15 (p.167), note 20 (p.176), five-year summary p.186, p.199, pp.204-206; XBRL.
