@@ -12,3 +12,12 @@ mcap = 2224.0 * 1673.0 / 100 * 1.3234
 inp["debt_weight"] = {"value": round(20482 / (20482 + mcap), 5), "source": f"net debt 20,482 / (net debt + market cap {mcap:,.0f} = 2,224m shares x 1673p x 1.3234 USD/GBP); shares corrected by the evidence audit 15 Oct 2026"}
 p.write_text(yaml.safe_dump(inp, sort_keys=False, allow_unicode=True, width=200))
 print(inp["shares_outstanding_m"]["value"], inp["debt_weight"]["value"])
+
+# PM decision 15 Oct 2026 (bear responses, D3): DILUTED share count, adding the 7m dilutive potential shares (employee
+# options and awards) the 20-F reports for FY26 EPS, so value per share is not overstated
+inp = yaml.safe_load(p.read_text())
+inp["shares_outstanding_m"] = {"value": 2231.0, "source": "Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18): 2,432m issued - 208m own shares (treasury AND employee trusts, note 18(c)) = 2,224m basic + 7m dilutive potential ordinary shares (EPS note, diluted weighted average) = 2,231m ordinary shares (NOT ADRs). PM decision 15 Oct 2026 (evidence audit bear responses, D3)"}
+mcap = 2231.0 * 1673.0 / 100 * 1.3234
+inp["debt_weight"] = {"value": round(20482 / (20482 + mcap), 5), "source": f"net debt 20,482 / (net debt + market cap {mcap:,.0f} = 2,231m diluted shares x 1673p x 1.3234 USD/GBP); PM decision 15 Oct 2026"}
+p.write_text(yaml.safe_dump(inp, sort_keys=False, allow_unicode=True, width=200))
+print(inp["shares_outstanding_m"]["value"], inp["debt_weight"]["value"])

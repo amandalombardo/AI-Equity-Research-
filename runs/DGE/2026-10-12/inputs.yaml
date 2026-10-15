@@ -25,8 +25,8 @@ pre_tax_cost_of_debt:
   value: 0.03806
   source: 'Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) p.211: FY26 net interest charge 812 / average net borrowings 21,336 (historic cost; see notes.md FLAG)'
 debt_weight:
-  value: 0.29376
-  source: net debt 20,482 / (net debt + market cap 49,240 = 2,224m shares x 1673p x 1.3234 USD/GBP); shares corrected by the evidence audit 15 Oct 2026
+  value: 0.29311
+  source: net debt 20,482 / (net debt + market cap 49,395 = 2,231m diluted shares x 1673p x 1.3234 USD/GBP); PM decision 15 Oct 2026
 net_debt:
   value: 20482.0
   source: 'Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) note 17 p.187: net borrowings 20,482 (INCLUDES lease liabilities 685; EABL/RCB loans of 272 sit in liabilities held
@@ -55,10 +55,9 @@ disposal_proceeds:
   source: EABL + Kenyan spirits sale to Asahi c.$2.3bn (20-F p.85) + Diageo's 57.21% of USL's RCB sale INR 166.6bn = c.$1.78bn (USL/press, 24 Mar 2026); both gross, before tax and costs, not in net debt
     at 30 June 2026
 shares_outstanding_m:
-  value: 2224.0
-  source: 'Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18) p.188 and XBRL: 2,432m issued - 208m own shares (treasury AND employee trusts, note 18(c)) = 2,224m ordinary shares
-    (NOT ADRs); cross-check: weighted average shares excluding own shares 2,224m. Evidence audit 15 Oct 2026 (was 2,222m: trusts deducted twice). Basic count; dilutive options (+7m) not added, the desk''s
-    convention'
+  value: 2231.0
+  source: 'Diageo Form 20-F FY26 (SEC accession 0001628280-26-057529, filed 2026-08-18): 2,432m issued - 208m own shares (treasury AND employee trusts, note 18(c)) = 2,224m basic + 7m dilutive potential
+    ordinary shares (EPS note, diluted weighted average) = 2,231m ordinary shares (NOT ADRs). PM decision 15 Oct 2026 (evidence audit bear responses, D3)'
 fx_usd_per_gbp:
   value: 1.3234
   source: FRED DEXUSUK (USD per GBP, noon buying rate New York), 2026-10-02

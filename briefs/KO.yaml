@@ -33,7 +33,9 @@ dcf:
   # c.4% to 2-3% when CCBA's closing moved later, so it is mostly CCBA). Was +3.5%.
   # FY27-30 3.0% = low end of the 4-5% organic range minus the 1-point currency drag seen outside the Argentina years
   # (2020, 2021, 2025). Evidence: docs/phase5/ko-growth-evidence.md.
-  organic_growth: [0.060, 0.030, 0.030, 0.030, 0.030]
+  # FY26 changed to +5.0% (PM decision 15 Oct 2026, evidence audit): KO's Q2 2026 8-K shows a -1 point disposal effect in
+  # H1 2026 while CCBA was still consolidated (Nigeria, India territories, Ghana; 10-K), so not all of the 2-3% headwind is CCBA.
+  organic_growth: [0.050, 0.030, 0.030, 0.030, 0.030]
   savings:                           # Coca-Cola has no announced savings programme in the model: margin held flat instead
     cumulative_musd: [0.0, 0.0, 0.0, 0.0, 0.0]
     flow_through: 0.0
@@ -102,7 +104,7 @@ dcf:
 
 scenarios:
   bear:
-    organic_growth: [0.060, 0.010, 0.010, 0.010, 0.010]   # FY26 as base (guidance, half the year already reported); then 1% a year: the full 2020-25 average currency drag
+    organic_growth: [0.050, 0.010, 0.010, 0.010, 0.010]   # FY26 as base (+5.0%, PM decision 15 Oct 2026) (guidance, half the year already reported); then 1% a year: the full 2020-25 average currency drag
     flow_through: 0.0
     wacc_shift: 0.01
     # The bear agent must also test the 30.0% margin (FY24) and a WIN in the IRS case is the bull case, not the bear.

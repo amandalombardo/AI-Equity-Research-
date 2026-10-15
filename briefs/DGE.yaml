@@ -22,7 +22,9 @@ base_year:                   # FY26. Data agent confirms every number against th
 dcf:
   currency: USD                     # agreed 2026-10-12. Convert to GBp only at the end.
   forecast_years: [2027, 2028, 2029, 2030, 2031]
-  organic_growth: [0.000, 0.015, 0.025, 0.030, 0.030]   # low end of management guidance (agreed 2026-10-12, brief 5a)
+  # FY27-29 = low end of management guidance (agreed 2026-10-12, brief 5a). FY30-31 2.0% (PM decision 15 Oct 2026, evidence
+  # audit): the earlier 3.0% had no source and the desk's own IWSR evidence (docs/phase3) points lower; 2.0% = the terminal rate.
+  organic_growth: [0.000, 0.015, 0.025, 0.020, 0.020]
   savings:
     # c.$1bn total: $850m operating framework (c.40% in FY27, the rest in FY28) + $150m supply chain (c.25% in FY27).
     # Source: Diageo Capital Markets Day, 6 Aug 2026. Values are the CUMULATIVE run-rate reached in each year (USD m).
