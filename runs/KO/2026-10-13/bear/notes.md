@@ -1,5 +1,60 @@
 # Bear agent notes: The Coca-Cola Company (KO), run 2026-10-13
 
+## Final re-run 15 Oct 2026 (after the PM's bear responses)
+
+Every value per share is in **US dollars (USD)**; totals in **USD m**. Price USD 90.12 (Yahoo, 13 Oct 2026). HOLD line USD 81.11, BUY line USD 103.64.
+
+### What I did
+1. Read the PM's bear responses (`docs/audit-2026-10-15/bear-responses-2026-10-15.md`, PM decision 15 Oct 2026 "Accept all"), the updated `briefs/KO.yaml` (FY26 growth +5.0% in base and bear) and the final top section of `valuation/notes.md`. I did not edit the brief, `inputs.yaml` or `desk/`.
+2. Updated `run_bear.py` (header explains the changes) and re-ran it: `PYTHONPATH=. python runs/KO/2026-10-13/bear/run_bear.py`. Every value is a `desk.valuation_run` CLI run on a scratch copy with one change.
+   - Base check reproduces **USD 50.25** (SELL, WACC 7.55%) and the engine bear **USD 39.50**, as in `valuation.json`.
+   - Challenge 2's "1% growth FY27-30" run now reads FY26 from the brief (+5.0%) instead of a hard-coded +6.0%.
+   - The FY26 5.0% audit runs became the base, so they were replaced by reference runs at the old +6.0% (`ref_fy26_6p0_pre_decision` = USD 50.76; `ref_stacked_bear_319_fy26_6p0` = USD 38.25), which reproduce the morning figures. Their old scratch folders were removed.
+3. Saved the morning results in a scratch copy (outside the repo) for the comparison; `bear_runs.json` now holds the final results. Rewrote the top of `challenges.md` with the final values, the morning figures alongside, and the PM's 15 Oct responses K1-K4 recorded as decided.
+
+### Main final numbers (USD per share)
+| item | final 15 Oct | morning 15 Oct (superseded) |
+|---|---|---|
+| Base | 50.25 SELL (-44.2%) | 50.76 SELL |
+| Engine bear (33.2% margin) | 39.50 SELL (-56.2%) | 39.91 |
+| **Stacked bear (engine bear + PM margin 31.9%)** | **37.86 SELL (-58.0%)** | 38.25 |
+| 1. Margin 30.0% / 31.94% / 31.9% | -5.09 / -2.00 / -2.06 | -5.14 / -2.02 / -2.08 |
+| 2. Growth 1% FY27-30 / FY26 4.5% | -3.54 / -0.25 (vs 5.0%) | -3.58 / -0.76 (vs 6.0%) |
+| 2. FY26 5.0% instead of 6.0% | now the base (-0.51) | -0.51 (not decided) |
+| 3. IRS +USD 900m accrual / IRS win | -0.22 / +7.42 (USD 57.66) | -0.22 / +7.44 (USD 58.20) |
+| 4. Stakes Dec 2025 / Monster -30% / 21% tax | -1.22 / -1.24 / -1.25 | same |
+| 5. Beta 0.868 / 0.741 | -7.59 (WACC 8.56%) / -4.17 (WACC 8.06%) | -7.66 / -4.21 |
+| Audit: ERP 5.0% Kroll / 5.5% Fernandez | -3.71 (USD 46.54) / -5.76 (USD 44.49) | -3.74 / -5.81 |
+| Generous: beta 0.35 / IRS win / g 3% / RONIC 31.4% | +11.15 / +7.42 / +7.33 / +0.45 | +11.26 / +7.44 / +7.40 / +0.45 |
+| **Generous stack (all four together)** | **83.41, HOLD (-7.4%)** | 84.19, HOLD |
+| All generous except RONIC | 82.25 HOLD (-8.7%) | 83.01 |
+| All generous except beta / IRS / g 3% | 66.17 / 75.01 / 69.85, all SELL | 66.78 / 75.75 / 70.50 |
+
+FY26 FCF reconciliation: model FY26 unlevered FCF USD 11,208m (morning 11,358) vs guidance USD 12,400m; gap 1,192, unexplained residual +235 (morning +60). FCF yield (3.20%) and leverage (1.85x -> 2.72x) are unchanged.
+
+### PM responses of 15 Oct 2026 (decided: "PM decision 15 Oct 2026", Accept all)
+- **K1, FY26 growth:** accept 5.0%. Now in base and bear (-USD 0.51 on the base; stacked bear USD 38.25 -> USD 37.86).
+- **K2, ERP source:** keep 4.2%, once confirmed on Damodaran's site. SELL at every sourced ERP.
+- **K3, generous stack:** the old wording "even stacking every generous assumption stays SELL" is withdrawn; keep SELL. The stack is now USD 83.41 (HOLD), 7.4% below the price.
+- **K4, 13 Oct responses to challenges 1-5:** all kept (margin 31.9%, 1% growth as a stress test, IRS loss in the base, no tax on stake gains, beta 0.6091).
+
+### FLAGs (15 Oct 2026, final)
+1. **The generous stack reaches HOLD** (USD 83.41; USD 82.25 without RONIC), USD 2.30 above the HOLD line. All three of beta 0.35, an IRS win and 3% terminal growth are needed; none reaches BUY. It depends on the 4.2% ERP, which is still to be confirmed on Damodaran's site.
+2. **The memo's bear figure must be the stacked USD 37.86**, not the engine's USD 39.50 nor the morning USD 38.25.
+3. **ERP stress lines keep the 10-year 5.22% risk-free.** Kroll pairs 5.0% with the 20-year (5.60%); that two-change case was not run. All ERP figures are secondhand (erp-evidence.md).
+4. **FCF reconciliation residual rose to +235** (from +60) because the lower FY26 growth lowers the model's FY26 cash. It is still small (about 2% of guidance) and uses FY25 proxies.
+5. Unchanged: stake tax uses book as tax basis; Monster -30% and FY26 4.5% are stress tests; GLP-1 / sugar-tax quantification, industry growth forecast and the long-term algorithm are MISSING.
+6. `python -m pytest`: not run (pytest not installed and not installable here); no code in `desk/` was changed.
+
+### Confidence
+High on the mechanics: the engine reproduces the base (USD 50.25), the engine bear (USD 39.50), the Valuation agent's stacked-margin run (USD 37.86) and the morning figures at FY26 6.0% (USD 50.76, USD 38.25), to the cent. High that the SELL survives every single change. Medium on how close the generous stack sits to HOLD.
+
+Strongest reason not to buy: At USD 90.12 the market is pricing KO at a 5.11% WACC and a 3.2% free-cash-flow yield, about 2 points below the 5.22% Treasury before any IRS payment; the stacked bear case is USD 37.86, and even the regression beta, an IRS win and 3% perpetual growth together only reach USD 83.41, below the price and far below BUY.
+
+---
+
+# Morning re-run, 15 Oct 2026 (SUPERSEDED by the final re-run above; kept for the record)
+
 ## Re-run 15 Oct 2026 (evidence audit)
 
 Every value per share is in **US dollars (USD)**; totals in **USD m**. Price USD 90.12 (Yahoo, 13 Oct 2026). HOLD line USD 81.11, BUY line USD 103.64.

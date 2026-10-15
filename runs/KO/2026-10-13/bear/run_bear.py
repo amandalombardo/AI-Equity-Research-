@@ -4,7 +4,9 @@ Re-run 15 Oct 2026 (evidence audit, docs/audit-2026-10-15/KO.md): the brief now 
 scenarios.bear.bear_agent_margin 0.319; inputs.yaml has priced_at_valuation_date_musd (listed stakes not grown in the
 roll-forward). Scenarios that move the LISTED stakes now move priced_at_valuation_date_musd by the same amount, so the
 run-date market value is not grown again. Added: the stacked bear case at the PM's 31.9% margin and the audit stress lines
-(ERP 5.0% Kroll, 5.5% Fernandez, FY26 growth 5.0%). Results from 13 Oct are kept in bear_runs_2026-10-13_superseded.json.
+(ERP 5.0% Kroll, 5.5% Fernandez). Results from 13 Oct are kept in bear_runs_2026-10-13_superseded.json.
+Final re-run 15 Oct 2026 (PM bear responses, "Accept all"): FY26 growth +5.0% in base and bear (briefs/KO.yaml). The FY26
+5.0% stress lines became the base; they are replaced by reference runs at the old 6.0%.
 
 Never edits briefs/KO.yaml or inputs.yaml. Each scenario writes a scratch copy of both files to bear/scratch/<name>/
 and runs the desk engine on it exactly as the Valuation agent did:
@@ -86,7 +88,9 @@ res["c1_margin_fy24_ex_ccba"] = run("c1_margin_fy24_ex_ccba", raw=set_input(RAW0
 
 # ---------- Challenge 2: currency drag (Valuation / PM growth path) ----------
 b = copy.deepcopy(BRIEF0)
-b["dcf"]["organic_growth"] = [0.060, 0.010, 0.010, 0.010, 0.010]  # full 2020-25 average drag of 3.2 pts (ko-growth-evidence.md)
+# FY26 as the base (read from the brief: +5.0% since the PM decision of 15 Oct 2026), then 1% a year = the full 2020-25
+# average currency drag of 3.2 pts (ko-growth-evidence.md)
+b["dcf"]["organic_growth"] = [BRIEF0["dcf"]["organic_growth"][0], 0.010, 0.010, 0.010, 0.010]
 res["c2_growth_1pct_fy27_30"] = run("c2_growth_1pct", brief=b)
 b = copy.deepcopy(BRIEF0)
 b["dcf"]["organic_growth"] = [0.045, 0.030, 0.030, 0.030, 0.030]  # FY26 if the currency tailwind (+1%) and the 0.5pt beat vs original 4-5% fade
@@ -201,20 +205,23 @@ res["generous_without_ronic"] = run("gen_wo_ronic", brief=gb, raw=gen_raw)
 # beta 0.6091 kept, so neither is stacked. We read the "bear" block of valuation.json.
 res["stacked_bear_pm_319"] = run("stacked_bear_319", raw=set_input(RAW0, "base_margin", BEAR_M,
                                  "stacked bear: PM bear margin 31.9% (briefs/KO.yaml scenarios.bear.bear_agent_margin)"))
-# information only: the stacked bear plus the audit's FY26 5.0% (non-CCBA disposals), not a PM decision
+# Reference only (PM decision 15 Oct 2026 adopted FY26 +5.0% in base and bear): the stacked bear at the OLD FY26 +6.0%,
+# to show the step from the morning re-run. Not a scenario the desk uses.
 b = copy.deepcopy(BRIEF0)
-b["scenarios"]["bear"]["organic_growth"] = [0.050] + list(BRIEF0["scenarios"]["bear"]["organic_growth"][1:])
-res["stacked_bear_319_fy26_5p0"] = run("stacked_bear_319_fy26_5", brief=b, raw=set_input(RAW0, "base_margin", BEAR_M,
-                                       "stacked bear 31.9% + FY26 5.0%"))
+b["scenarios"]["bear"]["organic_growth"] = [0.060] + list(BRIEF0["scenarios"]["bear"]["organic_growth"][1:])
+res["ref_stacked_bear_319_fy26_6p0_pre_decision"] = run("ref_stacked_bear_319_fy26_6p0", brief=b, raw=set_input(RAW0, "base_margin", BEAR_M,
+                                       "reference: stacked bear 31.9% at the pre-decision FY26 6.0%"))
 
 # ---------- Audit stress lines (evidence audit 15 Oct 2026), one change each ----------
 for label, erp in (("kroll_5p0", 0.050), ("fernandez_5p5", 0.055)):
     b = copy.deepcopy(BRIEF0)
     b["dcf"]["wacc"]["equity_risk_premium"] = erp   # Kroll US 5.0% / Fernandez 2025 survey US 5.5% (erp-evidence.md 2b, 2c)
     res[f"audit_erp_{label}"] = run(f"audit_erp_{label}", brief=b)
+# Audit finding 3 (FY26 +5.0%) was ACCEPTED by the PM on 15 Oct 2026 and is now the base. Reference only: the base at the
+# OLD FY26 +6.0%, i.e. the step from the morning re-run (USD 50.76) to the final base.
 b = copy.deepcopy(BRIEF0)
-b["dcf"]["organic_growth"] = [0.050, 0.030, 0.030, 0.030, 0.030]  # audit finding 3: c.1 point of the 2-3% disposal headwind is not CCBA
-res["audit_fy26_5p0"] = run("audit_fy26_5p0", brief=b)
+b["dcf"]["organic_growth"] = [0.060] + list(BRIEF0["dcf"]["organic_growth"][1:])
+res["ref_fy26_6p0_pre_decision"] = run("ref_fy26_6p0_pre_decision", brief=b)
 
 # market-implied yields at $90.12 (plain ratios, for the memo)
 mcap = v("shares_outstanding_m") * v("share_price_usd")

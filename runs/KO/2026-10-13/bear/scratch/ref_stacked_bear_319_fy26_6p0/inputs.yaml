@@ -5,7 +5,7 @@ base_sales:
     this environment, PM asked to verify. FLAG: CCBA figure is calendar 2024. PM decision 2026-10-13'
 base_margin:
   value: 0.319
-  source: 'BEAR SCRATCH SCENARIO ONLY, not the base: stacked bear 31.9% + FY26 5.0%'
+  source: 'BEAR SCRATCH SCENARIO ONLY, not the base: reference: stacked bear 31.9% at the pre-decision FY26 6.0%'
 tax_rate:
   value: 0.237
   source: 'PM decision (IRS case assumed lost): 19.9% underlying effective tax rate, FY26 guidance (KO Q2 2026 results 8-K ex.99.1 (accession 0001628280-26-049922, https://www.sec.gov/Archives/edgar/data/21344/000162828026049922/a2026q2earningsreleaseex-9.htm),
