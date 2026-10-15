@@ -1,6 +1,32 @@
-# Bear agent notes: Diageo (DGE), run 2026-10-12 (re-run 15 Oct 2026 after the evidence audit)
+# Bear agent notes: Diageo (DGE), run 2026-10-12 (final re-run 15 Oct 2026 after the PM's bear responses)
 
-## Re-run 15 Oct 2026 (evidence audit)
+## Final re-run 15 Oct 2026 (after the PM's bear-response decisions)
+**What I did.** Re-ran `run_challenges.py` after the PM accepted the bear responses (15 Oct 2026, "Accept all", `docs/audit-2026-10-15/bear-responses-2026-10-15.md`): diluted shares 2,231m and debt weight 0.29311 (`inputs.yaml`), FY30-31 growth 2.0% (`briefs/DGE.yaml`). The base reproduces `valuation/valuation.json` exactly (1,772.1p GBp) and the engine bear scenario matches (1,293.5p GBp). Script change: only the run label and docstring. Recorded the PM's decisions D1-D5 in `challenges.md` ("PM decision 15 Oct 2026"). I did not edit the brief, `inputs.yaml` or `desk/`. Nothing committed.
+
+| | Morning re-run (15 Oct) | **Final (15 Oct)** |
+|---|---|---|
+| Base / upside vs 1,673p / rating | 1,808.8p / +8.1% / HOLD | **1,772.1p / +5.9% / HOLD** |
+| Headroom to SELL (1,505.7p) / gap to BUY (1,923.95p) | 303p / 115p | **266p / 152p** |
+| Engine bear scenario | 1,298.3p SELL | **1,293.5p SELL (-22.7%)** |
+| Single changes that flip to SELL | 0 | **1: ERP 5.5% (1,494.9p)** |
+| ERP 5.0% Kroll / Kroll with 20-year / 5.5% Fernandez | 1,625.5p / 1,545.7p / 1,525.7p | **1,592.6p / 1,514.4p / 1,494.9p SELL** |
+| SELL if ERP above / beta above | 5.61% / 1.282 | **5.44% / 1.244** |
+| BUY if ERP below / beta below | 3.76% / 0.860 | **3.62% / 0.828** |
+| Beta 0.72 (bull) | 2,107.2p BUY | **2,064.5p BUY (+23.4%)** |
+
+### FLAGs (final)
+1. **PM decision D1 (keep ERP 4.2%) was made on the basis that the rating is HOLD at every sourced ERP. After D3 and D4 that is no longer true:** the Fernandez 5.5% gives 1,494.9p (GBp), SELL, and Kroll's 5.0% with its 20-year pairing is only 9p above SELL (1,514.4p). I have recorded the decision as made; the PM may want to revisit the wording that supported it.
+2. The 4.2% ERP is still seen only in search summaries (unconfirmed at Damodaran's site).
+3. D2: the disposal proceeds stay gross, tax MISSING; the USD 300m in A2 is illustrative only.
+4. Terminal value 76.3% of EV (Valuation FLAG).
+
+### Missing (final)
+Unchanged: Moet Hennessy fair value, GLP-1 / moderation volume effect, USL net cash, the split of the USD 1,328m other minorities, tax on the disposals, UK or global implied ERP.
+
+### Confidence (final)
+High on the impacts (engine output; base, bear and flip points match the Valuation agent's files). Medium-low on the ERP evidence (all secondhand). `python -m pytest` could not run (pytest not installed, no package index).
+
+## Re-run 15 Oct 2026 morning (evidence audit) (SUPERSEDED by the final re-run above)
 **What I did.** Re-ran `run_challenges.py` against the updated brief (ERP 4.2%) and `inputs.yaml` (2,224m shares, debt weight 0.29376), using only `desk.valuation_run.build`. The base reproduces `valuation/valuation.json` exactly (1,808.8p GBp) and the engine bear scenario matches (1,298.3p GBp). Script changes: (a) the flip solver now returns "none" when a rating line is not crossed in the tested range (before, it would have returned a meaningless end point, because flow-through and RONIC no longer flip); (b) added BUY-flip solves (beta, ERP) and SELL-flip solves for ERP, terminal growth and disposal tax; (c) added audit lines A1-A5 and stacked cases S1-S5; (d) each result now records its changes. I did not edit `briefs/DGE.yaml`, `inputs.yaml` or `desk/`. Nothing committed.
 
 ### Old vs new (pence per ordinary share, GBp)

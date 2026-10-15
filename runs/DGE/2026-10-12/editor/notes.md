@@ -1,6 +1,27 @@
-# Editor agent notes: Diageo (DGE), run 2026-10-12 (re-run 15 Oct 2026 after the evidence audit)
+# Editor agent notes: Diageo (DGE), run 2026-10-12 (final re-run 15 Oct 2026 after the PM's bear responses)
 
-## Re-run 15 Oct 2026 (evidence audit)
+## Final re-run 15 Oct 2026 (after the PM's bear-response decisions)
+**What changed.** Rewrote memo.md after the PM accepted the bear responses (15 Oct 2026, "Accept all", docs/audit-2026-10-15/bear-responses-2026-10-15.md): diluted shares 2,231m (debt weight 0.29311) and FY30-31 growth 2.0% (was 3.0%). New numbers come only from the final outputs: valuation/valuation.json, sanity_checks.json, steps_2026-10-15.json, the top section of valuation/notes.md, bear/challenges.json, bear/challenges.md and bear/notes.md.
+- Header: **HOLD | Fair value 1,772.1p (GBp) | Share price 1,673p (12 Oct 2026) | Upside +5.9% | Bear case 1,293.5p**, with "Desk rating: HOLD (PM confirmed; re-run 15 Oct 2026 after evidence audit)". SELL line 1,506p (266p below), BUY line 1,924p (152p above). Step line from 1,627.3p: ERP +183.5p, shares 2,224m -2.0p, 2,231m diluted -6.8p, growth -29.8p (valuation step table).
+- Valuation: growth path 0.0/1.5/2.5/2.0/2.0%; WACC 7.92%, debt weight 29.311%; EV USD 65,441m, minorities USD 1,679m, equity USD 51,032m (30 June) / 52,323m (12 Oct), USD 23.45 per share, 2,231m diluted shares; terminal value 76.3% of EV; exit 10.0x vs c.9.78x; market-implied WACC 8.20% and ERP about 4.62%; DCF 23.3% below comps. Disposal proceeds labelled "gross, tax MISSING", 3.5p per USD 100m (PM decision D2). Sensitivity grid rebuilt from valuation.json (whole pence). Football chart rebuilt (unit GBp): WACC 1,603-1,973p, terminal growth 1,701-1,955p, ERP 5.5% to 5.0% 1,494.9-1,592.6p, single changes 1,567.1-2,064.5p, bear 1,293.5p, comps 1,334-3,163p (unchanged).
+- Bear section: every "PM to respond" replaced with the PM's 15 Oct 2026 decisions: challenge 5 ERP (D1: keep 4.2% once confirmed at source; show the Kroll value), challenge 7 (D2 disclosure only; D3 diluted shares accepted), challenge 3 (D4 growth 2.0% accepted); the 13 Oct responses to challenges 1-6 confirmed (D5). Values updated to the final bear run. Removed the book-minorities what-if (1,758.1p) from the body to keep the memo at two pages; it is in valuation/notes.md.
+
+**Checks run.** `python -m desk.memo_check runs/DGE/2026-10-12`: "All memo numbers trace to agent outputs." (pass). PDF rebuilt with `python -m desk.memo_pdf runs/DGE/2026-10-12/editor/memo.md`: 3 pages = 2 body pages + Sources page (page images checked; the sensitivity table is not split). Body is about 1,390 words (above the ~900 target, because of the audit disclosures). pytest could not run (not installed, no package index).
+
+**FLAGs.**
+1. **ERP: SELL now starts at 5.44%, so the Fernandez 5.5% gives a SELL (1,494.9p).** The PM's D1 decision (keep 4.2%) was recommended on the basis that the rating is HOLD at every sourced ERP; after D3-D4 that is true only for 4.2% and 5.0%. The memo states this plainly in challenge 5. The PM may want to revisit the D1 wording.
+2. The 4.2% ERP is still seen only in search summaries; if Damodaran's page does not confirm it, the memo must be re-run before it is published.
+3. Terminal value is 76.3% of EV (flag); the exit multiple (10.0x) is above the market's c.9.78x.
+4. memo_check matches numbers anywhere in the run folder; I checked the key figures by hand against valuation.json, sanity_checks.json, steps_2026-10-15.json and bear/challenges.json.
+5. The price (1,673p) is cum-dividend; any update after 15 Oct must use an ex-dividend price.
+
+**Missing.** Peer EV/EBITDA and FCF yield, Constellation Brands EPS, calendarised peers, Moet Hennessy fair value, USL net cash, split of the USD 1,328m other minorities, tax on the disposals, UK or global implied ERP, Damodaran page not reached.
+
+**Confidence.** High that the memo matches the agent outputs. Medium-low on the rating: HOLD at ERP 4.2% and 5.0%, SELL at 5.5%, and 4.2% is unconfirmed at source.
+
+**History:** ... 1,627.3p HOLD (mid-year, 13 Oct) -> 1,808.8p HOLD (ERP 4.2%, 2,224m shares, 15 Oct morning) -> **1,772.1p HOLD (2,231m diluted shares, FY30-31 growth 2.0%, 15 Oct 2026 final)**.
+
+## Re-run 15 Oct 2026 morning (evidence audit) (SUPERSEDED by the final re-run above)
 **What changed.** Rewrote memo.md after the PM's decisions on the evidence audit (docs/audit-2026-10-15/DGE.md, summary.md): ERP 5.0% (no source) -> 4.2% (Damodaran implied ERP, 1 Oct 2026) and shares 2,222m -> 2,224m. New numbers come only from the re-run outputs: valuation/valuation.json, sanity_checks.json, comps.json, the top section of valuation/notes.md, bear/challenges.md, bear/notes.md and data/phase4_evidence.json.
 - Header: **HOLD | Fair value 1,808.8p (GBp) | Share price 1,673p (12 Oct 2026) | Upside +8.1% | Bear case 1,298.3p**, with "Desk rating: HOLD (PM confirmed; re-run 15 Oct 2026 after evidence audit)". Was 1,627.3p, -2.7%. SELL line 1,506p (303p below), BUY line 1,924p (115p above).
 - Valuation: WACC 7.92% (cost of equity 9.25%), EV USD 66,356m, minorities USD 1,703m, equity USD 51,923m (30 June) / 53,236m (12 Oct), USD 23.94 per share; sensitivity grid rebuilt from valuation.json (WACC 6.92-8.92%, whole pence). Football chart rebuilt (unit GBp): WACC range 1,636-2,014p, terminal growth 1,736-1,996p, new bar for ERP 5.5% to 5.0% (1,525.7-1,625.5p), single changes 1,599-2,107p, bear 1,298.3p, comps 1,334-3,163p.

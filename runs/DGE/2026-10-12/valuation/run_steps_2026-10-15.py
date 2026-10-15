@@ -60,6 +60,11 @@ res = {"steps": out, "final_pence": out[-1]["pence"],
        "buy_if_erp_below": solve(lambda e: erp(e) - buy_line, 0.02, 0.042),
        "market_implied_erp": solve(lambda e: erp(e) - price, 0.03, 0.07),   # ERP at which the DCF value equals the price
        "value_at_erp_5pct_pence": erp(0.05), "value_at_erp_5_5pct_pence": erp(0.055),
-       "sell_line_pence": sell_line, "buy_line_pence": buy_line}
+       "sell_line_pence": sell_line, "buy_line_pence": buy_line,
+       # total change since 13 Oct, and since the morning re-run of 15 Oct (after step 2), pence per share
+       "total_change_since_13_oct_pence": out[-1]["pence"] - out[0]["pence"],
+       "change_since_morning_rerun_pence": out[-1]["pence"] - out[2]["pence"],
+       # upside vs price at the alternative ERPs (DCF value / price - 1)
+       "upside_at_erp_5pct": erp(0.05) / price - 1, "upside_at_erp_5_5pct": erp(0.055) / price - 1}
 (HERE / "steps_2026-10-15.json").write_text(json.dumps(res, indent=1))
 print(json.dumps(res, indent=1))

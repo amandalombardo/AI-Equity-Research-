@@ -43,5 +43,9 @@
  "value_at_erp_5pct_pence": 1592.5978309159505,
  "value_at_erp_5_5pct_pence": 1494.87781080783,
  "sell_line_pence": 1505.7,
- "buy_line_pence": 1923.9499999999998
+ "buy_line_pence": 1923.9499999999998,
+ "total_change_since_13_oct_pence": 144.88700354521643,
+ "change_since_morning_rerun_pence": -36.62420254599533,
+ "upside_at_erp_5pct": -0.04805867847223522,
+ "upside_at_erp_5_5pct": -0.1064687323324387
 }

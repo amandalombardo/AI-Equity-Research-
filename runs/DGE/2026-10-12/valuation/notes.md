@@ -1,6 +1,80 @@
-# Valuation agent notes: Diageo (DGE), run 2026-10-12 (re-run 15 Oct 2026 after the evidence audit)
+# Valuation agent notes: Diageo (DGE), run 2026-10-12 (final re-run 15 Oct 2026 after the evidence audit and the PM's bear responses)
 
-## Re-run 15 Oct 2026 (evidence audit)
+## Final re-run 15 Oct 2026 (after the PM's bear-response decisions)
+**What changed and why.** The PM accepted all the recommended bear responses on 15 Oct 2026 (`docs/audit-2026-10-15/bear-responses-2026-10-15.md`, PM decision "Accept all"). Two of them change the base case. Both were already in the brief and `inputs.yaml` before this run; I did not edit either.
+1. **Diluted shares 2,224m -> 2,231m** (D3): 2,224m basic + 7m dilutive potential shares (20-F FY26 EPS note). The **debt weight** moves from 0.29376 to **0.29311** (net debt USD 20,482m / (USD 20,482m + market cap USD 49,395m at 2,231m shares x 1,673p x 1.3234 USD/GBP)). Source: `inputs.yaml`, applied by `apply_audit_fixes_2026-10-15.py`.
+2. **Organic growth FY30-31 3.0% -> 2.0%** (D4, `briefs/DGE.yaml` `dcf.organic_growth` = 0.0%, 1.5%, 2.5%, 2.0%, 2.0%): the 3.0% had no source; 2.0% is the terminal rate.
+Nothing else changed: ERP 4.2%, beta 0.96, risk-free 5.22%, price 1,673p (GBp, 12 Oct 2026 close, cum-dividend), FX 1.3234 USD/GBP.
+
+**What I re-ran.** `python -m desk.valuation_run` (`valuation.json`, `dcf.xlsx`), `run_bridge.py` (`bridge.json`), `run_sanity.py` (`sanity_checks.json`) and a new step script, `run_steps_2026-10-15.py` (`steps_2026-10-15.json`: the step table and ERP flip points, engine runs only). Comps not re-run: no comps input changed.
+
+**Excel check.** I recalculated the live `dcf.xlsx` in LibreOffice and compared all 18 checked cells (14 valuation lines + 4 final-year forecast lines) with Python, as `tests/test_valuation_run.py` does. Largest relative difference 5e-10. Value per share **1,772.14p (GBp)** in both. `python -m pytest` could not run: pytest is not installed and cannot be installed here (no package index).
+
+### Final base case (base and engine bear)
+| | 15 Oct morning re-run | **Final (15 Oct)** |
+|---|---|---|
+| Cost of equity / WACC | 9.25% / 7.92% | 9.25% / **7.92%** (debt weight 29.311%) |
+| Enterprise value at 30 June 2026 (USD m) | 66,356 | **65,441** |
+| Minorities deducted (USD m, 2.566% x EV) | 1,703 | 1,679 |
+| Equity value at 30 June 2026 / rolled to 12 Oct 2026 (USD m) | 51,923 / 53,236 | 51,032 / **52,323** |
+| Shares (m, ordinary, NOT ADRs) | 2,224 basic | **2,231 diluted** |
+| **Value per share** | USD 23.94 / 1,808.8p | **USD 23.45 / 1,772.1p (GBp)** |
+| Upside vs 1,673p (GBp) | +8.1% | **+5.9%** |
+| **Rating (engine)** | HOLD | **HOLD** |
+| Bear case (WACC +1 pt, no growth, 25% flow-through) | 1,298.3p, SELL | **1,293.5p (GBp), -22.7%, SELL** |
+| Terminal value share of EV | 76.7% | **76.3%** (FLAG, above 75%) |
+| Implied exit multiple (EV / FY31 EBITDA) | 10.0x | **10.0x** (vs 9.78x at market today) |
+| Market-implied WACC (g = 2%) / market-implied ERP | 8.30% / 4.78% | **8.20% / 4.62%** |
+| DCF vs comps (median P/E value 2,311p GBp) | -21.7% | **-23.3%** |
+
+### Step table from the 13 Oct value (`steps_2026-10-15.json`, one change at a time with `desk.valuation_run.build`, GBp)
+| Step | Value | Change | WACC | Rating |
+|---|---|---|---|---|
+| 13 Oct value (ERP 5.0%, 2,222m shares, debt weight 0.29395, FY30-31 growth 3.0%) | 1,627.3p | | 8.46% | HOLD |
+| 1. ERP 5.0% -> 4.2% (PM decision 15 Oct 2026) | 1,810.7p | **+183.5p** | 7.92% | HOLD |
+| 2. Shares 2,222m -> 2,224m basic, debt weight 0.29376 (audit finding 8) | 1,808.8p | -2.0p | 7.92% | HOLD |
+| 3. Shares 2,224m -> 2,231m diluted, debt weight 0.29311 (PM decision 15 Oct, D3) | 1,802.0p | **-6.8p** | 7.92% | HOLD |
+| 4. FY30-31 growth 3.0% -> 2.0% (PM decision 15 Oct, D4) | **1,772.1p** | **-29.8p** | 7.92% | **HOLD** |
+| Total since 13 Oct / since the morning re-run | | +144.9p / -36.6p | | |
+The old 1,627.26p and the morning 1,808.77p both reproduce exactly. (Step 3 is -6.8p, not the -5.7p in the bear responses, because the debt weight now moves with the share count; step 4 is -29.8p, not -30.0p, because it is measured after step 3.)
+
+**Sensitivity grid (pence, GBp; WACC rows x terminal growth 1.5 / 2.0 / 2.5 / 3.0%)**: WACC 6.92%: 2,093 / 2,214 / 2,362 / 2,545; 7.42%: 1,881 / 1,973 / 2,083 / 2,217; **7.92%: 1,701 / 1,772 / 1,856 / 1,955**; 8.42%: 1,547 / 1,603 / 1,667 / 1,742; 8.92%: 1,415 / 1,458 / 1,507 / 1,564.
+
+### Rating breakevens (engine, one input at a time; SELL line 1,505.7p, BUY line 1,923.95p, both GBp)
+| Input | We use | Morning SELL flip | **Final SELL flip** | Morning BUY flip | **Final BUY flip** |
+|---|---|---|---|---|---|
+| Distance from the line (GBp) | 1,772.1p | 303p above SELL | **266p above SELL** | 115p below BUY | **152p below BUY** |
+| Beta | 0.96 | above 1.282 | **above 1.244** | below 0.860 | **below 0.828** |
+| WACC | 7.92% | above 8.85% | **above 8.75%** | below 7.63% | **below 7.53%** |
+| ERP | 4.2% | above 5.61% | **above 5.44%** | below 3.76% | **below 3.62%** |
+| Savings flow-through | 46% | none | **none (0% still HOLD)** | | |
+| Terminal RONIC | 13.4% | none down to 7% | **below 7.06% (capex 9.43% of sales), i.e. below the WACC** | | |
+| Minorities' share of operating profit | 2.566% | above 15.7% | **above 14.3%** | | |
+Other what-ifs (GBp): ERP 5.0% (Kroll) = 1,592.6p (HOLD, -4.8%); **ERP 5.5% (Fernandez) = 1,494.9p (SELL, -10.6%)**. Book-method minorities = 1,758.1p (HOLD).
+
+### Sanity checks (`sanity_checks.json`)
+- **FLAG: terminal value is 76.3% of EV**, above the 75% flag.
+- **WACC 7.92% is inside 6-9%.** No flag.
+- **Implied exit multiple 10.0x FY31 EBITDA**, slightly above the c.9.78x the market pays for Diageo today (approximate; includes EABL). Peer EV/EBITDA still unavailable.
+- **DCF vs comps:** DCF 1,772.1p is **23.3% below** the median P/E value (2,311p, GBp). Comps are weak (P/E only).
+- **Market-implied WACC 8.20%** vs our 7.92%; market-implied ERP 4.62% vs our 4.2%.
+
+### FLAGs for the PM (final; I have not changed any assumption)
+1. **The ERP response D1 rested on "HOLD at every sourced ERP". That is no longer true.** With the two accepted changes, the Fernandez 5.5% survey ERP gives **1,494.9p (GBp), SELL** (-10.6%), and SELL now starts at an ERP of 5.44% (was 5.61%). Kroll's 5.0% gives 1,592.6p (HOLD, -4.8%). The rating is HOLD at 4.2% and 5.0%, SELL at 5.5%. The 4.2% is still unconfirmed at source (seen in search summaries only).
+2. **Terminal value 76.3% of EV** (above 75%).
+3. **Implied ERP vs bottom-up beta and a FTSE 100 benchmark:** unchanged judgement point (see morning FLAG 2 below).
+4. **`run_bridge.py` is not a history, and its step 1 now measures 0.0p.** It replays the Phase 3 steps with today's inputs; its "Previous run" row is 1,698.5p and its last row 1,772.1p (matches the base). Its "terminal-year fix" step shows no change, so the old-terminal-year patch in that script no longer takes effect. Use the step table above and the history line below. I did not edit the script.
+5. **Disposal proceeds are gross, tax MISSING** (D2, PM: disclosure only). USD 3,318.3m is before tax and costs; nothing is deducted until Diageo discloses the tax; each USD 100m of tax costs about 3.5p (bear `challenges.json` A2').
+6. **Price date:** 1,673p is the 12 Oct close, cum-dividend (30c final went ex on 15 Oct).
+7. **Brief comment:** the FY30-31 growth comment in `briefs/DGE.yaml` is up to date. The `terminal_ronic` comment points to these notes for the flip point: it is now 7.06%, below the WACC.
+
+**History of the base value (GBp):** 2,475p (BUY) -> 2,141p (BUY) -> 1,448p (SELL) -> 1,524p (HOLD) -> 1,545p (HOLD) -> 1,627p (mid-year, HOLD) -> 1,808.8p (ERP 4.2% and share count, 15 Oct morning, HOLD) -> **1,772.1p (diluted shares and FY30-31 growth 2.0%, 15 Oct 2026 final, HOLD)**.
+
+**What's missing (unchanged):** peer EV/EBITDA and FCF yield, Constellation Brands EPS, calendarised peer figures, tax on the disposals.
+
+**Confidence:** **Medium** on the mechanics (engine and Excel agree; old and morning values reproduce exactly). **Medium-low** on the rating: HOLD at ERP 4.2% and 5.0% but SELL at 5.5%, and 4.2% is not yet confirmed at source. **Low** on the comps.
+
+## Re-run 15 Oct 2026 morning (evidence audit) (superseded by the final re-run above: 2,224m basic shares, FY30-31 growth 3.0%)
 **What changed and why.** Two PM decisions after the evidence audit of 15 Oct 2026 (`docs/audit-2026-10-15/DGE.md`, `docs/audit-2026-10-15/summary.md`). I did not change the brief or `inputs.yaml`. Both were already updated before this run.
 1. **Equity risk premium (ERP) 5.0% -> 4.2%** (`briefs/DGE.yaml`, `dcf.wacc.equity_risk_premium`). Source: Damodaran's implied ERP for the S&P 500, 4.20% at 1 Oct 2026 (4.23% at 1 Jan 2026). Evidence: `docs/audit-2026-10-15/erp-evidence.md`. The old 5.0% had no source. This is the premium the market is pricing over today's 10-year yield, so it matches the spot US 10-year risk-free rate (5.22%) we use.
 2. **Share count 2,222m -> 2,224m ordinary shares** (the employee-trust shares had been deducted twice; 20-F FY26 p.188 and XBRL: 2,432m issued - 208m own shares; matches the 2,224m weighted average). The **debt weight** therefore moves from 0.29395 to **0.29376** (net debt USD 20,482m / (USD 20,482m + market cap USD 49,240m)). Applied by `runs/DGE/2026-10-12/apply_audit_fixes_2026-10-15.py`.
