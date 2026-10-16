@@ -17,7 +17,7 @@
       "2025": 0.896334525837189,
       "Average (2020-24)": 1.07291420009239
     },
-    "source": "Damodaran, Betas by Sector (Global), betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', row 'Information Services' (PM upload, /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls, sha256 10c33f46df2a...)"
+    "source": "Damodaran, Betas by Sector (Global), betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', row 'Information Services' (PM upload, docs/data/betaGlobal.xls, same file as https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaGlobal.xls, sha256 10c33f46df2a...)"
   },
   "other_industries_reference": {
     "Publishing & Newspapers": {

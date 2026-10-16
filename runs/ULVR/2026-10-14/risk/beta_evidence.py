@@ -22,7 +22,7 @@ from desk import dcf
 HERE = Path(__file__).resolve().parent
 RUN = HERE.parent
 REPO = RUN.parents[2]
-DAMODARAN_XLS = "/mnt/project-files/equity-desk/phase5/data/betaGlobal.xls"  # uploaded by the PM 14 Oct 2026
+DAMODARAN_XLS = "docs/data/betaGlobal.xls"  # uploaded by the PM 14 Oct 2026; same file as https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaGlobal.xls
 SHA256_XLS = "10c33f46df2a35fa7e4e8c4386c01f9da636fc2ab3e1e98307a52a947c9ab52b"
 PM_VALUE = 0.774144424006051  # brief / PM message: Household Products, unlevered beta corrected for cash
 

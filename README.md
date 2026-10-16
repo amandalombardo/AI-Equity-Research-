@@ -25,7 +25,7 @@ Student portfolio project, not investment advice.
 | Unilever PLC (LSE: ULVR) | HOLD (borderline); **re-rated SELL by the PM on 15 Oct 2026** after the price rose to 4,925.5p (-13.5%) | 4,258.5p | 4,710.5p (13 Oct 2026) | -9.6% | [memo](runs/ULVR/2026-10-14/editor/memo.pdf) |
 | RELX PLC (LSE: REL.L) | SELL | 1,821p | 2,771p (13 Oct 2026) | -34.3% | [memo](runs/RELX/2026-10-14/editor/memo.pdf) |
 
-Desk rule: BUY at +15% or more upside, SELL at -10% or worse, HOLD in between. Pence (GBp) for London listings, US dollars for Coca-Cola. Every number in each memo traces to a filing, a data series or a file in this repository; the four inputs seen only second-hand are disclosed in the memos.
+Desk rule: BUY at +15% or more upside, SELL at -10% or worse, HOLD in between. Pence (GBp) for London listings, US dollars for Coca-Cola. Every number in each memo traces to a filing, a data series or a file in this repository; the three inputs seen only second-hand (the UK gilt yield, the German Bund yield and EABL's sales) are disclosed in the memos.
 
 ## Paper portfolio (from 15 October 2026)
 
