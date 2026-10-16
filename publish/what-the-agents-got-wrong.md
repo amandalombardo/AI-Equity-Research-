@@ -2,7 +2,7 @@
 
 **AI Equity Research Desk · write-up of the mistakes log, 12 to 15 October 2026 · Amanda (portfolio manager)**
 
-Six AI agents valued four companies (Diageo, Coca-Cola, Unilever and RELX) in four days. Every error we found was written down as it happened, in a mistakes log of 33 rows (docs/mistakes-log.md, with the row numbers used below). This note is what that log teaches. Per-share values are in pence (GBp) for the three London-listed companies and in US dollars (USD) for Coca-Cola.
+Six AI agents valued four companies (Diageo, Coca-Cola, Unilever and RELX) in four days. Every error we found was written down as it happened, in a mistakes log of 34 rows (docs/mistakes-log.md, with the row numbers used below). This note is what that log teaches. Per-share values are in pence (GBp) for the three London-listed companies and in US dollars (USD) for Coca-Cola.
 
 ## The short version
 
@@ -16,7 +16,7 @@ Six AI agents valued four companies (Diageo, Coca-Cola, Unilever and RELX) in fo
 | Kind of mistake | Rows | Example |
 |---|---|---|
 | A plausible number with no source | 1, 27, 33 | The 5.0% equity risk premium was copied into all four companies as a "portfolio rule"; each 0.5 point moved Unilever by about 220p |
-| Like-for-like: comparing different sets of businesses or assets | 14, 16, 23, 26, 32 | Unilever's FY26 growth (+0.5%) included Foods, which the model had already removed; the businesses actually valued grew +2.0% |
+| Like-for-like: comparing different sets of businesses or assets | 14, 16, 23, 26, 32, 34 | Unilever's FY26 growth (+0.5%) included Foods, which the model had already removed; the businesses actually valued grew +2.0% |
 | Dates: items measured at different points in time | 5, 12, 15, 17, 22, 24 | Unilever's share count was after a EUR 1,507m buyback but the cash was never deducted: about 59p too high |
 | Labels and units: a number that meant something else | 3, 4, 6, 18, 25, 29 | Diageo's "Revenue" tag includes excise duty (about USD 28bn) rather than net sales (about USD 20bn) |
 | A correct formula giving a meaningless answer | 7, 9, 20 | Unilever's euro cash flows were first discounted with a UK gilt yield (4.99%) rather than the German Bund (3.18%): about 1.8 points of WACC |
@@ -32,11 +32,11 @@ Some rows fit two kinds; each is counted once, under its main cause.
 |---|---|---|
 | The builder's own reviews and tie-outs to filings (Claude Code) | 3, 4, 5, 6, 8, 9, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21 | 16 |
 | Another agent on the desk, or the agent itself | 7, 18, 22, 23, 24, 25, 26, 31 | 8 |
-| The evidence audit and source check the PM ordered on 15 Oct | 27, 28, 29, 30, 32, 33 | 6 |
+| The evidence audit and source check the PM ordered on 15 Oct, and the check at source on 16 Oct | 27, 28, 29, 30, 32, 33, 34 | 7 |
 | The PM refusing an unsupported assumption | 1 | 1 |
 | An automated test | 2 | 1 |
 | Codex, the independent maths auditor | 10 | 1 |
-| **Total** | | **33** |
+| **Total** | | **34** |
 
 Two things stand out. First, the agents checked each other: the Bear case agent rejected a beta of 0.37 with an R-squared of 0.04 (row 7), the Data agent noticed that net debt and the share count were at different dates (row 22), and the Data agent stopped the RELX run rather than guess when its download failed (row 25). Second, the independent maths audit was useful but not enough. Codex found the retired beta script (row 10) and independently confirmed the terminal-value error (row 9), but it missed the minority-interest double count (row 14) and the missing restructuring cash (row 11). Code that computes the right formula can still be fed the wrong number. Only checking each input against its source finds that.
 
@@ -78,7 +78,7 @@ Diageo's very first run said BUY at 2,475p; the fixes in rows 7, 9, 14 and 15 to
 
 ## What is still not verified at source
 
-Four inputs could only be seen second-hand, because the sites that publish them block automated access from the desk. They are disclosed in each memo: the 4.2% equity risk premium (seen in search summaries of Damodaran's page), the UK gilt yield of 5.45% and the German Bund yield of 3.45% (aggregator websites), and EABL's sales (press reports). Everything else in the four memos traces to a filing, a data file or a database series.
+Three inputs could only be seen second-hand, because the sites that publish them block automated access from the desk. They are disclosed in each memo: the UK gilt yield of 5.45% and the German Bund yield of 3.45% (aggregator websites), and EABL's sales (press reports). Everything else in the four memos traces to a filing, a data file or a database series. The 4.2% equity risk premium was also second-hand at first; on 16 Oct 2026, once the PM allowed the desk to reach Damodaran's site, it was confirmed at source (4.20% on 1 Oct 2026).
 
 ## What I would tell another analyst using AI
 

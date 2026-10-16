@@ -21,7 +21,7 @@ No finding changes a rating on its own. The input data is sound. The gaps are in
 | 5.00% (current; Kroll's recommended US figure) | 1,627p HOLD | USD 47.60 SELL | 3,855p SELL | 1,621p SELL |
 | 5.50% (Fernandez 2025 survey, US/UK) | 1,527p HOLD | USD 45.56 SELL | 3,657p SELL | 1,514p SELL |
 
-Unilever turns HOLD below 4.19%. Every outside ERP figure was seen only in search summaries (Damodaran, Kroll, Fernandez and UBS sites are blocked here). Recommendation: 4.2% (Damodaran implied), because it is the only measure built to sit on top of today's bond yields, which the desk uses. Full pack: erp-evidence.md.
+Unilever turns HOLD below 4.19%. Every outside ERP figure was seen only in search summaries (Damodaran, Kroll, Fernandez and UBS sites are blocked here). **Update 16 Oct 2026:** Damodaran's 4.20% (1 Oct 2026) and 4.23% (1 Jan 2026) are now confirmed on his own site; see erp-evidence.md, section 0. Recommendation: 4.2% (Damodaran implied), because it is the only measure built to sit on top of today's bond yields, which the desk uses. Full pack: erp-evidence.md.
 
 ## 2. Other judgement inputs with weak or no source
 

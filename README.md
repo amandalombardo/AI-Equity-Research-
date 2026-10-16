@@ -12,7 +12,7 @@ Student portfolio project, not investment advice.
 | Read | What it is |
 |---|---|
 | [Research pack (PDF)](publish/research-pack.pdf) | Cover page with the four calls, how the desk works, the four memos and the mistakes write-up, in one file |
-| [What the AI agents got wrong](publish/what-the-agents-got-wrong.md) ([PDF](publish/what-the-agents-got-wrong.pdf)) | The 33 mistakes logged during the project, how each was caught, and the rules that came out of them |
+| [What the AI agents got wrong](publish/what-the-agents-got-wrong.md) ([PDF](publish/what-the-agents-got-wrong.pdf)) | The 34 mistakes logged during the project, how each was caught, and the rules that came out of them |
 | [Mistakes log](docs/mistakes-log.md) | Every error, row by row |
 | [Amanda's own Diageo DCF (Excel)](own-model/diageo-dcf-amanda-2026-10-16.xlsx) | Built by the PM on 16 Oct 2026, after the calls: her formulas on the desk's sourced inputs; reconciles to 1,780.2p |
 

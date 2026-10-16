@@ -71,8 +71,8 @@ dcf:
     risk_free: null
     # Equity risk premium (PM decision 15 Oct 2026, evidence audit): 4.2% = Damodaran's implied ERP for the S&P 500,
     # 4.20% at 1 Oct 2026 (4.23% at 1 Jan 2026), the premium the market is pricing over today's 10-year yield, so it
-    # pairs with the spot risk-free rate used here. Same for all four companies. FLAG: seen in search summaries only
-    # (pages.stern.nyu.edu blocked here); PM to confirm on Damodaran's home page. Was 5.0% with no source.
+    # pairs with the spot risk-free rate used here. Same for all four companies. Confirmed at source on 16 Oct 2026:
+    # Damodaran's home page and ERPbymonth.xlsx (pages.stern.nyu.edu/~adamodar). Was 5.0% with no source.
     # Evidence: docs/audit-2026-10-15/erp-evidence.md.
     equity_risk_premium: 0.042
     # Beta (agreed 14 Oct 2026): Damodaran GLOBAL Information Services, unlevered beta corrected for cash 0.8737 (86 firms,

@@ -27,7 +27,7 @@ DCF in USD m at the 31 Dec 2025 balance sheet, mid-year discounting (56% of FY26
 
 - **Growth (USD, ex-CCBA):** base revenue USD 44,309m; 5.0% in FY26 (was 6.0%; PM decision 15 Oct 2026: part of the disposal headwind is not CCBA), then 3.0% a year (FY27-30).
 - **Savings flow-through:** none (no announced programme); margin held flat at 33.2%. Tax 23.7%.
-- **WACC 7.55%:** risk-free 5.22%, beta 0.6091, equity risk premium 4.2% (was 5.0%, unsourced), cost of equity 7.78%; cost of debt 5.91% (risk-free + 0.69% single-A spread); debt weight 7.1%. **ERP source:** Damodaran's implied ERP, 4.20% at 1 Oct 2026, seen only in search summaries (PM decision 15 Oct 2026: keep 4.2% once confirmed there).
+- **WACC 7.55%:** risk-free 5.22%, beta 0.6091, equity risk premium 4.2% (was 5.0%, unsourced), cost of equity 7.78%; cost of debt 5.91% (risk-free + 0.69% single-A spread); debt weight 7.1%. **ERP source:** Damodaran's implied ERP, 4.20% at 1 Oct 2026, confirmed at source (PM decision 15 Oct 2026).
 - **Terminal:** growth 2.0%; capex 4.76% of sales, so new investment earns 27% (RONIC).
 
 Bridge (USD m): EV 212,139 - net debt 29,686 - leases 1,722 - minorities 2,106 - IRS 14,000 + equity stakes 46,626 + CCBA proceeds 1,300 = 212,551; 216,169 at 13 Oct (listed stakes of USD 39,540m already at 13 Oct prices, so not grown; the rest grown at the cost of equity, less USD 6,840m of dividends); 4,302m shares = **USD 50.25**. **Terminal value is 76.7% of EV (FLAG, limit 75%).** Exit multiple 12.0x EBITDA, inside the peer range but at its bottom, against KO's own 26.1x. Comps: peer median EV/EBITDA 19.1x (PepsiCo 11.4x, Keurig Dr Pepper 19.1x, Monster 29.1x) gives USD 42.01 / 70.07 / 107.05; the DCF is 28.3% below the median. Little weight (three peers, forward P/E MISSING).
@@ -66,7 +66,7 @@ No single bear change leaves SELL. Stacked bear (FY26 5.0%, 1% growth FY27-30, W
 | 3. IRS and cash | add the USD 900m accrual: USD 50.03 (-0.22) | PM decision 15 Oct 2026: loss stays in base, no extra accrual; FY26 cash (USD 11,208m) reconciles |
 | 4. Stakes at market | 31 Dec 2025 values: USD 49.03 (-1.22); 21% tax on gain: USD 49.00 (-1.25) | Small. PM decision 15 Oct 2026: keep no tax deducted |
 | 5. Beta at a low | 0.868: USD 42.66 (-7.59), WACC 8.56% | PM decision 15 Oct 2026: keep 0.6091. The 8.56% is now inside the 6-9% range |
-| 6. ERP (audit) | 5.0%: USD 46.54 (-3.71); 5.5%: USD 44.49 (-5.76) | PM decision 15 Oct 2026: keep 4.2% once confirmed; SELL at every ERP |
+| 6. ERP (audit) | 5.0%: USD 46.54 (-3.71); 5.5%: USD 44.49 (-5.76) | PM decision 15 Oct 2026: keep 4.2% (confirmed); SELL at every ERP |
 
 **Is the SELL just a harsh base case?**
 
@@ -85,7 +85,7 @@ No single bear change leaves SELL. Stacked bear (FY26 5.0%, 1% growth FY27-30, W
 - Coca-Cola results 8-Ks (exhibit 99.1): Q4 2025 (0001628280-26-006642, pp.26, 28), Q2 2026 (0001628280-26-049922, FY26 outlook and first-half free cash flow), Q4 2019-Q4 2024 for the guidance track record.
 - Coca-Cola 10-Qs: Q1 2026 (0001628280-26-028802) and Q2 2026 (0001628280-26-050503, Note 9: tax rate +3.8 points, USD 900m accrual).
 - Coca-Cola HBC CCBA acquisition announcement, 21 Oct 2025 (presentation, slides 9, 13 and 18; PDF supplied by the PM and verified 15 Oct 2026. Slide 13's pro forma table shows EUR 3.43bn / EUR 0.253bn instead, about -USD 0.03 a share).
-- Damodaran implied equity risk premium, 1 Oct 2026 (search summaries only; docs/audit-2026-10-15/erp-evidence.md). Kroll and Fernandez ERP figures from the same pack.
+- Damodaran implied equity risk premium, 1 Oct 2026 (home page and ERPbymonth.xlsx, pages.stern.nyu.edu/~adamodar, read at source 16 Oct 2026; docs/audit-2026-10-15/erp-evidence.md). Kroll and Fernandez ERP figures from the same pack.
 - FRED: DGS10 (2026-10-08), ICE BofA single-A spread BAMLC0A3CA (2026-10-08), DEXUSEU (2024 average).
 - Yahoo Finance: KO, S&P 500, peer and listed-stake prices (13 Oct 2026), dividend dates; Damodaran, Betas by Sector (US), January 2026 (file supplied by the PM).
 - Peers PepsiCo, Keurig Dr Pepper, Monster: SEC EDGAR XBRL. Evidence audit 15 Oct 2026: docs/audit-2026-10-15/KO.md and summary.md. PM decisions: briefs/KO.yaml. Agent outputs: runs/KO/2026-10-13/ (valuation and bear re-run 15 Oct 2026). PM bear responses: docs/audit-2026-10-15/bear-responses-2026-10-15.md (PM decision 15 Oct 2026, accept all).
