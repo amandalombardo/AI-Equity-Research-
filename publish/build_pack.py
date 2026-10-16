@@ -82,7 +82,7 @@ def cover_markdown(headers: list[dict]) -> str:
     lines = "\n".join(f"- **{h['company']}:** {h['headline']}" for h in headers)
     return f"""# AI Equity Research Desk: four company calls, October 2026
 
-**Portfolio manager: Amanda.** Six AI agents (Data, Risk, Fundamentals, Valuation, Bear case and Editor) each produced a buy/hold/sell memo on a listed company. The PM set every assumption, with a source for each one, and ruled on every challenge from the Bear case agent. All calculations were done by tested Python code, never by the AI itself.
+**Portfolio manager: Amanda.** Six AI agents (Data, Risk, Fundamentals, Valuation, Bear case and Editor) each produced a buy/hold/sell memo on a listed company. The PM set every assumption, with a source for each one, and ruled on every challenge from the Bear case agent. All calculations were done by tested Python code, never by the AI itself. After the calls were made, the PM built her own DCF of Diageo in Excel (her formulas on the desk's sourced inputs); it reconciles to the desk's 1,780.2p.
 
 **Desk rule:** BUY at +15% or more upside to the DCF fair value, SELL at -10% or worse, HOLD in between, with no overrides. Per-share values are in pence (GBp) for London listings and US dollars (USD) for Coca-Cola.
 
