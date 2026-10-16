@@ -134,3 +134,21 @@ def test_exchange_cross_check_flags_a_gap_and_never_fills_a_missing_close():
     assert out["ULVR.L"]["status"] == "match"
     assert out["KO"]["status"].startswith("FLAG")  # 0.77% apart
     assert out["CUKX.L"]["diff"] is None and out["CUKX.L"]["status"].startswith("not checked")
+
+
+def test_recorded_start_close_fills_a_dropped_yahoo_row_only_without_dividend_adjustments():
+    cfg = update.load_config()
+    data = _fake(cfg)
+    data["CUKX.L"] = data["CUKX.L"].iloc[1:]  # Yahoo dropped the start-date row (seen on 16 Oct 2026)
+    cfg["recorded_start_closes"] = {"CUKX.L": 100.0}
+    res = update.compute(cfg, data, "2026-10-19")
+    assert res["daily"][-1]["ftse100_tr_gbp"] == pytest.approx(0.02)
+    assert "FLAG: Yahoo no longer has CUKX.L" in update.report(cfg, res)
+    # a dividend-adjusted series can't take an actual close as its start: stop
+    data["CUKX.L"]["adj_close"] = data["CUKX.L"]["close"] * 0.99
+    with pytest.raises(RuntimeError, match="MISSING"):
+        update.compute(cfg, data, "2026-10-19")
+    # no recorded close: stop
+    cfg["recorded_start_closes"] = {}
+    with pytest.raises(RuntimeError, match="MISSING"):
+        update.compute(cfg, data, "2026-10-19")

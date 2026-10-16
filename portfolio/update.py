@@ -65,11 +65,27 @@ def _on_or_before(df: pd.DataFrame, day: pd.Timestamp) -> pd.Series:
     return rows.iloc[-1]
 
 
+def _with_recorded_start(ticker: str, df: pd.DataFrame, start: pd.Timestamp, recorded: dict) -> pd.DataFrame:
+    """Yahoo sometimes drops a past day's row. Put back the start-date close recorded (and exchange-checked) in
+    the first report, but only where the series has no dividend adjustments (adjusted = actual close in every
+    row), so a recorded actual close is on the same basis as the adjusted series. Otherwise stop: MISSING."""
+    if ticker not in recorded:
+        raise RuntimeError(f"MISSING: {ticker} has no close on the start date {start.date()}; stop and report it")
+    if not (df["adj_close"] - df["close"]).abs().max() < 1e-6:
+        raise RuntimeError(f"MISSING: {ticker} has no start-date close and its prices are dividend-adjusted, "
+                           "so the recorded close can't be used; stop and report it")
+    row = pd.DataFrame({"adj_close": [recorded[ticker]], "close": [recorded[ticker]]}, index=[start])
+    out = pd.concat([df, row]).sort_index()
+    out.attrs = {**df.attrs, "recorded_start": True}
+    return out
+
+
 def compute(cfg: dict, data: dict[str, pd.DataFrame], as_of: str) -> dict:
     start, end = pd.Timestamp(cfg["start_date"]), pd.Timestamp(as_of)
+    data = dict(data)
     for t, df in data.items():
         if start not in df.index:
-            raise RuntimeError(f"MISSING: {t} has no close on the start date {start.date()}; stop and report it")
+            data[t] = _with_recorded_start(t, df, start, cfg.get("recorded_start_closes", {}))
     fund = cfg["fund_gbp"]
     weights = {leg: v["weight"] for leg, v in cfg["benchmark"].items()}
     sells = [c for c in cfg["calls"] if c["call"] == "SELL"]
@@ -124,9 +140,11 @@ def compute(cfg: dict, data: dict[str, pd.DataFrame], as_of: str) -> dict:
             "band_flag": band["rating"] != c["call"],
         })
     price_dates = {t: _on_or_before(df, last).name.date().isoformat() for t, df in data.items()}
+    recorded_start = [t for t, df in data.items() if df.attrs.get("recorded_start")]
     return {"as_of": last.date().isoformat(), "start_date": cfg["start_date"], "fund_gbp": fund,
             "usd_per_gbp_start": fx_start, "usd_per_gbp_now": fx_now,
-            "positions": valued, "daily": daily, "scorecard": scorecard, "price_dates": price_dates}
+            "positions": valued, "daily": daily, "scorecard": scorecard, "price_dates": price_dates,
+            "recorded_start": recorded_start}
 
 
 def compare_closes(rows: list[dict], tolerance: float = 0.0005) -> list[dict]:
@@ -232,6 +250,9 @@ def report(cfg: dict, res: dict) -> str:
             lines.append(f"| {r['ticker']} | {r['date']} | {r['yahoo']:,.2f} | {ex} | {gap} | {r['status']} |")
     lines += ["", "Fair values and calls: each company's final runs/<TICKER>/<date>/valuation/valuation.json. "
               "Band thresholds: briefs/<TICKER>.yaml.", "", "## Missing / not charged", ""]
+    lines += [f"- FLAG: Yahoo no longer has {t}'s start-date close; the close recorded in the first report "
+              f"({cfg['recorded_start_closes'][t]:,.2f}, matched to the exchange on {res['start_date']}) is used."
+              for t in res.get("recorded_start", [])]
     lines += [f"- {m}" for m in cfg["missing"]]
     lines.append("- FTSE 100 total return uses an ETF as a proxy, so its annual fee slightly understates the index.")
     return "\n".join(lines) + "\n"
