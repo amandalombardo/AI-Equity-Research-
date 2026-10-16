@@ -11,7 +11,7 @@ Student portfolio project, not investment advice.
 | Read | What it is |
 |---|---|
 | [Research pack (PDF)](publish/research-pack.pdf) | Cover page with the four calls, how the desk works, the four memos and the mistakes write-up, in one file |
-| [What the AI agents got wrong](publish/what-the-agents-got-wrong.md) ([PDF](publish/what-the-agents-got-wrong.pdf)) | The 33 mistakes logged during the project, how each was caught, and the rules that came out of them |
+| [What the AI agents got wrong](publish/what-the-agents-got-wrong.md) ([PDF](publish/what-the-agents-got-wrong.pdf)) | The 34 mistakes logged during the project, how each was caught, and the rules that came out of them |
 | [Mistakes log](docs/mistakes-log.md) | Every error, row by row |
 
 ## The four calls (final, 15 October 2026)

@@ -86,3 +86,7 @@ KO forward EPS (forward P/E leg), peer NTM EBITDA, CCEP data, KO leverage target
 ## Confidence
 High that the memo matches the agent outputs. The rating is robust: no single change tested leaves SELL. Pending the PM's call.
 - **PM final 13 Oct 2026 18:29:** SELL. Bear responses: margin 31.9%, no stake-gain tax, beta 0.6091 kept. Memo updated and PDF regenerated.
+
+## 16 Oct 2026: ERP confirmed at source
+
+- Damodaran's implied ERP of 4.20% (1 Oct 2026) was read directly on his home page and in ERPbymonth.xlsx once the PM allowed pages.stern.nyu.edu (docs/audit-2026-10-15/erp-evidence.md, section 0). Memo wording changed from "seen only in search summaries / PM to confirm" to "confirmed at source"; no number, value or rating changed; memo.pdf rebuilt. The earlier FLAGs about the ERP being unconfirmed are closed.

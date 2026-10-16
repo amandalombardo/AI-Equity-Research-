@@ -98,12 +98,12 @@ def cover_markdown(headers: list[dict]) -> str:
 
 - **How the desk works:** a diagram of the six agents, the Python engine, the PM's review loop and the independent checks.
 - **The four memos:** two pages each, plus a page of sources (SEC filings with page references, FRED series, data files).
-- **What the agents got wrong:** the 33 mistakes logged during the project, how each was caught, and the rules that came out of them.
+- **What the agents got wrong:** the 34 mistakes logged during the project, how each was caught, and the rules that came out of them.
 
 ## Read with care
 
 - This is a student portfolio project, not investment advice. Prices are the closes of 12 and 13 October 2026.
-- Four inputs could only be seen second-hand and are disclosed in the memos: the 4.2% equity risk premium (Damodaran implied), the UK gilt and German Bund yields, and EABL's sales.
+- Three inputs could only be seen second-hand and are disclosed in the memos: the UK gilt and German Bund yields, and EABL's sales. The 4.2% equity risk premium (Damodaran implied) was confirmed on Damodaran's own site on 16 Oct 2026.
 - Unilever is a borderline HOLD: it is 19.1p above the SELL line, and its memo shows the inputs that would flip it.
 
 Code, agent outputs and evidence files: github.com/amandalombardo/ai-equity-research-desk

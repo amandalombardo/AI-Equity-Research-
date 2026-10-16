@@ -5,13 +5,44 @@
 
 ---
 
+## 0. Confirmed at source (update, 16 Oct 2026)
+
+On 16 Oct 2026 the PM allowed the desk to reach pages.stern.nyu.edu, and Damodaran's own pages were read directly (no search summaries):
+
+- **Home page** (pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm): "Implied ERP on October 1, 2026 = 4.20% (Trailing 12 month, with adjusted payout); 3.70% (Trailing 12 month cash yield); 5.67% (Average CF yield last 10 years); 3.61% (Net cash yield); 3.30% (Normalized Earnings & Payout) (with the US treasury rate of 5.29% used as the riskfree rate in US dollars ...)". **The desk's 4.20% is confirmed exactly**, with the same 5.29% Treasury.
+- **Annual dataset** (datafile/histimpl.html, "Update: January 2026"): start of 2026 (row 2025), T-bond 4.18%, implied ERP (FCFE) **4.23%**. **Confirmed.**
+- **Monthly dataset** (pc/implprem/ERPbymonth.xlsx, sheet "Historical ERP", downloaded 16 Oct 2026, SHA-256 56605b60...49cc9f). Start-of-month values, 2026:
+
+| Start of month | S&P 500 | US 10-year | ERP, headline (T12m, adjusted payout) | ERP (T12m cash yield) |
+|---|---|---|---|---|
+| 1 Jan 2026 | 6,846 | 4.18% | 4.18% | 4.23% |
+| 1 Feb 2026 | 6,939 | 4.26% | 4.17% | 4.25% |
+| 1 Mar 2026 | 6,879 | 3.95% | 4.38% | 4.37% |
+| 1 Apr 2026 | 6,528 | 4.32% | 4.67% | 4.77% |
+| 1 May 2026 | 7,209 | 4.40% | 4.24% | 4.36% |
+| 1 Jun 2026 | 7,580 | 4.44% | 4.18% | 4.31% |
+| 1 Jul 2026 | 7,499 | 4.45% | 4.30% | 4.20% |
+| 1 Aug 2026 | 7,490 | 4.74% | 4.28% | 4.23% |
+| 1 Sep 2026 | 7,686 | 4.75% | 4.14% | 4.09% |
+| 1 Oct 2026 | 7,652 | 5.29% | **4.20%** | 3.70% |
+
+**What this changes.** The desk's ERP (4.2%) and every valuation and rating stay exactly as they are. Three secondhand details below were slightly off and are corrected in place:
+
+1. **Like-for-like comparison.** The 4.23% (1 Jan) is the trailing 12-month cash-yield version; the 4.20% (1 Oct) is the adjusted-payout headline. On the same headline measure the move was **4.18% to 4.20%**, so the "barely moved while yields rose" point holds (on the cash-yield measure it fell, 4.23% to 3.70%).
+2. **The range "4.14-4.42% all year" was too narrow.** The headline was **4.14-4.67%** between 1 Jan and 1 Oct 2026. The high was 4.67% on 1 Apr, after the March sell-off (S&P 500 down to 6,528). It was back to 4.24% by 1 May.
+3. **"4.14% on 1 Feb" was mis-dated** by the search summary: 4.14% is the 1 Sep 2026 figure. 1 Feb was 4.17%. The 4.24% (1 May) is confirmed. The July 4.42% is the cash-yield ERP with the US default spread netted out of the Treasury (column "ERP (T12m) with adj riskfree rate"), not the headline.
+
+Also read directly (ctryprem.html, January 5, 2026): United Kingdom Aa3, total ERP **5.01%**; Germany Aaa, **4.23%**; United States Aa1, 4.46%. All confirmed. Kroll, Fernandez, UBS/DMS and Ofwat/CMA figures are still secondhand (those sites were not tested).
+
+---
+
 ## 1. The short version
 
 - **The desk's 5.0% does match one real published figure: Kroll's recommended US ERP, 5.0%.** It was set on 2 Sep 2025 and reaffirmed through 2026. But Kroll pairs it with the **20-year** US Treasury (5.60% on 13 Oct 2026, FRED DGS20). The desk uses the 10-year (5.22%). So the 5.0% can be sourced, but it is not being used the way Kroll intends.
-- **Damodaran's implied ERP has been about 4.2% all year.** It was 4.23% on 1 Jan 2026 and 4.20% on 1 Oct 2026, even though the US 10-year rose from 4.18% to 5.29% over that time. "Implied" means it is worked out from today's share prices and today's bond yield, so it is the natural partner for the spot yields the desk uses.
+- **Damodaran's implied ERP has been about 4.2% all year** (confirmed at source 16 Oct 2026, section 0; it touched 4.67% on 1 Apr). It was 4.23% on 1 Jan 2026 (4.18% on the same measure as October) and 4.20% on 1 Oct 2026, even though the US 10-year rose from 4.18% to 5.29% over that time. "Implied" means it is worked out from today's share prices and today's bond yield, so it is the natural partner for the spot yields the desk uses.
 - **Survey and historical figures are higher, at about 5-5.5%.** Fernandez's 2025 survey of what analysts actually use gives US 5.5%, UK 5.4% and Germany 5.4%. The DMS/UBS long-run US premium over bonds is about 4.9%. But those survey answers were paired with lower risk-free rates (about 4.1% US and UK, 2.7% Germany) than the desk's current ones.
 - **Rating impact.** The ERP changes the rating for **Unilever only**. ULVR moves from SELL to HOLD below an ERP of **4.19%**. Diageo stays HOLD anywhere between 3.77% and 5.62%. KO and RELX stay SELL at every plausible ERP.
-- **Recommendation: one desk-wide ERP of 4.2%,** taken from Damodaran's implied US ERP. **Before you sign it off, open Damodaran's page and confirm the number yourself** (section 6). Alternatives: (A) keep 5.0% but cite Kroll, and ideally pair it with the 20-year yield; (B) per-market Damodaran figures.
+- **Recommendation: one desk-wide ERP of 4.2%,** taken from Damodaran's implied US ERP. **Before you sign it off, open Damodaran's page and confirm the number yourself** (section 6). [Done 16 Oct 2026: confirmed at source, section 0.] Alternatives: (A) keep 5.0% but cite Kroll, and ideally pair it with the 20-year yield; (B) per-market Damodaran figures.
 - **Caveat on every outside source:** this sandbox blocks Damodaran's site (NYU), Kroll, SSRN, Tulane, BVResources, UBS, LBS, Ofwat and gov.uk. **Every outside ERP figure below was seen secondhand**, in search-engine summaries of those pages, not on the page itself. The one exception is FRED (US Treasury yields), which I read directly. FRED independently confirms the bond yields Damodaran's figures are built on (section 2a). Status labels below: **Secondhand** = seen only in a search summary; **Corroborated** = secondhand, but a figure that depends on it checks out against FRED.
 
 ---
@@ -24,11 +55,11 @@ How it works: he finds the expected return that makes the S&P 500's current pric
 
 | Date | Implied ERP | US 10-year used | Expected market return (ERP + yield) | Source | Status |
 |---|---|---|---|---|---|
-| 1 Jan 2026 | **4.23%** (trailing 12-month cash yield) | 4.18% | 8.41% | Damodaran "Data Update 2 for 2026" (blog, Jan 2026): "IRR for the S&P 500 was 8.41% on Jan 1; subtracting the 10-year treasury rate (4.18%) yields an ERP of 4.23%" (edwardconard.com summary). Also BVWire "Damodaran posts his first data update for 2026". Underlying data: pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histimpl.html | **Corroborated:** FRED DGS10 on 31 Dec 2025 = 4.18% (read directly) |
-| 1 Feb 2026 | 4.14% (trailing 12-month) | n/a | n/a | Search summary of a March 2026 Damodaran post | Secondhand |
-| 1 May 2026 | 4.24% | n/a | n/a | Search summary (source not named) | Secondhand |
+| 1 Jan 2026 | **4.23%** (trailing 12-month cash yield) | 4.18% | 8.41% | Damodaran "Data Update 2 for 2026" (blog, Jan 2026): "IRR for the S&P 500 was 8.41% on Jan 1; subtracting the 10-year treasury rate (4.18%) yields an ERP of 4.23%" (edwardconard.com summary). Also BVWire "Damodaran posts his first data update for 2026". Underlying data: pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histimpl.html | **Confirmed at source 16 Oct 2026** (histimpl.html, start of 2026: 4.23%, T-bond 4.18%). On the October headline measure, 1 Jan was 4.18% |
+| 1 Feb 2026 | ~~4.14% (trailing 12-month)~~ 4.17% headline, 4.25% cash yield | 4.26% | n/a | Search summary of a March 2026 Damodaran post; 4.14% is in fact the 1 Sep figure | **Corrected at source 16 Oct 2026** |
+| 1 May 2026 | 4.24% | 4.40% | n/a | Search summary (source not named) | **Confirmed at source 16 Oct 2026** (ERPbymonth.xlsx) |
 | 1 Jul 2026 | **4.42%** (S&P 500 at 7,499.36) | n/a | n/a | Damodaran, "Country Risk: Determinants, Measures and Implications, The 2026 Edition" (SSRN 7107638; blog post aswathdamodaran.blogspot.com/2026/07/...) | Secondhand |
-| **1 Oct 2026 (latest)** | **4.20%** (trailing 12-month, adjusted payout: his headline). Other versions on the same line: 3.70% (trailing 12-month cash yield), 5.67% (average cash yield over 10 years), 3.61% (net cash yield), 3.30% (normalised earnings and payout) | **5.29%** | 9.49% | Damodaran home page pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm (search snippet) | **Corroborated:** FRED DGS10 on 30 Sep 2026 = 5.29% (read directly). The search tool said "check before relying", because 4.20% is also his July mature-market figure |
+| **1 Oct 2026 (latest)** | **4.20%** (trailing 12-month, adjusted payout: his headline). Other versions on the same line: 3.70% (trailing 12-month cash yield), 5.67% (average cash yield over 10 years), 3.61% (net cash yield), 3.30% (normalised earnings and payout) | **5.29%** | 9.49% | Damodaran home page pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm | **Confirmed at source 16 Oct 2026** (home page read directly; ERPbymonth.xlsx agrees). FRED DGS10 on 30 Sep 2026 = 5.29% |
 
 **Mature-market ERP (the base he adds country premiums to).** Moody's cut the US from Aaa to Aa1 in May 2025. Since then Damodaran no longer uses the US implied ERP as the mature-market ERP. He removes the US default spread first.
 
@@ -88,7 +119,7 @@ The cost of equity is **risk-free rate + beta x ERP**. For an average-risk share
 
 - **An implied ERP is measured against today's bond yield.** Damodaran takes today's share prices, works out the return they imply, and subtracts today's 10-year yield. "Spot yield + implied ERP" therefore adds back up to the return the market is actually pricing: 5.29% + 4.20% = 9.49% on 1 Oct 2026. If yields rise and share prices don't fall, the implied ERP shrinks automatically. So **an implied ERP is the like-for-like partner for a spot rate.** That is exactly what the desk uses (US 10-year about 5.2%, gilt 5.45%, Bund 3.45%).
 - **A historical ERP is an average over about 125 years** (DMS: about 4.9% over US bonds), a period when bond yields were often much lower or much higher than now. Adding it to an unusually high spot yield assumes the market's required return rises one-for-one with bond yields. It may or may not do so. Survey numbers (Fernandez) have a similar problem: respondents paired 5.4-5.5% with risk-free rates of about 4.1%, not today's 5.2-5.45%.
-- **What 2026 shows:** the US 10-year rose 1.1 points (4.18% to 5.29%) and Damodaran's implied ERP barely moved (4.23% to 4.20%). So far this year, the market has repriced to demand about 1 point more in total, and the premium has held steady. The desk's current 5.22% + 5.0% = **10.22%** asks about **0.7 points more** than the market is pricing (9.49%). That makes every company look about 0.7 points riskier than the average stock.
+- **What 2026 shows:** the US 10-year rose 1.1 points (4.18% to 5.29%) and Damodaran's implied ERP barely moved (4.18% to 4.20% on his headline measure; 4.23% on 1 Jan is the cash-yield version). So far this year, the market has repriced to demand about 1 point more in total, and the premium has held steady. The desk's current 5.22% + 5.0% = **10.22%** asks about **0.7 points more** than the market is pricing (9.49%). That makes every company look about 0.7 points riskier than the average stock.
 - **Kroll's 5.0% is a deliberately steady figure, designed to go with the 20-year yield.** Used Kroll's way, it gives 10.6% for the US market today. That is a defensible, more cautious view, but it is Kroll's own judgement, not a market reading.
 - **The currency question for ULVR and RELX:** the ERP should be measured in the same currency as the risk-free rate. Damodaran's 4.2% is a US-dollar figure. For euros he would use a mature-market ERP of about 4.2% with no German premium. For sterling he would add a premium only for UK operations. RELX earns most of its revenue outside the UK, so the UK's 5.01% would overstate its risk.
 
@@ -140,13 +171,13 @@ The script is at /tmp/claude-0/-home-user-ai-equity-research-/fb969581-7a6b-51a1
 **Why:**
 
 1. It is the only figure built to go with a **spot** risk-free rate, which is what the desk uses for all four companies (decision 11).
-2. It has been stable all year (4.14-4.42%) while rates moved, so 4.2% isn't the result of picking a convenient month.
+2. It has been fairly stable all year (4.14-4.67% on 1 Jan-1 Oct, confirmed at source 16 Oct 2026; the 4.67% was 1 Apr, after the March sell-off) while rates moved, so 4.2% isn't the result of picking a convenient month.
 3. It is the most widely cited single public source, and it fits the desk's existing use of Damodaran betas.
 4. It keeps Diageo at HOLD (1,811p), KO at SELL (USD 51.31) and RELX at SELL (1,821p). It also keeps **ULVR at SELL (4,234p), but only by 0.01 points of ERP.** The memo should say so.
 
 **Conditions before sign-off:**
 
-- (a) **Open Damodaran's home page (pages.stern.nyu.edu/~adamodar) in a normal browser and confirm "Implied ERP on October 1, 2026 = 4.20%"**, plus the January histimpl figure (4.23%). I could only see them secondhand. FRED confirms the 4.18% and 5.29% Treasury yields they are built on, but not the ERPs themselves.
+- (a) **Open Damodaran's home page (pages.stern.nyu.edu/~adamodar) in a normal browser and confirm "Implied ERP on October 1, 2026 = 4.20%"**, plus the January histimpl figure (4.23%). I could only see them secondhand. **Done 16 Oct 2026: both confirmed at source (section 0).** FRED confirms the 4.18% and 5.29% Treasury yields they are built on, but not the ERPs themselves.
 - (b) Record in each brief that the ERP is "Damodaran implied US ERP, [date], paired with the spot 10-year (or local equivalent)".
 - (c) For ULVR and RELX, note that a US-market ERP is being applied to euro and sterling rates. Damodaran would use about the same mature-market figure for Germany. For the UK he would add a country premium only for UK-based operations.
 
@@ -169,7 +200,7 @@ The script is at /tmp/claude-0/-home-user-ai-equity-research-/fb969581-7a6b-51a1
 
 ## 6. Missing / could not verify
 
-- **Every Damodaran, Kroll, Fernandez, UBS/DMS and Ofwat/CMA figure is secondhand** (search summaries). The network blocks all of those sites. Only FRED was read directly.
+- **Every Kroll, Fernandez, UBS/DMS and Ofwat/CMA figure is secondhand** (search summaries). The Damodaran implied ERPs and the January country table were confirmed at source on 16 Oct 2026 (section 0); the July mature-market 4.20% vs 4.17% question was not re-checked.
 - Damodaran **mature-market ERP for October 2026:** not published in anything I could see (about 3.98% by inference). July is 4.20% vs 4.17%, unresolved.
 - **Fernandez 2026** country figures (US, UK, Germany): missing.
 - **DMS 2026 UK and World** premium over bonds: missing.

@@ -87,3 +87,7 @@ High that the memo matches the agent outputs. Medium-low on the rating (39p head
 
 ## Source check, 15 Oct 2026 (mistakes log row 33)
 Memo updated for beta 0.9526 (was 0.9601): fair value 1,780.2p (was 1,772.1p), bear 1,298.8p, all bear-case values, sensitivity grid and flip points re-taken from valuation.json, steps_2026-10-15.json, sanity_checks.json and bear/challenges.json. memo_check passes. Rating unchanged: HOLD.
+
+## 16 Oct 2026: ERP confirmed at source
+
+- Damodaran's implied ERP of 4.20% (1 Oct 2026) was read directly on his home page and in ERPbymonth.xlsx once the PM allowed pages.stern.nyu.edu (docs/audit-2026-10-15/erp-evidence.md, section 0). Memo wording changed from "seen only in search summaries / PM to confirm" to "confirmed at source"; no number, value or rating changed; memo.pdf rebuilt. The earlier FLAGs about the ERP being unconfirmed are closed.

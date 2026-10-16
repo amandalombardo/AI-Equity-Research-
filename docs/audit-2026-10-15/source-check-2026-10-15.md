@@ -35,7 +35,7 @@ Reachable from here: SEC EDGAR, FRED, Yahoo Finance, and the Damodaran files Ama
 
 **RELX: UK 10-year gilt 5.45% on 13 Oct.** The only close found again is Investing.com's 5.4542%. Vantage gives 5.39% intraday. No new primary source. Status unchanged (the audit's sensitivity stands: 5.30% would add 40p, still SELL).
 
-**All four: ERP 4.20% (Damodaran implied, 1 Oct 2026).** A fresh search reads the same 4.20% from Damodaran's home page. Still not seen directly (site blocked). Status unchanged.
+**All four: ERP 4.20% (Damodaran implied, 1 Oct 2026).** A fresh search reads the same 4.20% from Damodaran's home page. Still not seen directly (site blocked). Status unchanged. **Update 16 Oct 2026: confirmed at source** (home page and ERPbymonth.xlsx read directly once pages.stern.nyu.edu was allowed; erp-evidence.md, section 0).
 
 ## 3. Could not be reached at all
 - Coca-Cola's own CCBA press release (not needed now that CCH's presentation is confirmed).
