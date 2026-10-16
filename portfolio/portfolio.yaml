@@ -42,6 +42,14 @@ calls:
     pm_rerating: {call: SELL, date: "2026-10-15", reason: "PM decision (Amanda, 15 Oct 2026 13:45 UTC): price rise put it past the -10% SELL line; fair value unchanged at 4,258.5p"}
   - {name: RELX, ticker: "REL.L",  currency: GBP, home_leg: ftse100, brief: briefs/RELX.yaml, run: runs/RELX/2026-10-14}
 
+# Start-date closes as recorded in the first report (updates/2026-10-15/report.md, run 15 Oct 2026 21:16 UTC),
+# each matched against the exchange's own close (LSE data feed / NYSE closing print). Used only when Yahoo
+# later drops the start-date row for an instrument whose price series has no dividend adjustments
+# (adjusted close = actual close), so the recorded close is on the same basis. Found 16 Oct 2026: Yahoo
+# dropped CUKX.L's 15 Oct row; LSE confirms 22,390p (previous close shown on 16 Oct).
+recorded_start_closes:
+  CUKX.L: 22390.0
+
 # Known gaps, disclosed in every update:
 missing:
   - "Short borrow fee: not sourced, so not charged. A real short pays a fee to the lender of the shares."
