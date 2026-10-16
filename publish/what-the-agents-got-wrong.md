@@ -1,6 +1,6 @@
 # What the AI agents got wrong, and how we caught it
 
-**AI Equity Research Desk · write-up of the mistakes log, 12 to 15 October 2026 · Amanda (portfolio manager)**
+**AI Equity Research Desk · write-up of the mistakes log, 12 to 16 October 2026 · Amanda (portfolio manager)**
 
 Six AI agents valued four companies (Diageo, Coca-Cola, Unilever and RELX) in four days. Every error we found was written down as it happened, in a mistakes log of 34 rows (docs/mistakes-log.md, with the row numbers used below). This note is what that log teaches. Per-share values are in pence (GBp) for the three London-listed companies and in US dollars (USD) for Coca-Cola.
 

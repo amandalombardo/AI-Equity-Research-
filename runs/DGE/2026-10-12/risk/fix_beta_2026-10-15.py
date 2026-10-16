@@ -24,7 +24,8 @@ ev["bottom_up"].update({
     "diageo_market_debt_to_equity": de, "tax_rate": tax, "relevered_beta": beta,
     "relevered_beta_without_cash_correction": UNLEVERED * (1 + (1 - tax) * de),
     "source": ("Damodaran, Betas by Sector (Global), file betaGlobal.xls dated 5 Jan 2026 (uploaded by the PM 14 Oct 2026, "
-               "/mnt/project-files/equity-desk/phase5/data/betaGlobal.xls), sheet Industry Averages, Beverage (Alcoholic), 217 firms. "
+               "docs/data/betaGlobal.xls, same file as "
+               "https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaGlobal.xls), sheet Industry Averages, Beverage (Alcoholic), 217 firms. "
                "Source check 15 Oct 2026: was 0.73 / 0.69 rounded from a search snippet (mistakes log row 33)"),
     "previous_relevered_beta": 0.9601})
 ev["recommended_beta"] = beta

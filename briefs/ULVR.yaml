@@ -79,8 +79,9 @@ dcf:
     # Evidence: docs/audit-2026-10-15/erp-evidence.md.
     equity_risk_premium: 0.042
     # Risk agent. PM rule (sign-off, same as Diageo): BOTTOM-UP beta from Damodaran's GLOBAL Household Products industry,
-    # unlevered beta corrected for cash 0.7741 (588 firms, file dated 5 Jan 2026; uploaded by the PM 14 Oct 2026, saved at
-    # /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls, sheet "Industry Averages"), relevered at Unilever's market
+    # unlevered beta corrected for cash 0.7741 (588 firms, file dated 5 Jan 2026, sheet "Industry Averages"; source:
+    # https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaGlobal.xls, copy in this repo at docs/data/betaGlobal.xls,
+    # uploaded by the PM 14 Oct 2026 and identical to the file on Damodaran's site, checked 16 Oct 2026), relevered at Unilever's market
     # D/E and the 26.0% tax rate. Unilever's own regressions vs the FTSE 100 are the cross-check.
     beta: null
     pre_tax_cost_of_debt: null      # Data agent: historic cost, for reference only

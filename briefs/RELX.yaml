@@ -1,6 +1,6 @@
 # PM assumptions for RELX PLC. Source of truth: phase5/brief-relx.md (docs/phase5/), every decision agreed by Amanda on
 # 14 Oct 2026 by decision card, with an evidence file each (docs/phase5/relx-*.md, copied from
-# /mnt/project-files/equity-desk/phase5/). Code must read every assumption from here. Nothing is hard-coded.
+# the project's shared folder). Code must read every assumption from here. Nothing is hard-coded.
 # Fields set to null are filled in by an agent from a cited source, then reviewed by the PM.
 # All money amounts are GBP m (RELX reports in pounds); the share price is in pence (GBp), so no exchange rate is needed.
 
@@ -76,7 +76,8 @@ dcf:
     # Evidence: docs/audit-2026-10-15/erp-evidence.md.
     equity_risk_premium: 0.042
     # Beta (agreed 14 Oct 2026): Damodaran GLOBAL Information Services, unlevered beta corrected for cash 0.8737 (86 firms,
-    # betaGlobal.xls dated 5 Jan 2026, /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls), relevered at RELX's
+    # betaGlobal.xls dated 5 Jan 2026: https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaGlobal.xls, copy in this
+    # repo at docs/data/betaGlobal.xls), relevered at RELX's
     # market D/E (31 Dec 2025 net debt / market cap) and the 22.8% tax rate = 0.974. Own regressions vs the FTSE 100
     # (0.38-0.67, R-squared 0.04-0.12) are the cross-check. Evidence: docs/phase5/relx-beta-evidence.md.
     beta: null

@@ -17,7 +17,7 @@
       "2025": 0.796055885018307,
       "Average (2020-24)": 0.875235886249309
     },
-    "source": "Damodaran, Betas by Sector (Global), betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', row 'Household Products' (PM upload 14 Oct 2026, /mnt/project-files/equity-desk/phase5/data/betaGlobal.xls, sha256 10c33f46df2a...)"
+    "source": "Damodaran, Betas by Sector (Global), betaGlobal.xls dated 2026-01-05, sheet 'Industry Averages', row 'Household Products' (PM upload 14 Oct 2026, docs/data/betaGlobal.xls, same file as https://pages.stern.nyu.edu/~adamodar/pc/datasets/betaGlobal.xls, sha256 10c33f46df2a...)"
   },
   "market_cap": {
     "shares_m": 2154.327621,

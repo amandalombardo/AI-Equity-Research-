@@ -73,7 +73,7 @@ How it works: he finds the expected return that makes the S&P 500's current pric
 - **Germany:** Aaa, so no country premium. Total ERP = mature-market ERP, about **4.2%** (Visual Capitalist map "World's riskiest markets in 2026", undated). **Secondhand.**
 - **A note on method:** Damodaran adds country premiums according to **where a company operates**, not where it is listed or which bond the desk uses. Applying the UK's 5.01% to RELX or Diageo just because they are listed in London would not be his method.
 
-**Local files.** I checked /mnt/project-files/ (including the uploads folder) and the run folders. The Damodaran files there are `betaGlobal.xls` (5 Jan 2026), `damodaran_betas_us_jan2026.xls` and an uploaded US betas file (saved 12 Apr 2026). **None of them states an ERP.** They contain betas only. No ctryprem, histimpl or ERP spreadsheet has been uploaded.
+**Local files.** I checked the project's shared folder (including the uploads folder) and the run folders. The Damodaran files there are `betaGlobal.xls` (5 Jan 2026), `damodaran_betas_us_jan2026.xls` and an uploaded US betas file (saved 12 Apr 2026). **None of them states an ERP.** They contain betas only. No ctryprem, histimpl or ERP spreadsheet has been uploaded.
 
 ### 2b. Kroll (formerly Duff & Phelps)
 
