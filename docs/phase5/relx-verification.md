@@ -1,6 +1,6 @@
 # RELX PLC: verification against primary SEC filings, 14 October 2026
 
-All documents downloaded directly from SEC EDGAR (www.sec.gov/Archives and data.sec.gov), CIK 929869 (RELX PLC) and CIK 943890 (RELX Capital Inc.), with User-Agent "AI Equity Desk amandalmori@gmail.com". All money is **GBP (£)** unless labelled otherwise; share prices are **pence (GBp)**. Nothing in the repo was changed.
+All documents downloaded directly from SEC EDGAR (www.sec.gov/Archives and data.sec.gov), CIK 929869 (RELX PLC) and CIK 943890 (RELX Capital Inc.), with a declared User-Agent naming the desk and a contact address, as SEC EDGAR requires (address removed for privacy). All money is **GBP (£)** unless labelled otherwise; share prices are **pence (GBp)**. Nothing in the repo was changed.
 
 | Tag | Document | EDGAR accession | Page convention |
 |---|---|---|---|
