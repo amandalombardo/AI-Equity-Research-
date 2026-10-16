@@ -39,5 +39,5 @@ A running record of where the AI agents (and our process) went wrong, how each e
 | 33 | 15 Oct 2026 | 5 Scale (source check) | Risk agent (Diageo beta) | Typed Damodaran's global alcoholic-beverages unlevered beta as 0.73 (copied from a rounded search snippet) instead of the file's 0.7250 (betaGlobal.xls, Industry Averages, Beverage (Alcoholic), 217 firms). Relevered beta 0.9601 should be 0.9526 (also relevered at the current D/E after the diluted share count); fair value 1,772.1p (GBp) becomes 1,780.2p (GBp), still HOLD | Source check of 15 Oct 2026 against the PM's uploaded Damodaran file (the site itself is blocked) | Amanda said fix it (15 Oct): exact beta in runs/DGE/2026-10-12/risk/fix_beta_2026-10-15.py, valuation, bear and memo re-run; pull request for her approval | Copy inputs from the source file at full precision; a search snippet is only a pointer to the source, never the number itself |
 
 ## Notes
-- "How it was caught" matters most for the write-up: e.g. Codex audit, Amanda's Excel check, Bear case agent, sanity check against the annual report.
+- "How it was caught" matters most for the write-up: e.g. Codex audit, the evidence audit, Bear case agent, sanity check against the annual report.
 - Log process mistakes too (an unclear spec, a wrong assumption we gave the agents), not only calculation errors.

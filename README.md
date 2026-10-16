@@ -3,6 +3,7 @@
 A team of six AI agents that produces a two-page buy/hold/sell investment memo on a listed company.
 **Portfolio manager: Amanda.** She writes the brief, sets the assumptions, challenges the outputs and makes the final call.
 Claude Code builds the desk, Codex independently audits the maths, and at Amanda's request every calculation was rechecked: automated tests against hand-worked answers, a test that the Excel DCF matches the Python engine, and an evidence audit of every input.
+After the calls were made, Amanda built her own DCF of Diageo in Excel, typing every formula herself into a template whose sourced inputs and layout came from the desk. It gives 1,780.2p (HOLD), the same as the desk. Because it came after the calls, it is a cross-check of one company, not part of how the calls were checked.
 
 Student portfolio project, not investment advice.
 
@@ -13,6 +14,7 @@ Student portfolio project, not investment advice.
 | [Research pack (PDF)](publish/research-pack.pdf) | Cover page with the four calls, how the desk works, the four memos and the mistakes write-up, in one file |
 | [What the AI agents got wrong](publish/what-the-agents-got-wrong.md) ([PDF](publish/what-the-agents-got-wrong.pdf)) | The 33 mistakes logged during the project, how each was caught, and the rules that came out of them |
 | [Mistakes log](docs/mistakes-log.md) | Every error, row by row |
+| [Amanda's own Diageo DCF (Excel)](own-model/diageo-dcf-amanda-2026-10-16.xlsx) | Built by the PM on 16 Oct 2026, after the calls: her formulas on the desk's sourced inputs; reconciles to 1,780.2p |
 
 ## The four calls (final, 15 October 2026)
 
@@ -75,6 +77,7 @@ AI models are good at reading filings and writing, but unreliable at arithmetic.
 | `desk/memo_check.py` | Checks that every number in the memo traces back to an agent output |
 | `desk/data_sources.py` | Downloads data from SEC EDGAR, Yahoo Finance and FRED |
 | `publish/` | Phase 6 publication: the research pack, the agent diagram and the mistakes write-up. Rebuild with `python -m publish.build_pack` |
+| `own-model/` | Amanda's own Diageo DCF in Excel (her formulas, the desk's sourced inputs), built after the calls |
 | `docs/` | Evidence packs, audit reports and the mistakes log |
 | `tests/` | Automated checks. Run with `python -m pytest` |
 
